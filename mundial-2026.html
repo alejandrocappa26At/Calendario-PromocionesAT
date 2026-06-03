@@ -16,6 +16,52 @@
             font-family: 'Segoe UI', 'Inter', sans-serif;
         }
 
+        /* ==================== NUEVOS BOTONES Y FILTROS ==================== */
+        .btn-neon-green {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 224, 90, 0.1);
+        }
+        .btn-neon-green:hover {
+            background: rgba(0, 224, 90, 0.1);
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.4);
+            transform: translateY(-2px);
+        }
+        .date-filter-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #111;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        .date-filter-container:focus-within {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 224, 90, 0.1);
+        }
+        .date-filter-container input[type="date"] {
+            background: transparent;
+            border: none;
+            color: var(--text-white);
+            outline: none;
+            color-scheme: dark;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         /* ==================== VARIABLES Y GLOBALES ==================== */
         :root {
             --bg-deep: #000000;
@@ -355,6 +401,93 @@
             margin-right: 6px;
         }
 
+        /* ==================== STORYTELLING PANEL ==================== */
+        .story-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding-bottom: 40px;
+        }
+
+        .story-section {
+            background: linear-gradient(145deg, rgba(17, 17, 17, 0.8), rgba(26, 26, 26, 0.8));
+            border: 1px solid #222;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hidden-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hidden-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+        }
+
+        .story-text {
+            font-size: 15px;
+            color: #ddd;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .story-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 24px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(0, 224, 90, 0.15);
+        }
+
+        .story-card-icon {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+
+        .story-quote {
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 800;
+            color: #fff;
+            padding: 24px 32px;
+            border-left: 4px solid var(--neon-green);
+            background: linear-gradient(90deg, rgba(0,224,90,0.1), transparent);
+            border-radius: 0 16px 16px 0;
+            margin: 24px 0;
+        }
+
         .bracket-view {
             display: flex;
             flex-direction: column;
@@ -404,6 +537,12 @@
         </div>
         
         <button class="btn-informate active" id="btn-informate">INFÓRMATE</button>
+
+        <div class="sidebar-section" style="margin-bottom: 20px;">
+            <button class="btn-neon-green" id="btn-clear-sidebar" style="width: 100%; justify-content: center;">
+                <i class="fa-solid fa-filter-circle-xmark"></i> Limpiar Filtros
+            </button>
+        </div>
 
         <div class="sidebar-section">
             <h3>Próximo Partido</h3>
@@ -632,6 +771,9 @@
 
             // Renderizar todos inicial
             renderMatches(matchesData);
+
+            // Inyectar Botones y Filtros Dinámicos vía JS
+            injectAdvancedFilters();
         });
 
         // ==================== LÓGICA DE RENDERIZADO ====================
@@ -696,9 +838,178 @@
             document.getElementById('btn-informate').classList.add('active');
             document.getElementById('sedes-select').value = 'all';
             document.getElementById('search-input').value = '';
-            sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
-            renderMatches(matchesData);
+            sectionTitle.innerHTML = '<i class="fa-solid fa-book-open"></i> Todo sobre el Mundial 2026';
+            renderStorytelling();
         });
+
+        function renderStorytelling() {
+            mainDisplay.innerHTML = `
+                <div class="story-container">
+                    
+                    <!-- BLOQUE 1 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-earth-americas"></i> El origen de la mayor fiesta del planeta</h2>
+                        <p class="story-text">La Copa Mundial de la FIFA nació en <strong>1930 en Uruguay</strong>. Solo participaron 13 selecciones y el campeón fue el anfitrión. Desde entonces, el Mundial se realiza cada 4 años (excepto en 1942 y 1946 debido a la Segunda Guerra Mundial).</p>
+                        
+                        <div class="story-grid">
+                            <div class="story-card">
+                                <div class="story-card-icon">🌍</div>
+                                <strong>Evento Global</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">Es el evento deportivo más visto del planeta.</span>
+                            </div>
+                            <div class="story-card">
+                                <div class="story-card-icon">📺</div>
+                                <strong>Récord de Audiencia</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">La final de Qatar 2022 tuvo más de 1,500 millones de espectadores.</span>
+                            </div>
+                            <div class="story-card">
+                                <div class="story-card-icon">🔄</div>
+                                <strong>Evolución</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">Participaban 32 selecciones. En 2026 esto cambiará para siempre.</span>
+                            </div>
+                            <div class="story-card" style="border-color: #ffd700; box-shadow: 0 0 15px rgba(255,215,0,0.2);">
+                                <div class="story-card-icon">🏆</div>
+                                <strong style="color: #ffd700;">Máximo Campeón</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">Brasil lidera la historia con 5 títulos mundiales.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-route"></i> ¿Cómo se clasifica?</h2>
+                        <p class="story-text">El proceso dura aproximadamente 3 años. Todo comienza con las Eliminatorias, donde las selecciones compiten dentro de su continente. <strong>Clasificar al Mundial es extremadamente difícil.</strong> Por ejemplo, Sudamérica tiene 10 equipos y solo clasifican entre 6 y 7.</p>
+                        
+                        <div class="story-grid" style="grid-template-columns: repeat(3, 1fr);">
+                            <div class="story-card"><strong style="color: var(--neon-green);">CONMEBOL</strong><span style="font-size:12px;">Sudamérica</span></div>
+                            <div class="story-card"><strong style="color: var(--neon-green);">UEFA</strong><span style="font-size:12px;">Europa</span></div>
+                            <div class="story-card"><strong style="color: var(--neon-green);">CONCACAF</strong><span style="font-size:12px;">Norteamérica</span></div>
+                            <div class="story-card"><strong style="color: var(--neon-green);">CAF</strong><span style="font-size:12px;">África</span></div>
+                            <div class="story-card"><strong style="color: var(--neon-green);">AFC</strong><span style="font-size:12px;">Asia</span></div>
+                            <div class="story-card"><strong style="color: var(--neon-green);">OFC</strong><span style="font-size:12px;">Oceanía</span></div>
+                        </div>
+
+                        <div class="story-quote" style="font-size: 16px; margin-bottom: 0;">
+                            Ejemplo cercano: La selección de Perú compite en la CONMEBOL en una de las eliminatorias más duras contra Brasil, Argentina, Chile, entre otros.
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-futbol"></i> ¿Qué pasa durante el Mundial?</h2>
+                        
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                            <div class="story-card" style="flex: 1;">
+                                <strong>1. Fase de Grupos</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">Los equipos se dividen en grupos. Juegan todos contra todos y solo clasifican los mejores.</span>
+                            </div>
+                            <div class="story-card" style="flex: 1;">
+                                <strong>2. Eliminación Directa</strong>
+                                <span style="color:var(--text-grey); font-size: 13px;">Octavos de final, Cuartos de final, Semifinal y la Gran Final.</span>
+                            </div>
+                        </div>
+
+                        <div class="story-quote">
+                            👉 “Aquí, el que pierde… se va a casa. No hay segunda oportunidad.”
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 4 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-fire"></i> 2026: El más grande de la historia</h2>
+                        <p class="story-text">Por primera vez, el torneo será organizado por 3 países y participarán <strong>48 selecciones</strong> (antes 32). Esto significa más partidos, más equipos y más oportunidades.</p>
+                        
+                        <div class="story-grid">
+                            <div class="story-card" style="align-items: center; text-align: center;">
+                                <div style="font-size: 32px;">🇺🇸 🇲🇽 🇨🇦</div>
+                                <strong>Sedes Tripartitas</strong>
+                            </div>
+                            <div class="story-card" style="align-items: center; text-align: center;">
+                                <div style="font-size: 32px; color: var(--neon-green);"><i class="fa-solid fa-calendar-check"></i></div>
+                                <strong>11 Jun - 19 Jul</strong>
+                            </div>
+                            <div class="story-card" style="align-items: center; text-align: center;">
+                                <div style="font-size: 32px; color: #ff0066;"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <strong>México Histórico</strong>
+                                <span style="font-size:12px; color: #aaa;">1er país en organizar 3 mundiales.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 5 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-star"></i> Favoritos para ganar en 2026</h2>
+                        <div class="story-grid">
+                            <div class="story-card">🇦🇷 <strong>Argentina</strong> <span style="color:#aaa; font-size:12px;">Actual campeón del mundo.</span></div>
+                            <div class="story-card">🇫🇷 <strong>Francia</strong> <span style="color:#aaa; font-size:12px;">Finalista del último mundial.</span></div>
+                            <div class="story-card">🇧🇷 <strong>Brasil</strong> <span style="color:#aaa; font-size:12px;">El eterno y siempre favorito.</span></div>
+                            <div class="story-card">🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Inglaterra</strong> <span style="color:#aaa; font-size:12px;">Equipo joven, rápido y muy fuerte.</span></div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 6 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-chart-line"></i> ¿Por qué es importante para el negocio?</h2>
+                        <p class="story-text">Durante el mundial hay partidos todos los días, los clientes visitan más las tiendas, aumenta el interés general por el fútbol y aparecen nuevos jugadores.</p>
+                        
+                        <div class="story-grid">
+                            <div class="story-card" style="border-color: var(--neon-green);"><i class="fa-solid fa-check" style="color:var(--neon-green)"></i> Más apuestas</div>
+                            <div class="story-card" style="border-color: var(--neon-green);"><i class="fa-solid fa-check" style="color:var(--neon-green)"></i> Más visitas</div>
+                            <div class="story-card" style="border-color: var(--neon-green);"><i class="fa-solid fa-check" style="color:var(--neon-green)"></i> Más ventas</div>
+                        </div>
+
+                        <div class="story-quote" style="border-color: #ffd700; color: #ffd700;">
+                            "Es el momento más fuerte de todo el negocio."
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 7 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-lightbulb"></i> Datos Curiosos</h2>
+                        <div class="story-grid">
+                            <div class="story-card">⏱️ Dura más de 1 mes continuo.</div>
+                            <div class="story-card">👁️ Más de 5 mil millones de espectadores.</div>
+                            <div class="story-card">💰 El campeón gana millones de dólares.</div>
+                            <div class="story-card">⭐ Los jugadores se vuelven leyendas.</div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 8 -->
+                    <div class="story-section hidden-scroll">
+                        <h2 class="story-title"><i class="fa-solid fa-message"></i> Frases clave para el promotor</h2>
+                        <p class="story-text">Usa estas frases en tienda para conectar con los clientes y generar interés:</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="background: rgba(0,224,90,0.1); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(0,224,90,0.3); font-weight: 600;">
+                                💬 "Este será el primer mundial con 48 equipos, habrá muchísimos más partidos para apostar."
+                            </div>
+                            <div style="background: rgba(0,224,90,0.1); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(0,224,90,0.3); font-weight: 600;">
+                                💬 "Se jugará en Estados Unidos, México y Canadá."
+                            </div>
+                            <div style="background: rgba(0,224,90,0.1); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(0,224,90,0.3); font-weight: 600;">
+                                💬 "Empieza en junio 2026, ¡ya falta poco!"
+                            </div>
+                            <div style="background: rgba(0,224,90,0.1); padding: 16px 24px; border-radius: 12px; border: 1px solid rgba(0,224,90,0.3); font-weight: 600;">
+                                💬 "Argentina es el campeón actual, ¿quién crees que gane esta vez?"
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+
+            // Inicializar el observador para las animaciones de scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.hidden-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
 
         // Filtro por Grupo
         function filterByGroup(group, btnElement) {
@@ -740,30 +1051,107 @@
             }
         });
 
-        // Buscador Dinámico
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            const text = e.target.value.toLowerCase();
-            if(text.trim() !== "") {
-                clearActiveButtons();
-                sectionTitle.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> Resultados de Búsqueda`;
-                const filtered = matchesData.filter(m => 
-                    m.t1.toLowerCase().includes(text) || 
-                    m.t2.toLowerCase().includes(text) ||
-                    m.city.toLowerCase().includes(text) ||
-                    m.group.toLowerCase().includes(text)
-                );
-                renderMatches(filtered);
-            } else {
-                document.getElementById('btn-informate').click();
-            }
-        });
-
         // Helper: Limpiar estado activo de botones
         function clearActiveButtons() {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-informate').classList.remove('active');
         }
 
+        // ==================== INYECCIÓN DOM (VÍA JAVASCRIPT) ====================
+        function injectAdvancedFilters() {
+            // 2. Modificar la barra superior (Top Bar) dinámicamente
+            const topBar = document.querySelector('.top-bar');
+            topBar.style.flexDirection = 'column';
+            topBar.style.gap = '20px';
+            topBar.style.alignItems = 'stretch';
+            
+            topBar.innerHTML = `
+                <div style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 16px; width: 100%;">
+                    <button class="btn-neon-green" id="btn-volver-calendario">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al Calendario
+                    </button>
+                </div>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; width: 100%;">
+                    <div class="search-box" style="flex: 1; min-width: 250px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" placeholder="Buscar país, grupo, sede...">
+                    </div>
+                    <div class="date-filter-container">
+                        <i class="fa-solid fa-calendar-day" style="color: var(--neon-green);"></i>
+                        <input type="date" id="date-filter" min="2026-06-11" max="2026-07-19" title="Filtrar partidos por fecha">
+                    </div>
+                </div>
+            `;
+
+            // 3. Reactivar el buscador de texto
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const text = e.target.value.toLowerCase();
+                if(text.trim() !== "") {
+                    clearActiveButtons();
+                    sectionTitle.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> Resultados de Búsqueda';
+                    const filtered = matchesData.filter(m => 
+                        m.t1.toLowerCase().includes(text) || m.t2.toLowerCase().includes(text) ||
+                        m.city.toLowerCase().includes(text) || m.group.toLowerCase().includes(text)
+                    );
+                    renderMatches(filtered);
+                } else {
+                    document.getElementById('btn-informate').click();
+                }
+            });
+
+            // 4. Asignar Eventos a los nuevos botones
+            document.getElementById('btn-volver-calendario').addEventListener('click', () => {
+                window.location.href = 'apuesta-total-dashboard.html';
+            });
+
+            document.getElementById('btn-clear-sidebar').addEventListener('click', () => {
+                clearActiveButtons();
+                document.getElementById('search-input').value = '';
+                document.getElementById('date-filter').value = '';
+                document.getElementById('sedes-select').value = 'all';
+                sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
+                renderMatches(matchesData);
+            });
+
+            // 5. Asignar Evento al filtro de Fecha
+            document.getElementById('date-filter').addEventListener('change', (e) => {
+                const dateVal = e.target.value; 
+                if(!dateVal) {
+                    document.getElementById('btn-informate').click();
+                    return;
+                }
+                
+                const parts = dateVal.split('-');
+                const day = parts[2];
+                const month = parts[1] === '06' ? 'JUN' : (parts[1] === '07' ? 'JUL' : '');
+                
+                if(month) {
+                    const formattedDate = day + " " + month;
+                    clearActiveButtons();
+                    document.getElementById('search-input').value = '';
+                    sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-day"></i> Partidos del ' + formattedDate;
+                    
+                    let filtered = matchesData.filter(m => m.date === formattedDate);
+                    let isKnockoutMatch = false;
+                    
+                    if (filtered.length === 0 && typeof knockoutData !== 'undefined') {
+                        Object.values(knockoutData).forEach(phaseMatches => {
+                            const matchesInPhase = phaseMatches.filter(m => m.date === formattedDate);
+                            if(matchesInPhase.length > 0) {
+                                filtered = filtered.concat(matchesInPhase);
+                                isKnockoutMatch = true;
+                            }
+                        });
+                    }
+                    
+                    if (filtered.length > 0) {
+                        renderMatches(filtered, isKnockoutMatch);
+                    } else {
+                        renderMatches([]); 
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
