@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="dns-prefetch" href="https://www.countryflagsapi.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <style>
         * {
             margin: 0;
@@ -717,9 +717,9 @@
                 card.className = 'match-card';
                 card.innerHTML = `
                     <div class="match-flags">
-                        <img src="https://www.countryflagsapi.com/png/${match.flag1}" alt="${match.team1}" class="flag-img" loading="lazy" onerror="this.style.display='none'">
+                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag1}.svg" alt="${match.team1}" class="flag-img" loading="lazy">
                         <div class="vs-divider">VS</div>
-                        <img src="https://www.countryflagsapi.com/png/${match.flag2}" alt="${match.team2}" class="flag-img" loading="lazy" onerror="this.style.display='none'">
+                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag2}.svg" alt="${match.team2}" class="flag-img" loading="lazy">
                     </div>
                     <div class="match-teams">
                         <div class="team-name">${match.team1}</div>
