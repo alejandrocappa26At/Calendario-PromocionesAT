@@ -669,18 +669,18 @@
     <script>
         // ==================== DATOS MUNDIAL ==================== 
         const matches = [
-            { id: 1, team1: 'México', team2: 'Sudáfrica', flag1: 'mx', flag2: 'za', group: 'A', city: 'CDMX', date: '11 JUN', time: '14:00', phase: 'grupos' },
-            { id: 2, team1: 'República de Corea', team2: 'República Checa', flag1: 'kr', flag2: 'cz', group: 'A', city: 'Guadalajara', date: '11 JUN', time: '21:00', phase: 'grupos' },
-            { id: 3, team1: 'Canadá', team2: 'Bosnia y Herzegovina', flag1: 'ca', flag2: 'ba', group: 'B', city: 'Toronto', date: '12 JUN', time: '14:00', phase: 'grupos' },
-            { id: 4, team1: 'EE.UU.', team2: 'Paraguay', flag1: 'us', flag2: 'py', group: 'D', city: 'Los Ángeles', date: '12 JUN', time: '20:00', phase: 'grupos' },
-            { id: 5, team1: 'Argentina', team2: 'Uruguay', flag1: 'ar', flag2: 'uy', group: 'C', city: 'Monterrey', date: '13 JUN', time: '18:00', phase: 'grupos' },
-            { id: 6, team1: 'Brasil', team2: 'Japón', flag1: 'br', flag2: 'jp', group: 'E', city: 'Vancouver', date: '13 JUN', time: '22:00', phase: 'grupos' },
-            { id: 7, team1: 'España', team2: 'Alemania', flag1: 'es', flag2: 'de', group: 'F', city: 'Dallas', date: '14 JUN', time: '16:00', phase: 'grupos' },
-            { id: 8, team1: 'Italia', team2: 'Francia', flag1: 'it', flag2: 'fr', group: 'G', city: 'Miami', date: '14 JUN', time: '20:00', phase: 'grupos' },
-            { id: 9, team1: 'Portugal', team2: 'Holanda', flag1: 'pt', flag2: 'nl', group: 'H', city: 'CDMX', date: '15 JUN', time: '15:00', phase: 'grupos' },
-            { id: 10, team1: 'Inglaterra', team2: 'Gales', flag1: 'gb', flag2: 'gb-wls', group: 'I', city: 'Toronto', date: '15 JUN', time: '21:00', phase: 'grupos' },
-            { id: 11, team1: 'Bélgica', team2: 'Croacia', flag1: 'be', flag2: 'hr', group: 'J', city: 'Guadalajara', date: '16 JUN', time: '19:00', phase: 'grupos' },
-            { id: 12, team1: 'Suecia', team2: 'Dinamarca', flag1: 'se', flag2: 'dk', group: 'K', city: 'Los Ángeles', date: '16 JUN', time: '23:00', phase: 'grupos' },
+            { id: 1, team1: 'México', team2: 'Sudáfrica', flag1: 'mx', flag2: 'za', emoji1: '🇲🇽', emoji2: '🇿🇦', group: 'A', city: 'CDMX', date: '11 JUN', time: '14:00', phase: 'grupos' },
+            { id: 2, team1: 'República de Corea', team2: 'República Checa', flag1: 'kr', flag2: 'cz', emoji1: '🇰🇷', emoji2: '🇨🇿', group: 'A', city: 'Guadalajara', date: '11 JUN', time: '21:00', phase: 'grupos' },
+            { id: 3, team1: 'Canadá', team2: 'Bosnia y Herzegovina', flag1: 'ca', flag2: 'ba', emoji1: '🇨🇦', emoji2: '🇧🇦', group: 'B', city: 'Toronto', date: '12 JUN', time: '14:00', phase: 'grupos' },
+            { id: 4, team1: 'EE.UU.', team2: 'Paraguay', flag1: 'us', flag2: 'py', emoji1: '🇺🇸', emoji2: '🇵🇾', group: 'D', city: 'Los Ángeles', date: '12 JUN', time: '20:00', phase: 'grupos' },
+            { id: 5, team1: 'Argentina', team2: 'Uruguay', flag1: 'ar', flag2: 'uy', emoji1: '🇦🇷', emoji2: '🇺🇾', group: 'C', city: 'Monterrey', date: '13 JUN', time: '18:00', phase: 'grupos' },
+            { id: 6, team1: 'Brasil', team2: 'Japón', flag1: 'br', flag2: 'jp', emoji1: '🇧🇷', emoji2: '🇯🇵', group: 'E', city: 'Vancouver', date: '13 JUN', time: '22:00', phase: 'grupos' },
+            { id: 7, team1: 'España', team2: 'Alemania', flag1: 'es', flag2: 'de', emoji1: '🇪🇸', emoji2: '🇩🇪', group: 'F', city: 'Dallas', date: '14 JUN', time: '16:00', phase: 'grupos' },
+            { id: 8, team1: 'Italia', team2: 'Francia', flag1: 'it', flag2: 'fr', emoji1: '🇮🇹', emoji2: '🇫🇷', group: 'G', city: 'Miami', date: '14 JUN', time: '20:00', phase: 'grupos' },
+            { id: 9, team1: 'Portugal', team2: 'Holanda', flag1: 'pt', flag2: 'nl', emoji1: '🇵🇹', emoji2: '🇳🇱', group: 'H', city: 'CDMX', date: '15 JUN', time: '15:00', phase: 'grupos' },
+            { id: 10, team1: 'Inglaterra', team2: 'Gales', flag1: 'gb', flag2: 'gb', emoji1: '🇬🇧', emoji2: '🇬🇧', group: 'I', city: 'Toronto', date: '15 JUN', time: '21:00', phase: 'grupos' },
+            { id: 11, team1: 'Bélgica', team2: 'Croacia', flag1: 'be', flag2: 'hr', emoji1: '🇧🇪', emoji2: '🇭🇷', group: 'J', city: 'Guadalajara', date: '16 JUN', time: '19:00', phase: 'grupos' },
+            { id: 12, team1: 'Suecia', team2: 'Dinamarca', flag1: 'se', flag2: 'dk', emoji1: '🇸🇪', emoji2: '🇩🇰', group: 'K', city: 'Los Ángeles', date: '16 JUN', time: '23:00', phase: 'grupos' },
         ];
 
         let currentFilter = {
@@ -717,9 +717,11 @@
                 card.className = 'match-card';
                 card.innerHTML = `
                     <div class="match-flags">
-                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag1}.svg" alt="${match.team1}" class="flag-img" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag1}.svg" alt="${match.team1}" class="flag-img" loading="lazy" onerror="this.src=''; this.style.display='none'">
+                        <span class="emoji-fallback" style="display: none; font-size: 24px;">${match.emoji1}</span>
                         <div class="vs-divider">VS</div>
-                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag2}.svg" alt="${match.team2}" class="flag-img" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${match.flag2}.svg" alt="${match.team2}" class="flag-img" loading="lazy" onerror="this.src=''; this.style.display='none'">
+                        <span class="emoji-fallback" style="display: none; font-size: 24px;">${match.emoji2}</span>
                     </div>
                     <div class="match-teams">
                         <div class="team-name">${match.team1}</div>
