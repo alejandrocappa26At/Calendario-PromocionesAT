@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNDIAL 2026 - Dashboard Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #111111 0%, #1a1a1a 100%);
+            border-right: 2px solid rgba(0, 224, 90, 0.2);
+            padding: 30px 20px;
+            overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #00E05A;
+            text-transform: uppercase;
+        }
+
+        .logo-year {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .main-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00E05A 0%, #00C85A 100%);
+            border: none;
+            border-radius: 12px;
+            color: #000000;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.3);
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 224, 90, 0.6);
+        }
+
+        .main-btn.active {
+            background: linear-gradient(135deg, #00E05A 0%, #00C85A 100%);
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .group-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .group-btn {
+            padding: 10px;
+            background: rgba(0, 224, 90, 0.08);
+            border: 2px solid rgba(0, 224, 90, 0.2);
+            border-radius: 20px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .group-btn:hover,
+        .group-btn.active {
+            background: rgba(0, 224, 90, 0.2);
+            border-color: #00E05A;
+            box-shadow: 0 0 15px rgba(0, 224, 90, 0.3);
+        }
+
+        .phase-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .phase-btn {
+            padding: 10px 12px;
+            background: rgba(0, 224, 90, 0.08);
+            border: 2px solid rgba(0, 224, 90, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .phase-btn:hover,
+        .phase-btn.active {
+            background: rgba(0, 224, 90, 0.2);
+            border-color: #00E05A;
+            box-shadow: 0 0 15px rgba(0, 224, 90, 0.3);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(0, 224, 90, 0.08);
+            border: 2px solid rgba(0, 224, 90, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-btn:hover {
+            background: rgba(0, 224, 90, 0.15);
+            border-color: #00E05A;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
+            border: 2px solid rgba(0, 224, 90, 0.3);
+            border-radius: 8px;
+            margin-top: 5px;
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-content.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 12px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 12px;
+            border-bottom: 1px solid rgba(0, 224, 90, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0, 224, 90, 0.15);
+            color: #00E05A;
+            padding-left: 16px;
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+        }
+
+        .content-header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 224, 90, 0.05);
+            border: 2px solid rgba(0, 224, 90, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: #555;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00E05A;
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.3);
+            background: rgba(0, 224, 90, 0.1);
+        }
+
+        .programming-dropdown {
+            min-width: 200px;
+        }
+
+        .programming-btn {
+            padding: 12px 16px;
+            background: rgba(0, 224, 90, 0.1);
+            border: 2px solid rgba(0, 224, 90, 0.3);
+            border-radius: 10px;
+            color: #00E05A;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .programming-btn:hover {
+            background: rgba(0, 224, 90, 0.15);
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.3);
+        }
+
+        /* ==================== MATCHES GRID ==================== */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .match-card {
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+            border: 2px solid rgba(0, 224, 90, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 224, 90, 0.1) 0%, transparent 70%);
+            transition: left 0.3s ease;
+        }
+
+        .match-card:hover::before {
+            left: 0;
+        }
+
+        .match-card:hover {
+            border-color: #00E05A;
+            box-shadow: 0 0 30px rgba(0, 224, 90, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flag {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 224, 90, 0.1);
+            border: 2px solid rgba(0, 224, 90, 0.2);
+        }
+
+        .vs-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #00E05A;
+            letter-spacing: 1px;
+        }
+
+        .match-teams {
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 4px 0;
+        }
+
+        .match-info {
+            background: rgba(0, 224, 90, 0.05);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-row {
+            font-size: 11px;
+            color: #aaa;
+            margin: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-row strong {
+            color: #00E05A;
+        }
+
+        .match-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #777;
+            position: relative;
+            z-index: 1;
+        }
+
+        .match-time {
+            display: flex;
+            gap: 8px;
+        }
+
+        .time-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .play-btn {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #00E05A 0%, #00C85A 100%);
+            border: none;
+            border-radius: 50%;
+            color: #000000;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 224, 90, 0.5);
+        }
+
+        .no-matches {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ==================== SCROLLBAR ==================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 224, 90, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00E05A;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00C85A;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1400px) {
+            .matches-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+
+            .main-content {
+                margin-left: 240px;
+                padding: 20px;
+            }
+
+            .matches-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .group-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 2px solid rgba(0, 224, 90, 0.2);
+                position: relative;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                max-height: 200px;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 0;
+                padding: 15px;
+            }
+
+            .matches-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-header {
+                flex-direction: column;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-logo {
+                margin-bottom: 15px;
+            }
+
+            .logo-text {
+                font-size: 12px;
+            }
+
+            .logo-year {
+                font-size: 18px;
+            }
+
+            .main-btn {
+                padding: 12px;
+                font-size: 11px;
+                margin-bottom: 20px;
+            }
+
+            .match-card {
+                padding: 15px;
+                border-radius: 16px;
+            }
+
+            .flag {
+                width: 28px;
+                height: 28px;
+                font-size: 20px;
+            }
+
+            .team-name {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== SIDEBAR ==================== -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">⚽</div>
+            <div class="logo-text">MUNDIAL</div>
+            <div class="logo-year">2026</div>
+        </div>
+
+        <button class="main-btn active" onclick="showMainContent()">INFÓRMATE</button>
+
+        <div class="sidebar-section">
+            <div class="section-title">Grupos</div>
+            <div class="group-buttons">
+                <button class="group-btn" onclick="filterByGroup('A')">A</button>
+                <button class="group-btn" onclick="filterByGroup('B')">B</button>
+                <button class="group-btn" onclick="filterByGroup('C')">C</button>
+                <button class="group-btn" onclick="filterByGroup('D')">D</button>
+                <button class="group-btn" onclick="filterByGroup('E')">E</button>
+                <button class="group-btn" onclick="filterByGroup('F')">F</button>
+                <button class="group-btn" onclick="filterByGroup('G')">G</button>
+                <button class="group-btn" onclick="filterByGroup('H')">H</button>
+                <button class="group-btn" onclick="filterByGroup('I')">I</button>
+                <button class="group-btn" onclick="filterByGroup('J')">J</button>
+                <button class="group-btn" onclick="filterByGroup('K')">K</button>
+                <button class="group-btn" onclick="filterByGroup('L')">L</button>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="section-title">Fases</div>
+            <div class="phase-buttons">
+                <button class="phase-btn" onclick="filterByPhase('all')">Todos</button>
+                <button class="phase-btn" onclick="filterByPhase('grupos')">Grupos</button>
+                <button class="phase-btn" onclick="filterByPhase('octavos')">Octavos</button>
+                <button class="phase-btn" onclick="filterByPhase('cuartos')">Cuartos</button>
+                <button class="phase-btn" onclick="filterByPhase('semis')">Semifinales</button>
+                <button class="phase-btn" onclick="filterByPhase('final')">Final</button>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="section-title">Sedes</div>
+            <div class="dropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown()">
+                    CIUDADES
+                    <span id="dropdownArrow">▼</span>
+                </button>
+                <div class="dropdown-content" id="sedesDropdown">
+                    <div class="dropdown-item" onclick="filterBySede('CDMX')">CDMX</div>
+                    <div class="dropdown-item" onclick="filterBySede('Guadalajara')">Guadalajara</div>
+                    <div class="dropdown-item" onclick="filterBySede('Toronto')">Toronto</div>
+                    <div class="dropdown-item" onclick="filterBySede('Los Ángeles')">Los Ángeles</div>
+                    <div class="dropdown-item" onclick="filterBySede('Monterrey')">Monterrey</div>
+                    <div class="dropdown-item" onclick="filterBySede('Vancouver')">Vancouver</div>
+                    <div class="dropdown-item" onclick="filterBySede('Dallas')">Dallas</div>
+                    <div class="dropdown-item" onclick="filterBySede('Miami')">Miami</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-content">
+        <div class="content-header">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchMatches()">
+            </div>
+            <div class="programming-dropdown">
+                <button class="programming-btn">📅 PROGRAMACIÓN</button>
+            </div>
+        </div>
+
+        <div class="matches-grid" id="matchesGrid">
+            <!-- Se genera dinámicamente -->
+        </div>
+    </div>
+
+    <script>
+        // ==================== DATOS MUNDIAL ==================== 
+        const matches = [
+            { id: 1, team1: 'México', team2: 'Sudáfrica', flag1: '🇲🇽', flag2: '🇿🇦', group: 'A', city: 'CDMX', date: '11 JUN', time: '14:00', phase: 'grupos' },
+            { id: 2, team1: 'República de Corea', team2: 'República Checa', flag1: '🇰🇷', flag2: '🇨🇿', group: 'A', city: 'Guadalajara', date: '11 JUN', time: '21:00', phase: 'grupos' },
+            { id: 3, team1: 'Canadá', team2: 'Bosnia y Herzegovina', flag1: '🇨🇦', flag2: '🇧🇦', group: 'B', city: 'Toronto', date: '12 JUN', time: '14:00', phase: 'grupos' },
+            { id: 4, team1: 'EE.UU.', team2: 'Paraguay', flag1: '🇺🇸', flag2: '🇵🇾', group: 'D', city: 'Los Ángeles', date: '12 JUN', time: '20:00', phase: 'grupos' },
+            { id: 5, team1: 'Argentina', team2: 'Uruguay', flag1: '🇦🇷', flag2: '🇺🇾', group: 'C', city: 'Monterrey', date: '13 JUN', time: '18:00', phase: 'grupos' },
+            { id: 6, team1: 'Brasil', team2: 'Japón', flag1: '🇧🇷', flag2: '🇯🇵', group: 'E', city: 'Vancouver', date: '13 JUN', time: '22:00', phase: 'grupos' },
+            { id: 7, team1: 'España', team2: 'Alemania', flag1: '🇪🇸', flag2: '🇩🇪', group: 'F', city: 'Dallas', date: '14 JUN', time: '16:00', phase: 'grupos' },
+            { id: 8, team1: 'Italia', team2: 'Francia', flag1: '🇮🇹', flag2: '🇫🇷', group: 'G', city: 'Miami', date: '14 JUN', time: '20:00', phase: 'grupos' },
+            { id: 9, team1: 'Portugal', team2: 'Holanda', flag1: '🇵🇹', flag2: '🇳🇱', group: 'H', city: 'CDMX', date: '15 JUN', time: '15:00', phase: 'grupos' },
+            { id: 10, team1: 'Inglaterra', team2: 'Gales', flag1: '🇬🇧', flag2: '🇬🇧', group: 'I', city: 'Toronto', date: '15 JUN', time: '21:00', phase: 'grupos' },
+            { id: 11, team1: 'Bélgica', team2: 'Croacia', flag1: '🇧🇪', flag2: '🇭🇷', group: 'J', city: 'Guadalajara', date: '16 JUN', time: '19:00', phase: 'grupos' },
+            { id: 12, team1: 'Suecia', team2: 'Dinamarca', flag1: '🇸🇪', flag2: '🇩🇰', group: 'K', city: 'Los Ángeles', date: '16 JUN', time: '23:00', phase: 'grupos' },
+        ];
+
+        let currentFilter = {
+            group: null,
+            phase: 'all',
+            sede: null,
+            search: ''
+        };
+
+        function renderMatches() {
+            const grid = document.getElementById('matchesGrid');
+            grid.innerHTML = '';
+
+            let filtered = matches.filter(m => {
+                if (currentFilter.group && m.group !== currentFilter.group) return false;
+                if (currentFilter.phase !== 'all' && m.phase !== currentFilter.phase) return false;
+                if (currentFilter.sede && m.city !== currentFilter.sede) return false;
+                if (currentFilter.search) {
+                    const search = currentFilter.search.toLowerCase();
+                    if (!m.team1.toLowerCase().includes(search) && !m.team2.toLowerCase().includes(search)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-matches" style="grid-column: 1/-1;">No hay partidos para los filtros seleccionados</div>';
+                return;
+            }
+
+            filtered.forEach(match => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.innerHTML = `
+                    <div class="match-header">
+                        <div class="flag">${match.flag1}</div>
+                        <div class="vs-text">VS</div>
+                        <div class="flag">${match.flag2}</div>
+                    </div>
+                    <div class="match-teams">
+                        <div class="team-name">${match.team1}</div>
+                        <div class="team-name">${match.team2}</div>
+                    </div>
+                    <div class="match-info">
+                        <div class="info-row"><strong>Grupo ${match.group}</strong></div>
+                        <div class="info-row">📍 ${match.city}</div>
+                    </div>
+                    <div class="match-footer">
+                        <div class="match-time">
+                            <div class="time-item">📅 ${match.date}</div>
+                            <div class="time-item">🕒 ${match.time}</div>
+                        </div>
+                        <button class="play-btn">▶</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterByGroup(group) {
+            currentFilter.group = currentFilter.group === group ? null : group;
+            document.querySelectorAll('.group-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === group) btn.classList.add('active');
+            });
+            renderMatches();
+        }
+
+        function filterByPhase(phase) {
+            currentFilter.phase = phase;
+            document.querySelectorAll('.phase-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderMatches();
+        }
+
+        function filterBySede(sede) {
+            currentFilter.sede = currentFilter.sede === sede ? null : sede;
+            toggleDropdown();
+            renderMatches();
+        }
+
+        function searchMatches() {
+            currentFilter.search = document.getElementById('searchInput').value;
+            renderMatches();
+        }
+
+        function toggleDropdown() {
+            document.getElementById('sedesDropdown').classList.toggle('active');
+            document.getElementById('dropdownArrow').textContent = 
+                document.getElementById('sedesDropdown').classList.contains('active') ? '▲' : '▼';
+        }
+
+        function showMainContent() {
+            renderMatches();
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMatches();
+        });
+
+        // Cerrar dropdown al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.getElementById('sedesDropdown').classList.remove('active');
+                document.getElementById('dropdownArrow').textContent = '▼';
+            }
+        });
+    </script>
+</body>
+</html>
