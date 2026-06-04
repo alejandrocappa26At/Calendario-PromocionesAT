@@ -288,21 +288,31 @@
             color: #888888;
         }
 
+        /* ==================== ICONOS OUTLINE (PREMIUM) ==================== */
+        .outline-icon {
+            color: transparent !important;
+            -webkit-text-stroke: 1.5px #FFFFFF;
+            font-size: 16px;
+            text-shadow: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .promotion-icon {
-            font-size: 24px;
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: transparent;
-            color: #e0e0e0;
             flex-shrink: 0;
             transition: all 0.3s ease;
         }
 
         .promotion-card:hover:not(.unavailable) .promotion-icon {
-            color: #ffffff;
             transform: scale(1.1);
         }
 
@@ -751,17 +761,14 @@
         }
 
         .modal-icon-wrapper {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: #00ff88;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            background: transparent;
+            border: none;
+            box-shadow: none;
         }
 
         .modal-title {
@@ -842,31 +849,26 @@
 
         /* ==================== COLORES DINÁMICOS DEL MODAL ==================== */
         .modal-content.green { border-color: rgba(0, 255, 102, 0.4); box-shadow: 0 0 40px rgba(0, 255, 102, 0.15), inset 0 0 20px rgba(0, 255, 102, 0.05); }
-        .modal-content.green .modal-icon-wrapper { color: #00ff66; background: rgba(0, 255, 102, 0.1); border-color: rgba(0, 255, 102, 0.3); box-shadow: 0 0 20px rgba(0, 255, 102, 0.2); }
         .modal-content.green .promo-section.highlight { border-color: rgba(0, 255, 102, 0.4); background: rgba(0, 255, 102, 0.05); }
         .modal-content.green .promo-section.highlight .promo-section-content, .modal-content.green .promo-section.highlight .promo-section-title { color: #00ff66; }
         .modal-content.green .modal-header::after { background: linear-gradient(90deg, transparent, #00ff66, transparent); box-shadow: 0 0 8px #00ff66; }
 
         .modal-content.yellow { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05); }
-        .modal-content.yellow .modal-icon-wrapper { color: #ff9900; background: rgba(255, 153, 0, 0.1); border-color: rgba(255, 153, 0, 0.3); box-shadow: 0 0 20px rgba(255, 153, 0, 0.2); }
         .modal-content.yellow .promo-section.highlight { border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.05); }
         .modal-content.yellow .promo-section.highlight .promo-section-content, .modal-content.yellow .promo-section.highlight .promo-section-title { color: #ff9900; }
         .modal-content.yellow .modal-header::after { background: linear-gradient(90deg, transparent, #ff9900, transparent); box-shadow: 0 0 8px #ff9900; }
 
         .modal-content.purple { border-color: rgba(157, 78, 221, 0.4); box-shadow: 0 0 40px rgba(157, 78, 221, 0.15), inset 0 0 20px rgba(157, 78, 221, 0.05); }
-        .modal-content.purple .modal-icon-wrapper { color: #9d4edd; background: rgba(157, 78, 221, 0.1); border-color: rgba(157, 78, 221, 0.3); box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
         .modal-content.purple .promo-section.highlight { border-color: rgba(157, 78, 221, 0.4); background: rgba(157, 78, 221, 0.05); }
         .modal-content.purple .promo-section.highlight .promo-section-content, .modal-content.purple .promo-section.highlight .promo-section-title { color: #9d4edd; }
         .modal-content.purple .modal-header::after { background: linear-gradient(90deg, transparent, #9d4edd, transparent); box-shadow: 0 0 8px #9d4edd; }
 
         .modal-content.blue { border-color: rgba(0, 217, 255, 0.4); box-shadow: 0 0 40px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05); }
-        .modal-content.blue .modal-icon-wrapper { color: #00d9ff; background: rgba(0, 217, 255, 0.1); border-color: rgba(0, 217, 255, 0.3); box-shadow: 0 0 20px rgba(0, 217, 255, 0.2); }
         .modal-content.blue .promo-section.highlight { border-color: rgba(0, 217, 255, 0.4); background: rgba(0, 217, 255, 0.05); }
         .modal-content.blue .promo-section.highlight .promo-section-content, .modal-content.blue .promo-section.highlight .promo-section-title { color: #00d9ff; }
         .modal-content.blue .modal-header::after { background: linear-gradient(90deg, transparent, #00d9ff, transparent); box-shadow: 0 0 8px #00d9ff; }
 
         .modal-content.red { border-color: rgba(255, 0, 102, 0.4); box-shadow: 0 0 40px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05); }
-        .modal-content.red .modal-icon-wrapper { color: #ff0066; background: rgba(255, 0, 102, 0.1); border-color: rgba(255, 0, 102, 0.3); box-shadow: 0 0 20px rgba(255, 0, 102, 0.2); }
         .modal-content.red .promo-section.highlight { border-color: rgba(255, 0, 102, 0.4); background: rgba(255, 0, 102, 0.05); }
         .modal-content.red .promo-section.highlight .promo-section-content, .modal-content.red .promo-section.highlight .promo-section-title { color: #ff0066; }
         .modal-content.red .modal-header::after { background: linear-gradient(90deg, transparent, #ff0066, transparent); box-shadow: 0 0 8px #ff0066; }
@@ -1065,23 +1067,23 @@
             '2026-06-01': {
                 name: 'PROMO 5X5 – VIRTUALES (JUNIO)',
                 category: 'purple',
-                icon: '🎮',
+                icon: '<i class="fa-solid fa-bolt outline-icon"></i>',
                 description: 'Jugadas gratis de S/ 5 para cualquier juego virtual.',
                 htmlDetails: `
                     <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
                         <div class="promo-section-content">Jugadas gratis de S/ 5 para cualquier juego virtual.</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
                         <div class="promo-section-content">De lunes a jueves, del 01/06 al 04/06.</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
                         <div class="promo-section-content">El cliente debe presentar 5 tickets de juegos virtuales (ganados o perdidos) del mismo día, con un valor de S/5 o más cada uno. La jugada gratis se emite en un solo ticket por S/5, sin posibilidad de adicionar efectivo. Solo se permite 1 premio por cliente al día.</div>
                     </div>
                     <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
                         <div class="promo-section-content">El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
                     </div>
                 `,
@@ -1092,23 +1094,23 @@
             '2026-05-24': {
                 name: 'PROMO CAMISETA DEL POLIAJUSTE',
                 category: 'green',
-                icon: '👕',
+                icon: '<i class="fa-solid fa-shirt outline-icon"></i>',
                 description: 'Gana la camiseta oficial',
                 htmlDetails: `
                     <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
                         <div class="promo-section-content">2 camisetas del Poliajuste por tienda (1 por cada sorteo).</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
                         <div class="promo-section-content">Primer sorteo: 30/05/2026 (participan tickets emitidos del 24/05 al 30/05).<br>Segundo sorteo: 06/06/2026 (participan tickets emitidos del 30/05 al 06/06).</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
                         <div class="promo-section-content">El cliente debe depositar tickets de apuestas deportivas múltiples de S/5 o más, con mínimo 5 eventos. Debe escribir al reverso del ticket: Nombre completo, Número de DNI y Número de celular. Los sorteos serán presenciales en tienda. Solo 1 camiseta por cliente durante toda la promoción. Un cliente ganador del primer sorteo no podrá participar como ganador en el segundo.</div>
                     </div>
                     <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
                         <div class="promo-section-content">Se valida que los tickets cumplan todas las condiciones antes del sorteo. El registro y participación aplica únicamente dentro de las fechas establecidas para cada sorteo.</div>
                     </div>
                 `,
@@ -1119,23 +1121,23 @@
             '2026-06-02': {
                 name: 'PROMO COMBI GOLEADORA',
                 category: 'yellow',
-                icon: '⚽',
+                icon: '<i class="fa-solid fa-bullseye outline-icon"></i>',
                 description: 'Vale de S/10 para apuestas deportivas.',
                 htmlDetails: `
                     <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
                         <div class="promo-section-content">Vale de S/10 para apuestas deportivas.</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
                         <div class="promo-section-content">Realización de jugadas: del martes 02/06 al jueves 04/06.<br>Canje del vale: del viernes 05/06 al sábado 06/06.</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
                         <div class="promo-section-content">El cliente debe realizar 3 apuestas múltiples de S/10 o más en eventos de fútbol (no aplica e-sports ni fútbol virtual). Cada apuesta debe tener una cuota mínima de 1.5. Las jugadas deben incluir al menos uno de los siguientes mercados:<br>• Total de Goles / Total de Goles Asiáticos<br>• Equipo 1 Total de Goles<br>• Equipo 2 Total de Goles<br>• Ambos Equipos Anotan<br>• Primero en Anotar<br><br>La jugada gratis se emite en un solo ticket por S/10, válida para apuestas combinadas con cuota mínima de 1.3. Solo 1 premio por cliente durante toda la promoción.</div>
                     </div>
                     <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
                         <div class="promo-section-content">El registro se realiza en el sistema de gestión, en el diamante opción "Campañas Vales". Seleccionar "Combi Goleadora" e ingresar el documento del cliente y el ID del ticket. Para Betshop, eliminar el prefijo 100 y registrar solo los siguientes 10 dígitos; para Caja AT, registrar el código completo. No es necesario adjuntar foto en el registro.</div>
                     </div>
                 `,
@@ -1146,23 +1148,23 @@
             '2026-06-05': {
                 name: 'PROMO LA RACHA VIRTUALERA',
                 category: 'blue',
-                icon: '🔥',
+                icon: '<i class="fa-solid fa-star outline-icon"></i>',
                 description: 'Vale de hasta S/25 para juegos virtuales.',
                 htmlDetails: `
                     <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
                         <div class="promo-section-content">Vale de S/10 para juegos virtuales (cumpliendo misiones del 05 y 06 de junio).<br>Vale de S/25 para juegos virtuales (cumpliendo misiones del 05, 06 y 07 de junio).</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
                         <div class="promo-section-content">Cumplimiento de misiones: del viernes 05/06 al domingo 07/06.<br>Canje del vale: lunes 08/06.</div>
                     </div>
                     <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
                         <div class="promo-section-content">El cliente debe cumplir las siguientes misiones en juegos virtuales:<br>• 05/06: acumular S/15 o más en "Carrera de Galgos", "Carrera de Caballos" o "Mundial de Fútbol".<br>• 06/06: acumular S/20 o más en los mismos juegos.<br>• 07/06: acumular S/30 o más en los mismos juegos.<br><br>La jugada gratis se entrega en un solo ticket por el valor ganado, válida para cualquier juego virtual. Solo 1 premio por cliente durante toda la promoción.</div>
                     </div>
                     <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
                         <div class="promo-section-content">El registro se realiza en el sistema de gestión, en el diamante opción "Campañas Vales". Seleccionar "Racha Virtualera" e ingresar el documento del cliente y el ID del ticket. No es necesario adjuntar foto en el registro.</div>
                     </div>
                 `,
@@ -1301,15 +1303,15 @@
 
                     let details = promo.htmlDetails ? promo.htmlDetails : `
                         <div class="promo-section">
-                            <div class="promo-section-title">🎁 Descripción</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
                             <div class="promo-section-content">${promo.description}</div>
                         </div>
                         <div class="promo-section">
-                            <div class="promo-section-title">🗓 Inicio</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Inicio</div>
                             <div class="promo-section-content">${formatDate(promo.startDate)}</div>
                         </div>
                         <div class="promo-section">
-                            <div class="promo-section-title">⏳ Fin</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Fin</div>
                             <div class="promo-section-content">${formatDate(promo.endDate)}</div>
                         </div>
                     `;
@@ -1338,19 +1340,19 @@
                 } else {
                     modalInfo.innerHTML = `
                         <div class="promo-section">
-                            <div class="promo-section-title">🎁 Descripción</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
                             <div class="promo-section-content">${promo.description}</div>
                         </div>
                         <div class="promo-section">
-                            <div class="promo-section-title">🗓 Inicio</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Inicio</div>
                             <div class="promo-section-content">${formatDate(promo.startDate)}</div>
                         </div>
                         <div class="promo-section">
-                            <div class="promo-section-title">⏳ Fin</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Fin</div>
                             <div class="promo-section-content">${formatDate(promo.endDate)}</div>
                         </div>
                         <div class="promo-section highlight">
-                            <div class="promo-section-title">✅ Observación</div>
+                            <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación</div>
                             <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
                         </div>
                     `;
@@ -1455,7 +1457,7 @@
                                 '<span class="grilla-badge badge-proximo">PRÓXIMO</span>');
                 
                 let glowClass = ev.importance === 'high' ? 'glow-red' : (ev.importance === 'medium' ? 'glow-yellow' : 'glow-blue');
-                let iconLabel = ev.importance === 'high' ? '🔥 EVENTO DESTACADO' : (ev.importance === 'medium' ? '🎯 EVENTO CLAVE' : '⚡ PARTIDO OFICIAL');
+                let iconLabel = ev.importance === 'high' ? '<i class="fa-solid fa-bolt outline-icon"></i> EVENTO DESTACADO' : (ev.importance === 'medium' ? '<i class="fa-solid fa-bullseye outline-icon"></i> EVENTO CLAVE' : '<i class="fa-solid fa-star outline-icon"></i> PARTIDO OFICIAL');
                 let iconColor = ev.importance === 'high' ? '#FF0066' : (ev.importance === 'medium' ? '#FFD700' : '#00D9FF');
 
                 const displayDate = new Date(ev.date + "T00:00:00").toLocaleDateString('es-ES', { weekday: 'long', day: '2-digit' }).replace(/^\w/, c => c.toUpperCase());
@@ -1482,17 +1484,17 @@
                         </div>
 
                         <div>
-                            <div class="grilla-section-title"><i class="fa-solid fa-tv"></i> Transmisión:</div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-tv outline-icon"></i> Transmisión:</div>
                             <div class="grilla-tv">${ev.tv.map(c => `<span>${c}</span>`).join('')}</div>
                         </div>
 
                         <div>
-                            <div class="grilla-section-title"><i class="fa-solid fa-chart-simple"></i> DATO AT</div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-book-open outline-icon"></i> DATO AT</div>
                             <ul class="grilla-list">${ev.datos.map(d => `<li><i class="fa-solid fa-caret-right"></i> ${d}</li>`).join('')}</ul>
                         </div>
 
                         <div>
-                            <div class="grilla-section-title"><i class="fa-solid fa-bullseye"></i> Mercados a incentivar</div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-bullseye outline-icon"></i> Mercados a incentivar</div>
                             <ul class="grilla-list">${ev.mercados.map(m => `<li><i class="fa-solid fa-bolt"></i> ${m}</li>`).join('')}</ul>
                         </div>
                     </div>
