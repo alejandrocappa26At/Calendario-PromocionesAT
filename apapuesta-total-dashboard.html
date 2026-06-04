@@ -457,35 +457,31 @@
         }
 
         .modal-content {
-            background: rgba(11, 11, 15, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 24px;
-            padding: 0;
-            max-width: 550px;
+            background: #282828;
+            border-radius: 8px;
+            padding: 32px;
+            max-width: 480px;
             width: 90%;
-            animation: slideUp 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.15), inset 0 0 20px rgba(0, 255, 136, 0.05);
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
             position: relative;
-            overflow: hidden;
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             width: 32px;
             height: 32px;
             background: transparent;
@@ -495,167 +491,61 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #888;
+            color: #b3b3b3;
             font-size: 20px;
-            transition: all 0.3s ease;
-            z-index: 10;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
 
         .modal-close:hover {
-            color: #00ff88;
-            background: rgba(0, 255, 136, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-header {
-            padding: 32px 32px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: transparent;
-            position: relative;
-        }
-
-        .modal-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 5%;
-            width: 90%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #00ff88, transparent);
-            box-shadow: 0 0 8px #00ff88;
-        }
-
-        .modal-icon-wrapper {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: #00ff88;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .modal-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 700;
             color: #ffffff;
-            margin: 0;
-            line-height: 1.3;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-style: normal;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
         }
 
         .modal-info {
-            padding: 24px 32px;
-            max-height: 50vh;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 16px;
-        }
-
-        .modal-info::-webkit-scrollbar { width: 6px; }
-        .modal-info::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 136, 0.3);
-            border-radius: 4px;
-        }
-        .modal-info::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 255, 136, 0.6);
-        }
-
-        .promo-section {
-            background: #111111;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .promo-section:hover {
-            transform: translateY(-2px);
-            background: #151515;
-            border-color: rgba(0, 255, 136, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
-        }
-
-        .promo-section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .promo-section-content {
+            margin-bottom: 32px;
             color: #b3b3b3;
-            font-size: 13px;
-            line-height: 1.6;
-            letter-spacing: 0.3px;
+            font-size: 14px;
         }
 
-        .promo-section.highlight {
-            border-color: rgba(0, 255, 136, 0.4);
-            background: rgba(0, 255, 136, 0.05);
-        }
-
-        .promo-section.highlight .promo-section-content,
-        .promo-section.highlight .promo-section-title {
-            color: #00ff88;
-        }
-
-        .modal-actions {
-            padding: 24px 32px;
-            background: rgba(0, 0, 0, 0.6);
-            border-top: 1px solid rgba(0, 255, 136, 0.15);
+        .modal-info-item {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
+            gap: 12px;
             align-items: center;
         }
 
-        @keyframes pulse-neon {
-            0% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(0, 255, 136, 0.7), 0 0 40px rgba(0, 255, 136, 0.3); }
-            100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
+        .modal-info-label {
+            color: #ffffff;
+            font-weight: 600;
+            min-width: 90px;
         }
 
-        .cta-button {
+        .modal-btn {
             width: 100%;
             padding: 16px;
-            background: #00ff88;
-            color: #000000;
+            background: #1ED760;
             border: none;
             border-radius: 500px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #000000;
+            font-weight: 700;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            animation: pulse-neon 2s infinite;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            background: #00e67a;
-            animation: none;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 50px rgba(0, 255, 136, 0.4);
+        .modal-btn:hover {
+            transform: scale(1.04);
+            background: #1fdf64;
         }
 
         /* ==================== RESPONSIVO ==================== */
@@ -795,22 +685,13 @@
 
     <!-- ==================== MODAL ==================== -->
     <div class="modal" id="modal">
-        <div class="modal-content" id="modalContent">
+        <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">✕</button>
-            <div class="modal-header">
-                <div class="modal-icon-wrapper" id="modalIcon"></div>
-                <h2 class="modal-title" id="modalTitle">Promoción</h2>
-            </div>
+            <h2 class="modal-title" id="modalTitle">Promoción</h2>
             <div class="modal-info" id="modalInfo">
                 <!-- Se genera dinámicamente -->
             </div>
-            <div class="modal-actions">
-                <div class="secondary-buttons">
-                    <button class="sec-btn primary-action">Participar Ahora</button>
-                    <button class="sec-btn secondary-action" onclick="closeModal()">Cerrar</button>
-                </div>
-                <p class="modal-summary" id="modalSummary"></p>
-            </div>
+            <button class="modal-btn" onclick="closeModal()">Ver Detalle Completo</button>
         </div>
     </div>
 
@@ -823,22 +704,10 @@
                 icon: '🎮',
                 description: 'Jugadas gratis de S/ 5 para cualquier juego virtual.',
                 htmlDetails: `
-                    <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
-                        <div class="promo-section-content">Jugadas gratis de S/ 5 para cualquier juego virtual.</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
-                        <div class="promo-section-content">De lunes a jueves, del 25/05 al 28/05.</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
-                        <div class="promo-section-content">El cliente debe presentar 5 tickets de juegos virtuales (ganados o perdidos) del mismo día, con un valor de S/5 o más cada uno. La jugada gratis se emite en un solo ticket por S/5, sin posibilidad de adicionar efectivo. Solo se permite 1 premio por cliente al día.</div>
-                    </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
-                        <div class="promo-section-content">El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
-                    </div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🎁 Premio:</strong> Jugadas gratis de S/ 5 para cualquier juego virtual.</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🗓 Vigencia:</strong> De lunes a jueves, del 25/05 al 28/05.</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>📝 Mecánica de la Promo (Condiciones):</strong> El cliente debe presentar 5 tickets de juegos virtuales (ganados o perdidos) del mismo día, con un valor de S/5 o más cada uno. La jugada gratis se emite en un solo ticket por S/5, sin posibilidad de adicionar efectivo. Solo se permite 1 premio por cliente al día.</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #00ff88;"><strong>✅ Observación adicional:</strong> El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
                 `,
                 startDate: '2026-05-25',
                 endDate: '2026-05-28',
@@ -850,22 +719,10 @@
                 icon: '👕',
                 description: 'Gana la camiseta oficial',
                 htmlDetails: `
-                    <div class="promo-section">
-                        <div class="promo-section-title">🎁 Premio</div>
-                        <div class="promo-section-content">2 camisetas del Poliajuste por tienda (1 por cada sorteo).</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">📅 Vigencia</div>
-                        <div class="promo-section-content">Primer sorteo: 30/05/2026 (participan tickets emitidos del 24/05 al 30/05).<br>Segundo sorteo: 06/06/2026 (participan tickets emitidos del 30/05 al 06/06).</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">📄 Mecánica de la Promo</div>
-                        <div class="promo-section-content">El cliente debe depositar tickets de apuestas deportivas múltiples de S/5 o más, con mínimo 5 eventos. Debe escribir al reverso del ticket: Nombre completo, Número de DNI y Número de celular. Los sorteos serán presenciales en tienda. Solo 1 camiseta por cliente durante toda la promoción. Un cliente ganador del primer sorteo no podrá participar como ganador en el segundo.</div>
-                    </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación adicional</div>
-                        <div class="promo-section-content">Se valida que los tickets cumplan todas las condiciones antes del sorteo. El registro y participación aplica únicamente dentro de las fechas establecidas para cada sorteo.</div>
-                    </div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🎁 Premio:</strong> 2 camisetas del Poliajuste por tienda (1 por cada sorteo).</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🗓 Vigencia:</strong> Primer sorteo: 30/05/2026 (participan tickets emitidos del 24/05 al 30/05). Segundo sorteo: 06/06/2026 (participan tickets emitidos del 30/05 al 06/06).</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>📝 Mecánica de la Promo (Condiciones):</strong> El cliente debe depositar tickets de apuestas deportivas múltiples de S/5 o más, con mínimo 5 eventos. Debe escribir al reverso del ticket: Nombre completo, Número de DNI y Número de celular. Los sorteos serán presenciales en tienda. Solo 1 camiseta por cliente durante toda la promoción. Un cliente ganador del primer sorteo no podrá participar como ganador en el segundo.</div>
+                    <div style="margin-bottom: 12px; line-height: 1.5; color: #00ff88;"><strong>✅ Observación adicional:</strong> Se valida que los tickets cumplan todas las condiciones antes del sorteo. El registro y participación aplica únicamente dentro de las fechas establecidas para cada sorteo.</div>
                 `,
                 startDate: '2026-05-24',
                 endDate: '2026-06-06',
@@ -1022,9 +879,6 @@
         function showModal(promo) {
             const modal = document.getElementById('modal');
             document.getElementById('modalTitle').textContent = promo.name;
-            
-            const iconWrapper = document.getElementById('modalIcon');
-            if (iconWrapper) iconWrapper.innerHTML = promo.icon;
 
             const modalInfo = document.getElementById('modalInfo');
             
@@ -1032,21 +886,21 @@
                 modalInfo.innerHTML = promo.htmlDetails;
             } else {
                 modalInfo.innerHTML = `
-                    <div class="promo-section">
-                        <div class="promo-section-title">🎁 Descripción</div>
-                        <div class="promo-section-content">${promo.description}</div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Icono:</span>
+                        <span>${promo.icon}</span>
                     </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">🗓 Inicio</div>
-                        <div class="promo-section-content">${formatDate(promo.startDate)}</div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Descripción:</span>
+                        <span>${promo.description}</span>
                     </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title">⏳ Fin</div>
-                        <div class="promo-section-content">${formatDate(promo.endDate)}</div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Inicio:</span>
+                        <span>${formatDate(promo.startDate)}</span>
                     </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title">✅ Observación</div>
-                        <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Fin:</span>
+                        <span>${formatDate(promo.endDate)}</span>
                     </div>
                 `;
             }
