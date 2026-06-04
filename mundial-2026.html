@@ -514,7 +514,8 @@
         }
 
         @media (max-width: 768px) {
-            body { flex-direction: column; overflow-y: auto; }
+            body { flex-direction: column; height: auto; overflow-y: auto; }
+            .main-wrapper { overflow: visible; }
             .sidebar { 
                 width: 100%;
                 border-right: none;
@@ -524,7 +525,7 @@
             .matches-grid { grid-template-columns: 1fr; }
             .top-bar { flex-direction: column; gap: 16px; padding: 16px; }
             .search-box { width: 100%; }
-            .content-area { padding: 20px; }
+            .content-area { padding: 20px; overflow-y: visible; }
         }
     </style>
 </head>
