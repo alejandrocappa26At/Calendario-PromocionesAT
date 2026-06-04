@@ -137,14 +137,14 @@
         }
 
         .header-btn.green {
-            border: 1px solid #00ff88;
-            color: #00ff88;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2), inset 0 0 5px rgba(0, 255, 136, 0.1);
+            border: 1px solid #00FF9D;
+            color: #00FF9D;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2), inset 0 0 5px rgba(0, 255, 157, 0.1);
         }
 
         .header-btn.green:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 10px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.6), inset 0 0 10px rgba(0, 255, 157, 0.3);
             background: #1a1a1a;
         }
 
@@ -428,6 +428,228 @@
             padding: 8px;
             font-size: 20px;
             margin-top: 4px;
+        }
+
+        /* ==================== DATO AT - GRILLA PREMIUM ==================== */
+        .grilla-view {
+            animation: fadeIn 0.4s ease;
+        }
+
+        .grilla-header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .grilla-filters {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .grilla-search, .grilla-date {
+            background: rgba(11, 11, 15, 0.8);
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+
+        .grilla-search:focus, .grilla-date:focus {
+            border-color: #00D9FF;
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+        }
+
+        .grilla-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .grilla-card {
+            background: rgba(11, 11, 15, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .grilla-card:hover {
+            transform: translateY(-5px);
+            border-color: #00FF9D;
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.15), inset 0 0 20px rgba(0, 255, 157, 0.05);
+            background: rgba(11, 11, 15, 0.8);
+        }
+        
+        .grilla-card.glow-red:hover { border-color: #FF0066; box-shadow: 0 10px 30px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05); }
+        .grilla-card.glow-yellow:hover { border-color: #FFD700; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05); }
+        .grilla-card.glow-blue:hover { border-color: #00D9FF; box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05); }
+
+        .grilla-badge-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .grilla-badge {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-hoy { background: #00FF9D; color: #000; box-shadow: 0 0 10px rgba(0, 255, 157, 0.4); animation: pulse-neon 2s infinite; }
+        .badge-manana { background: #FFD700; color: #000; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+        .badge-proximo { background: #222; color: #fff; border: 1px solid #444; }
+
+        .grilla-header-title {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .grilla-datetime {
+            display: flex;
+            gap: 16px;
+            color: #ddd;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .grilla-datetime i { color: #A855F7; }
+
+        .grilla-teams {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 4px 0;
+            background: rgba(0,0,0,0.4);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .grilla-team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .grilla-flag {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .grilla-team-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .grilla-vs {
+            font-size: 14px;
+            font-weight: 900;
+            color: #666;
+            font-style: italic;
+        }
+
+        .grilla-section-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .grilla-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .grilla-list li {
+            font-size: 13px;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        
+        .grilla-list li i {
+            color: #00FF9D;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .grilla-tv {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .grilla-tv span {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #eee;
+        }
+
+        .grilla-countdown {
+            font-family: monospace;
+            font-size: 13px;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         /* ==================== MODAL ==================== */
@@ -741,7 +963,7 @@
             <button class="header-btn yellow" onclick="window.open('mundial-2026.html', '_blank')">
                 🏆 FIXTURE MUNDIAL
             </button>
-            <button class="header-btn green" onclick="handleFilterChange('grilla')">
+            <button class="header-btn green" onclick="toggleGrillaView(true)">
                 ⚡ DATO AT - GRILLA
             </button>
         </div>
@@ -749,6 +971,7 @@
 
     <!-- ==================== MAIN CONTENT ==================== -->
     <div class="container">
+        <div id="homeView">
         <!-- ==================== MONTH NAVIGATION ==================== -->
         <div class="month-navigation">
             <button class="month-nav-btn" onclick="previousMonth()">&lt;</button>
@@ -782,6 +1005,24 @@
                 <!-- Se genera dinámicamente -->
             </div>
         </div>
+        </div>
+
+        <!-- ==================== GRILLA DATO AT (NUEVA SECCIÓN) ==================== -->
+        <div id="grillaView" class="grilla-view" style="display: none;">
+            <div class="grilla-header-section">
+                <h2 class="section-title" style="margin: 0;"><i class="fa-solid fa-bolt" style="color: #00FF9D;"></i> Grilla Deportiva Premium</h2>
+                <div class="grilla-filters">
+                    <input type="date" id="grillaDate" class="grilla-date" onchange="renderGrilla()">
+                    <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..." oninput="renderGrilla()">
+                    <button class="header-btn" style="border: 1px solid #555; color: #fff;" onclick="toggleGrillaView(false)">
+                        <i class="fa-solid fa-arrow-left"></i> VOLVER AL CALENDARIO
+                    </button>
+                </div>
+            </div>
+            <div class="grilla-grid" id="grillaGrid">
+                <!-- Partidos generados por JS -->
+            </div>
+        </div>
     </div>
 
     <!-- ==================== MODAL ==================== -->
@@ -799,6 +1040,26 @@
     </div>
 
     <script>
+        // ==================== DATOS DE LA GRILLA PREMIUM ====================
+        const grillaEvents = [
+            {
+                date: '2026-06-05',
+                time: '19:00',
+                t1: 'HAITÍ', f1: 'ht',
+                t2: 'PERÚ', f2: 'pe',
+                tv: ['América TV', 'Movistar Deportes'],
+                datos: [
+                    'Perú no ganó 10 de sus últimos 11 partidos.',
+                    'Perú anotó primero en 3 de sus últimos 4 partidos.'
+                ],
+                mercados: [
+                    'Doble Oportunidad',
+                    'Primer Equipo en Anotar'
+                ],
+                importance: 'high'
+            }
+        ];
+
         // ==================== DATOS ==================== 
         const promotions = {
             '2026-06-01': {
@@ -1109,9 +1370,129 @@
             renderPromotions();
         }
 
-        function handleFilterChange(filter) {
-            console.log('Filtro: ', filter);
-            // Aquí se pueden agregar filtros por categoría
+        // ==================== LÓGICA DE GRILLA PREMIUM ==================== 
+        let countdownInterval;
+
+        function toggleGrillaView(show) {
+            const homeView = document.getElementById('homeView');
+            const grillaView = document.getElementById('grillaView');
+            
+            if (show) {
+                homeView.style.display = 'none';
+                grillaView.style.display = 'block';
+                
+                renderGrilla();
+                startCountdown();
+            } else {
+                homeView.style.display = 'block';
+                grillaView.style.display = 'none';
+                if (countdownInterval) clearInterval(countdownInterval);
+            }
+        }
+
+        function renderGrilla() {
+            const grid = document.getElementById('grillaGrid');
+            const searchTerm = document.getElementById('grillaSearch').value.toLowerCase();
+            const filterDate = document.getElementById('grillaDate').value;
+            
+            grid.innerHTML = '';
+            const now = new Date();
+            const todayStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+            
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowStr = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth()+1).padStart(2,'0')}-${String(tomorrow.getDate()).padStart(2,'0')}`;
+
+            let filtered = grillaEvents.filter(ev => {
+                const [year, month, day] = ev.date.split('-');
+                const [hours, mins] = ev.time.split(':');
+                const eventDate = new Date(year, month - 1, day, hours, mins);
+                
+                if (eventDate < now) return false; // Oculta finalizados automáticamente
+                
+                if (searchTerm && !ev.t1.toLowerCase().includes(searchTerm) && !ev.t2.toLowerCase().includes(searchTerm)) return false;
+                if (filterDate && ev.date !== filterDate) return false;
+                return true;
+            });
+
+            filtered.sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`));
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: #888; font-size: 16px;">No hay eventos deportivos disponibles o todos han finalizado.</div>';
+                return;
+            }
+
+            filtered.forEach((ev, index) => {
+                let badgeHtml = ev.date === todayStr ? '<span class="grilla-badge badge-hoy">HOY</span>' : 
+                                (ev.date === tomorrowStr ? '<span class="grilla-badge badge-manana">MAÑANA</span>' : 
+                                '<span class="grilla-badge badge-proximo">PRÓXIMO</span>');
+                
+                let glowClass = ev.importance === 'high' ? 'glow-red' : (ev.importance === 'medium' ? 'glow-yellow' : 'glow-blue');
+                let iconLabel = ev.importance === 'high' ? '🔥 EVENTO DESTACADO' : (ev.importance === 'medium' ? '🎯 EVENTO CLAVE' : '⚡ PARTIDO OFICIAL');
+                let iconColor = ev.importance === 'high' ? '#FF0066' : (ev.importance === 'medium' ? '#FFD700' : '#00D9FF');
+
+                const displayDate = new Date(ev.date + "T00:00:00").toLocaleDateString('es-ES', { weekday: 'long', day: '2-digit' }).replace(/^\w/, c => c.toUpperCase());
+
+                grid.innerHTML += `
+                    <div class="grilla-card ${glowClass}" style="animation-delay: ${index * 0.1}s">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                                <div class="grilla-header-title" style="color: ${iconColor};">${iconLabel}</div>
+                                <div class="grilla-badge-container">${badgeHtml}</div>
+                            </div>
+                            <div class="grilla-countdown" data-target="${ev.date}T${ev.time}">Cargando...</div>
+                        </div>
+                        
+                        <div class="grilla-datetime">
+                            <span><i class="fa-solid fa-calendar-day"></i> ${displayDate}</span>
+                            <span><i class="fa-solid fa-clock"></i> ${ev.time}</span>
+                        </div>
+
+                        <div class="grilla-teams">
+                            <div class="grilla-team"><img src="https://flagcdn.com/w80/${ev.f1}.png" class="grilla-flag"><span class="grilla-team-name">${ev.t1}</span></div>
+                            <div class="grilla-vs">VS</div>
+                            <div class="grilla-team"><img src="https://flagcdn.com/w80/${ev.f2}.png" class="grilla-flag"><span class="grilla-team-name">${ev.t2}</span></div>
+                        </div>
+
+                        <div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-tv"></i> Transmisión:</div>
+                            <div class="grilla-tv">${ev.tv.map(c => `<span>${c}</span>`).join('')}</div>
+                        </div>
+
+                        <div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-chart-simple"></i> DATO AT</div>
+                            <ul class="grilla-list">${ev.datos.map(d => `<li><i class="fa-solid fa-caret-right"></i> ${d}</li>`).join('')}</ul>
+                        </div>
+
+                        <div>
+                            <div class="grilla-section-title"><i class="fa-solid fa-bullseye"></i> Mercados a incentivar</div>
+                            <ul class="grilla-list">${ev.mercados.map(m => `<li><i class="fa-solid fa-bolt"></i> ${m}</li>`).join('')}</ul>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function startCountdown() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                document.querySelectorAll('.grilla-countdown').forEach(el => {
+                    const target = new Date(el.dataset.target).getTime();
+                    const distance = target - now;
+                    if (distance < 0) {
+                        el.innerHTML = "¡EN VIVO!";
+                        el.style.color = "#FF0066";
+                        el.style.borderColor = "rgba(255, 0, 102, 0.4)";
+                    } else {
+                        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const s = Math.floor((distance % (1000 * 60)) / 1000);
+                        el.innerHTML = `⏳ ${d}d ${h}h ${m}m ${s}s`;
+                    }
+                });
+            }, 1000);
         }
 
         // ==================== INICIALIZACIÓN ==================== 
