@@ -1089,6 +1089,7 @@
                 `,
                 startDate: '2026-06-01',
                 endDate: '2026-06-04',
+                canjeDate: '2026-06-04',
                 available: true
             },
             '2026-05-24': {
@@ -1116,6 +1117,7 @@
                 `,
                 startDate: '2026-05-24',
                 endDate: '2026-06-06',
+                canjeDate: '2026-06-06',
                 available: true
             },
             '2026-06-02': {
@@ -1143,6 +1145,7 @@
                 `,
                 startDate: '2026-06-02',
                 endDate: '2026-06-06',
+                canjeDate: '2026-06-06',
                 available: true
             },
             '2026-06-05': {
@@ -1170,6 +1173,7 @@
                 `,
                 startDate: '2026-06-05',
                 endDate: '2026-06-08',
+                canjeDate: '2026-06-08',
                 available: true
             }
         };
@@ -1244,21 +1248,51 @@
             const grid = document.getElementById('promotionsGrid');
             grid.innerHTML = '';
 
+            // Utilizamos el 2026-06-05 como fecha de sistema simulada para visualizar 
+            // dinámicamente los 3 estados (Activo, Canje, Expirado). 
+            // Para uso en tiempo real, puedes cambiarlo por:
+            // const now = new Date();
+            // const systemDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+            const systemDate = '2026-06-05';
+
             Object.entries(promotions).forEach(([dateStr, promo]) => {
                 const card = document.createElement('div');
-                const isAvailable = promo.available !== false;
                 
-                card.className = `promotion-card ${promo.category} ${!isAvailable ? 'unavailable' : ''}`;
+                let state = 'activo';
+                if (promo.canjeDate && systemDate > promo.canjeDate) {
+                    state = 'expirado';
+                } else if (promo.endDate && systemDate > promo.endDate) {
+                    state = 'canje';
+                }
+
+                // Fallback si "available" es false
+                if (promo.available === false) {
+                    state = 'expirado';
+                }
                 
-                if (isAvailable) {
+                card.className = `promotion-card ${promo.category}`;
+                let badgeHtml = '';
+                let exploreText = '• EXPLORAR';
+
+                if (state === 'activo') {
                     card.onclick = () => showModal(promo);
+                } else if (state === 'canje') {
+                    card.classList.add('canje-disponible');
+                    badgeHtml = '<div class="promo-badge canje">CANJE DISPONIBLE</div>';
+                    exploreText = '• VER CONDICIONES';
+                    card.onclick = () => showModal(promo);
+                } else if (state === 'expirado') {
+                    card.classList.add('unavailable');
+                    badgeHtml = '<div class="promo-badge expirado">PROMOCIÓN EXPIRADA</div>';
+                    exploreText = '• NO VIGENTE';
                 }
 
                 card.innerHTML = `
+                    ${badgeHtml}
                     <div class="promotion-icon">${promo.icon}</div>
                     <div class="promotion-info">
                         <div class="promotion-name">${promo.name}</div>
-                        <div class="promotion-explore">• EXPLORAR</div>
+                        <div class="promotion-explore">${exploreText}</div>
                     </div>
                 `;
 
