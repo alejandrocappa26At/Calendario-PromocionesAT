@@ -243,6 +243,9 @@
             border-color: #00ff66;
             box-shadow: 0 0 20px rgba(0, 255, 102, 0.6), 0 0 40px rgba(0, 255, 102, 0.4); 
         }
+        .promotion-card.green .outline-icon {
+            -webkit-text-stroke-color: #00ff66;
+        }
 
         .promotion-card.yellow {
             border-color: rgba(255, 153, 0, 0.3); /* Naranja neón */
@@ -250,6 +253,9 @@
         .promotion-card.yellow:hover:not(.unavailable) { 
             border-color: #ff9900;
             box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 0 40px rgba(255, 153, 0, 0.4); 
+        }
+        .promotion-card.yellow .outline-icon {
+            -webkit-text-stroke-color: #ff9900;
         }
 
         .promotion-card.purple {
@@ -259,6 +265,9 @@
             border-color: #9d4edd;
             box-shadow: 0 0 20px rgba(157, 78, 221, 0.6), 0 0 40px rgba(157, 78, 221, 0.4); 
         }
+        .promotion-card.purple .outline-icon {
+            -webkit-text-stroke-color: #9d4edd;
+        }
 
         .promotion-card.blue {
             border-color: rgba(0, 217, 255, 0.3);
@@ -267,6 +276,9 @@
             border-color: #00d9ff;
             box-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.4); 
         }
+        .promotion-card.blue .outline-icon {
+            -webkit-text-stroke-color: #00d9ff;
+        }
 
         .promotion-card.red {
             border-color: rgba(255, 0, 102, 0.3);
@@ -274,6 +286,9 @@
         .promotion-card.red:hover:not(.unavailable) { 
             border-color: #ff0066;
             box-shadow: 0 0 20px rgba(255, 0, 102, 0.6), 0 0 40px rgba(255, 0, 102, 0.4); 
+        }
+        .promotion-card.red .outline-icon {
+            -webkit-text-stroke-color: #ff0066;
         }
 
         .promotion-card.unavailable {
@@ -463,6 +478,12 @@
             font-size: 20px;
             margin-top: 4px;
         }
+        
+        .cell-icons .green .outline-icon { -webkit-text-stroke-color: #00ff66; }
+        .cell-icons .yellow .outline-icon { -webkit-text-stroke-color: #ff9900; }
+        .cell-icons .purple .outline-icon { -webkit-text-stroke-color: #9d4edd; }
+        .cell-icons .blue .outline-icon { -webkit-text-stroke-color: #00d9ff; }
+        .cell-icons .red .outline-icon { -webkit-text-stroke-color: #ff0066; }
 
         /* ==================== DATO AT - GRILLA PREMIUM ==================== */
         .grilla-view {
@@ -876,26 +897,31 @@
         .modal-content.green .promo-section.highlight { border-color: rgba(0, 255, 102, 0.4); background: rgba(0, 255, 102, 0.05); }
         .modal-content.green .promo-section.highlight .promo-section-content, .modal-content.green .promo-section.highlight .promo-section-title { color: #00ff66; }
         .modal-content.green .modal-header::after { background: linear-gradient(90deg, transparent, #00ff66, transparent); box-shadow: 0 0 8px #00ff66; }
+        .modal-content.green .outline-icon { -webkit-text-stroke-color: #00ff66; }
 
         .modal-content.yellow { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05); }
         .modal-content.yellow .promo-section.highlight { border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.05); }
         .modal-content.yellow .promo-section.highlight .promo-section-content, .modal-content.yellow .promo-section.highlight .promo-section-title { color: #ff9900; }
         .modal-content.yellow .modal-header::after { background: linear-gradient(90deg, transparent, #ff9900, transparent); box-shadow: 0 0 8px #ff9900; }
+        .modal-content.yellow .outline-icon { -webkit-text-stroke-color: #ff9900; }
 
         .modal-content.purple { border-color: rgba(157, 78, 221, 0.4); box-shadow: 0 0 40px rgba(157, 78, 221, 0.15), inset 0 0 20px rgba(157, 78, 221, 0.05); }
         .modal-content.purple .promo-section.highlight { border-color: rgba(157, 78, 221, 0.4); background: rgba(157, 78, 221, 0.05); }
         .modal-content.purple .promo-section.highlight .promo-section-content, .modal-content.purple .promo-section.highlight .promo-section-title { color: #9d4edd; }
         .modal-content.purple .modal-header::after { background: linear-gradient(90deg, transparent, #9d4edd, transparent); box-shadow: 0 0 8px #9d4edd; }
+        .modal-content.purple .outline-icon { -webkit-text-stroke-color: #9d4edd; }
 
         .modal-content.blue { border-color: rgba(0, 217, 255, 0.4); box-shadow: 0 0 40px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05); }
         .modal-content.blue .promo-section.highlight { border-color: rgba(0, 217, 255, 0.4); background: rgba(0, 217, 255, 0.05); }
         .modal-content.blue .promo-section.highlight .promo-section-content, .modal-content.blue .promo-section.highlight .promo-section-title { color: #00d9ff; }
         .modal-content.blue .modal-header::after { background: linear-gradient(90deg, transparent, #00d9ff, transparent); box-shadow: 0 0 8px #00d9ff; }
+        .modal-content.blue .outline-icon { -webkit-text-stroke-color: #00d9ff; }
 
         .modal-content.red { border-color: rgba(255, 0, 102, 0.4); box-shadow: 0 0 40px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05); }
         .modal-content.red .promo-section.highlight { border-color: rgba(255, 0, 102, 0.4); background: rgba(255, 0, 102, 0.05); }
         .modal-content.red .promo-section.highlight .promo-section-content, .modal-content.red .promo-section.highlight .promo-section-title { color: #ff0066; }
         .modal-content.red .modal-header::after { background: linear-gradient(90deg, transparent, #ff0066, transparent); box-shadow: 0 0 8px #ff0066; }
+        .modal-content.red .outline-icon { -webkit-text-stroke-color: #ff0066; }
 
         /* ==================== RESPONSIVO ==================== */
         @media (max-width: 768px) {
@@ -1083,6 +1109,25 @@
                     'Primer Equipo en Anotar'
                 ],
                 importance: 'high'
+            },
+            {
+                date: '2026-06-08',
+                time: '21:00',
+                t1: 'ESPAÑA', f1: 'es',
+                t2: 'PERÚ', f2: 'pe',
+                tv: ['Movistar Deportes', 'América TV'],
+                datos: [
+                    '🏆 Amistoso Internacional.',
+                    'Partido destacado de la programación AT.',
+                    'La Selección Peruana afronta una exigente prueba internacional ante España.',
+                    'Encuentro de preparación con alta expectativa para la afición peruana.'
+                ],
+                mercados: [
+                    'Ganador del Partido (1X2)',
+                    'Ambos Equipos Anotan',
+                    'Total de Goles'
+                ],
+                importance: 'high'
             }
         ];
 
@@ -1255,6 +1300,7 @@
                 if (activePromos.length > 0) {
                     activePromos.forEach(promo => {
                         const iconSpan = document.createElement('span');
+                        iconSpan.className = promo.category;
                         iconSpan.innerHTML = promo.icon;
                         iconSpan.style.cursor = 'pointer';
                         iconSpan.onclick = (e) => { e.stopPropagation(); showModal(promo); };
@@ -1376,7 +1422,7 @@
 
                     promoBlock.innerHTML = `
                         <h3 style="color: ${promoColor}; font-family: 'Montserrat', sans-serif; font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 10px ${promoColor}40;">
-                            <span>${promo.icon}</span> ${promo.name}
+                            <span style="-webkit-text-stroke-color: ${promoColor};">${promo.icon}</span> ${promo.name}
                         </h3>
                         <div style="display: flex; flex-direction: column; gap: 12px;">
                             ${details}
