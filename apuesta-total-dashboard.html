@@ -239,7 +239,7 @@
         .promotion-card.green {
             border-color: rgba(0, 255, 102, 0.3);
         }
-        .promotion-card.green:hover { 
+        .promotion-card.green:hover:not(.unavailable) { 
             border-color: #00ff66;
             box-shadow: 0 0 20px rgba(0, 255, 102, 0.6), 0 0 40px rgba(0, 255, 102, 0.4); 
         }
@@ -247,7 +247,7 @@
         .promotion-card.yellow {
             border-color: rgba(255, 153, 0, 0.3); /* Naranja neón */
         }
-        .promotion-card.yellow:hover { 
+        .promotion-card.yellow:hover:not(.unavailable) { 
             border-color: #ff9900;
             box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 0 40px rgba(255, 153, 0, 0.4); 
         }
@@ -255,7 +255,7 @@
         .promotion-card.purple {
             border-color: rgba(157, 78, 221, 0.3);
         }
-        .promotion-card.purple:hover { 
+        .promotion-card.purple:hover:not(.unavailable) { 
             border-color: #9d4edd;
             box-shadow: 0 0 20px rgba(157, 78, 221, 0.6), 0 0 40px rgba(157, 78, 221, 0.4); 
         }
@@ -263,7 +263,7 @@
         .promotion-card.blue {
             border-color: rgba(0, 217, 255, 0.3);
         }
-        .promotion-card.blue:hover { 
+        .promotion-card.blue:hover:not(.unavailable) { 
             border-color: #00d9ff;
             box-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.4); 
         }
@@ -271,7 +271,7 @@
         .promotion-card.red {
             border-color: rgba(255, 0, 102, 0.3);
         }
-        .promotion-card.red:hover { 
+        .promotion-card.red:hover:not(.unavailable) { 
             border-color: #ff0066;
             box-shadow: 0 0 20px rgba(255, 0, 102, 0.6), 0 0 40px rgba(255, 0, 102, 0.4); 
         }
@@ -286,6 +286,30 @@
 
         .promotion-card.unavailable .promotion-name {
             color: #888888;
+        }
+
+        /* ==================== BADGES PROMOCIONES ==================== */
+        .promo-badge {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+        .promo-badge.expirado {
+            background: #222;
+            color: #888;
+            border: 1px solid #444;
+        }
+        .promo-badge.canje {
+            background: #ff9900;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
         }
 
         /* ==================== ICONOS OUTLINE (PREMIUM) ==================== */
@@ -1253,7 +1277,7 @@
             // Para uso en tiempo real, puedes cambiarlo por:
             // const now = new Date();
             // const systemDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-            const systemDate = '2026-06-05';
+            const systemDate = '2026-06-07';
 
             Object.entries(promotions).forEach(([dateStr, promo]) => {
                 const card = document.createElement('div');
