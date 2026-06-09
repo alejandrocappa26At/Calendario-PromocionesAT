@@ -161,6 +161,70 @@
             background: #1a1a1a;
         }
 
+        /* ==================== ANIMACIÓN SEÑALÉTICA (DATO AT - GRILLA) ==================== */
+        @keyframes parpadeoSenaleticaGrilla {
+            0%, 100% {
+                background: transparent;
+                box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+                color: #00FF9D;
+                border-color: #00FF9D;
+            }
+            50% {
+                background: rgba(0, 255, 157, 0.3);
+                box-shadow: 0 0 25px rgba(0, 255, 157, 0.9), inset 0 0 15px rgba(0, 255, 157, 0.5);
+                color: #ffffff;
+                border-color: #ffffff;
+            }
+        }
+
+        #btn-dato-grilla {
+            animation: parpadeoSenaleticaGrilla 1.5s infinite;
+            border-width: 2px;
+        }
+
+        #btn-dato-grilla i.fa-arrow-right {
+            font-size: 18px; /* Flecha grande y visible */
+            margin-left: 6px;
+        }
+
+        /* ==================== ANIMACIÓN SEÑALÉTICA (VOLVER AL CALENDARIO) ==================== */
+        #btn-volver-grilla {
+            animation: parpadeoSenaleticaGrilla 1.5s infinite;
+            border-width: 2px;
+            font-weight: 900;
+        }
+
+        #btn-volver-grilla i.fa-arrow-left {
+            font-size: 18px; /* Flecha grande y visible */
+            margin-right: 4px;
+        }
+
+        /* ==================== ANIMACIÓN SEÑALÉTICA (FIXTURE MUNDIAL) ==================== */
+        @keyframes parpadeoSenaleticaMundial {
+            0%, 100% {
+                background: transparent;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+                color: #ffd700;
+                border-color: #ffd700;
+            }
+            50% {
+                background: rgba(255, 215, 0, 0.3);
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 215, 0, 0.5);
+                color: #ffffff;
+                border-color: #ffffff;
+            }
+        }
+
+        #btn-fixture-mundial {
+            animation: parpadeoSenaleticaMundial 1.5s infinite;
+            border-width: 2px;
+        }
+
+        #btn-fixture-mundial i.fa-arrow-right {
+            font-size: 18px; /* Flecha grande y visible */
+            margin-left: 6px;
+        }
+
         /* ==================== CONTAINER ==================== */
         .container {
             max-width: 1400px;
@@ -1025,11 +1089,11 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="header-btn yellow" onclick="window.open('mundial-2026.html', '_blank')">
-                🏆 FIXTURE MUNDIAL
+            <button class="header-btn yellow" id="btn-fixture-mundial" onclick="window.open('mundial-2026.html', '_blank')">
+                🏆 FIXTURE MUNDIAL <i class="fa-solid fa-arrow-right"></i>
             </button>
-            <button class="header-btn green" onclick="toggleGrillaView(true)">
-                ⚡ DATO AT - GRILLA
+            <button class="header-btn green" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
+                ⚡ DATO AT - GRILLA <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </header>
@@ -1080,6 +1144,7 @@
                     <input type="date" id="grillaDate" class="grilla-date" onchange="renderGrilla()">
                     <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..." oninput="renderGrilla()">
                     <button class="header-btn" style="border: 1px solid #555; color: #fff;" onclick="toggleGrillaView(false)">
+                    <button class="header-btn" id="btn-volver-grilla" onclick="toggleGrillaView(false)">
                         <i class="fa-solid fa-arrow-left"></i> VOLVER AL CALENDARIO
                     </button>
                 </div>
@@ -1108,37 +1173,74 @@
         // ==================== DATOS DE LA GRILLA PREMIUM ====================
         const grillaEvents = [
             {
-                date: '2026-06-05',
-                time: '19:00',
-                t1: 'HAITÍ', f1: 'ht',
-                t2: 'PERÚ', f2: 'pe',
-                tv: ['América TV', 'Movistar Deportes'],
+                date: '2026-06-09',
+                time: '20:00',
+                t1: 'ARGENTINA', f1: 'ar',
+                t2: 'ISLANDIA', f2: 'is',
+                tv: ['TyC Sports'],
                 datos: [
-                    'Perú no ganó 10 de sus últimos 11 partidos.',
-                    'Perú anotó primero en 3 de sus últimos 4 partidos.'
+                    '🏆 Competencia: Partido Amistoso - Selecciones Nacionales',
+                    '⭐ Figuras destacadas: 🇦🇷 Lionel Messi, Julián Álvarez, Nico Paz.',
+                    'Argentina afronta un amistoso internacional con varias de sus principales figuras, lideradas por Lionel Messi, en un duelo de preparación ante Islandia.'
                 ],
                 mercados: [
-                    'Doble Oportunidad',
+                    'Ganador del Partido (1X2)',
+                    'Ambos Equipos Anotan',
+                    'Anota en cualquier momento (Messi)'
+                ],
+                importance: 'high'
+            },
+            {
+                date: '2026-06-10',
+                time: '14:45',
+                t1: 'PORTUGAL', f1: 'pt',
+                t2: 'NIGERIA', f2: 'ng',
+                tv: ['ESPN', 'Disney+'],
+                datos: [
+                    '🏆 Competencia: Partido Amistoso de Selecciones',
+                    '⭐ Figuras: 🇵🇹 C. Ronaldo, B. Fernandes | 🇳🇬 V. Osimhen, A. Lookman.',
+                    'Choque internacional de alto nivel entre Portugal y Nigeria con varias estrellas mundiales presentes en el terreno de juego.'
+                ],
+                mercados: [
+                    'Ganador del Partido (1X2)',
+                    'Total de Goles (Más/Menos)',
+                    'Doble Oportunidad'
+                ],
+                importance: 'medium'
+            },
+            {
+                date: '2026-06-11',
+                time: '14:00',
+                t1: 'MÉXICO', f1: 'mx',
+                t2: 'SUDÁFRICA', f2: 'za',
+                tv: ['DSPORTS', 'Disney+', 'América TV'],
+                datos: [
+                    '🏆 Copa Mundial FIFA 2026 - Fase de Grupos (Fecha 1)',
+                    '🌎 Partido Inaugural del Torneo.',
+                    'México y Sudáfrica protagonizan el partido inaugural de la Copa Mundial FIFA 2026, marcando el inicio oficial del torneo más importante del fútbol mundial.'
+                ],
+                mercados: [
+                    'Ganador del Partido (1X2)',
+                    'Ambos Equipos Anotan',
                     'Primer Equipo en Anotar'
                 ],
                 importance: 'high'
             },
             {
-                date: '2026-06-08',
-                time: '21:00',
-                t1: 'ESPAÑA', f1: 'es',
-                t2: 'PERÚ', f2: 'pe',
-                tv: ['Movistar Deportes', 'América TV'],
+                date: '2026-06-12',
+                time: '20:00',
+                t1: 'EE.UU.', f1: 'us',
+                t2: 'PARAGUAY', f2: 'py',
+                tv: ['DSPORTS', 'Disney+', 'América TV'],
                 datos: [
-                    '🏆 Amistoso Internacional.',
-                    'Partido destacado de la programación AT.',
-                    'La Selección Peruana afronta una exigente prueba internacional ante España.',
-                    'Encuentro de preparación con alta expectativa para la afición peruana.'
+                    '🏆 Copa Mundial FIFA 2026 - Fase de Grupos (Fecha 1)',
+                    '⭐ Duelo de figuras: 🇺🇸 Christian Pulisic vs 🇵🇾 Miguel Almirón.',
+                    'Estados Unidos debuta en el Mundial enfrentando a Paraguay en un encuentro atractivo que tendrá como protagonistas a Christian Pulisic y Miguel Almirón.'
                 ],
                 mercados: [
                     'Ganador del Partido (1X2)',
-                    'Ambos Equipos Anotan',
-                    'Total de Goles'
+                    'Total de Goles',
+                    'Hándicap Asiático'
                 ],
                 importance: 'high'
             }
