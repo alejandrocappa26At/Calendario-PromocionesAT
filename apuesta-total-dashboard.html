@@ -137,6 +137,21 @@
             }
         }
 
+        /* ==================== EFECTO CORAZONES ==================== */
+        .heart-particle {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatUpHeart 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 9999;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
+        }
+
+        @keyframes floatUpHeart {
+            0% { transform: translateY(0) scale(0.5) rotate(-10deg); opacity: 1; }
+            100% { transform: translateY(-80px) scale(1.5) rotate(20deg); opacity: 0; }
+        }
+
         .header-right {
             display: flex;
             gap: 16px;
@@ -1106,7 +1121,7 @@
             <div class="header-text">
                 <h1 class="titulo"><span class="apuesta">APUESTA</span> <span class="total">TOTAL</span></h1>
                 <p class="subtitulo">CALENDARIO INTERACTIVO DE PROMOCIONES</p>
-                <div class="emojis-neon">♒♍</div>
+                <div class="emojis-neon">♒♍<span onclick="spawnHearts(event)" style="cursor: pointer;" title="Piscis">♓</span></div>
             </div>
         </div>
         <div class="header-right">
@@ -1910,6 +1925,29 @@
                 closeModal();
             }
         });
+
+        // ==================== EFECTO CORAZONES (PISCIS) ====================
+        function spawnHearts(e) {
+            const numHearts = 8;
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'heart-particle';
+                
+                // Posición aleatoria alrededor de la zona del click
+                const offsetX = (Math.random() - 0.5) * 60;
+                const offsetY = (Math.random() - 0.5) * 60;
+                
+                heart.style.left = (e.clientX + offsetX - 10) + 'px';
+                heart.style.top = (e.clientY + offsetY - 10) + 'px';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 1200); // Se elimina del DOM al terminar la animación
+            }
+        }
     </script>
 </body>
 </html>
