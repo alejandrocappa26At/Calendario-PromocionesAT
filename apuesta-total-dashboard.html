@@ -308,6 +308,13 @@
             color: #ff3b30;
         }
 
+        .month-logo {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+            margin-left: 12px;
+        }
+
         /* ==================== PROMOCIONES ==================== */
         .promotions-section {
             margin-bottom: 50px;
@@ -1145,6 +1152,7 @@
                 <span class="month-year" id="yearName">2026</span>
             </div>
             <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
+            <img src="img/Logo2.jpg" alt="Logo2" class="month-logo">
         </div>
 
         <!-- ==================== PROMOTIONS ==================== -->
@@ -1179,7 +1187,6 @@
                 <div class="grilla-filters">
                     <input type="date" id="grillaDate" class="grilla-date" onchange="renderGrilla()">
                     <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..." oninput="renderGrilla()">
-                    <button class="header-btn" style="border: 1px solid #555; color: #fff;" onclick="toggleGrillaView(false)">
                     <button class="header-btn" id="btn-volver-grilla" onclick="toggleGrillaView(false)">
                         <i class="fa-solid fa-arrow-left"></i> VOLVER AL CALENDARIO
                     </button>
@@ -1284,7 +1291,7 @@
 
         // ==================== DATOS ==================== 
         const promotions = {
-            '2026-06-08': {
+            '2026-06-15': {
                 name: 'PROMO 5X5 – VIRTUALES (JUNIO)',
                 category: 'purple',
                 icon: '<i class="fa-solid fa-gamepad outline-icon"></i>',
@@ -1296,7 +1303,7 @@
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
-                        <div class="promo-section-content">De lunes a jueves, del 08/06 al 11/06.</div>
+                        <div class="promo-section-content">De lunes a jueves, del 15/06 al 18/06.</div>
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
@@ -1307,9 +1314,9 @@
                         <div class="promo-section-content">El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
                     </div>
                 `,
-                startDate: '2026-06-08',
-                endDate: '2026-06-11',
-                canjeDate: '2026-06-11',
+                startDate: '2026-06-15',
+                endDate: '2026-06-18',
+                canjeDate: '2026-06-18',
                 available: true
             },
             '2026-05-24': {
@@ -1518,6 +1525,20 @@
         const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
         // ==================== FUNCIONES PRINCIPALES ==================== 
+        function getActivePromotions(dateStr) {
+            const activePromos = [];
+            for (const key in promotions) {
+                const promo = promotions[key];
+                // Consideramos la promoción vigente hasta su fecha de canje (si existe) o su fecha de fin
+                const effectiveEndDate = promo.canjeDate && promo.canjeDate > promo.endDate ? promo.canjeDate : promo.endDate;
+                
+                if (dateStr >= promo.startDate && dateStr <= effectiveEndDate && promo.available !== false) {
+                    activePromos.push(promo);
+                }
+            }
+            return activePromos;
+        }
+
         function renderCalendar() {
             const firstDay = new Date(currentYear, currentMonth, 1);
             const lastDay = new Date(currentYear, currentMonth + 1, 0);
@@ -1555,18 +1576,16 @@
                 const iconsDiv = document.createElement('div');
                 iconsDiv.className = 'cell-icons';
 
-                // Encontrar todas las promos activas en esta fecha específica
-                const activePromos = Object.values(promotions).filter(promo => {
-                    return dateStr >= promo.startDate && dateStr <= promo.endDate && promo.available !== false;
-                });
+                // Encontrar todas las promos activas en esta fecha específica utilizando la nueva función
+                const activePromos = getActivePromotions(dateStr);
 
                 if (activePromos.length > 0) {
                     activePromos.forEach(promo => {
                         const iconSpan = document.createElement('span');
                         iconSpan.className = promo.category;
                         iconSpan.innerHTML = promo.icon;
-                        iconSpan.style.cursor = 'pointer';
-                        iconSpan.onclick = (e) => { e.stopPropagation(); showModal(promo); };
+                        // Desactivamos los eventos de puntero para que el clic pase directo a la celda y muestre todas las promos
+                        iconSpan.style.pointerEvents = 'none';
                         iconsDiv.appendChild(iconSpan);
                     });
                     cell.onclick = () => showModal(activePromos, dateStr);
