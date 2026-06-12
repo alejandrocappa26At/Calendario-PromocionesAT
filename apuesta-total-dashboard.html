@@ -117,6 +117,26 @@
             }
         }
 
+        .emojis-neon {
+            color: #e0aaff;
+            font-size: 20px;
+            margin-top: 6px;
+            letter-spacing: 6px;
+            text-align: left;
+            animation: pulseNeonPurple 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseNeonPurple {
+            0%, 100% {
+                text-shadow: 0 0 5px #e0aaff, 0 0 10px #c77dff;
+                opacity: 0.8;
+            }
+            50% {
+                text-shadow: 0 0 10px #e0aaff, 0 0 20px #c77dff, 0 0 30px #9d4edd, 0 0 40px #7b2cbf;
+                opacity: 1;
+            }
+        }
+
         .header-right {
             display: flex;
             gap: 16px;
@@ -1086,6 +1106,7 @@
             <div class="header-text">
                 <h1 class="titulo"><span class="apuesta">APUESTA</span> <span class="total">TOTAL</span></h1>
                 <p class="subtitulo">CALENDARIO INTERACTIVO DE PROMOCIONES</p>
+                <div class="emojis-neon">♒♍</div>
             </div>
         </div>
         <div class="header-right">
