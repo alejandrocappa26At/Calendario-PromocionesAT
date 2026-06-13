@@ -308,13 +308,6 @@
             color: #ff3b30;
         }
 
-        .month-logo {
-            height: 90px;
-            width: auto;
-            object-fit: contain;
-            margin-left: 12px;
-        }
-
         /* ==================== PROMOCIONES ==================== */
         .promotions-section {
             margin-bottom: 50px;
@@ -1152,7 +1145,6 @@
                 <span class="month-year" id="yearName">2026</span>
             </div>
             <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
-            <img src="img/Logo2.jpg" alt="Logo2" class="month-logo">
         </div>
 
         <!-- ==================== PROMOTIONS ==================== -->
@@ -1513,6 +1505,38 @@
                 startDate: '2026-06-12',
                 endDate: '2026-06-14',
                 canjeDate: '2026-06-15',
+                available: true
+            },
+            '2026-06-15-3x3': {
+                name: 'PROMO 3X3 VIRTUALES (TIENDAS SELEC.)',
+                category: 'purple',
+                icon: '<i class="fa-solid fa-gamepad outline-icon"></i>',
+                description: 'Jugadas gratis de S/ 3 para cualquier juego virtual. (Solo Tiendas seleccionadas)',
+                htmlDetails: `
+                    <div class="promo-section" style="border: 2px solid #ff0066; background: rgba(255, 0, 102, 0.15); box-shadow: 0 0 15px rgba(255, 0, 102, 0.4); margin-bottom: 16px;">
+                        <div class="promo-section-title" style="color: #ff0066; font-size: 15px; font-weight: 900; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255, 0, 102, 0.5);"><i class="fa-solid fa-triangle-exclamation outline-icon" style="-webkit-text-stroke-color: #ff0066;"></i> ¡ATENCIÓN!</div>
+                        <div class="promo-section-content" style="color: #ffffff; font-size: 14px; font-weight: 800; text-transform: uppercase;">ESTA PROMOCIÓN ES VÁLIDA ÚNICAMENTE PARA TIENDAS SELECCIONADAS.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">Jugadas gratis de S/ 3 para cualquier juego virtual.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">De lunes a jueves, del 15/06 al 18/06.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">El cliente debe presentar 3 tickets de juegos virtuales (ganados o perdidos) del mismo día, con un valor de S/3 o más cada uno. La jugada gratis se emite en un solo ticket por S/3, sin posibilidad de adicionar efectivo. Solo se permite 1 premio por cliente al día y solo en tiendas seleccionadas.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
+                    </div>
+                `,
+                startDate: '2026-06-15',
+                endDate: '2026-06-18',
+                canjeDate: '2026-06-18',
                 available: true
             }
         };
