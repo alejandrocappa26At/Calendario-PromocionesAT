@@ -1140,9 +1140,12 @@
         <!-- ==================== MONTH NAVIGATION ==================== -->
         <div class="month-navigation">
             <button class="month-nav-btn" onclick="previousMonth()">&lt;</button>
-            <div class="month-display">
-                <span class="month-name" id="monthName">JUNIO</span>
-                <span class="month-year" id="yearName">2026</span>
+            <div class="month-display" style="display: flex; align-items: center; gap: 20px;">
+                <div>
+                    <span class="month-name" id="monthName">JUNIO</span>
+                    <span class="month-year" id="yearName">2026</span>
+                </div>
+                <img src="img/Logo2.png" alt="Logo 2" style="height: 100px; width: auto; object-fit: contain;">
             </div>
             <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
         </div>
@@ -1208,74 +1211,55 @@
         // ==================== DATOS DE LA GRILLA PREMIUM ====================
         const grillaEvents = [
             {
-                date: '2026-06-09',
-                time: '20:00',
-                t1: 'ARGENTINA', f1: 'ar',
-                t2: 'ISLANDIA', f2: 'is',
-                tv: ['TyC Sports'],
+                date: '2026-06-13',
+                time: '17:00',
+                t1: 'BRASIL', f1: 'br',
+                t2: 'MARRUECOS', f2: 'ma',
+                tv: ['DSports', 'Disney+', 'América TV'],
                 datos: [
-                    '🏆 Competencia: Partido Amistoso - Selecciones Nacionales',
-                    '⭐ Figuras destacadas: 🇦🇷 Lionel Messi, Julián Álvarez, Nico Paz.',
-                    'Argentina afronta un amistoso internacional con varias de sus principales figuras, lideradas por Lionel Messi, en un duelo de preparación ante Islandia.'
+                    '🏆 Competencia: Copa Mundial FIFA – Fase de Grupos (Fecha 1)',
+                    '📅 Fecha: 13/06/2026',
+                    '⚽ Partido: Brasil vs. Marruecos',
+                    'Se dió el +2.5 goles en los últimos 4 partidos de Brasil. Se dió el ambos anotan en 6 de los últimos 7 partidos de Brasil.'
                 ],
                 mercados: [
-                    'Ganador del Partido (1X2)',
-                    'Ambos Equipos Anotan',
-                    'Anota en cualquier momento (Messi)'
+                    'Doble oportunidad'
                 ],
                 importance: 'high'
             },
             {
-                date: '2026-06-10',
-                time: '14:45',
-                t1: 'PORTUGAL', f1: 'pt',
-                t2: 'NIGERIA', f2: 'ng',
-                tv: ['ESPN', 'Disney+'],
+                date: '2026-06-14',
+                time: '15:00',
+                t1: 'PAÍSES BAJOS', f1: 'nl',
+                t2: 'JAPÓN', f2: 'jp',
+                tv: ['DSports', 'Disney+', 'América TV'],
                 datos: [
-                    '🏆 Competencia: Partido Amistoso de Selecciones',
-                    '⭐ Figuras: 🇵🇹 C. Ronaldo, B. Fernandes | 🇳🇬 V. Osimhen, A. Lookman.',
-                    'Choque internacional de alto nivel entre Portugal y Nigeria con varias estrellas mundiales presentes en el terreno de juego.'
+                    '🏆 Competencia: Copa Mundial FIFA – Fase de Grupos (Fecha 1)',
+                    '📅 Fecha: 14/06/2026',
+                    '⚽ Partido: Países Bajos vs. Japón',
+                    'Japón ganó sus últimos 6 partidos. Japón anotó primero en sus últimos 5 partidos.'
                 ],
                 mercados: [
-                    'Ganador del Partido (1X2)',
-                    'Total de Goles (Más/Menos)',
-                    'Doble Oportunidad'
-                ],
-                importance: 'medium'
-            },
-            {
-                date: '2026-06-11',
-                time: '14:00',
-                t1: 'MÉXICO', f1: 'mx',
-                t2: 'SUDÁFRICA', f2: 'za',
-                tv: ['DSPORTS', 'Disney+', 'América TV'],
-                datos: [
-                    '🏆 Copa Mundial FIFA 2026 - Fase de Grupos (Fecha 1)',
-                    '🌎 Partido Inaugural del Torneo.',
-                    'México y Sudáfrica protagonizan el partido inaugural de la Copa Mundial FIFA 2026, marcando el inicio oficial del torneo más importante del fútbol mundial.'
-                ],
-                mercados: [
-                    'Ganador del Partido (1X2)',
-                    'Ambos Equipos Anotan',
-                    'Primer Equipo en Anotar'
+                    'Resultado',
+                    'Primer equipo en anotar'
                 ],
                 importance: 'high'
             },
             {
-                date: '2026-06-12',
-                time: '20:00',
-                t1: 'EE.UU.', f1: 'us',
-                t2: 'PARAGUAY', f2: 'py',
-                tv: ['DSPORTS', 'Disney+', 'América TV'],
+                date: '2026-06-15',
+                time: '11:00',
+                t1: 'ESPAÑA', f1: 'es',
+                t2: 'CABO VERDE', f2: 'cv',
+                tv: ['DSports', 'DGO'],
                 datos: [
-                    '🏆 Copa Mundial FIFA 2026 - Fase de Grupos (Fecha 1)',
-                    '⭐ Duelo de figuras: 🇺🇸 Christian Pulisic vs 🇵🇾 Miguel Almirón.',
-                    'Estados Unidos debuta en el Mundial enfrentando a Paraguay en un encuentro atractivo que tendrá como protagonistas a Christian Pulisic y Miguel Almirón.'
+                    '🏆 Competencia: Copa Mundial FIFA – Fase de Grupos (Fecha 1)',
+                    '📅 Fecha: 15/06/2026',
+                    '⚽ Partido: España vs. Cabo Verde',
+                    'España ganó o empató sus últimos 27 partidos. España anotó primero en 14 de sus últimos 15 partidos.'
                 ],
                 mercados: [
-                    'Ganador del Partido (1X2)',
-                    'Total de Goles',
-                    'Hándicap Asiático'
+                    'Doble oportunidad',
+                    'Primer equipo en anotar'
                 ],
                 importance: 'high'
             }
