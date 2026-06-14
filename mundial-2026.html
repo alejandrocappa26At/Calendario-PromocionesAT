@@ -332,6 +332,38 @@
             border-color: rgba(0, 224, 90, 0.4);
         }
 
+        /* ==================== BADGE FINALIZADO ==================== */
+        .badge-finalizado {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: #121212;
+            color: #1ED760;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #1ED760;
+            box-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
+            animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards, spotifyGlow 2s infinite alternate;
+        }
+
+        @keyframes spotifyGlow {
+            0% { box-shadow: 0 0 8px rgba(30, 215, 96, 0.3), inset 0 0 5px rgba(30, 215, 96, 0.1); }
+            100% { box-shadow: 0 0 20px rgba(30, 215, 96, 0.8), inset 0 0 10px rgba(30, 215, 96, 0.4); }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         .teams-row {
             display: flex;
             justify-content: center;
@@ -814,6 +846,11 @@
                 return;
             }
 
+            // Fecha actual para comparar.
+            // 💡 TIP PARA PRUEBAS: Cambia 'new Date()' por 'new Date("2026-06-15T18:00:00")' 
+            // para simular la fecha y ver aparecer los resultados en vivo.
+            const now = new Date();
+
             matches.forEach((m, index) => {
                 const card = document.createElement('div');
                 card.className = 'match-card';
@@ -823,11 +860,34 @@
                 const flag1Html = m.f1 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 16px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f1}.png" alt="${m.t1}">`;
                 const flag2Html = m.f2 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 16px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f2}.png" alt="${m.t2}">`;
 
+                // ==================== LÓGICA DE PARTIDOS FINALIZADOS ====================
+                let finalizadoHtml = '';
+                const monthMap = {"ENE":0, "FEB":1, "MAR":2, "ABR":3, "MAY":4, "JUN":5, "JUL":6, "AGO":7, "SEP":8, "OCT":9, "NOV":10, "DIC":11};
+                const dateParts = m.date.split(' ');
+                
+                if (dateParts.length === 2 && m.time !== "Por definir") {
+                    const matchDate = new Date(2026, monthMap[dateParts[1]], parseInt(dateParts[0]));
+                    const [hours, mins] = m.time.split(':');
+                    matchDate.setHours(parseInt(hours), parseInt(mins), 0, 0);
+                    
+                    // El partido se considera finalizado ~2 horas después de su inicio programado
+                    const matchEndTime = new Date(matchDate.getTime() + (2 * 60 * 60 * 1000));
+
+                    if (now > matchEndTime) {
+                        finalizadoHtml = `
+                            <div class="badge-finalizado">
+                                <i class="fa-solid fa-circle-check"></i> FINALIZADO
+                            </div>
+                        `;
+                    }
+                }
+
                 // Textos dinámicos
                 const metaText = isKnockout ? `Partido ${m.matchId} — ${m.city}` : `Grupo ${m.group} — ${m.city}`;
                 const tvHtml = m.tv ? `<div style="width: 100%; text-align: center; color: var(--neon-green); background: rgba(0,224,90,0.1); padding: 4px; border-radius: 4px; margin-top: 6px;"><i class="fa-solid fa-tv"></i> ${m.tv}</div>` : '';
 
                 card.innerHTML = `
+                    ${finalizadoHtml}
                     <div class="teams-row">
                         <div class="flag">${flag1Html}</div>
                         <div class="vs-text">VS</div>
