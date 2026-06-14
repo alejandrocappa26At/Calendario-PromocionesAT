@@ -308,6 +308,26 @@
             color: #ff3b30;
         }
 
+        /* ==================== ANIMACIÓN COPA DEL MUNDO ==================== */
+        .world-cup-logo {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            animation: rotateTrophy3D 4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes rotateTrophy3D {
+            0%, 100% {
+                transform: perspective(500px) rotateY(-20deg);
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+            }
+            50% {
+                transform: perspective(500px) rotateY(20deg);
+                filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.8));
+            }
+        }
+
         /* ==================== PROMOCIONES ==================== */
         .promotions-section {
             margin-bottom: 50px;
@@ -1145,7 +1165,7 @@
                     <span class="month-name" id="monthName">JUNIO</span>
                     <span class="month-year" id="yearName">2026</span>
                 </div>
-                <img src="img/Logo2.png" alt="Logo 2" style="height: 100px; width: auto; object-fit: contain;">
+                <img src="img/Logo2.png" alt="Logo Copa del Mundo" class="world-cup-logo">
             </div>
             <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
         </div>

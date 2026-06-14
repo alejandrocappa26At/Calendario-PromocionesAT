@@ -139,10 +139,10 @@
             letter-spacing: 1px;
         }
 
-        .logo i {
-            color: var(--neon-green);
-            font-size: 24px;
-            text-shadow: 0 0 10px rgba(0, 224, 90, 0.5);
+        .logo img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
         }
 
         .btn-informate {
@@ -561,7 +561,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <i class="fa-solid fa-trophy"></i> MUNDIAL 2026
+            <img src="img/Logo3.png" alt="Logo Mundial"> MUNDIAL 2026
         </div>
         
         <button class="btn-informate active" id="btn-informate">INFÓRMATE</button>
@@ -573,16 +573,9 @@
         </div>
 
         <div class="sidebar-section">
-            <h3>Próximo Partido</h3>
-            <div class="next-match-card">
-                <div class="next-match-teams">
-                    <div class="flag"><img src="https://flagcdn.com/w80/mx.png" alt="México"></div>
-                    <div class="vs-text">VS</div>
-                    <div class="flag"><img src="https://flagcdn.com/w80/za.png" alt="Sudáfrica"></div>
-                </div>
-                <div class="next-match-info">
-                    HOY — 14:00 | CDMX
-                </div>
+            <h3 id="sidebar-matches-title">Partidos de Hoy</h3>
+            <div id="sidebar-matches-container">
+                <!-- Partidos inyectados por JS -->
             </div>
         </div>
 
@@ -799,6 +792,9 @@
 
             // Renderizar todos inicial
             renderMatches(matchesData);
+
+            // Generar partidos de hoy en el sidebar
+            renderTodayMatches();
 
             // Inyectar Botones y Filtros Dinámicos vía JS
             injectAdvancedFilters();
@@ -1083,6 +1079,53 @@
         function clearActiveButtons() {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-informate').classList.remove('active');
+        }
+
+        // ==================== PARTIDOS DE HOY (SIDEBAR) ====================
+        function renderTodayMatches() {
+            const container = document.getElementById('sidebar-matches-container');
+            const title = document.getElementById('sidebar-matches-title');
+            
+            const now = new Date();
+            const monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+            const todayStr = String(now.getDate()).padStart(2, '0') + " " + monthNames[now.getMonth()];
+            
+            let todaysMatches = matchesData.filter(m => m.date === todayStr);
+            
+            if (typeof knockoutData !== 'undefined') {
+                Object.values(knockoutData).forEach(phase => {
+                    const matchesInPhase = phase.filter(m => m.date === todayStr);
+                    todaysMatches = todaysMatches.concat(matchesInPhase);
+                });
+            }
+
+            if (todaysMatches.length === 0) {
+                // Si no hay partidos hoy (o estamos fuera del mundial), mostramos los próximos
+                title.textContent = 'Próximos Partidos';
+                todaysMatches = matchesData.slice(0, 3); // Mostrar los primeros 3
+            } else {
+                title.textContent = 'Partidos de Hoy (' + todayStr + ')';
+            }
+
+            container.innerHTML = '';
+            todaysMatches.forEach(m => {
+                const flag1Html = m.f1 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 12px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f1}.png" alt="${m.t1}">`;
+                const flag2Html = m.f2 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 12px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f2}.png" alt="${m.t2}">`;
+                
+                container.innerHTML += `
+                    <div class="next-match-card" style="padding: 12px; margin-bottom: 10px;">
+                        <div class="next-match-teams" style="margin-bottom: 6px;">
+                            <div class="flag" style="width: 24px; height: 24px;">${flag1Html}</div>
+                            <div class="vs-text" style="font-size: 14px;">VS</div>
+                            <div class="flag" style="width: 24px; height: 24px;">${flag2Html}</div>
+                        </div>
+                        <div style="font-size: 13px; font-weight: 800; margin-bottom: 4px; color: var(--text-white); text-align: center;">${m.t1} - ${m.t2}</div>
+                        <div class="next-match-info" style="font-size: 10px; text-align: center;">
+                            ${m.date} | ${m.time} | ${m.city}
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         // ==================== INYECCIÓN DOM (VÍA JAVASCRIPT) ====================
