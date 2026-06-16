@@ -333,25 +333,44 @@
         }
 
         /* ==================== BADGE FINALIZADO ==================== */
-        .badge-finalizado {
+        .badge-container {
             position: absolute;
             top: -12px;
             right: -12px;
             background: #121212;
-            color: #1ED760;
-            padding: 6px 16px;
             border-radius: 50px;
+            z-index: 10;
+            display: flex;
+            align-items: stretch;
+            border: 1px solid #1ED760;
+            box-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
+            animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards, spotifyGlow 2s infinite alternate;
+            overflow: hidden;
+        }
+
+        .badge-finalizado {
+            color: #1ED760;
+            padding: 6px 12px;
             font-size: 10px;
             font-weight: 900;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            z-index: 10;
             display: flex;
             align-items: center;
-            gap: 8px;
-            border: 1px solid #1ED760;
-            box-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
-            animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards, spotifyGlow 2s infinite alternate;
+            gap: 6px;
+        }
+
+        .badge-score {
+            background: rgba(30, 215, 96, 0.15);
+            color: #ffffff;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid rgba(30, 215, 96, 0.4);
+            letter-spacing: 2px;
         }
 
         @keyframes spotifyGlow {
@@ -846,10 +865,9 @@
                 return;
             }
 
-            // Fecha actual para comparar.
-            // 💡 TIP PARA PRUEBAS: Cambia 'new Date()' por 'new Date("2026-06-15T18:00:00")' 
-            // para simular la fecha y ver aparecer los resultados en vivo.
-            const now = new Date();
+            // Simulamos la fecha actual al 16 de Junio de 2026 a las 17:40
+            // Esto permite visualizar un partido FINALIZADO (14:00), uno EN VIVO (17:00) y los próximos.
+            const now = new Date("2026-06-16T17:40:00");
 
             matches.forEach((m, index) => {
                 const card = document.createElement('div');
@@ -860,12 +878,17 @@
                 const flag1Html = m.f1 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 16px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f1}.png" alt="${m.t1}">`;
                 const flag2Html = m.f2 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #444; font-size: 16px;"></i>' : `<img src="https://flagcdn.com/w80/${m.f2}.png" alt="${m.t2}">`;
 
-                // ==================== LÓGICA DE PARTIDOS FINALIZADOS ====================
-                let finalizadoHtml = '';
+                // ==================== LÓGICA DE PARTIDOS EN VIVO Y FINALIZADOS ====================
+                let statusBadgeHtml = '';
+                const uniqueBadgeId = `badge-match-${index}-${Math.random().toString(36).substr(2, 9)}`;
                 const monthMap = {"ENE":0, "FEB":1, "MAR":2, "ABR":3, "MAY":4, "JUN":5, "JUL":6, "AGO":7, "SEP":8, "OCT":9, "NOV":10, "DIC":11};
                 const dateParts = m.date.split(' ');
                 
+                let isMatchStarted = false;
+                let isFinished = false;
+
                 if (dateParts.length === 2 && m.time !== "Por definir") {
+                    // El torneo es en 2026, así que fijamos el año correctamente
                     const matchDate = new Date(2026, monthMap[dateParts[1]], parseInt(dateParts[0]));
                     const [hours, mins] = m.time.split(':');
                     matchDate.setHours(parseInt(hours), parseInt(mins), 0, 0);
@@ -873,10 +896,21 @@
                     // El partido se considera finalizado ~2 horas después de su inicio programado
                     const matchEndTime = new Date(matchDate.getTime() + (2 * 60 * 60 * 1000));
 
-                    if (now > matchEndTime) {
-                        finalizadoHtml = `
-                            <div class="badge-finalizado">
-                                <i class="fa-solid fa-circle-check"></i> FINALIZADO
+                    // Si el partido ya comenzó (ahora >= hora de inicio)
+                    if (now >= matchDate) {
+                        isMatchStarted = true;
+                        isFinished = now >= matchEndTime;
+                        
+                        const badgeClass = isFinished ? 'badge-finalizado' : 'badge-envivo';
+                        const badgeColor = isFinished ? '#1ED760' : '#FF0066';
+                        const badgeIcon = isFinished ? '<i class="fa-solid fa-circle-check"></i> FINALIZADO' : '<i class="fa-solid fa-circle-play"></i> EN VIVO';
+                        const glowAnim = isFinished ? 'spotifyGlow' : 'liveGlow';
+
+                        statusBadgeHtml = `
+                            <div class="badge-container" id="${uniqueBadgeId}" style="border-color: ${badgeColor}; animation: popIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards, ${glowAnim} 2s infinite alternate;">
+                                <div class="${badgeClass}">
+                                    ${badgeIcon}
+                                </div>
                             </div>
                         `;
                     }
@@ -887,7 +921,7 @@
                 const tvHtml = m.tv ? `<div style="width: 100%; text-align: center; color: var(--neon-green); background: rgba(0,224,90,0.1); padding: 4px; border-radius: 4px; margin-top: 6px;"><i class="fa-solid fa-tv"></i> ${m.tv}</div>` : '';
 
                 card.innerHTML = `
-                    ${finalizadoHtml}
+                    ${statusBadgeHtml}
                     <div class="teams-row">
                         <div class="flag">${flag1Html}</div>
                         <div class="vs-text">VS</div>
@@ -1146,7 +1180,7 @@
             const container = document.getElementById('sidebar-matches-container');
             const title = document.getElementById('sidebar-matches-title');
             
-            const now = new Date();
+            const now = new Date("2026-06-16T17:40:00"); // Simulamos 16 de Junio de 2026
             const monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
             const todayStr = String(now.getDate()).padStart(2, '0') + " " + monthNames[now.getMonth()];
             

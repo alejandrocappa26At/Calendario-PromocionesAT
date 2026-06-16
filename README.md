@@ -76,6 +76,8 @@ Conjunto completo de aplicaciones web profesionales para gestión de promociones
 
 ## 🛠️ Instalación Local
 
+> **Requisito previo:** Asegúrate de que **Node.js** y **npm** estén instalados en tu entorno de desarrollo para habilitar el reporte automático de problemas en los archivos fuente relacionados con accesibilidad, compatibilidad, seguridad y más.
+
 ```bash
 # Clonar el repositorio
 git clone https://github.com/alejandrocappa26At/Calendario-interactivo-2026.git
