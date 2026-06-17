@@ -1674,8 +1674,8 @@
             }
         };
 
-        // Simulando que hoy es 16 de Junio de 2026
-        const today = new Date("2026-06-16T00:00:00");
+        // Simulando que hoy es 17 de Junio de 2026
+        const today = new Date("2026-06-17T00:00:00");
         today.setHours(0, 0, 0, 0);
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
@@ -1758,8 +1758,8 @@
             const grid = document.getElementById('promotionsGrid');
             grid.innerHTML = '';
 
-            // Simulamos la fecha actual (16 de Junio de 2026 a las 17:40)
-            const now = new Date("2026-06-16T17:40:00");
+            // Simulamos la fecha actual (17 de Junio de 2026 a las 16:30)
+            const now = new Date("2026-06-17T16:30:00");
             const systemDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
             Object.entries(promotions).forEach(([dateStr, promo]) => {
@@ -1995,8 +1995,8 @@
             const filterDate = document.getElementById('grillaDate').value;
             
             grid.innerHTML = '';
-            // Simulamos la fecha actual a las 17:40
-            const now = new Date("2026-06-16T17:40:00");
+            // Simulamos la fecha actual a las 16:30 del 17 de Junio
+            const now = new Date("2026-06-17T16:30:00");
             const todayStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
             
             const tomorrow = new Date(now);
@@ -2078,9 +2078,9 @@
         function startCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
             
-            // Calculamos un desfase para simular que estamos en el 16 de Junio de 2026 a las 17:40:00
+            // Calculamos un desfase para simular que estamos en el 17 de Junio de 2026 a las 16:30:00
             // Esto permite que el reloj siga corriendo de forma natural.
-            const simulatedStartTime = new Date("2026-06-16T17:40:00").getTime();
+            const simulatedStartTime = new Date("2026-06-17T16:30:00").getTime();
             const realStartTime = new Date().getTime();
             const timeOffset = simulatedStartTime - realStartTime;
 
