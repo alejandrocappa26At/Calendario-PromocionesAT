@@ -1010,9 +1010,7 @@
                 return;
             }
 
-            // Simulamos la fecha actual al 17 de Junio de 2026 a las 17:30
-            // Esto permite visualizar partidos FINALIZADOS de días previos y de hoy (12:00 y 15:00).
-            const now = new Date("2026-06-17T17:30:00");
+            const now = new Date(); // Usa la fecha y hora real del sistema
 
             matches.forEach((m, index) => {
                 const card = document.createElement('div');
@@ -1330,7 +1328,7 @@
             const container = document.getElementById('sidebar-matches-container');
             const title = document.getElementById('sidebar-matches-title');
             
-            const now = new Date("2026-06-17T17:30:00"); // Simulamos 17 de Junio de 2026
+            const now = new Date(); // Usa la fecha y hora real del sistema
             const monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
             const todayStr = String(now.getDate()).padStart(2, '0') + " " + monthNames[now.getMonth()];
             
