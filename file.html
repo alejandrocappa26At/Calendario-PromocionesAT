@@ -889,75 +889,112 @@
             // Inyectar Botones y Filtros Dinámicos vía JS
             injectAdvancedFilters();
         });
-        
-        // ==================== BASE DE DATOS LOCAL DE RESULTADOS ====================
-        const localResults = {
-            1: { homeScore: 2, awayScore: 0 },  // México vs Sudáfrica
-            2: { homeScore: 2, awayScore: 1 },  // Rep. Corea vs Rep. Checa
-            3: { homeScore: 1, awayScore: 1 },  // Canadá vs Bosnia y H.
-            4: { homeScore: 4, awayScore: 1 },  // EE.UU. vs Paraguay
-            5: { homeScore: 1, awayScore: 1 },  // Catar vs Suiza
-            6: { homeScore: 1, awayScore: 1 },  // Brasil vs Marruecos
-            7: { homeScore: 0, awayScore: 1 },  // Haití vs Escocia
-            8: { homeScore: 2, awayScore: 0 },  // Australia vs Turquía
-            9: { homeScore: 7, awayScore: 1 },  // Alemania vs Curazao
-            10: { homeScore: 2, awayScore: 2 }, // Países Bajos vs Japón
-            11: { homeScore: 1, awayScore: 0 }, // Costa Marfil vs Ecuador
-            12: { homeScore: 5, awayScore: 1 }, // Suecia vs Túnez
-            13: { homeScore: 0, awayScore: 0 }, // España vs Cabo Verde
-            14: { homeScore: 1, awayScore: 1 }, // Bélgica vs Egipto
-            15: { homeScore: 1, awayScore: 1 }, // Arabia Saudí vs Uruguay
-            16: { homeScore: 2, awayScore: 2 }, // Irán vs N. Zelanda
-            17: { homeScore: 3, awayScore: 1 }, // Francia vs Senegal
-            18: { homeScore: 1, awayScore: 4 }, // Irak vs Noruega
-            19: { homeScore: 3, awayScore: 0 }, // Argentina vs Argelia
-            20: { homeScore: 3, awayScore: 1 }, // Austria vs Jordania
-            21: { homeScore: 1, awayScore: 1 }, // Portugal vs RD Congo
-            22: { homeScore: 4, awayScore: 2 }, // Inglaterra vs Croacia
-            23: { homeScore: 1, awayScore: 0 }, // Ghana vs Panamá
-            24: { homeScore: 1, awayScore: 3 }, // Uzbekistán vs Colombia
-            25: { homeScore: 1, awayScore: 1 }, // Rep. Checa vs Sudáfrica
-            26: { homeScore: 4, awayScore: 1 }, // Suiza vs Bosnia y H.
-            27: { homeScore: 6, awayScore: 0 }, // Canadá vs Catar
-        };
 
         // ==================== LÓGICA DE RENDERIZADO ====================
         const grid = document.getElementById('matches-grid');
         const mainDisplay = document.getElementById('main-display');
         const sectionTitle = document.getElementById('section-title');
 
-        // Renderizador para inyectar el marcador desde la base de datos local
-        function loadMatchScore(matchId, containerId, isFinished) {
+        // ==================== INTEGRACIÓN API RESULTADOS ====================
+        const resultsCache = {};
+
+        // Función reutilizable para obtener resultados de la API
+        async function getMatchResult(matchId) {
+            if (!matchId) return null;
+            
+            // Optimización: Retornar caché si el resultado ya fue obtenido
+            if (resultsCache[matchId]) return resultsCache[matchId];
+
+            try {
+                // Clave de API-Football (RapidAPI)
+                const API_KEY = 'dc73fa8062e46ca0cd5266d88601f73b';
+                
+                // Evitar fetch si la llave no está configurada (previene errores en consola)
+                if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') {
+                    console.warn("⚠️ API Key no configurada. No se pueden obtener marcadores reales.");
+                    return null;
+                }
+
+                // Conexión a la API de API-Football
+                // El endpoint para partidos es /fixtures
+                const response = await fetch(`https://v3.football.api-sports.io/fixtures?id=${matchId}`, {
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-host': 'v3.football.api-sports.io',
+                        'x-rapidapi-key': API_KEY,
+                        'x-apisports-key': API_KEY // Header específico para esta API
+                    }
+                });
+                
+                const data = await response.json();
+                
+                // NOTA: Cada API devuelve un JSON diferente. Este bloque es flexible y buscará
+                // los goles de manera inteligente. Si la API devuelve los nombres exactos distintos, 
+                // ajústalos aquí (ej. 'home_score', 'home_team_score', etc.).
+                if (data) {
+                    // Ajusta internamente en caso de que la respuesta esté envuelta en un 'data.response'
+                    const matchData = data.response ? (Array.isArray(data.response) ? data.response[0] : data.response) : data;
+
+                    const result = {
+                        homeScore: matchData.goals?.home,
+                        awayScore: matchData.goals?.away,
+                        status: matchData.fixture?.status?.short || "TBD"
+                    };
+
+                    resultsCache[matchId] = result;
+                    return result;
+                }
+                return null;
+            } catch (error) {
+                console.error("Error obteniendo el resultado del partido:", error);
+                return null; // El UI mantendrá la etiqueta simple si la API falla
+            }
+        }
+
+        // Renderizador asíncrono para inyectar el marcador en la tarjeta correcta
+        async function loadMatchScore(matchId, containerId, isFinished, t1, t2) {
             const container = document.getElementById(containerId);
             if (!container) return; // Salida de seguridad
 
             let homeScore = null;
             let awayScore = null;
 
-            // Buscar el resultado en la base de datos local
-            const result = localResults[matchId];
-            if (result) {
-                homeScore = result.homeScore;
-                awayScore = result.awayScore;
+            // Paso 1: Intentar obtener el resultado de la base de datos local (mock)
+            if (mockResults[matchId]) {
+                homeScore = mockResults[matchId].homeScore;
+                awayScore = mockResults[matchId].awayScore;
+            }
+
+            // Paso 2: Intentar obtener el resultado de la API (si hay matchId)
+            // El resultado de la API (si es válido) sobreescribirá el del mock.
+            if (matchId) {
+                const result = await getMatchResult(matchId);
+                if (result && result.homeScore !== null) {
+                    homeScore = result.homeScore;
+                    awayScore = result.awayScore;
+                }
             }
 
             if (homeScore !== null && awayScore !== null) {
+
+                const color = isFinished ? 'rgba(30, 215, 96, 0.6)' : 'rgba(255, 0, 102, 0.6)';
+                const bg = isFinished ? 'rgba(30, 215, 96, 0.15)' : 'rgba(255, 0, 102, 0.15)';
+                const border = isFinished ? 'rgba(30, 215, 96, 0.4)' : 'rgba(255, 0, 102, 0.4)';
+
+                const scoreDiv = document.createElement('div');
+                scoreDiv.className = 'badge-score';
+                scoreDiv.style.background = bg;
+                scoreDiv.style.borderLeft = `1px solid ${border}`;
+                
                 const isHomeWinner = homeScore > awayScore;
                 const isAwayWinner = awayScore > homeScore;
                 const isDraw = homeScore === awayScore;
 
                 const homeSpan = `<span style="${isHomeWinner || isDraw ? 'color:#fff; font-weight:900;' : 'color:#ccc; font-weight:500;'}">${homeScore}</span>`;
                 const awaySpan = `<span style="${isAwayWinner || isDraw ? 'color:#fff; font-weight:900;' : 'color:#ccc; font-weight:500;'}">${awayScore}</span>`;
-
-                // Modificar el badge "FINALIZADO" para incluir el resultado
-                const finishedBadge = container.querySelector('.badge-finalizado');
-                if (finishedBadge) {
-                    finishedBadge.innerHTML += ` <span style="margin: 0 4px 0 8px; color: rgba(255,255,255,0.4);">|</span> ${homeSpan} - ${awaySpan}`;
-                    
-                    // Ajustar el padding para que el resultado entre cómodamente
-                    finishedBadge.style.paddingRight = '16px';
-                    container.style.width = 'auto'; // Permitir que el badge se expanda
-                }
+                
+                scoreDiv.innerHTML = `${homeSpan} <span style="margin: 0 6px; color: ${color};">-</span> ${awaySpan}`;
+                container.appendChild(scoreDiv);
             }
         }
 
@@ -1051,7 +1088,7 @@
 
                 // Llamamos a la API DESPUÉS de que la tarjeta exista en el DOM para asegurar la inyección visual
                 if (isMatchStarted) {
-                    loadMatchScore(m.matchId, uniqueBadgeId, isFinished);
+                    loadMatchScore(m.matchId, uniqueBadgeId, isFinished, m.t1, m.t2);
                 }
             });
         }
