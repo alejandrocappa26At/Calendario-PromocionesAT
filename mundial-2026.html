@@ -1356,6 +1356,49 @@
             });
         }
 
+        // ==================== LÓGICA DE AUTO-REFRESCO ====================
+        function refreshCurrentView() {
+            console.log("Auto-refrescando datos del fixture (10 min)...");
+
+            // 1. Siempre refrescar el sidebar de "Partidos de Hoy"
+            renderTodayMatches();
+
+            // 2. Refrescar la vista principal respetando el filtro actual
+            const activeGroupBtn = document.querySelector('.group-btn.active');
+            const activePhaseBtn = document.querySelector('.phase-btn.active');
+            const activeInformateBtn = document.querySelector('#btn-informate.active');
+            const searchInput = document.getElementById('search-input').value;
+            const dateInput = document.getElementById('date-filter').value;
+            const sedeSelect = document.getElementById('sedes-select').value;
+
+            if (activeInformateBtn) {
+                // No hacer nada si está en la vista "Infórmate"
+                return;
+            }
+
+            if (activeGroupBtn) {
+                activeGroupBtn.click();
+            } else if (activePhaseBtn) {
+                activePhaseBtn.click();
+            } else if (searchInput) {
+                // Simular un evento 'input' para volver a filtrar
+                const event = new Event('input', { bubbles: true });
+                document.getElementById('search-input').dispatchEvent(event);
+            } else if (dateInput) {
+                // Simular un evento 'change' para volver a filtrar
+                const event = new Event('change', { bubbles: true });
+                document.getElementById('date-filter').dispatchEvent(event);
+            } else if (sedeSelect !== 'all') {
+                 // Simular un evento 'change' para volver a filtrar
+                const event = new Event('change', { bubbles: true });
+                document.getElementById('sedes-select').dispatchEvent(event);
+            }
+            else {
+                // Si no hay ningún filtro, refrescar la vista por defecto (todos los partidos)
+                document.getElementById('btn-clear-sidebar').click();
+            }
+        }
+
         // ==================== INYECCIÓN DOM (VÍA JAVASCRIPT) ====================
         function injectAdvancedFilters() {
             // 2. Modificar la barra superior (Top Bar) dinámicamente
@@ -1450,6 +1493,9 @@
                     }
                 }
             });
+
+            // 6. Iniciar el intervalo de auto-refresco
+            setInterval(refreshCurrentView, 10 * 60 * 1000); // 10 minutos
         }
     </script>
 </body>

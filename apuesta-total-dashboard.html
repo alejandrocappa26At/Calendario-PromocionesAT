@@ -464,6 +464,24 @@
             box-shadow: 0 0 12px rgba(255, 0, 102, 0.6);
             border: 1px solid #ff4d94;
         }
+        .promo-badge.activo {
+            background: #00ff9d;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.6), 0 0 25px rgba(0, 255, 157, 0.4);
+            border: 1px solid #fff;
+            animation: pulse-green 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(0, 255, 157, 0.6);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(0, 255, 157, 1);
+            }
+        }
         .promo-badge.ultimo-dia {
             background: linear-gradient(45deg, #ff3b30, #ff9500);
             color: #fff;
@@ -1689,6 +1707,119 @@
                 customBadgeText: 'SOLO LIMA METROPOLITANA',
                 customBadgeClass: 'lima-only',
                 available: true
+            },
+            '2026-06-19-racha3': {
+                name: 'PROMO LA RACHA VIRTUALERA 3',
+                category: 'blue',
+                icon: '<i class="fa-solid fa-fire outline-icon"></i>',
+                description: 'Vale de hasta S/30 para juegos virtuales.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">
+                            Vale AT de S/15 para juegos virtuales (cumpliendo las misiones del 19 y 20 de junio).<br>
+                            Vale AT de S/30 para juegos virtuales (cumpliendo las misiones del 19, 20 y 21 de junio).
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            Cumplimiento de misiones: del viernes 19/06 al domingo 21/06.<br>
+                            Canje del vale: lunes 22/06.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            El cliente debe cumplir las siguientes misiones en juegos virtuales:<br>
+                            • 19/06: acumular S/20 o más en Carrera de Galgos, Carrera de Caballos o Copa Mundial.<br>
+                            • 20/06: acumular S/30 o más en los mismos juegos.<br>
+                            • 21/06: acumular S/40 o más en los mismos juegos.<br><br>
+                            La jugada gratis se entrega en un solo ticket por el valor ganado, válida para cualquier juego virtual. Solo 1 premio por cliente durante toda la promoción.
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-06-21',
+                canjeDate: '2026-06-22',
+                available: true
+            },
+            '2026-06-19-vale-papa': {
+                name: 'PROMO VALE COMBI – PAPÁ MUNDIALISTA',
+                category: 'yellow',
+                icon: '<i class="fa-solid fa-ticket outline-icon"></i>',
+                description: 'Vale de S/10 para apuestas deportivas.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">
+                            Vale de S/10 para apuestas deportivas.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            Realización de jugadas: del viernes 19/06 al domingo 21/06.<br>
+                            Canje del vale: lunes 22/06.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            El cliente debe realizar 3 apuestas deportivas múltiples.<br>
+                            Cada apuesta debe ser de S/10 o más y con cuota mínima de 1.5.<br><br>
+                            La jugada gratis se entrega en un solo ticket por S/10, válida para apuestas múltiples con cuota mínima de 1.3.<br>
+                            Solo 1 premio por cliente durante toda la promoción.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">El registro se realiza en el sistema de gestión, en el diamante opción “Campañas Vales”.<br>Seleccionar “Vale Combi” e ingresar el documento del cliente y el código completo del ticket (Caja AT).<br>Verificar siempre el campo “Proveedor” antes de registrar.<br>No es necesario adjuntar foto en el registro.</div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-06-21',
+                canjeDate: '2026-06-22',
+                available: true
+            },
+            '2026-06-19-mvp': {
+                name: 'PROMO EL MVP DE LA TIENDA',
+                category: 'yellow',
+                icon: '<i class="fa-solid fa-trophy outline-icon"></i>',
+                description: 'Vale de S/20 o S/50 para apuestas deportivas.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">
+                            Vale de S/20 o S/50 para apuestas deportivas.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            Participación: de viernes a jueves.<br>
+                            Todos los viernes se anunciará 1 ganador por tienda.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            Participan todas las apuestas deportivas de S/5 o más.<br>
+                            Gana el cliente con la apuesta acertada de mayor cuota en cada tienda.<br>
+                            • Si la cuota ganadora corresponde a un ticket de 19 o menos, recibe un Vale de S/20.<br>
+                            • Si la cuota ganadora corresponde a un ticket de 20 o más, recibe un Vale de S/50.<br><br>
+                            La jugada gratis se entrega en un solo ticket, válida para apuestas deportivas con cuota mínima de 1.3. Solo 1 premio por cliente durante la vigencia de la promoción.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">Se elige 1 ganador por tienda cada semana. El vale se emite por el valor exacto del premio (S/20 o S/50).</div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-06-25', // Vigencia semanal de participación
+                canjeDate: '2026-06-26', // Anuncio del ganador
+                available: true
             }
         };
 
@@ -1807,6 +1938,8 @@
                     card.onclick = () => showModal(promo);
                     if (promo.customBadgeText) {
                         badgeHtml = `<div class="promo-badge ${promo.customBadgeClass}">${promo.customBadgeText}</div>`;
+                    } else {
+                        badgeHtml = '<div class="promo-badge activo">ACTIVA</div>';
                     }
                 } else if (state === 'canje') {
                     card.classList.add('canje-disponible');
