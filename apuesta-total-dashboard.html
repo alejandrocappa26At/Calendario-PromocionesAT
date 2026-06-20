@@ -423,6 +423,28 @@
             -webkit-text-stroke-color: #ff0066;
         }
 
+        .promotion-card.orange {
+            border-color: rgba(255, 153, 0, 0.3);
+        }
+        .promotion-card.orange:hover:not(.unavailable) { 
+            border-color: #ff9900;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 0 40px rgba(255, 153, 0, 0.4); 
+        }
+        .promotion-card.orange .outline-icon {
+            -webkit-text-stroke-color: #ff9900;
+        }
+
+        .promotion-card.magenta {
+            border-color: rgba(255, 20, 147, 0.3);
+        }
+        .promotion-card.magenta:hover:not(.unavailable) { 
+            border-color: #ff1493;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6), 0 0 40px rgba(255, 20, 147, 0.4); 
+        }
+        .promotion-card.magenta .outline-icon {
+            -webkit-text-stroke-color: #ff1493;
+        }
+
         .promotion-card.unavailable {
             border-color: #333333;
             box-shadow: none;
@@ -1096,6 +1118,18 @@
         .modal-content.red .promo-section.highlight .promo-section-content, .modal-content.red .promo-section.highlight .promo-section-title { color: #ff0066; }
         .modal-content.red .modal-header::after { background: linear-gradient(90deg, transparent, #ff0066, transparent); box-shadow: 0 0 8px #ff0066; }
         .modal-content.red .outline-icon { -webkit-text-stroke-color: #ff0066; }
+
+        .modal-content.orange { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05); }
+        .modal-content.orange .promo-section.highlight { border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.05); }
+        .modal-content.orange .promo-section.highlight .promo-section-content, .modal-content.orange .promo-section.highlight .promo-section-title { color: #ff9900; }
+        .modal-content.orange .modal-header::after { background: linear-gradient(90deg, transparent, #ff9900, transparent); box-shadow: 0 0 8px #ff9900; }
+        .modal-content.orange .outline-icon { -webkit-text-stroke-color: #ff9900; }
+
+        .modal-content.magenta { border-color: rgba(255, 20, 147, 0.4); box-shadow: 0 0 40px rgba(255, 20, 147, 0.15), inset 0 0 20px rgba(255, 20, 147, 0.05); }
+        .modal-content.magenta .promo-section.highlight { border-color: rgba(255, 20, 147, 0.4); background: rgba(255, 20, 147, 0.05); }
+        .modal-content.magenta .promo-section.highlight .promo-section-content, .modal-content.magenta .promo-section.highlight .promo-section-title { color: #ff1493; }
+        .modal-content.magenta .modal-header::after { background: linear-gradient(90deg, transparent, #ff1493, transparent); box-shadow: 0 0 8px #ff1493; }
+        .modal-content.magenta .outline-icon { -webkit-text-stroke-color: #ff1493; }
 
         /* ==================== RESPONSIVO ==================== */
         @media (max-width: 768px) {
@@ -1787,6 +1821,62 @@
                 startDate: '2026-06-19',
                 endDate: '2026-06-25', // Vigencia semanal de participación
                 canjeDate: '2026-06-26', // Anuncio del ganador
+                available: true
+            },
+            '2026-06-19-arranque': {
+                name: 'PROMO ARRANQUE GANADOR 1',
+                category: 'orange',
+                icon: '<i class="fa-solid fa-rocket outline-icon"></i>',
+                description: 'Vale AT de S/20 para apuestas deportivas.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">Vale AT de <strong>S/20</strong> para apuestas deportivas.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">Aplica para clientes que recibieron el <strong>SMS promocional</strong>.<br>Del viernes 19/06 al lunes 22/06.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">• El cliente debe haber sido <strong>notificado por SMS</strong>.<br>• Debe realizar <strong>apuestas deportivas en tienda durante 3 días</strong>.<br>• Cada apuesta debe ser de <strong>S/10 o más</strong>.<br>• Al cumplir las condiciones, recibe un <strong>Vale AT de S/20</strong>.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content"><strong>Recibir el SMS no garantiza el premio</strong>; el cliente debe cumplir todas las condiciones indicadas en el mensaje.</div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-06-22',
+                canjeDate: '2026-06-22',
+                available: true
+            },
+            '2026-06-19-juega': {
+                name: 'PROMO JUEGA Y GANA',
+                category: 'magenta',
+                icon: '<i class="fa-solid fa-gift outline-icon"></i>',
+                description: 'Vale AT de S/20 para apuestas deportivas.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">Vale AT de <strong>S/20</strong> para apuestas deportivas.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">Aplica para clientes que recibieron el <strong>SMS promocional</strong>.<br>Del viernes 19/06 al lunes 22/06.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">• El cliente debe haber sido <strong>notificado por SMS</strong>.<br>• Debe <strong>acumular S/100 en apuestas deportivas</strong> realizadas en tiendas.<br>• Al cumplir el monto acumulado, recibe un <strong>Vale AT de S/20</strong>.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content"><strong>Recibir el SMS no garantiza el premio</strong>; el cliente debe cumplir todas las condiciones indicadas en el mensaje.</div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-06-22',
+                canjeDate: '2026-06-22',
                 available: true
             }
         };
