@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón Verde</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, #00d965 0%, #00a84f 100%);
+            color: white;
+            border: none;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 217, 101, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-green:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 217, 101, 0.6);
+            background: linear-gradient(135deg, #00e074 0%, #00b85f 100%);
+        }
+
+        .btn-green:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 217, 101, 0.4);
+        }
+
+        .btn-green::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-green:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            background: linear-gradient(135deg, #00d965 0%, #00a84f 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 217, 101, 0.3);
+        }
+
+        .btn-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 217, 101, 0.5);
+        }
+
+        .message {
+            margin-top: 30px;
+            color: #00d965;
+            font-size: 16px;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🟢 BOTÓN VERDE</h1>
+        
+        <button class="btn-green" onclick="mostrarMensaje()">Click Aquí</button>
+
+        <div class="button-group">
+            <button class="btn-small" onclick="mostrarMensaje2()">Pequeño 1</button>
+            <button class="btn-small" onclick="mostrarMensaje3()">Pequeño 2</button>
+        </div>
+
+        <div class="message" id="mensaje"></div>
+    </div>
+
+    <script>
+        function mostrarMensaje() {
+            const msg = document.getElementById('mensaje');
+            msg.textContent = '✅ ¡Botón verde presionado!';
+            msg.style.animation = 'fadeIn 0.3s ease';
+            
+            setTimeout(() => {
+                msg.textContent = '';
+            }, 3000);
+        }
+
+        function mostrarMensaje2() {
+            const msg = document.getElementById('mensaje');
+            msg.textContent = '✨ Botón pequeño 1 activado';
+            setTimeout(() => {
+                msg.textContent = '';
+            }, 2000);
+        }
+
+        function mostrarMensaje3() {
+            const msg = document.getElementById('mensaje');
+            msg.textContent = '🎉 Botón pequeño 2 activado';
+            setTimeout(() => {
+                msg.textContent = '';
+            }, 2000);
+        }
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>

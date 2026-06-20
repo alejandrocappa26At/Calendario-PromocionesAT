@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -146,6 +146,20 @@
             transform: scale(1.02);
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), inset 0 0 10px rgba(0, 255, 136, 0.3);
             background: #1a1a1a;
+        }
+
+        .header-btn.green-bright {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000000;
+            border: 1px solid #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5), inset 0 0 5px rgba(255, 255, 255, 0.2);
+            font-weight: 900;
+        }
+
+        .header-btn.green-bright:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #00ff99 0%, #00dd77 100%);
         }
 
         /* ==================== CONTAINER ==================== */
@@ -640,6 +654,9 @@
             <button class="header-btn yellow" onclick="window.open('mundial-2026.html', '_blank')">
                 🏆 FIXTURE MUNDIAL
             </button>
+            <button class="header-btn green-bright" onclick="handleFilterChange('promo')">
+                🟢 PROMOCIONES
+            </button>
             <button class="header-btn green" onclick="handleFilterChange('grilla')">
                 ⚡ DATO AT - GRILLA
             </button>
@@ -711,23 +728,16 @@
                 `,
                 startDate: '2026-05-25',
                 endDate: '2026-05-28',
-                available: true
             },
-            '2026-05-24': {
-                name: 'PROMO CAMISETA DEL POLIAJUSTE',
-                category: 'green',
-                icon: '👕',
-                description: 'Gana la camiseta oficial',
-                htmlDetails: `
+            '2026-06-12': {
+                name: 'PROMO VALE COMBI',
+                category: 'yellow',
                     <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🎁 Premio:</strong> 2 camisetas del Poliajuste por tienda (1 por cada sorteo).</div>
                     <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>🗓 Vigencia:</strong> Primer sorteo: 30/05/2026 (participan tickets emitidos del 24/05 al 30/05). Segundo sorteo: 14/06/2026 (participan tickets emitidos del 30/05 al 06/06).</div>
                     <div style="margin-bottom: 12px; line-height: 1.5; color: #ffffff;"><strong>� Mecánica de la Promo (Condiciones):</strong> El cliente debe depositar tickets de apuestas deportivas múltiples de S/5 o más, con mínimo 5 eventos. Debe escribir al reverso del ticket: Nombre completo, Número de DNI y Número de celular. Los sorteos serán presenciales en tienda. Solo 1 camiseta por cliente durante toda la promoción. Un cliente ganador del primer sorteo no podrá participar como ganador en el segundo.</div>
                     <div style="margin-bottom: 12px; line-height: 1.5; color: #00ff88;"><strong>✅ Observación adicional:</strong> Se valida que los tickets cumplan todas las condiciones antes del sorteo. El registro y participación aplica únicamente dentro de las fechas establecidas para cada sorteo.</div>
                 `,
-                startDate: '2026-05-24',
-                endDate: '2026-06-14',
-                available: true
-            },
+                
             '2026-06-12': {
                 name: 'PROMO VALE COMBI',
                 category: 'yellow',
@@ -963,3 +973,4 @@
     </script>
 </body>
 </html>
+
