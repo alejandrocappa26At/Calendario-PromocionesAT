@@ -1675,6 +1675,7 @@
                 const monthMap = {"ENE":0, "FEB":1, "MAR":2, "ABR":3, "MAY":4, "JUN":5, "JUL":6, "AGO":7, "SEP":8, "OCT":9, "NOV":10, "DIC":11};
                 const dateParts = m.date.split(' ');
                 let isFinished = false;
+                let scoreHtml = '';
 
                 if (dateParts.length === 2 && m.time !== "Por definir") {
                     const matchDate = new Date(2026, monthMap[dateParts[1]], parseInt(dateParts[0]));
@@ -1686,6 +1687,28 @@
 
                     if (now >= matchEndTime) {
                         isFinished = true;
+                        
+                        // Obtener el marcador si existe
+                        const result = localResults[m.matchId];
+                        if (result) {
+                            const homeScore = result.homeScore;
+                            const awayScore = result.awayScore;
+                            const isHomeWinner = homeScore > awayScore;
+                            const isAwayWinner = awayScore > homeScore;
+                            
+                            const homeColor = isHomeWinner ? '#fff' : '#ccc';
+                            const awayColor = isAwayWinner ? '#fff' : '#ccc';
+                            const homeWeight = isHomeWinner ? '900' : '600';
+                            const awayWeight = isAwayWinner ? '900' : '600';
+                            
+                            scoreHtml = `
+                                <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 8px; font-size: 16px; font-weight: 800;">
+                                    <span style="color: ${homeColor}; font-weight: ${homeWeight};">${homeScore}</span>
+                                    <span style="color: #aaa;">-</span>
+                                    <span style="color: ${awayColor}; font-weight: ${awayWeight};">${awayScore}</span>
+                                </div>
+                            `;
+                        }
                     }
                 }
 
@@ -1705,6 +1728,7 @@
                             <div class="flag" style="width: 24px; height: 24px;">${flag2Html}</div>
                         </div>
                         <div style="font-size: 13px; font-weight: 800; margin-bottom: 4px; color: var(--text-white); text-align: center;">${m.t1} - ${m.t2}</div>
+                        ${scoreHtml}
                         <div class="next-match-info" style="font-size: 10px; text-align: center;">
                             ${m.date} | ${m.time} | ${m.city}
                         </div>
