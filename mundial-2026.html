@@ -1917,9 +1917,12 @@
             topBar.style.alignItems = 'stretch';
             
             topBar.innerHTML = `
-                <div style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 16px; width: 100%;">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; width: 100%; align-items: center;">
                     <button class="btn-neon-green" id="btn-volver-calendario">
                         <i class="fa-solid fa-arrow-left"></i> Volver al Calendario
+                    </button>
+                    <button class="btn-tabla-posiciones" id="btn-tabla-posiciones">
+                        <i class="fa-solid fa-chart-simple"></i> Tabla de Posiciones
                     </button>
                 </div>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; width: 100%;">
