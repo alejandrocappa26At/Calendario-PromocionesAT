@@ -822,6 +822,207 @@
             { matchId: 72, t1: "Jordania", f1: "jo", t2: "Argentina", f2: "ar", group: "J", city: "Vancouver", date: "27 JUN", time: "21:00", tv: "América TV" }
         ];
 
+        // ==================== TABLA OFICIAL DE EQUIPOS ====================
+        const teamsDatabase = {
+            "México": { official: "México", code: "mx", group: "A" },
+            "Sudáfrica": { official: "Sudáfrica", code: "za", group: "A" },
+            "Rep. Corea": { official: "Corea del Sur", code: "kr", group: "A" },
+            "Rep. Checa": { official: "República Checa", code: "cz", group: "A" },
+            "Canadá": { official: "Canadá", code: "ca", group: "B" },
+            "Bosnia y H.": { official: "Bosnia y Herzegovina", code: "ba", group: "B" },
+            "Suiza": { official: "Suiza", code: "ch", group: "B" },
+            "Catar": { official: "Catar", code: "qa", group: "B" },
+            "Brasil": { official: "Brasil", code: "br", group: "C" },
+            "Marruecos": { official: "Marruecos", code: "ma", group: "C" },
+            "Haití": { official: "Haití", code: "ht", group: "C" },
+            "Escocia": { official: "Escocia", code: "gb-sct", group: "C" },
+            "EE.UU.": { official: "Estados Unidos", code: "us", group: "D" },
+            "Paraguay": { official: "Paraguay", code: "py", group: "D" },
+            "Australia": { official: "Australia", code: "au", group: "D" },
+            "Turquía": { official: "Turquía", code: "tr", group: "D" },
+            "Alemania": { official: "Alemania", code: "de", group: "E" },
+            "Curazao": { official: "Curazao", code: "cw", group: "E" },
+            "Costa Marfil": { official: "Costa de Marfil", code: "ci", group: "E" },
+            "Ecuador": { official: "Ecuador", code: "ec", group: "E" },
+            "Países Bajos": { official: "Países Bajos", code: "nl", group: "F" },
+            "Japón": { official: "Japón", code: "jp", group: "F" },
+            "Suecia": { official: "Suecia", code: "se", group: "F" },
+            "Túnez": { official: "Túnez", code: "tn", group: "F" },
+            "Bélgica": { official: "Bélgica", code: "be", group: "G" },
+            "Egipto": { official: "Egipto", code: "eg", group: "G" },
+            "Irán": { official: "Irán", code: "ir", group: "G" },
+            "N. Zelanda": { official: "Nueva Zelanda", code: "nz", group: "G" },
+            "España": { official: "España", code: "es", group: "H" },
+            "Cabo Verde": { official: "Cabo Verde", code: "cv", group: "H" },
+            "Arabia Saudí": { official: "Arabia Saudita", code: "sa", group: "H" },
+            "Uruguay": { official: "Uruguay", code: "uy", group: "H" },
+            "Francia": { official: "Francia", code: "fr", group: "I" },
+            "Senegal": { official: "Senegal", code: "sn", group: "I" },
+            "Irak": { official: "Irak", code: "iq", group: "I" },
+            "Noruega": { official: "Noruega", code: "no", group: "I" },
+            "Argentina": { official: "Argentina", code: "ar", group: "J" },
+            "Argelia": { official: "Argelia", code: "dz", group: "J" },
+            "Austria": { official: "Austria", code: "at", group: "J" },
+            "Jordania": { official: "Jordania", code: "jo", group: "J" },
+            "Portugal": { official: "Portugal", code: "pt", group: "K" },
+            "RD Congo": { official: "República Democrática del Congo", code: "cd", group: "K" },
+            "Uzbekistán": { official: "Uzbekistán", code: "uz", group: "K" },
+            "Colombia": { official: "Colombia", code: "co", group: "K" },
+            "Inglaterra": { official: "Inglaterra", code: "gb-eng", group: "L" },
+            "Croacia": { official: "Croacia", code: "hr", group: "L" },
+            "Ghana": { official: "Ghana", code: "gh", group: "L" },
+            "Panamá": { official: "Panamá", code: "pa", group: "L" }
+        };
+
+        // ==================== FUNCIÓN PARA CALCULAR GANADORES DE GRUPO ====================
+        function calculateGroupStandings() {
+            const standings = {};
+            const groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+            
+            groups.forEach(group => {
+                standings[group] = {};
+            });
+
+            // Inicializar equipos en cada grupo
+            for (const teamName in teamsDatabase) {
+                const team = teamsDatabase[teamName];
+                standings[team.group][teamName] = { points: 0, goals: 0, conceded: 0 };
+            }
+
+            // Procesar resultados
+            matchesData.forEach(match => {
+                const group = match.group;
+                const result = localResults[match.matchId];
+                
+                if (result && standings[group]) {
+                    const home = standings[group][match.t1];
+                    const away = standings[group][match.t2];
+                    
+                    if (home && away) {
+                        home.goals += result.homeScore;
+                        home.conceded += result.awayScore;
+                        away.goals += result.awayScore;
+                        away.conceded += result.homeScore;
+                        
+                        if (result.homeScore > result.awayScore) {
+                            home.points += 3;
+                        } else if (result.awayScore > result.homeScore) {
+                            away.points += 3;
+                        } else {
+                            home.points += 1;
+                            away.points += 1;
+                        }
+                    }
+                }
+            });
+
+            // Ordenar por puntos, diferencia de goles y goles anotados
+            for (const group in standings) {
+                standings[group] = Object.entries(standings[group])
+                    .sort((a, b) => {
+                        const diffA = a[1].goals - a[1].conceded;
+                        const diffB = b[1].goals - b[1].conceded;
+                        if (b[1].points !== a[1].points) return b[1].points - a[1].points;
+                        if (diffB !== diffA) return diffB - diffA;
+                        return b[1].goals - a[1].goals;
+                    })
+                    .map(entry => entry[0]);
+            }
+
+            return standings;
+        }
+
+        // ==================== FUNCIÓN PARA POBLAR KNOCKOUT CON GANADORES REALES ====================
+        function populateKnockoutWithWinners() {
+            const standings = calculateGroupStandings();
+            
+            // Objeto para mapear posiciones a equipos
+            const winners = {};
+            for (const group in standings) {
+                winners[`1º ${group}`] = standings[group][0];
+                winners[`2º ${group}`] = standings[group][1];
+                winners[`3º ${group}`] = standings[group][2] || null;
+            }
+
+            // Función para obtener bandera y nombre oficial
+            function getTeamInfo(teamName) {
+                if (!teamName || teamName.startsWith("Ganador") || teamName.startsWith("3º")) {
+                    return { name: teamName, flag: "tbd" };
+                }
+                const info = teamsDatabase[teamName];
+                return {
+                    name: info?.official || teamName,
+                    flag: info?.code || "tbd"
+                };
+            }
+
+            // Función para obtener ganador de un partido
+            function getMatchWinner(matchId) {
+                const result = localResults[matchId];
+                if (!result) return null;
+                
+                // Buscar el partido en el knockout
+                for (const phase in knockoutData) {
+                    const match = knockoutData[phase].find(m => m.matchId === matchId);
+                    if (match) {
+                        if (result.homeScore > result.awayScore) {
+                            return match.t1;
+                        } else if (result.awayScore > result.homeScore) {
+                            return match.t2;
+                        }
+                        // En caso de empate, retornar null (se puede usar prórroga/penaltis)
+                        return null;
+                    }
+                }
+                return null;
+            }
+
+            // Paso 1: Reemplazar referencias de grupo
+            for (const phase in knockoutData) {
+                knockoutData[phase].forEach(match => {
+                    if (match.t1 in winners) {
+                        const teamInfo = getTeamInfo(winners[match.t1]);
+                        match.t1 = teamInfo.name;
+                        match.f1 = teamInfo.flag;
+                    }
+                    if (match.t2 in winners) {
+                        const teamInfo = getTeamInfo(winners[match.t2]);
+                        match.t2 = teamInfo.name;
+                        match.f2 = teamInfo.flag;
+                    }
+                });
+            }
+
+            // Paso 2: Reemplazar referencias de ganadores de partidos previos
+            for (const phase in knockoutData) {
+                knockoutData[phase].forEach(match => {
+                    // Extraer número de partido de referencias como "Ganador P74"
+                    const t1Match = match.t1.match(/Ganador P(\d+)/);
+                    const t2Match = match.t2.match(/Ganador P(\d+)/);
+                    
+                    if (t1Match) {
+                        const prevMatchId = parseInt(t1Match[1]);
+                        const winner = getMatchWinner(prevMatchId);
+                        if (winner) {
+                            const teamInfo = getTeamInfo(winner);
+                            match.t1 = teamInfo.name;
+                            match.f1 = teamInfo.flag;
+                        }
+                    }
+                    
+                    if (t2Match) {
+                        const prevMatchId = parseInt(t2Match[1]);
+                        const winner = getMatchWinner(prevMatchId);
+                        if (winner) {
+                            const teamInfo = getTeamInfo(winner);
+                            match.t2 = teamInfo.name;
+                            match.f2 = teamInfo.flag;
+                        }
+                    }
+                });
+            }
+        }
+
         // ==================== DATOS FASES FINALES (Knockout) ====================
         const knockoutData = {
             "Diecis. Final": [
@@ -869,6 +1070,9 @@
 
         // ==================== INICIALIZACIÓN ====================
         document.addEventListener('DOMContentLoaded', () => {
+            // 0. Poblar knockout con ganadores reales
+            populateKnockoutWithWinners();
+            
             // 1. Crear botones de grupos A-L
             const groupsContainer = document.getElementById('groups-grid');
             const letters = ['A','B','C','D','E','F','G','H','I','J','K','L'];
@@ -924,6 +1128,14 @@
             30: { homeScore: 0, awayScore: 1 }, // Escocia vs Marruecos
             31: { homeScore: 3, awayScore: 0 }, // Brasil vs Haití
             32: { homeScore: 0, awayScore: 1 }, // Turquía vs Paraguay
+            33: { homeScore: 5, awayScore: 1 }, // Países Bajos vs Suecia
+            34: { homeScore: 2, awayScore: 1 }, // Alemania vs Costa Marfil
+            35: { homeScore: 0, awayScore: 0 }, // Ecuador vs Curazao
+            36: { homeScore: 0, awayScore: 4 }, // Túnez vs Japón
+            37: { homeScore: 4, awayScore: 0 }, // España vs Arabia Saudí
+            38: { homeScore: 0, awayScore: 0 }, // Bélgica vs Irán
+            39: { homeScore: 2, awayScore: 2 }, // Uruguay vs Cabo Verde
+            40: { homeScore: 1, awayScore: 3 }, // N. Zelanda vs Egipto
         };
 
         // ==================== LÓGICA DE RENDERIZADO ====================
@@ -1259,6 +1471,9 @@
                 e.target.classList.add('active');
                 const phaseName = e.target.getAttribute('data-phase');
                 sectionTitle.innerHTML = `<i class="fa-solid fa-sitemap"></i> ${phaseName}`;
+                
+                // Actualizar knockout con ganadores reales antes de renderizar
+                populateKnockoutWithWinners();
                 
                 const phaseMatches = knockoutData[phaseName];
                 if (phaseMatches) {
