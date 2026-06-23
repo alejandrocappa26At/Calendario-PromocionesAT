@@ -630,6 +630,139 @@
             .matches-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* ==================== TABLA DE POSICIONES ==================== */
+        .standings-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+
+        .group-standings {
+            background: linear-gradient(145deg, var(--panel-grad-1), var(--panel-grad-2));
+            border-radius: var(--border-radius);
+            border: 1px solid #222;
+            padding: 24px;
+            animation: fadeIn 0.4s ease forwards;
+            overflow: hidden;
+        }
+
+        .group-standings:hover {
+            border-color: rgba(0, 224, 90, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 224, 90, 0.1);
+        }
+
+        .group-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--neon-green);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(0, 224, 90, 0.5);
+        }
+
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .standings-table thead {
+            background: rgba(0, 224, 90, 0.1);
+            border-bottom: 2px solid rgba(0, 224, 90, 0.3);
+        }
+
+        .standings-table th {
+            padding: 10px 6px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--neon-green);
+            letter-spacing: 0.5px;
+        }
+
+        .standings-table td {
+            padding: 10px 6px;
+            border-bottom: 1px solid #1a1a1a;
+            color: var(--text-white);
+        }
+
+        .standings-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .standings-table tbody tr:hover {
+            background: rgba(0, 224, 90, 0.08);
+        }
+
+        .team-position {
+            font-weight: 700;
+            color: var(--neon-green);
+            width: 25px;
+        }
+
+        .team-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .standings-flag {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .standings-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats-cell {
+            text-align: center;
+            font-weight: 600;
+            min-width: 35px;
+        }
+
+        .points-cell {
+            color: #ffd700;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .btn-tabla-posiciones {
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 224, 90, 0.1);
+        }
+
+        .btn-tabla-posiciones:hover {
+            background: rgba(0, 224, 90, 0.15);
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-tabla-posiciones.active {
+            background: rgba(0, 224, 90, 0.25);
+            box-shadow: 0 0 25px rgba(0, 224, 90, 0.6);
+        }
+
         @media (max-width: 768px) {
             body { flex-direction: column; height: auto; overflow-y: auto; }
             .main-wrapper { overflow: visible; }
@@ -640,6 +773,7 @@
                 padding: 16px;
             }
             .matches-grid { grid-template-columns: 1fr; }
+            .standings-container { grid-template-columns: 1fr; }
             .top-bar { flex-direction: column; gap: 16px; padding: 16px; }
             .search-box { width: 100%; }
             .content-area { padding: 20px; overflow-y: visible; }
@@ -710,11 +844,9 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="search-input" placeholder="Buscar país, grupo, sede...">
             </div>
-            <select class="custom-select" style="width: 200px;">
-                <option>PROGRAMACIÓN</option>
-                <option>RESULTADOS</option>
-                <option>POSICIONES</option>
-            </select>
+            <button class="btn-tabla-posiciones" id="btn-tabla-posiciones">
+                <i class="fa-solid fa-chart-simple"></i> Tabla de Posiciones
+            </button>
         </header>
 
         <div class="content-area">
@@ -1623,6 +1755,159 @@
             }
         }
 
+        // ==================== TABLA DE POSICIONES ====================
+        function calculateGroupStandings() {
+            const standings = {};
+            const groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+            
+            // Inicializar grupos
+            groups.forEach(group => {
+                standings[group] = {};
+            });
+
+            // Inicializar equipos en cada grupo
+            for (const teamName in teamsDatabase) {
+                const team = teamsDatabase[teamName];
+                standings[team.group][teamName] = { 
+                    official: team.official,
+                    flag: team.code,
+                    points: 0, 
+                    played: 0,
+                    wins: 0,
+                    draws: 0,
+                    losses: 0,
+                    goals: 0, 
+                    conceded: 0 
+                };
+            }
+
+            // Procesar resultados
+            matchesData.forEach(match => {
+                const group = match.group;
+                const result = localResults[match.matchId];
+                
+                if (result && standings[group]) {
+                    const home = standings[group][match.t1];
+                    const away = standings[group][match.t2];
+                    
+                    if (home && away) {
+                        home.played++;
+                        away.played++;
+                        
+                        home.goals += result.homeScore;
+                        home.conceded += result.awayScore;
+                        away.goals += result.awayScore;
+                        away.conceded += result.homeScore;
+                        
+                        if (result.homeScore > result.awayScore) {
+                            home.points += 3;
+                            home.wins++;
+                            away.losses++;
+                        } else if (result.awayScore > result.homeScore) {
+                            away.points += 3;
+                            away.wins++;
+                            home.losses++;
+                        } else {
+                            home.points += 1;
+                            away.points += 1;
+                            home.draws++;
+                            away.draws++;
+                        }
+                    }
+                }
+            });
+
+            // Ordenar por puntos, diferencia de goles y goles anotados
+            for (const group in standings) {
+                standings[group] = Object.entries(standings[group])
+                    .sort((a, b) => {
+                        const diffA = a[1].goals - a[1].conceded;
+                        const diffB = b[1].goals - b[1].conceded;
+                        if (b[1].points !== a[1].points) return b[1].points - a[1].points;
+                        if (diffB !== diffA) return diffB - diffA;
+                        return b[1].goals - a[1].goals;
+                    })
+                    .map(entry => ({ name: entry[0], ...entry[1] }));
+            }
+
+            return standings;
+        }
+
+        function renderStandings() {
+            clearActiveButtons();
+            const standings = calculateGroupStandings();
+            
+            sectionTitle.innerHTML = '<i class="fa-solid fa-chart-simple"></i> Tabla de Posiciones';
+            
+            let standingsHtml = '<div class="standings-container">';
+            
+            const groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+            
+            groups.forEach(group => {
+                const groupTeams = standings[group];
+                
+                standingsHtml += `
+                    <div class="group-standings">
+                        <div class="group-title">
+                            <i class="fa-solid fa-layer-group"></i> Grupo ${group}
+                        </div>
+                        <table class="standings-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30px;">#</th>
+                                    <th style="flex: 1;">Equipo</th>
+                                    <th class="stats-cell">J</th>
+                                    <th class="stats-cell">G</th>
+                                    <th class="stats-cell">E</th>
+                                    <th class="stats-cell">P</th>
+                                    <th class="stats-cell">GF</th>
+                                    <th class="stats-cell">GC</th>
+                                    <th class="stats-cell">DG</th>
+                                    <th class="stats-cell">Pts</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                groupTeams.forEach((team, index) => {
+                    const diffGoles = team.goals - team.conceded;
+                    const diffGolesColor = diffGoles > 0 ? '#00E05A' : diffGoles < 0 ? '#FF0066' : '#AAAAAA';
+                    
+                    standingsHtml += `
+                        <tr>
+                            <td class="team-position">${index + 1}</td>
+                            <td class="team-name-cell">
+                                <div class="standings-flag">
+                                    <img src="https://flagcdn.com/w80/${team.flag}.png" alt="${team.official}">
+                                </div>
+                                <span>${team.official}</span>
+                            </td>
+                            <td class="stats-cell">${team.played}</td>
+                            <td class="stats-cell">${team.wins}</td>
+                            <td class="stats-cell">${team.draws}</td>
+                            <td class="stats-cell">${team.losses}</td>
+                            <td class="stats-cell">${team.goals}</td>
+                            <td class="stats-cell">${team.conceded}</td>
+                            <td class="stats-cell" style="color: ${diffGolesColor}; font-weight: 700;">${diffGoles > 0 ? '+' : ''}${diffGoles}</td>
+                            <td class="stats-cell points-cell">${team.points}</td>
+                        </tr>
+                    `;
+                });
+                
+                standingsHtml += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            standingsHtml += '</div>';
+            mainDisplay.innerHTML = standingsHtml;
+            
+            // Marcar el botón como activo
+            document.getElementById('btn-tabla-posiciones').classList.add('active');
+        }
+
         // ==================== INYECCIÓN DOM (VÍA JAVASCRIPT) ====================
         function injectAdvancedFilters() {
             // 2. Modificar la barra superior (Top Bar) dinámicamente
@@ -1677,6 +1962,11 @@
                 document.getElementById('sedes-select').value = 'all';
                 sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
                 renderMatches(matchesData);
+            });
+
+            // Evento para el botón TABLA DE POSICIONES
+            document.getElementById('btn-tabla-posiciones').addEventListener('click', () => {
+                renderStandings();
             });
 
             // 5. Asignar Evento al filtro de Fecha
