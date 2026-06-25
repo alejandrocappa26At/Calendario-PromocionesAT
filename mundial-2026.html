@@ -788,7 +788,7 @@
             <img src="img/Logo3.png" alt="Logo Mundial"> MUNDIAL 2026
         </div>
         
-        <button class="btn-informate active" id="btn-informate">INFÓRMATE</button>
+        <button class="btn-informate" id="btn-informate">INFÓRMATE</button>
 
         <div class="sidebar-section" style="margin-bottom: 20px;">
             <button class="btn-neon-green" id="btn-clear-sidebar" style="width: 100%; justify-content: center;">
@@ -1217,6 +1217,7 @@
             });
 
             // Renderizar todos inicial
+            sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
             renderMatches(matchesData);
 
             // Generar partidos de hoy en el sidebar
@@ -1275,7 +1276,7 @@
             45: { homeScore: 5, awayScore: 0 }, // Portugal vs Uzbekistán
             46: { homeScore: 0, awayScore: 0 }, // Inglaterra vs Ghana
             47: { homeScore: 0, awayScore: 1 }, // Panamá vs Croacia
-            48: { homeScore: 1, awayScore: 0 }  // Colombia vs RD Congo
+            48: { homeScore: 1, awayScore: 0 }, // Colombia vs RD Congo
             49: { homeScore: 2, awayScore: 2 }, // Suiza vs Canadá
             50: { homeScore: 1, awayScore: 0 }, // Bosnia y H. vs Catar
             51: { homeScore: 1, awayScore: 4 }, // Escocia vs Brasil
@@ -1983,7 +1984,9 @@
                     );
                     renderMatches(filtered);
                 } else {
-                    document.getElementById('btn-informate').click();
+                    clearActiveButtons();
+                    sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
+                    renderMatches(matchesData);
                 }
             });
 
@@ -2010,7 +2013,9 @@
             document.getElementById('date-filter').addEventListener('change', (e) => {
                 const dateVal = e.target.value; 
                 if(!dateVal) {
-                    document.getElementById('btn-informate').click();
+                    clearActiveButtons();
+                    sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
+                    renderMatches(matchesData);
                     return;
                 }
                 
