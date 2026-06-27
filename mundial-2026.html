@@ -1068,87 +1068,145 @@
         function populateKnockoutWithWinners() {
             const standings = calculateGroupStandings();
             
-            // Objeto para mapear posiciones a equipos
-            const winners = {};
-            for (const group in standings) {
-                winners[`1º ${group}`] = standings[group][0];
-                winners[`2º ${group}`] = standings[group][1];
-                winners[`3º ${group}`] = standings[group][2] || null;
-            }
-
-            // Función para obtener bandera y nombre oficial
-            function getTeamInfo(teamName) {
-                if (!teamName || teamName.startsWith("Ganador") || teamName.startsWith("3º")) {
-                    return { name: teamName, flag: "tbd" };
+            function getTeamNameAndFlag(teamName) {
+                if (!teamName || typeof teamName !== 'string') {
+                    return { name: "Por definir", flag: "tbd" };
                 }
                 const info = teamsDatabase[teamName];
-                return {
-                    name: info?.official || teamName,
-                    flag: info?.code || "tbd"
-                };
+                if (info) {
+                    return { name: info.official, flag: info.code };
+                }
+                return { name: teamName, flag: "tbd" };
             }
 
-            // Función para obtener ganador de un partido
+            // Paso 1: Reemplazar referencias de grupo (1º Grupo X, 2º Grupo X, 3º Grupo X)
+            for (const phase in knockoutData) {
+                if (!knockoutData[phase] || !Array.isArray(knockoutData[phase])) continue;
+                
+                knockoutData[phase].forEach(match => {
+                    if (!match) return;
+                    
+                    // Procesar equipo 1
+                    if (typeof match.t1 === 'string') {
+                        // Buscar patrón de primer lugar: "1º Grupo X"
+                        let m1 = match.t1.match(/1º\s+Grupo\s+([A-L])/i);
+                        if (m1 && standings[m1[1]] && standings[m1[1]][0]) {
+                            const info = getTeamNameAndFlag(standings[m1[1]][0]);
+                            match.t1 = info.name;
+                            match.f1 = info.flag;
+                        }
+                        // Buscar patrón de segundo lugar: "2º Grupo X"
+                        else {
+                            let m2 = match.t1.match(/2º\s+Grupo\s+([A-L])/i);
+                            if (m2 && standings[m2[1]] && standings[m2[1]][1]) {
+                                const info = getTeamNameAndFlag(standings[m2[1]][1]);
+                                match.t1 = info.name;
+                                match.f1 = info.flag;
+                            }
+                            // Buscar patrón de tercer lugar: "3º Gr. X/Y/Z..." - tomar el primero disponible
+                            else {
+                                let m3 = match.t1.match(/3º\s+Gr\.\s+([A-L\/]+)/i);
+                                if (m3) {
+                                    const groups = m3[1].split('/').map(g => g.trim());
+                                    for (const grp of groups) {
+                                        if (standings[grp] && standings[grp][2]) {
+                                            const info = getTeamNameAndFlag(standings[grp][2]);
+                                            match.t1 = info.name;
+                                            match.f1 = info.flag;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Procesar equipo 2
+                    if (typeof match.t2 === 'string') {
+                        // Buscar patrón de primer lugar: "1º Grupo X"
+                        let m1 = match.t2.match(/1º\s+Grupo\s+([A-L])/i);
+                        if (m1 && standings[m1[1]] && standings[m1[1]][0]) {
+                            const info = getTeamNameAndFlag(standings[m1[1]][0]);
+                            match.t2 = info.name;
+                            match.f2 = info.flag;
+                        }
+                        // Buscar patrón de segundo lugar: "2º Grupo X"
+                        else {
+                            let m2 = match.t2.match(/2º\s+Grupo\s+([A-L])/i);
+                            if (m2 && standings[m2[1]] && standings[m2[1]][1]) {
+                                const info = getTeamNameAndFlag(standings[m2[1]][1]);
+                                match.t2 = info.name;
+                                match.f2 = info.flag;
+                            }
+                            // Buscar patrón de tercer lugar: "3º Gr. X/Y/Z..." - tomar el primero disponible
+                            else {
+                                let m3 = match.t2.match(/3º\s+Gr\.\s+([A-L\/]+)/i);
+                                if (m3) {
+                                    const groups = m3[1].split('/').map(g => g.trim());
+                                    for (const grp of groups) {
+                                        if (standings[grp] && standings[grp][2]) {
+                                            const info = getTeamNameAndFlag(standings[grp][2]);
+                                            match.t2 = info.name;
+                                            match.f2 = info.flag;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Paso 2: Reemplazar referencias de ganadores de partidos previos (Ganador PXX)
             function getMatchWinner(matchId) {
                 const result = localResults[matchId];
                 if (!result) return null;
                 
-                // Buscar el partido en el knockout
                 for (const phase in knockoutData) {
-                    const match = knockoutData[phase].find(m => m.matchId === matchId);
-                    if (match) {
+                    if (!knockoutData[phase] || !Array.isArray(knockoutData[phase])) continue;
+                    const prevMatch = knockoutData[phase].find(m => m && m.matchId === matchId);
+                    if (prevMatch) {
                         if (result.homeScore > result.awayScore) {
-                            return match.t1;
+                            return prevMatch.t1;
                         } else if (result.awayScore > result.homeScore) {
-                            return match.t2;
+                            return prevMatch.t2;
                         }
-                        // En caso de empate, retornar null (se puede usar prórroga/penaltis)
                         return null;
                     }
                 }
                 return null;
             }
 
-            // Paso 1: Reemplazar referencias de grupo
             for (const phase in knockoutData) {
+                if (!knockoutData[phase] || !Array.isArray(knockoutData[phase])) continue;
+                
                 knockoutData[phase].forEach(match => {
-                    if (match.t1 in winners) {
-                        const teamInfo = getTeamInfo(winners[match.t1]);
-                        match.t1 = teamInfo.name;
-                        match.f1 = teamInfo.flag;
-                    }
-                    if (match.t2 in winners) {
-                        const teamInfo = getTeamInfo(winners[match.t2]);
-                        match.t2 = teamInfo.name;
-                        match.f2 = teamInfo.flag;
-                    }
-                });
-            }
-
-            // Paso 2: Reemplazar referencias de ganadores de partidos previos
-            for (const phase in knockoutData) {
-                knockoutData[phase].forEach(match => {
-                    // Extraer número de partido de referencias como "Ganador P74"
-                    const t1Match = match.t1.match(/Ganador P(\d+)/);
-                    const t2Match = match.t2.match(/Ganador P(\d+)/);
+                    if (!match) return;
                     
-                    if (t1Match) {
-                        const prevMatchId = parseInt(t1Match[1]);
-                        const winner = getMatchWinner(prevMatchId);
-                        if (winner) {
-                            const teamInfo = getTeamInfo(winner);
-                            match.t1 = teamInfo.name;
-                            match.f1 = teamInfo.flag;
+                    // Procesar equipo 1
+                    if (typeof match.t1 === 'string' && match.t1.startsWith('Ganador')) {
+                        const m = match.t1.match(/Ganador\s+P(\d+)/i);
+                        if (m) {
+                            const winner = getMatchWinner(parseInt(m[1]));
+                            if (winner && typeof winner === 'string') {
+                                const info = getTeamNameAndFlag(winner);
+                                match.t1 = info.name;
+                                match.f1 = info.flag;
+                            }
                         }
                     }
                     
-                    if (t2Match) {
-                        const prevMatchId = parseInt(t2Match[1]);
-                        const winner = getMatchWinner(prevMatchId);
-                        if (winner) {
-                            const teamInfo = getTeamInfo(winner);
-                            match.t2 = teamInfo.name;
-                            match.f2 = teamInfo.flag;
+                    // Procesar equipo 2
+                    if (typeof match.t2 === 'string' && match.t2.startsWith('Ganador')) {
+                        const m = match.t2.match(/Ganador\s+P(\d+)/i);
+                        if (m) {
+                            const winner = getMatchWinner(parseInt(m[1]));
+                            if (winner && typeof winner === 'string') {
+                                const info = getTeamNameAndFlag(winner);
+                                match.t2 = info.name;
+                                match.f2 = info.flag;
+                            }
                         }
                     }
                 });
@@ -1288,7 +1346,15 @@
             57: { homeScore: 1, awayScore: 1 }, // Japón vs Suecia
             58: { homeScore: 1, awayScore: 3 }, // Túnez vs Países Bajos
             59: { homeScore: 3, awayScore: 2 }, // Turquía vs Estados Unidos
-            60: { homeScore: 0, awayScore: 0 }, // Paraguay vs Australia  
+            60: { homeScore: 0, awayScore: 0 }, // Paraguay vs Australia
+            61: { homeScore: 1, awayScore: 4 }, // Noruega vs Francia
+            62: { homeScore: 5, awayScore: 0 }, // Senegal vs Irak
+            63: { homeScore: 0, awayScore: 0 }, // Cabo Verde vs Arabia Saudí
+            64: { homeScore: 0, awayScore: 1 }, // Uruguay vs España
+            65: { homeScore: 1, awayScore: 1 }, // Egipto vs Irán
+            66: { homeScore: 1, awayScore: 5 }, // Nueva Zelanda vs Belgica
+            67: { homeScore: 0, awayScore: 2 }, // Panamá vs Inglaterra
+            68: { homeScore: 2, awayScore: 1 }, // Croacia vs Ghana  
         };
 
         // ==================== LÓGICA DE RENDERIZADO ====================
