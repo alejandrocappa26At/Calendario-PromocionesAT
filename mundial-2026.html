@@ -205,7 +205,7 @@
         }
 
         .phases-list {
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 8px;
         }
@@ -299,6 +299,92 @@
 
         .section-title i {
             color: var(--neon-green);
+        }
+
+        /* ==================== PHASES BAR - FASES FINALES EN MAIN ==================== */
+        .phases-bar-main {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(0, 224, 90, 0.08), rgba(0, 224, 90, 0.02));
+            border: 2px solid rgba(0, 224, 90, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 32px rgba(0, 224, 90, 0.1), inset 0 0 20px rgba(0, 224, 90, 0.05);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .phases-bar-main .phase-btn-main {
+            background: linear-gradient(135deg, rgba(0, 224, 90, 0.15), rgba(0, 224, 90, 0.08));
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.2);
+        }
+
+        .phases-bar-main .phase-btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 224, 90, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .phases-bar-main .phase-btn-main:hover {
+            background: linear-gradient(135deg, rgba(0, 224, 90, 0.3), rgba(0, 224, 90, 0.2));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 224, 90, 0.4), inset 0 0 20px rgba(0, 224, 90, 0.1);
+            border-color: #00ff66;
+            color: #00ff66;
+        }
+
+        .phases-bar-main .phase-btn-main:hover::before {
+            left: 0;
+        }
+
+        .phases-bar-main .phase-btn-main.active {
+            background: linear-gradient(135deg, var(--neon-green), rgba(0, 224, 90, 0.8));
+            color: #000;
+            border-color: #00ff66;
+            box-shadow: 0 0 30px rgba(0, 224, 90, 0.7), inset 0 0 20px rgba(0, 224, 90, 0.3);
+            transform: scale(1.08);
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .phases-bar-main .phase-btn-main i {
+            font-size: 16px;
         }
 
         /* ==================== GRID & CARDS ==================== */
@@ -850,6 +936,15 @@
         </header>
 
         <div class="content-area">
+            <div class="phases-bar-main" id="phases-bar-main">
+                <button class="phase-btn-main" data-phase="Todos"><i class="fa-solid fa-globe"></i> Todos</button>
+                <button class="phase-btn-main" data-phase="Diecis. Final"><i class="fa-solid fa-trophy"></i> Diecis. Final</button>
+                <button class="phase-btn-main" data-phase="Octavos Final"><i class="fa-solid fa-medal"></i> Octavos Final</button>
+                <button class="phase-btn-main" data-phase="Cuartos Final"><i class="fa-solid fa-crown"></i> Cuartos Final</button>
+                <button class="phase-btn-main" data-phase="Semifinales"><i class="fa-solid fa-star"></i> Semifinales</button>
+                <button class="phase-btn-main" data-phase="Final"><i class="fa-solid fa-fire"></i> Final</button>
+            </div>
+
             <h2 class="section-title" id="section-title"><i class="fa-solid fa-calendar-days"></i> Todos los Partidos</h2>
             
             <div id="main-display">
@@ -1278,6 +1373,12 @@
             sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
             renderMatches(matchesData);
 
+            // Activar el botón "Todos" en la barra principal
+            const todosBtn = document.querySelector('[data-phase="Todos"]');
+            if (todosBtn) {
+                todosBtn.classList.add('active');
+            }
+
             // Generar partidos de hoy en el sidebar
             renderTodayMatches();
 
@@ -1701,6 +1802,37 @@
                 const phaseMatches = knockoutData[phaseName];
                 if (phaseMatches) {
                     renderMatches(phaseMatches, true);
+                }
+            });
+        });
+
+        // Filtro por Fases - Botones Principales en Main (nueva barra)
+        document.querySelectorAll('.phase-btn-main').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Actualizar estado visual de botones en la barra principal
+                document.querySelectorAll('.phase-btn-main').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Actualizar también los botones del sidebar si es necesario
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                
+                const phaseName = e.target.getAttribute('data-phase');
+                
+                if (phaseName === 'Todos') {
+                    // Mostrar todos los partidos
+                    sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
+                    renderMatches(matchesData);
+                } else {
+                    // Mostrar partidos de la fase específica
+                    sectionTitle.innerHTML = `<i class="fa-solid fa-sitemap"></i> ${phaseName}`;
+                    
+                    // Actualizar knockout con ganadores reales antes de renderizar
+                    populateKnockoutWithWinners();
+                    
+                    const phaseMatches = knockoutData[phaseName];
+                    if (phaseMatches) {
+                        renderMatches(phaseMatches, true);
+                    }
                 }
             });
         });
