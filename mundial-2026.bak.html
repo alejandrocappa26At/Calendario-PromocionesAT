@@ -304,18 +304,18 @@
         /* ==================== PHASES BAR - FASES FINALES EN MAIN - PREMIUM DESIGN ==================== */
         .phases-bar-main {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 32px;
             flex-wrap: wrap;
             align-items: center;
             justify-content: flex-start;
-            padding: 16px 18px;
-            background: #121212;
-            border: 1px solid rgba(29, 185, 84, 0.12);
-            border-radius: 16px;
-            backdrop-filter: blur(20px);
-            animation: slideDown 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), frameSpotifyGlow 3s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(29, 185, 84, 0.08), inset 0 0 20px rgba(29, 185, 84, 0.02);
+            padding: 12px 14px;
+            background: linear-gradient(135deg, #070707, #0a0a0a);
+            border: 1px solid rgba(0, 224, 90, 0.15);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.08), inset 0 0 15px rgba(0, 224, 90, 0.02);
         }
 
         @keyframes slideDown {
@@ -329,137 +329,104 @@
             }
         }
 
-        @keyframes frameSpotifyGlow {
-            0% {
-                box-shadow: 
-                    0 0 15px rgba(29, 185, 84, 0.2),
-                    0 0 30px rgba(29, 185, 84, 0.1),
-                    inset 0 0 20px rgba(29, 185, 84, 0.02);
-                border-color: rgba(29, 185, 84, 0.12);
+        @keyframes goldPulse {
+            0%, 100% {
+                text-shadow: 0 0 8px rgba(255, 215, 0, 0.3), 0 0 16px rgba(255, 215, 0, 0.1);
             }
             50% {
-                box-shadow: 
-                    0 0 35px rgba(29, 185, 84, 0.4),
-                    0 0 60px rgba(29, 185, 84, 0.2),
-                    inset 0 0 30px rgba(29, 185, 84, 0.08);
-                border-color: rgba(29, 185, 84, 0.35);
-            }
-            100% {
-                box-shadow: 
-                    0 0 15px rgba(29, 185, 84, 0.2),
-                    0 0 30px rgba(29, 185, 84, 0.1),
-                    inset 0 0 20px rgba(29, 185, 84, 0.02);
-                border-color: rgba(29, 185, 84, 0.12);
+                text-shadow: 0 0 12px rgba(255, 215, 0, 0.5), 0 0 24px rgba(255, 215, 0, 0.25);
             }
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes greenGlow {
+        @keyframes iconPulse {
             0%, 100% {
-                box-shadow: 0 0 20px rgba(29, 185, 84, 0.3), inset 0 -1px 8px rgba(29, 185, 84, 0.1);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(29, 185, 84, 0.5), inset 0 -1px 12px rgba(29, 185, 84, 0.2);
-            }
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% {
+                filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.3));
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.02);
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+                transform: scale(1.08);
             }
         }
 
-        /* Botones principales - Estado Inactivo */
+        @keyframes borderGlowSubtle {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 224, 90, 0.1), inset 0 0 10px rgba(0, 224, 90, 0.02);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 224, 90, 0.2), inset 0 0 12px rgba(0, 224, 90, 0.05);
+            }
+        }
+
+        /* Botones principales */
         .phases-bar-main .phase-btn-main {
-            background: rgba(40, 40, 40, 0.6);
-            border: 1px solid rgba(64, 64, 64, 0.8);
-            color: rgba(255, 255, 255, 0.85);
-            padding: 11px 22px;
+            background: transparent;
+            border: 1.5px solid rgba(0, 224, 90, 0.25);
+            color: #FFD700;
+            padding: 10px 18px;
             border-radius: 999px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
+            gap: 6px;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+            animation: goldPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 224, 90, 0.1), inset 0 0 10px rgba(0, 224, 90, 0.02);
         }
 
         .phases-bar-main .phase-btn-main i {
             font-size: 14px;
-            transition: all 0.2s ease-in-out;
-            opacity: 0.9;
+            animation: iconPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.3));
         }
 
         /* Estado hover - Inactivo */
         .phases-bar-main .phase-btn-main:hover:not(.active) {
-            background: rgba(60, 60, 60, 0.8);
-            border-color: rgba(100, 100, 100, 0.9);
-            color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.08);
+            background: rgba(0, 224, 90, 0.08);
+            border-color: rgba(0, 224, 90, 0.4);
+            color: #FFE55C;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 224, 90, 0.2), inset 0 0 10px rgba(0, 224, 90, 0.04);
         }
 
         .phases-bar-main .phase-btn-main:hover:not(.active) i {
-            transform: scale(1.1);
-            opacity: 1;
+            transform: rotate(5deg) scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
         }
 
         /* Estado activo */
         .phases-bar-main .phase-btn-main.active {
-            background: linear-gradient(135deg, #1DB954 0%, #1aa34a 100%);
-            border: 1px solid rgba(29, 185, 84, 0.6);
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: 0.7px;
-            box-shadow: 0 0 25px rgba(29, 185, 84, 0.4), 0 4px 15px rgba(29, 185, 84, 0.25), inset 0 -1px 8px rgba(0, 0, 0, 0.15);
-            animation: greenGlow 2s ease-in-out infinite;
-            position: relative;
-        }
-
-        .phases-bar-main .phase-btn-main.active::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-            pointer-events: none;
+            background: linear-gradient(135deg, #00E05A, #00d052);
+            border-color: #00ff66;
+            color: #000;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(0, 224, 90, 0.5), 0 4px 12px rgba(0, 224, 90, 0.3), inset 0 0 15px rgba(0, 224, 90, 0.2);
+            animation: none;
         }
 
         .phases-bar-main .phase-btn-main.active i {
-            opacity: 1;
-            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+            animation: none;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
         }
 
         /* Hover activo */
         .phases-bar-main .phase-btn-main.active:hover {
-            background: linear-gradient(135deg, #1ed760 0%, #1DB954 100%);
-            box-shadow: 0 0 35px rgba(29, 185, 84, 0.5), 0 6px 20px rgba(29, 185, 84, 0.35), inset 0 -1px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #00ff66, #00E05A);
+            box-shadow: 0 0 40px rgba(0, 224, 90, 0.6), 0 6px 16px rgba(0, 224, 90, 0.4), inset 0 0 20px rgba(0, 224, 90, 0.25);
             transform: translateY(-2px);
         }
 
         .phases-bar-main .phase-btn-main.active:hover i {
-            transform: scale(1.12);
+            transform: rotate(8deg) scale(1.1);
         }
 
         /* ==================== GRID & CARDS ==================== */
@@ -896,6 +863,216 @@
             font-size: 14px;
         }
 
+        /* ==================== BRACKET DEL TORNEO ==================== */
+        .bracket-container {
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            border: 1px solid #222;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bracket-stages-wrapper {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .bracket-stage {
+            flex: 0 0 auto;
+            min-width: 180px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stage-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 224, 90, 0.3);
+        }
+
+        .bracket-matches {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bracket-match {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .bracket-match:hover {
+            border-color: var(--neon-green);
+            background: rgba(0, 224, 90, 0.05);
+        }
+
+        .bracket-team {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .bracket-team img {
+            width: 20px;
+            height: 14px;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        /* Estado: Ganador */
+        .bracket-team.winner {
+            font-weight: 700;
+            color: var(--neon-green);
+            background: rgba(0, 224, 90, 0.1);
+            border-left: 3px solid var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 224, 90, 0.5);
+        }
+
+        .bracket-team.winner::before {
+            content: '✓';
+            margin-right: 4px;
+            font-weight: 900;
+            color: var(--neon-green);
+        }
+
+        /* Estado: Eliminado */
+        .bracket-team.eliminated {
+            opacity: 0.35;
+            color: #666;
+            filter: grayscale(85%) brightness(0.6);
+            text-decoration: line-through;
+            font-style: italic;
+        }
+
+        /* Estado: Pendiente */
+        .bracket-team.pending {
+            color: var(--text-grey);
+            border-left: 3px solid #444;
+            font-style: italic;
+        }
+
+        .champion-stage {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 160px;
+        }
+
+        .champion-container {
+            width: 100%;
+            background: rgba(0, 224, 90, 0.15);
+            border: 2px solid var(--neon-green);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .champion-team {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .champion-team img {
+            width: 40px;
+            height: 28px;
+            border-radius: 4px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 224, 90, 0.4);
+        }
+
+        .champion-team span {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 224, 90, 0.5);
+        }
+
+        /* Conectores SVG */
+        .bracket-connector-svg {
+            position: absolute;
+            top: 0;
+            left: -15px;
+            width: 15px;
+            height: 100%;
+            z-index: 0;
+        }
+
+        @media (max-width: 1200px) {
+            .bracket-stages-wrapper {
+                gap: 20px;
+            }
+            .bracket-stage {
+                min-width: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bracket-stages-wrapper {
+                gap: 15px;
+                padding: 15px 0;
+            }
+            .bracket-stage {
+                min-width: 140px;
+            }
+            .bracket-match {
+                padding: 8px;
+                gap: 6px;
+            }
+            .bracket-team {
+                font-size: 12px;
+                padding: 6px;
+                gap: 6px;
+            }
+            .bracket-team img {
+                width: 16px;
+                height: 12px;
+            }
+            .stage-header {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+        }
+
 
 
         @media (max-width: 768px) {
@@ -946,6 +1123,7 @@
         </div>
 
         <div class="sidebar-section">
+            <h3>Fases Finales</h3>
             <div class="phases-list">
                 <button class="nav-btn phase-btn" data-phase="Diecis. Final">Diecis. Final</button>
                 <button class="nav-btn phase-btn" data-phase="Octavos Final">Octavos Final</button>
@@ -983,6 +1161,7 @@
         <div class="content-area">
             <div class="phases-bar-main" id="phases-bar-main">
                 <button class="phase-btn-main" data-phase="Todos">🌍 Todos</button>
+                <button class="phase-btn-main" data-phase="Bracket del Torneo" id="btn-bracket-view">🎯 Bracket</button>
                 <button class="phase-btn-main" data-phase="Diecis. Final">🏆 Diecis.</button>
                 <button class="phase-btn-main" data-phase="Octavos Final">🥇 Octavos</button>
                 <button class="phase-btn-main" data-phase="Cuartos Final">👑 Cuartos</button>
@@ -993,6 +1172,37 @@
             <h2 class="section-title" id="section-title"><i class="fa-solid fa-calendar-days"></i> Todos los Partidos</h2>
             
             <div id="main-display">
+                <!-- BRACKET DEL TORNEO (inicialmente oculto) -->
+                <div id="bracket-container" class="bracket-container" style="display: none;">
+                    <div class="bracket-stages-wrapper">
+                        <div class="bracket-stage">
+                            <div class="stage-header">Diecis. Final (16)</div>
+                            <div class="bracket-matches" id="bracket-diecis"></div>
+                        </div>
+                        <div class="bracket-stage">
+                            <div class="stage-header">Octavos (8)</div>
+                            <div class="bracket-matches" id="bracket-octavos"></div>
+                        </div>
+                        <div class="bracket-stage">
+                            <div class="stage-header">Cuartos (4)</div>
+                            <div class="bracket-matches" id="bracket-cuartos"></div>
+                        </div>
+                        <div class="bracket-stage">
+                            <div class="stage-header">Semifinales (2)</div>
+                            <div class="bracket-matches" id="bracket-semis"></div>
+                        </div>
+                        <div class="bracket-stage">
+                            <div class="stage-header">Final</div>
+                            <div class="bracket-matches" id="bracket-final"></div>
+                        </div>
+                        <div class="bracket-stage champion-stage">
+                            <div class="stage-header">🏆 Campeón</div>
+                            <div id="bracket-champion" class="champion-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRID DE PARTIDOS (normal) -->
                 <div class="matches-grid" id="matches-grid">
                     <!-- Partidos inyectados por JS -->
                 </div>
@@ -1398,39 +1608,6 @@
             ]
         };
 
-        // ==================== INICIALIZACIÓN ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            // 0. Poblar knockout con ganadores reales
-            populateKnockoutWithWinners();
-            
-            // 1. Crear botones de grupos A-L
-            const groupsContainer = document.getElementById('groups-grid');
-            const letters = ['A','B','C','D','E','F','G','H','I','J','K','L'];
-            letters.forEach(letter => {
-                const btn = document.createElement('button');
-                btn.className = 'nav-btn group-btn';
-                btn.textContent = letter;
-                btn.onclick = () => filterByGroup(letter, btn);
-                groupsContainer.appendChild(btn);
-            });
-
-            // Renderizar todos inicial
-            sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
-            renderMatches(matchesData);
-
-            // Activar el botón "Todos" en la barra principal
-            const todosBtn = document.querySelector('[data-phase="Todos"]');
-            if (todosBtn) {
-                todosBtn.classList.add('active');
-            }
-
-            // Generar partidos de hoy en el sidebar
-            renderTodayMatches();
-
-            // Inyectar Botones y Filtros Dinámicos vía JS
-            injectAdvancedFilters();
-        });
-        
         // ==================== BASE DE DATOS LOCAL DE RESULTADOS ====================
         const localResults = {
             1: { homeScore: 2, awayScore: 0 },  // México vs Sudáfrica
@@ -1514,6 +1691,79 @@
             79: { homeScore: 2, awayScore: 0 }, // México vs Ecuador  
         };
 
+        // ==================== INICIALIZACIÓN ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // 0. Poblar knockout con ganadores reales
+            populateKnockoutWithWinners();
+            
+            // 1. Crear botones de grupos A-L
+            const groupsContainer = document.getElementById('groups-grid');
+            const letters = ['A','B','C','D','E','F','G','H','I','J','K','L'];
+            letters.forEach(letter => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-btn group-btn';
+                btn.textContent = letter;
+                btn.onclick = () => filterByGroup(letter, btn);
+                groupsContainer.appendChild(btn);
+            });
+
+            // Renderizar todos inicial
+            sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
+            renderMatches(matchesData);
+
+            // Activar el botón "Todos" en la barra principal
+            const todosBtn = document.querySelector('[data-phase="Todos"]');
+            if (todosBtn) {
+                todosBtn.classList.add('active');
+            }
+
+            // Generar partidos de hoy en el sidebar
+            renderTodayMatches();
+
+            // Inyectar Botones y Filtros Dinámicos vía JS
+            injectAdvancedFilters();
+
+            // ==================== EVENT LISTENERS PARA BRACKET ====================
+            // Esperar a que el DOM esté completamente actualizado después de injectAdvancedFilters
+            setTimeout(() => {
+                // Event listener para el botón del bracket en la barra de fases
+                const btnBracketView = document.getElementById('btn-bracket-view');
+                if (btnBracketView) {
+                    console.log('Bracket button found and setting listener');
+                    btnBracketView.addEventListener('click', () => {
+                        console.log('Bracket button clicked');
+                        // Ocultar grid de partidos
+                        const matchesGrid = document.getElementById('matches-grid');
+                        const bracketContainer = document.getElementById('bracket-container');
+
+                        matchesGrid.style.display = 'none';
+                        bracketContainer.style.display = 'block';
+                        sectionTitle.innerHTML = '<i class="fa-solid fa-sitemap"></i> Bracket del Torneo - Fase Eliminatoria';
+
+                        // Renderizar bracket
+                        renderTournamentBracket();
+
+                        // Marcar botón como activo
+                        document.querySelectorAll('.phase-btn-main').forEach(btn => btn.classList.remove('active'));
+                        btnBracketView.classList.add('active');
+                    });
+                } else {
+                    console.log('Bracket button NOT found');
+                }
+
+                // Modificar botones de fases existentes para mostrar grid normal
+                document.querySelectorAll('.phase-btn-main[data-phase!="Bracket del Torneo"]').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const bracketContainer = document.getElementById('bracket-container');
+                        const matchesGrid = document.getElementById('matches-grid');
+
+                        bracketContainer.style.display = 'none';
+                        matchesGrid.style.display = 'grid';
+                    });
+                });
+            }, 100);
+        });
+        
         // ==================== LÓGICA DE RENDERIZADO ====================
         const grid = document.getElementById('matches-grid');
         const mainDisplay = document.getElementById('main-display');
@@ -2213,6 +2463,9 @@
                     <button class="btn-neon-green" id="btn-volver-calendario">
                         <i class="fa-solid fa-arrow-left"></i> Volver al Calendario
                     </button>
+                    <button class="btn-neon-green" id="btn-bracket-torneo">
+                        <i class="fa-solid fa-sitemap"></i> Bracket de Torneo
+                    </button>
                 </div>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap; width: 100%;">
                     <div class="search-box" style="flex: 1; min-width: 250px;">
@@ -2247,6 +2500,11 @@
             // 4. Asignar Eventos a los nuevos botones
             document.getElementById('btn-volver-calendario').addEventListener('click', () => {
                 window.location.href = 'apuesta-total-dashboard.html';
+            });
+
+            document.getElementById('btn-bracket-torneo').addEventListener('click', () => {
+                // TODO: Agregar funcionalidad del bracket de torneo
+                console.log('Bracket de Torneo clickeado');
             });
 
             document.getElementById('btn-clear-sidebar').addEventListener('click', () => {
@@ -2302,6 +2560,119 @@
             // 6. Iniciar el intervalo de auto-refresco
             setInterval(refreshCurrentView, 10 * 60 * 1000); // 10 minutos
         }
+
+        // ==================== FUNCIÓN PARA RENDERIZAR BRACKET DEL TORNEO ====================
+        function renderTournamentBracket() {
+            // Primero, poblar knockout con ganadores
+            populateKnockoutWithWinners();
+
+            // Objeto de mapeo de fases a IDs de contenedores
+            const phaseContainerMap = {
+                "Diecis. Final": "bracket-diecis",
+                "Octavos Final": "bracket-octavos",
+                "Cuartos Final": "bracket-cuartos",
+                "Semifinales": "bracket-semis",
+                "Final": "bracket-final"
+            };
+
+            // Función auxiliar para determinar el estado de un equipo
+            function getTeamStatus(teamName, matchId, isHome) {
+                const result = localResults[matchId];
+                if (!result) return "pending"; // No hay resultado aún
+
+                // Determinar ganador y perdedor
+                const isWinner = isHome 
+                    ? result.homeScore > result.awayScore 
+                    : result.awayScore > result.homeScore;
+
+                return isWinner ? "winner" : "eliminated";
+            }
+
+            // Función auxiliar para renderizar un equipo
+            function renderTeam(teamName, flagCode, matchId, isHome) {
+                if (!teamName || teamName === "Por definir") {
+                    return `
+                        <div class="bracket-team pending">
+                            <span>Por definir</span>
+                        </div>
+                    `;
+                }
+
+                const status = getTeamStatus(teamName, matchId, isHome);
+                const flagUrl = `https://flagcdn.com/16x12/${flagCode}.png`;
+                const statusClass = status === "pending" ? "pending" : status;
+
+                return `
+                    <div class="bracket-team ${statusClass}">
+                        <img src="${flagUrl}" alt="${teamName}" onerror="this.style.display='none'">
+                        <span>${teamName}</span>
+                    </div>
+                `;
+            }
+
+            // Renderizar cada fase
+            for (const phase in knockoutData) {
+                const containerId = phaseContainerMap[phase];
+                if (!containerId) continue;
+
+                const container = document.getElementById(containerId);
+                if (!container) continue;
+
+                const matches = knockoutData[phase];
+                let html = "";
+
+                matches.forEach(match => {
+                    if (!match) return;
+
+                    html += `
+                        <div class="bracket-match">
+                            ${renderTeam(match.t1, match.f1, match.matchId, true)}
+                            ${renderTeam(match.t2, match.f2, match.matchId, false)}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            }
+
+            // Renderizar Campeón
+            const finalMatch = knockoutData["Final"][0];
+            if (finalMatch) {
+                const finalResult = localResults[finalMatch.matchId];
+                let championHtml = "";
+
+                if (finalResult && (finalResult.homeScore !== finalResult.awayScore)) {
+                    const isChampionHome = finalResult.homeScore > finalResult.awayScore;
+                    const championName = isChampionHome ? finalMatch.t1 : finalMatch.t2;
+                    const championFlag = isChampionHome ? finalMatch.f1 : finalMatch.f2;
+                    const flagUrl = `https://flagcdn.com/32x24/${championFlag}.png`;
+
+                    championHtml = `
+                        <div class="champion-team">
+                            <img src="${flagUrl}" alt="${championName}" onerror="this.style.display='none'">
+                            <span>${championName}</span>
+                            <div style="font-size: 24px; margin-top: 8px;">🏆</div>
+                        </div>
+                    `;
+                } else {
+                    championHtml = `
+                        <div class="champion-team pending">
+                            <span>Por determinar</span>
+                            <div style="font-size: 24px; margin-top: 8px;">🏆</div>
+                        </div>
+                    `;
+                }
+
+                document.getElementById("bracket-champion").innerHTML = championHtml;
+            }
+
+        // ==================== EVENTO PARA ACTUALIZAR BRACKET ====================
+        window.addEventListener('resultsUpdated', () => {
+            const bracketContainer = document.getElementById('bracket-container');
+            if (bracketContainer.style.display !== 'none') {
+                renderTournamentBracket();
+            }
+        });
     </script>
 </body>
 </html>
