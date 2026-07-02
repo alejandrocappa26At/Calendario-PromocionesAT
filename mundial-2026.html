@@ -462,6 +462,493 @@
             transform: scale(1.12);
         }
 
+        /* ==================== BOTÓN BRACKET ESPECIAL ==================== */
+        .bracket-btn-special {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+            border: 2px solid #FFD700;
+            color: #000000;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 40px rgba(255, 165, 0, 0.4),
+                0 4px 20px rgba(255, 140, 0, 0.3),
+                inset 0 1px 3px rgba(255, 255, 255, 0.3);
+            animation: bracketPulse 2s ease-in-out infinite;
+        }
+
+        .bracket-btn-special::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 999px;
+            animation: bracketShine 3s infinite;
+            pointer-events: none;
+        }
+
+        .bracket-btn-special i {
+            font-size: 15px;
+            animation: bracketIconBounce 1.5s ease-in-out infinite;
+        }
+
+        .bracket-btn-special:hover {
+            background: linear-gradient(135deg, #FFED4E 0%, #FFB700 50%, #FF9500 100%);
+            border-color: #FFFF00;
+            color: #000000;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.8),
+                0 0 60px rgba(255, 165, 0, 0.6),
+                0 6px 30px rgba(255, 140, 0, 0.5),
+                inset 0 1px 5px rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .bracket-btn-special:hover i {
+            transform: scale(1.25) rotate(10deg);
+        }
+
+        .bracket-btn-special.active {
+            background: linear-gradient(135deg, #FFFF00 0%, #FFD700 50%, #FF8C00 100%);
+            border: 2px solid #FFFF00;
+            box-shadow: 
+                0 0 40px rgba(255, 255, 0, 0.8),
+                0 0 70px rgba(255, 165, 0, 0.6),
+                0 8px 35px rgba(255, 140, 0, 0.5),
+                inset 0 1px 6px rgba(255, 255, 255, 0.5);
+            animation: bracketPulseActive 1.5s ease-in-out infinite;
+        }
+
+        .bracket-btn-special.active i {
+            animation: bracketIconBounceActive 1s ease-in-out infinite;
+        }
+
+        @keyframes bracketPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 20px rgba(255, 215, 0, 0.6),
+                    0 0 40px rgba(255, 165, 0, 0.4),
+                    0 4px 20px rgba(255, 140, 0, 0.3),
+                    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px rgba(255, 215, 0, 0.8),
+                    0 0 60px rgba(255, 165, 0, 0.6),
+                    0 4px 25px rgba(255, 140, 0, 0.4),
+                    inset 0 1px 5px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        @keyframes bracketPulseActive {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(255, 255, 0, 0.8),
+                    0 0 70px rgba(255, 165, 0, 0.6),
+                    0 8px 35px rgba(255, 140, 0, 0.5),
+                    inset 0 1px 6px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 
+                    0 0 50px rgba(255, 255, 0, 1),
+                    0 0 90px rgba(255, 165, 0, 0.8),
+                    0 8px 40px rgba(255, 140, 0, 0.6),
+                    inset 0 1px 8px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        @keyframes bracketShine {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes bracketIconBounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes bracketIconBounceActive {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(15deg);
+            }
+        }
+
+        /* ==================== TOURNAMENT BRACKET STYLES ==================== */
+        .bracket-container {
+            width: 100%;
+            padding: 40px 20px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .bracket-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .bracket-header h2 {
+            font-size: 28px;
+            color: var(--neon-green);
+            margin-bottom: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 224, 90, 0.3);
+        }
+
+        .bracket-header p {
+            color: var(--text-grey);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .bracket-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px 0;
+        }
+
+        .bracket-grid {
+            display: flex;
+            gap: 30px;
+            min-width: min-content;
+            padding: 20px 10px;
+        }
+
+        .bracket-round {
+            flex: 0 0 auto;
+            width: 240px;
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .bracket-round[data-round="0"] { animation-delay: 0.1s; }
+        .bracket-round[data-round="1"] { animation-delay: 0.2s; }
+        .bracket-round[data-round="2"] { animation-delay: 0.3s; }
+        .bracket-round[data-round="3"] { animation-delay: 0.4s; }
+        .bracket-round[data-round="4"] { animation-delay: 0.5s; }
+
+        .round-title {
+            background: linear-gradient(135deg, rgba(0, 224, 90, 0.15), rgba(0, 224, 90, 0.03));
+            border: 1px solid rgba(0, 224, 90, 0.3);
+            color: var(--neon-green);
+            padding: 10px 12px;
+            border-radius: 8px 8px 0 0;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            box-shadow: none;
+        }
+
+        .round-matches {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .match-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+            border: 1px solid rgba(0, 224, 90, 0.15);
+            border-radius: 10px;
+            overflow: visible;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            min-height: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .match-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            border-radius: 12px;
+        }
+
+        .match-card:hover {
+            border-color: rgba(0, 224, 90, 0.4);
+            box-shadow: 0 0 20px rgba(0, 224, 90, 0.15), 0 4px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .match-card.finished {
+            background: linear-gradient(135deg, rgba(30, 215, 96, 0.08) 0%, rgba(20, 175, 60, 0.08) 100%);
+            border-color: rgba(30, 215, 96, 0.3);
+        }
+
+        .match-card.finished:hover {
+            border-color: rgba(30, 215, 96, 0.5);
+            box-shadow: 0 0 20px rgba(30, 215, 96, 0.2), 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .match-card.finished .match-status {
+            color: #1ED760;
+        }
+
+        .match-card.pending {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.1) 0%, rgba(80, 80, 80, 0.1) 100%);
+            border-color: rgba(150, 150, 150, 0.2);
+        }
+
+        .match-inner {
+            padding: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .match-team {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px;
+            border-radius: 7px;
+            transition: all 0.2s ease-out;
+            background: rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .match-team.eliminated {
+            opacity: 0.5;
+            filter: grayscale(80%);
+        }
+
+        .match-team.eliminated .team-name {
+            text-decoration: line-through;
+            text-decoration-color: rgba(200, 200, 200, 0.5);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .match-team.winner {
+            background: rgba(30, 215, 96, 0.12);
+            border: 1px solid rgba(30, 215, 96, 0.25);
+            box-shadow: inset 0 0 10px rgba(30, 215, 96, 0.1);
+        }
+
+        .team-flag {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .match-team.eliminated .team-flag {
+            filter: grayscale(100%);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .match-flag {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .team-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-white);
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex: 1;
+            line-height: 1.15;
+        }
+
+        .match-team.winner .team-name {
+            color: #1ED760;
+            font-weight: 800;
+        }
+
+        .match-team.eliminated .team-name {
+            color: #888;
+        }
+
+        .team-score {
+            font-size: 13px;
+            font-weight: 800;
+            color: #1ED760;
+            min-width: 20px;
+            text-align: right;
+        }
+
+        .match-center {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: center;
+            padding: 6px 0;
+            border-top: 1px solid rgba(0, 224, 90, 0.08);
+            border-bottom: 1px solid rgba(0, 224, 90, 0.08);
+        }
+
+        .match-vs {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .match-score {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        .score-number {
+            color: #1ED760;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .score-sep {
+            color: var(--text-grey);
+            font-size: 14px;
+        }
+
+        .match-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 3px 10px;
+            border-radius: 5px;
+            color: var(--text-grey);
+        }
+
+        .match-status.finished {
+            color: #1ED760;
+            background: rgba(30, 215, 96, 0.15);
+        }
+
+        .match-status.pending {
+            color: #FFB300;
+            background: rgba(255, 179, 0, 0.1);
+        }
+
+        .match-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 8px;
+            color: var(--text-grey);
+            line-height: 1.2;
+        }
+
+        .match-meta div {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .match-meta i {
+            font-size: 9px;
+            opacity: 0.7;
+        }
+
+        .match-connector {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
         /* ==================== GRID & CARDS ==================== */
         .matches-grid {
             display: grid;
@@ -912,6 +1399,190 @@
             .top-bar { flex-direction: column; gap: 16px; padding: 16px; }
             .search-box { width: 100%; }
             .content-area { padding: 20px; overflow-y: visible; }
+
+            /* Bracket Responsivo - Tablet */
+            .bracket-container {
+                padding: 20px 10px;
+            }
+
+            .bracket-header h2 {
+                font-size: 22px;
+            }
+
+            .bracket-grid {
+                gap: 20px;
+            }
+
+            .bracket-round {
+                width: 210px;
+            }
+
+            .round-title {
+                font-size: 11px;
+                padding: 9px 10px;
+                margin-bottom: 8px;
+            }
+
+            .round-matches {
+                gap: 10px;
+            }
+
+            .match-card {
+                border-radius: 9px;
+            }
+
+            .match-inner {
+                padding: 9px;
+                gap: 7px;
+            }
+
+            .team-flag {
+                width: 28px;
+                height: 28px;
+            }
+
+            .match-team {
+                gap: 8px;
+                padding: 6px;
+            }
+
+            .team-name {
+                font-size: 9px;
+                letter-spacing: 0.2px;
+            }
+
+            .team-score {
+                font-size: 12px;
+                min-width: 18px;
+            }
+
+            .match-center {
+                gap: 5px;
+                padding: 5px 0;
+            }
+
+            .match-vs {
+                font-size: 9px;
+            }
+
+            .match-score {
+                font-size: 14px;
+                gap: 5px;
+            }
+
+            .score-number {
+                min-width: 20px;
+            }
+
+            .match-meta {
+                font-size: 7px;
+                gap: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Bracket Responsivo - Móvil */
+            .bracket-container {
+                padding: 15px 5px;
+            }
+
+            .bracket-header h2 {
+                font-size: 18px;
+            }
+
+            .bracket-header p {
+                font-size: 12px;
+            }
+
+            .bracket-grid {
+                gap: 12px;
+            }
+
+            .bracket-round {
+                width: 170px;
+            }
+
+            .round-title {
+                font-size: 10px;
+                padding: 7px 9px;
+                letter-spacing: 0px;
+                margin-bottom: 7px;
+            }
+
+            .round-matches {
+                gap: 9px;
+            }
+
+            .match-card {
+                border-radius: 8px;
+                border-width: 1px;
+            }
+
+            .match-card:hover {
+                transform: translateY(-1px);
+            }
+
+            .match-inner {
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .team-flag {
+                width: 26px;
+                height: 26px;
+                border-radius: 4px;
+            }
+
+            .match-team {
+                gap: 7px;
+                padding: 5px;
+            }
+
+            .team-name {
+                font-size: 8px;
+                line-height: 1.1;
+                letter-spacing: 0px;
+            }
+
+            .team-score {
+                font-size: 11px;
+                min-width: 16px;
+            }
+
+            .team-info {
+                gap: 5px;
+            }
+
+            .match-center {
+                padding: 5px 0;
+                gap: 4px;
+            }
+
+            .match-vs {
+                font-size: 8px;
+            }
+
+            .match-score {
+                font-size: 12px;
+            }
+
+            .score-number {
+                min-width: 22px;
+            }
+
+            .match-status {
+                font-size: 10px;
+                padding: 3px 10px;
+            }
+
+            .match-meta {
+                font-size: 8px;
+                gap: 2px;
+            }
+
+            .match-meta i {
+                font-size: 8px;
+            }
         }
     </style>
 </head>
@@ -988,6 +1659,7 @@
                 <button class="phase-btn-main" data-phase="Cuartos Final">👑 Cuartos</button>
                 <button class="phase-btn-main" data-phase="Semifinales">⭐ Semifinales</button>
                 <button class="phase-btn-main" data-phase="Final">🔥 Final</button>
+                <button class="bracket-btn-special" id="bracket-tournament-btn"><i class="fa-solid fa-diagram-project"></i> Bracket</button>
             </div>
 
             <h2 class="section-title" id="section-title"><i class="fa-solid fa-calendar-days"></i> Todos los Partidos</h2>
@@ -1397,6 +2069,165 @@
                 { matchId: 104, t1: "Ganador P101", f1: "tbd", t2: "Ganador P102", f2: "tbd", city: "Nueva York/NJ", date: "19 JUL", time: "15:00", tv: "América TV" }
             ]
         };
+
+        // ==================== BRACKET TOURNAMENT - FUNCIONES ====================
+        
+        /**
+         * Obtiene el ganador de un partido basado en localResults
+         * @param {object} match - Objeto del partido
+         * @returns {object|null} - {name, flag} del ganador o null si no hay resultado
+         */
+        function getMatchWinner(match) {
+            if (!match || !match.matchId) return null;
+            
+            const result = localResults[match.matchId];
+            if (!result) return null;
+            
+            const { homeScore, awayScore } = result;
+            if (homeScore === awayScore) return null; // En caso de empate, retorna null
+            
+            const winnerTeam = homeScore > awayScore ? match.t1 : match.t2;
+            const winnerFlag = homeScore > awayScore ? match.f1 : match.f2;
+            
+            return { name: winnerTeam, flag: winnerFlag, score: Math.max(homeScore, awayScore), loserScore: Math.min(homeScore, awayScore) };
+        }
+
+        /**
+         * Procesa toda la estructura del bracket y construye el árbol de torneos
+         * @returns {object} - Estructura completa del bracket
+         */
+        function processBracketStructure() {
+            const bracketStructure = {
+                "Dieciseisavos": { phase: "Diecis. Final", matches: [], type: "round-16" },
+                "Octavos": { phase: "Octavos Final", matches: [], type: "round-8" },
+                "Cuartos": { phase: "Cuartos Final", matches: [], type: "round-4" },
+                "Semifinales": { phase: "Semifinales", matches: [], type: "round-2" },
+                "Final": { phase: "Final", matches: [], type: "final" }
+            };
+
+            // Cargar cada fase
+            Object.keys(bracketStructure).forEach(key => {
+                const phaseKey = bracketStructure[key].phase;
+                if (knockoutData[phaseKey]) {
+                    bracketStructure[key].matches = knockoutData[phaseKey].map(match => ({
+                        ...match,
+                        winner: getMatchWinner(match)
+                    }));
+                }
+            });
+
+            return bracketStructure;
+        }
+
+        /**
+         * Renderiza el bracket completo de forma visual
+         * @returns {string} - HTML del bracket
+         */
+        function renderTournamentBracket() {
+            const bracket = processBracketStructure();
+            const phases = ["Dieciseisavos", "Octavos", "Cuartos", "Semifinales", "Final"];
+            
+            let html = `
+                <div class="bracket-container">
+                    <div class="bracket-header">
+                        <h2><i class="fa-solid fa-trophy"></i> Bracket del Torneo 2026</h2>
+                        <p>Eliminación Directa - Sigue el camino de los equipos</p>
+                    </div>
+                    
+                    <div class="bracket-scroll-wrapper">
+                        <div class="bracket-grid">
+            `;
+
+            phases.forEach((phaseName, phaseIndex) => {
+                const phaseData = bracket[phaseName];
+                html += `
+                    <div class="bracket-round" data-round="${phaseIndex}">
+                        <div class="round-title">${phaseName}</div>
+                        <div class="round-matches">
+                `;
+
+                phaseData.matches.forEach((match, matchIndex) => {
+                    const t1Winner = getMatchWinner(match) && getMatchWinner(match).name === match.t1;
+                    const t2Winner = getMatchWinner(match) && getMatchWinner(match).name === match.t2;
+                    const hasResult = localResults[match.matchId] ? true : false;
+                    const result = localResults[match.matchId];
+
+                    let matchStatus = 'pending';
+                    let statusLabel = 'Pendiente';
+                    let statusColor = 'pending';
+
+                    if (hasResult) {
+                        matchStatus = 'finished';
+                        statusLabel = 'Finalizado';
+                        statusColor = 'finished';
+                    }
+
+                    const flag1Html = match.f1 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #555; font-size: 24px;"></i>' : `<img src="https://flagcdn.com/w80/${match.f1}.png" alt="${match.t1}" class="match-flag">`;
+                    const flag2Html = match.f2 === 'tbd' ? '<i class="fa-solid fa-shield" style="color: #555; font-size: 24px;"></i>' : `<img src="https://flagcdn.com/w80/${match.f2}.png" alt="${match.t2}" class="match-flag">`;
+
+                    const scoreHtml = hasResult ? `
+                        <div class="match-score">
+                            <span class="score-number">${result.homeScore}</span>
+                            <span class="score-sep">-</span>
+                            <span class="score-number">${result.awayScore}</span>
+                        </div>
+                    ` : `<div class="match-vs">VS</div>`;
+
+                    html += `
+                        <div class="match-card ${matchStatus} ${t1Winner ? 'team1-winner' : ''} ${t2Winner ? 'team2-winner' : ''}">
+                            <div class="match-inner">
+                                <!-- EQUIPO 1 -->
+                                <div class="match-team team1 ${t1Winner ? 'winner' : ''} ${hasResult && !t1Winner ? 'eliminated' : ''}">
+                                    <div class="team-flag">${flag1Html}</div>
+                                    <div class="team-info">
+                                        <div class="team-name">${match.t1}</div>
+                                        ${hasResult ? `<div class="team-score">${result.homeScore}</div>` : ''}
+                                    </div>
+                                </div>
+
+                                <!-- MARCADOR Y ESTADO -->
+                                <div class="match-center">
+                                    ${scoreHtml}
+                                    <div class="match-status ${statusColor}">
+                                        <i class="fa-solid ${hasResult ? 'fa-check-circle' : 'fa-clock'}"></i>
+                                        ${statusLabel}
+                                    </div>
+                                    <div class="match-meta">
+                                        <div><i class="fa-solid fa-calendar-day"></i> ${match.date}</div>
+                                        <div><i class="fa-solid fa-clock"></i> ${match.time}</div>
+                                    </div>
+                                </div>
+
+                                <!-- EQUIPO 2 -->
+                                <div class="match-team team2 ${t2Winner ? 'winner' : ''} ${hasResult && !t2Winner ? 'eliminated' : ''}">
+                                    <div class="team-info">
+                                        <div class="team-name">${match.t2}</div>
+                                        ${hasResult ? `<div class="team-score">${result.awayScore}</div>` : ''}
+                                    </div>
+                                    <div class="team-flag">${flag2Html}</div>
+                                </div>
+                            </div>
+
+                            <!-- LÍNEA DE CONEXIÓN (si es necesario) -->
+                            <div class="match-connector"></div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return html;
+        }
 
         // ==================== INICIALIZACIÓN ====================
         document.addEventListener('DOMContentLoaded', () => {
@@ -1899,6 +2730,28 @@
                 }
             });
         });
+
+        // Botón Bracket de Torneo Especial
+        document.getElementById('bracket-tournament-btn').addEventListener('click', (e) => {
+            // Remover activo de todos los botones
+            document.querySelectorAll('.phase-btn-main').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            // Marcar como activo el botón del bracket
+            e.target.classList.add('active');
+            
+            // Actualizar título
+            sectionTitle.innerHTML = '<i class="fa-solid fa-diagram-project"></i> Bracket del Torneo';
+            
+            // Actualizar datos y renderizar vista de bracket
+            populateKnockoutWithWinners();
+            renderBracketView();
+        });
+
+        // Función para renderizar la vista de bracket del torneo
+        function renderBracketView() {
+            mainDisplay.innerHTML = renderTournamentBracket();
+        }
 
         // Filtro Sedes
         document.getElementById('sedes-select').addEventListener('change', (e) => {
