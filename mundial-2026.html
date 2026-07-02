@@ -1414,15 +1414,23 @@
                 groupsContainer.appendChild(btn);
             });
 
-            // Renderizar todos inicial
-            sectionTitle.innerHTML = '<i class="fa-solid fa-calendar-days"></i> Todos los Partidos';
-            renderMatches(matchesData);
-
-            // Activar el botón "Todos" en la barra principal
-            const todosBtn = document.querySelector('[data-phase="Todos"]');
-            if (todosBtn) {
-                todosBtn.classList.add('active');
+            // Cargar automáticamente la fase que se está jugando (DIECIS)
+            const currentPhase = 'Diecis. Final';
+            sectionTitle.innerHTML = `<i class="fa-solid fa-sitemap"></i> ${currentPhase}`;
+            
+            // Renderizar partidos de la fase actual
+            const phaseMatches = knockoutData[currentPhase];
+            if (phaseMatches) {
+                renderMatches(phaseMatches, true);
             }
+
+            // Activar el botón de la fase actual en la barra principal
+            const activePhaseBtns = document.querySelectorAll('.phase-btn-main');
+            activePhaseBtns.forEach(btn => {
+                if (btn.getAttribute('data-phase') === currentPhase) {
+                    btn.classList.add('active');
+                }
+            });
 
             // Generar partidos de hoy en el sidebar
             renderTodayMatches();
