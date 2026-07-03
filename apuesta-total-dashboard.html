@@ -1879,6 +1879,10 @@
                 icon: '<i class="fa-solid fa-ticket outline-icon"></i>',
                 description: '¡Sorteamos 20 entradas dobles para ver a Yaco y el Loco!',
                 htmlDetails: `
+                    <div class="promo-section highlight" style="background-color: #333333; border-left: 4px solid #ff3b30;">
+                        <div class="promo-section-title"><i class="fa-solid fa-exclamation-circle"></i> Estado</div>
+                        <div class="promo-section-content" style="color: #ff3b30; font-weight: bold;">⚠️ ESTA PROMOCIÓN NO ESTÁ VIGENTE</div>
+                    </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
                         <div class="promo-section-content">🎉 20 entradas dobles para ver a Yaco y el Loco.</div>
@@ -1898,9 +1902,9 @@
                 `,
                 startDate: '2026-06-16',
                 endDate: '2026-06-22',
-                customBadgeText: 'SOLO LIMA METROPOLITANA',
-                customBadgeClass: 'lima-only',
-                available: true
+                customBadgeText: 'NO VIGENTE',
+                customBadgeClass: 'promo-no-vigente',
+                available: false
             },
             '2026-06-19-racha3': {
                 name: 'PROMO LA RACHA VIRTUALERA 3',
