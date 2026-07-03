@@ -1650,8 +1650,8 @@
 
         // ==================== DATOS ==================== 
         const promotions = {
-            '2026-06-15': {
-                name: 'PROMO 5X5 – VIRTUALES (JUNIO)',
+            '2026-07-06': {
+                name: 'PROMO 5X5 – VIRTUALES (JULIO)',
                 category: 'purple',
                 icon: '<i class="fa-solid fa-gamepad outline-icon"></i>',
                 description: 'Jugadas gratis de S/ 5 para cualquier juego virtual.',
@@ -1662,7 +1662,7 @@
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
-                        <div class="promo-section-content">De lunes a jueves, del 22/06 al 25/06.</div>
+                        <div class="promo-section-content">De lunes a jueves, del 06/07 al 09/07.</div>
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
@@ -1673,9 +1673,9 @@
                         <div class="promo-section-content">El registro se realiza en el segundo diamante de gestión, opción "Promo Retail por TK", ingresando DNI, proveedor Golden Race y los IDs de los tickets.</div>
                     </div>
                 `,
-                startDate: '2026-06-22',
-                endDate: '2026-06-25',
-                canjeDate: '2026-06-25',
+                startDate: '2026-07-06',
+                endDate: '2026-07-09',
+                canjeDate: '2026-07-09',
                 available: true
             },
             '2026-06-02': {
@@ -2018,45 +2018,6 @@
                 canjeDate: '2026-06-26',
                 available: true
             },
-            '2026-06-19-mvp': {
-                name: 'PROMO EL MVP DE LA TIENDA',
-                category: 'yellow',
-                icon: '<i class="fa-solid fa-trophy outline-icon"></i>',
-                description: 'Vale de S/20 o S/50 para apuestas deportivas.',
-                htmlDetails: `
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
-                        <div class="promo-section-content">
-                            Vale de S/20 o S/50 para apuestas deportivas.
-                        </div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
-                        <div class="promo-section-content">
-                            Participación: de viernes a jueves.<br>
-                            Todos los viernes se anunciará 1 ganador por tienda.
-                        </div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
-                        <div class="promo-section-content">
-                            Participan todas las apuestas deportivas de S/5 o más.<br>
-                            Gana el cliente con la apuesta acertada de mayor cuota en cada tienda.<br>
-                            • Si la cuota ganadora corresponde a un ticket de 19 o menos, recibe un Vale de S/20.<br>
-                            • Si la cuota ganadora corresponde a un ticket de 20 o más, recibe un Vale de S/50.<br><br>
-                            La jugada gratis se entrega en un solo ticket, válida para apuestas deportivas con cuota mínima de 1.3. Solo 1 premio por cliente durante la vigencia de la promoción.
-                        </div>
-                    </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
-                        <div class="promo-section-content">Se elige 1 ganador por tienda cada semana. El vale se emite por el valor exacto del premio (S/20 o S/50).</div>
-                    </div>
-                `,
-                startDate: '2026-06-19',
-                endDate: '2026-06-25', // Vigencia semanal de participación
-                canjeDate: '2026-06-26', // Anuncio del ganador
-                available: true
-            },
             '2026-06-19-arranque': {
                 name: 'PROMO ARRANQUE GANADOR 1',
                 category: 'orange',
@@ -2083,6 +2044,58 @@
                 startDate: '2026-06-19',
                 endDate: '2026-06-22',
                 canjeDate: '2026-06-22',
+                available: true
+            },
+            '2026-06-19-mvp-cuota': {
+                name: 'PROMO MVP DE LA CUOTA',
+                category: 'yellow',
+                icon: '<i class="fa-solid fa-medal outline-icon"></i>',
+                description: 'Vale AT de S/20 o S/50 según la cuota ganada más alta de la tienda.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">
+                            💰 <strong>Vale AT de S/50</strong> si la <strong>cuota ganada más alta</strong> de la tienda es <strong>igual o mayor a 20</strong>.<br><br>
+                            💰 <strong>Vale AT de S/20</strong> si la <strong>cuota ganada más alta</strong> es <strong>menor a 20</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            <strong>Del viernes 19/06 al jueves 09/07 de 2026.</strong><br><br>
+                            <strong>Anuncio de ganadores por semana:</strong><br>
+                            📅 <strong>26/06:</strong> Semana 1 (jugadas del 19/06 al 25/06).<br>
+                            📅 <strong>03/07:</strong> Semana 2 (jugadas del 26/06 al 02/07).<br>
+                            📅 <strong>10/07:</strong> Semana 3 (jugadas del 03/07 al 09/07).
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            <strong>Condiciones para participar:</strong><br><br>
+                            🔹 El cliente debe realizar <strong>al menos 1 apuesta deportiva de S/5 o más</strong>.<br><br>
+                            🔹 Cada semana se premiará a <strong>1 ganador por tienda</strong> con la <strong>apuesta ganada de mayor cuota</strong>.<br><br>
+                            🔹 Si existe empate de cuota, ganará la <strong>apuesta registrada primero</strong>.<br><br>
+                            🔹 <strong>Solo 1 premio por cliente por semana</strong>, aunque resulte ganador en más de una tienda.<br><br>
+                            💸 <strong>Monto del premio:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Vale AT de <strong>S/50</strong> si cuota ≥ 20<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Vale AT de <strong>S/20</strong> si cuota < 20
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            📍 <strong>Canal:</strong> La promoción aplica únicamente para el <strong>canal Retail de Apuesta Total</strong>.<br><br>
+                            🎯 <strong>Criterio de ganador:</strong> El premio dependerá de la <strong>cuota ganada más alta registrada en cada tienda</strong> durante la semana correspondiente.<br><br>
+                            ✅ <strong>Estructura semanal:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Semana 1: Anuncio 26/06<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Semana 2: Anuncio 03/07<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Semana 3: Anuncio 10/07
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-06-19',
+                endDate: '2026-07-09',
                 available: true
             },
             '2026-06-19-juega': {
@@ -2150,6 +2163,56 @@
                 startDate: '2026-07-02',
                 endDate: '2026-07-02',
                 canjeDate: '2026-07-03',
+                available: true
+            },
+            '2026-07-03-fanfest-4tos': {
+                name: 'PROMO FAN FEST PAGO EFECTIVO 4tos Final',
+                category: 'red',
+                icon: '<i class="fa-solid fa-ticket outline-icon"></i>',
+                description: '30 entradas dobles por cada fecha de Cuartos de Final (09, 10, 11 de julio).',
+                customBadgeText: 'SOLO LIMA',
+                customBadgeClass: 'lima-only',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎉 <strong>30 entradas dobles</strong> por cada fecha de <strong>Cuartos de Final</strong>:<br><br>
+                        📅 <strong>Jueves 09/07:</strong> 30 entradas dobles.<br>
+                        📅 <strong>Viernes 10/07:</strong> 30 entradas dobles.<br>
+                        📅 <strong>Sábado 11/07:</strong> 30 entradas dobles.<br><br>
+                        <strong>Total Bloque Cuartos:</strong> 90 entradas dobles (sujetas a disponibilidad).</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                        <strong>Registro:</strong> Del <strong>viernes 03/07</strong> al <strong>lunes 06/07 de 2026</strong> (bloque de Cuartos de Final).<br><br>
+                        📢 <strong>Anuncio y comunicación de ganadores:</strong> <strong>7 de julio de 2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            <strong>Pasos para participar:</strong><br><br>
+                            🔹 <strong>Paso 1:</strong> Realizar <strong>1 apuesta deportiva O 1 apuesta en juegos virtuales</strong> de <strong>S/5 o más</strong>.<br><br>
+                            🔹 <strong>Paso 2:</strong> Registrarse en <strong>enlace.at/FanFestRetail</strong> con:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• DNI<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Carné de Extranjería (CE)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Pasaporte<br><br>
+                            🔹 <strong>Alternativa:</strong> Solicitar el registro directamente en una <strong>tienda física</strong> con apoyo del personal de caja.<br><br>
+                            ⚠️ <strong>Condición importante:</strong> La participación es <strong>personal e intransferible</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            📍 <strong>Cobertura:</strong> <strong>Aplica para tiendas Retail de Lima Metropolitana, Callao y Teleservicios</strong>. No aplica para Agentes, web ni aplicativo web.<br><br>
+                            📞 <strong>Confirmación del premio:</strong> Los ganadores serán contactados por <strong>WhatsApp</strong> y tendrán <strong>4 horas</strong> para confirmar el premio enviando su documento de identidad vigente.<br><br>
+                            🏆 <strong>Etapa actual:</strong> <strong>Cuartos de Final</strong> con sorteos en las fechas 09, 10 y 11 de julio.
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-07-03',
+                endDate: '2026-07-06',
+                announcementDate: '2026-07-07',
                 available: true
             }
         };
