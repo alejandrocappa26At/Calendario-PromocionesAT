@@ -512,6 +512,37 @@
             animation: pulse-hot 1.2s infinite ease-in-out;
         }
 
+        /* ==================== BADGE DE ESQUINA LIMA-ONLY ==================== */
+        .corner-badge-lima {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 0;
+        }
+
+        .corner-badge-lima::before {
+            content: '📍 SOLO\ALIMA';
+            position: absolute;
+            top: 8px;
+            right: -35px;
+            width: 150px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #ff0066, #ff4d94);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 900;
+            text-align: center;
+            transform: rotate(45deg);
+            box-shadow: 0 0 12px rgba(255, 0, 102, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            white-space: pre-line;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
         @keyframes pulse-hot {
             0%, 100% {
                 transform: scale(1);
@@ -2539,6 +2570,150 @@
                 endDate: '2026-07-05',
                 canjeDate: '2026-07-06',
                 available: true
+            },
+            '2026-07-07-filo-criollo': {
+                name: 'PROMO FILO CRIOLLO',
+                category: 'red',
+                icon: '<i class="fa-solid fa-utensils outline-icon"></i>',
+                description: '20 entradas dobles para el evento gastronómico Filo Criollo.',
+                customBadgeText: 'SOLO LIMA',
+                customBadgeClass: 'lima-only',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>20 entradas dobles</strong> para el evento gastronómico <strong>Filo Criollo</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            <strong>Participación:</strong> Del <strong>martes 07/07</strong> al <strong>domingo 19/07 de 2026</strong>.<br><br>
+                            📢 <strong>Anuncio y comunicación de ganadores:</strong> <strong>lunes 20/07 de 2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            <strong>Pasos para participar:</strong><br><br>
+                            🔹 <strong>Paso 1:</strong> El cliente debe <strong>registrarse mediante el enlace del código QR</strong> de la promoción.<br><br>
+                            🔹 <strong>Paso 2:</strong> Luego debe realizar <strong>apuestas deportivas o juegos virtuales de S/5 o más</strong> durante la vigencia de la campaña (07/07 - 19/07).<br><br>
+                            🔹 <strong>Participación:</strong> Participan todas las apuestas válidas realizadas dentro del período promocional.<br><br>
+                            💸 <strong>Premio:</strong> <strong>20 entradas dobles</strong> para el evento <strong>Filo Criollo</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            📍 <strong>Cobertura:</strong> <strong>Válido solo para Lima</strong>.<br><br>
+                            🎉 <strong>Premio:</strong> La promoción entrega <strong>20 entradas dobles</strong> para el evento <strong>Filo Criollo</strong>.<br><br>
+                            📞 <strong>Comunicación de ganadores:</strong> Los ganadores serán contactados tras el anuncio oficial del <strong>lunes 20/07</strong>.<br><br>
+                            ✅ <strong>Requisitos clave:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Registrarse mediante código QR<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Apuestas deportivas o virtuales de S/5+<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Válido solo en Lima<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Vigencia: 07/07 - 19/07
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-07-07',
+                endDate: '2026-07-19',
+                announcementDate: '2026-07-20',
+                available: true
+            },
+            '2026-07-03-fan-fest-cuartos': {
+                name: 'PROMO FAN FEST - CUARTOS',
+                category: 'blue',
+                icon: '<i class="fa-solid fa-film outline-icon"></i>',
+                description: '90 entradas para el Fan Fest - Cuartos de Final en pantalla gigante.',
+                customBadgeText: 'SOLO LIMA',
+                customBadgeClass: 'lima-only',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>90 entradas</strong> para el <strong>Fan Fest</strong>, donde los ganadores podrán disfrutar los partidos del <strong>Mundial en pantalla gigante</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia - Primer Bloque (Cuartos de Final)</div>
+                        <div class="promo-section-content">
+                            <strong>Participación:</strong> Del <strong>viernes 03/07</strong> al <strong>lunes 06/07 de 2026</strong>.<br><br>
+                            📢 <strong>Anuncio y comunicación de ganadores:</strong> <strong>martes 07/07 de 2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            <strong>Pasos para participar:</strong><br><br>
+                            🔹 <strong>Paso 1:</strong> El cliente debe <strong>registrarse mediante el enlace del código QR</strong> de la promoción.<br><br>
+                            🔹 <strong>Paso 2:</strong> Luego debe realizar <strong>apuestas deportivas o juegos virtuales desde S/5 o más</strong> durante la vigencia del bloque (03/07 - 06/07).<br><br>
+                            🔹 <strong>Participación:</strong> Participan todas las apuestas válidas realizadas dentro del período de este bloque.<br><br>
+                            🎬 <strong>Premio:</strong> <strong>90 entradas</strong> para el <strong>Fan Fest</strong> - disfrutar los partidos en <strong>pantalla gigante</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            📍 <strong>Cobertura:</strong> <strong>Válido solo para Lima</strong>.<br><br>
+                            🎉 <strong>Premio:</strong> La promoción entrega <strong>90 entradas</strong> para el <strong>Fan Fest</strong> - pantalla gigante.<br><br>
+                            📞 <strong>Comunicación de ganadores:</strong> Los ganadores serán contactados tras el anuncio oficial del <strong>martes 07/07</strong>.<br><br>
+                            ✅ <strong>Requisitos clave - Bloque Cuartos de Final:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Registrarse mediante código QR<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Apuestas deportivas o virtuales desde S/5+<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Válido solo en Lima<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Vigencia: 03/07 - 06/07
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-07-03',
+                endDate: '2026-07-06',
+                announcementDate: '2026-07-07',
+                available: true
+            },
+            '2026-07-07-fan-fest-semifinales': {
+                name: 'PROMO FAN FEST - SEMIFINALES',
+                category: 'blue',
+                icon: '<i class="fa-solid fa-film outline-icon"></i>',
+                description: '90 entradas para el Fan Fest - Semifinales y definiciones en pantalla gigante.',
+                customBadgeText: 'SOLO LIMA',
+                customBadgeClass: 'lima-only',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>90 entradas</strong> para el <strong>Fan Fest</strong>, donde los ganadores podrán disfrutar los partidos del <strong>Mundial en pantalla gigante</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia - Segundo Bloque (Semifinales, 3.er y 4.º Puesto)</div>
+                        <div class="promo-section-content">
+                            <strong>Participación:</strong> Del <strong>martes 07/07</strong> al <strong>jueves 09/07 de 2026</strong>.<br><br>
+                            📢 <strong>Anuncio y comunicación de ganadores:</strong> <strong>viernes 10/07 de 2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
+                        <div class="promo-section-content">
+                            <strong>Pasos para participar:</strong><br><br>
+                            🔹 <strong>Paso 1:</strong> El cliente debe <strong>registrarse mediante el enlace del código QR</strong> de la promoción.<br><br>
+                            🔹 <strong>Paso 2:</strong> Luego debe realizar <strong>apuestas deportivas o juegos virtuales desde S/5 o más</strong> durante la vigencia del bloque (07/07 - 09/07).<br><br>
+                            🔹 <strong>Participación:</strong> Participan todas las apuestas válidas realizadas dentro del período de este bloque.<br><br>
+                            🎬 <strong>Premio:</strong> <strong>90 entradas</strong> para el <strong>Fan Fest</strong> - disfrutar los partidos en <strong>pantalla gigante</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            📍 <strong>Cobertura:</strong> <strong>Válido solo para Lima</strong>.<br><br>
+                            🎉 <strong>Premio:</strong> La promoción entrega <strong>90 entradas</strong> para el <strong>Fan Fest</strong> - pantalla gigante.<br><br>
+                            📞 <strong>Comunicación de ganadores:</strong> Los ganadores serán contactados tras el anuncio oficial del <strong>viernes 10/07</strong>.<br><br>
+                            ✅ <strong>Requisitos clave - Bloque Semifinales, 3.er y 4.º Puesto:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Registrarse mediante código QR<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Apuestas deportivas o virtuales desde S/5+<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Válido solo en Lima<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Vigencia: 07/07 - 09/07
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-07-07',
+                endDate: '2026-07-09',
+                announcementDate: '2026-07-10',
+                available: true
             }
         };
 
@@ -2628,9 +2803,9 @@
             const now = new Date(); // Usando hora real del sistema
             const systemDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
+            // Crear array de promociones con sus estados
+            const promoList = [];
             Object.entries(promotions).forEach(([dateStr, promo]) => {
-                const card = document.createElement('div');
-                
                 let state = 'activo';
                 if (promo.canjeDate && systemDate > promo.canjeDate) {
                     state = 'expirado';
@@ -2644,6 +2819,19 @@
                 if (promo.available === false) {
                     state = 'expirado';
                 }
+
+                promoList.push({ dateStr, promo, state });
+            });
+
+            // Ordenar promociones: activas/canje primero, luego próximas, finalmente expiradas
+            promoList.sort((a, b) => {
+                const stateOrder = { 'activo': 0, 'canje': 0, 'proximamente': 1, 'expirado': 2 };
+                return stateOrder[a.state] - stateOrder[b.state];
+            });
+
+            // Renderizar promociones ordenadas
+            promoList.forEach(({ dateStr, promo, state }) => {
+                const card = document.createElement('div');
                 
                 card.className = `promotion-card ${promo.category}`;
                 let badgeHtml = '';
@@ -2686,8 +2874,12 @@
                     badgeHtml = '<div class="promo-badge ultimo-dia">🔥 ¡ÚLTIMO DÍA!</div>';
                 }
 
+                // Badge de esquina para Lima-only
+                const limaCornerBadge = promo.customBadgeClass === 'lima-only' ? '<div class="corner-badge-lima"></div>' : '';
+
                 card.innerHTML = `
                     ${badgeHtml}
+                    ${limaCornerBadge}
                     <div class="promotion-icon">${promo.icon}</div>
                     <div class="promotion-info">
                         <div class="promotion-name">${promo.name}</div>
