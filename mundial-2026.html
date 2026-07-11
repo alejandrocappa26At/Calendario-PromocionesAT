@@ -635,13 +635,17 @@
             overflow-x: auto;
             overflow-y: hidden;
             padding: 20px 0;
+            direction: rtl;
+            transform: scaleY(-1);
         }
 
         .bracket-grid {
+            direction: ltr;
             display: flex;
             gap: 30px;
             min-width: min-content;
             padding: 20px 10px;
+            transform: scaleY(-1);
         }
 
         .bracket-round {
