@@ -2142,62 +2142,8 @@
                 canjeDate: '2026-06-30',
                 available: true
             },
-            '2026-06-16-vale-virtual': {
-                name: 'PROMO VALE S/ 2 EN JUEGOS VIRTUALES',
-                category: 'purple',
-                icon: '<i class="fa-solid fa-ticket outline-icon"></i>',
-                description: 'Vale de S/ 2 para juegos virtuales por haber jugado ayer.',
-                htmlDetails: `
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
-                        <div class="promo-section-content">🎟️ Vale de S/ 2 en juegos virtuales.</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
-                        <div class="promo-section-content">Los clientes que jugaron ayer en los juegos virtuales, por cualquier monto, recibirán un vale de S/ 2 para canjear hoy.</div>
-                    </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
-                        <div class="promo-section-content">📍 El canje se realizará en el segundo diamante de Gestión.</div>
-                    </div>
-                `,
-                startDate: '2026-06-16',
-                endDate: '2026-06-16',
-                available: false
-            },
-            '2026-06-16-yaco': {
-                name: 'PROMO ENTRADAS YACO Y EL LOCO',
-                category: 'yellow',
-                icon: '<i class="fa-solid fa-ticket outline-icon"></i>',
-                description: '¡Sorteamos 20 entradas dobles para ver a Yaco y el Loco!',
-                htmlDetails: `
-                    <div class="promo-section highlight" style="background-color: #333333; border-left: 4px solid #ff3b30;">
-                        <div class="promo-section-title"><i class="fa-solid fa-exclamation-circle"></i> Estado</div>
-                        <div class="promo-section-content" style="color: #ff3b30; font-weight: bold;">⚠️ ESTA PROMOCIÓN NO ESTÁ VIGENTE</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
-                        <div class="promo-section-content">🎉 20 entradas dobles para ver a Yaco y el Loco.</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
-                        <div class="promo-section-content">Promoción válida desde hoy hasta el 22 de junio.</div>
-                    </div>
-                    <div class="promo-section">
-                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo</div>
-                        <div class="promo-section-content">Para participar, el cliente deberá:<br><br>🔹 Registrarse escaneando el código QR del flyer.<br>🔹 Realizar apuestas de S/ 10 o más en apuestas deportivas o juegos virtuales.<br><br>🎯 Cada apuesta acumulará más opciones de ganar.</div>
-                    </div>
-                    <div class="promo-section highlight">
-                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Ubicación</div>
-                        <div class="promo-section-content">Esta promoción es válida <strong>únicamente para Lima Metropolitana</strong>.</div>
-                    </div>
-                `,
-                startDate: '2026-06-16',
-                endDate: '2026-06-22',
-                customBadgeText: 'NO VIGENTE',
-                customBadgeClass: 'promo-no-vigente',
-                available: false
-            },
+
+
             '2026-06-19-racha3': {
                 name: 'PROMO LA RACHA VIRTUALERA',
                 category: 'blue',
@@ -3168,8 +3114,13 @@
                 return stateOrder[a.state] - stateOrder[b.state];
             });
 
-            // Renderizar promociones ordenadas
+            // Renderizar promociones ordenadas - SOLO VIGENTES
             promoList.forEach(({ dateStr, promo, state }) => {
+                // Saltar promociones expiradas y próximas
+                if (state === 'expirado' || state === 'proximamente') {
+                    return;
+                }
+
                 const card = document.createElement('div');
                 
                 card.className = `promotion-card ${promo.category}`;
@@ -3195,16 +3146,6 @@
                     } else {
                         badgeHtml = '<div class="promo-badge canje">CANJE DISPONIBLE</div>';
                     }
-                    card.onclick = () => showModal(promo);
-                } else if (state === 'expirado') {
-                    card.classList.add('unavailable');
-                    badgeHtml = '<div class="promo-badge expirado">PROMOCIÓN EXPIRADA</div>';
-                    exploreText = '• NO VIGENTE';
-                    card.onclick = () => showModal(promo);
-                } else if (state === 'proximamente') {
-                    card.classList.add('unavailable');
-                    badgeHtml = '<div class="promo-badge proximo">PRÓXIMAMENTE</div>';
-                    exploreText = '• NO INICIADA';
                     card.onclick = () => showModal(promo);
                 }
 
