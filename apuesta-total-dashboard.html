@@ -457,6 +457,23 @@
             color: #888888;
         }
 
+        .promotion-card.proximamente {
+            border-color: #444444;
+            opacity: 0.5;
+            filter: grayscale(80%);
+            cursor: default;
+        }
+
+        .promotion-card.proximamente:hover:not(.unavailable) {
+            transform: none;
+            filter: grayscale(80%);
+            box-shadow: none;
+        }
+
+        .promotion-card.proximamente .promotion-name {
+            color: #aaaaaa;
+        }
+
         /* ==================== BADGES PROMOCIONES ==================== */
         .promo-badge {
             position: absolute;
@@ -510,6 +527,12 @@
             box-shadow: 0 0 15px rgba(255, 59, 48, 0.7), 0 0 25px rgba(255, 149, 0, 0.5);
             border: 1px solid #fff;
             animation: pulse-hot 1.2s infinite ease-in-out;
+        }
+        .promo-badge.proximamente {
+            background: #666666;
+            color: #cccccc;
+            box-shadow: 0 0 8px rgba(102, 102, 102, 0.4);
+            border: 1px solid #888888;
         }
 
         /* ==================== BADGE DE ESQUINA LIMA-ONLY ==================== */
@@ -3055,6 +3078,59 @@
                 endDate: '2026-08-02',
                 announcementDate: '2026-08-03',
                 available: true
+            },
+            '2026-07-21-apuesta-gratis-15-bb': {
+                name: 'PROMO APUESTA GRATIS DE S/15 BB',
+                category: 'green',
+                icon: '<i class="fa-solid fa-gift outline-icon"></i>',
+                description: 'Free Bet de S/15 para apuestas deportivas con Bet Builder.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">
+                            🎁 <strong>Free Bet de S/15</strong> para ser canjeada en cualquier apuesta deportiva.<br><br>
+                            💰 Se emite por el valor exacto de <strong>S/15 en un solo ticket</strong>.<br><br>
+                            ⚖️ <strong>Conversión máxima: S/15</strong> (sin posibilidad de incrementar el monto).<br><br>
+                            👤 <strong>Máximo 1 Free Bet por cliente</strong> durante toda la vigencia.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">
+                            <strong>Realización de apuestas:</strong> <strong>Martes 21 de julio de 2026</strong>.<br><br>
+                            <strong>Canje del Free Bet:</strong> <strong>Miércoles 22 de julio de 2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo (Condiciones)</div>
+                        <div class="promo-section-content">
+                            <strong>El cliente debe realizar:</strong><br><br>
+                            ✅ <strong>3 apuestas deportivas</strong>.<br><br>
+                            ✅ Cada apuesta debe ser de <strong>S/10 o más</strong>.<br><br>
+                            ✅ Cada ticket debe tener una <strong>cuota total superior a 1.3</strong>.<br><br>
+                            ✅ <strong>Cada ticket debe contener al menos una Bet Builder</strong>.<br><br>
+                            ✅ Participan todos los <strong>tickets emitidos y calculados el martes 21/07/2026</strong>.
+                        </div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">
+                            🎟️ <strong>La Free Bet se podrá canjear el miércoles 22/07/2026</strong>.<br><br>
+                            📍 <strong>Vigencia en tiendas:</strong> Válido solo en <strong>tiendas de Apuesta Total</strong>.<br><br>
+                            🎯 <strong>Requisitos clave:</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Exactamente 3 apuestas deportivas<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Mínimo S/10 por ticket<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Cuota total superior a 1.3 cada uno<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Cada ticket con Bet Builder<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Válidas solo 21/07<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;• Canje el 22/07
+                        </div>
+                    </div>
+                `,
+                startDate: '2026-07-21',
+                endDate: '2026-07-21',
+                canjeDate: '2026-07-22',
+                available: true
             }
         };
 
@@ -3170,16 +3246,20 @@
                 return stateOrder[a.state] - stateOrder[b.state];
             });
 
-            // Renderizar promociones ordenadas - SOLO VIGENTES
+            // Renderizar promociones ordenadas - VIGENTES Y PRÓXIMAS
             promoList.forEach(({ dateStr, promo, state }) => {
-                // Saltar promociones expiradas y próximas
-                if (state === 'expirado' || state === 'proximamente') {
+                // Saltar solo las promociones expiradas
+                if (state === 'expirado') {
                     return;
                 }
 
                 const card = document.createElement('div');
                 
                 card.className = `promotion-card ${promo.category}`;
+                if (state === 'proximamente') {
+                    card.classList.add('proximamente');
+                }
+                
                 let badgeHtml = '';
                 let exploreText = '• EXPLORAR';
 
@@ -3187,7 +3267,11 @@
                 const isLastDay = (promo.endDate && systemDate === promo.endDate);
                 const isLastCanjeDay = (promo.canjeDate && systemDate === promo.canjeDate);
 
-                if (state === 'activo') {
+                if (state === 'proximamente') {
+                    badgeHtml = '<div class="promo-badge proximamente">PROXIMAMENTE</div>';
+                    card.onclick = null; // No hacer click en promociones próximas
+                    exploreText = ''; // Sin texto explorar
+                } else if (state === 'activo') {
                     card.onclick = () => showModal(promo);
                     if (promo.customBadgeText) {
                         badgeHtml = `<div class="promo-badge ${promo.customBadgeClass}">${promo.customBadgeText}</div>`;
@@ -3211,7 +3295,7 @@
                 }
 
                 // Badge de esquina para Lima-only
-                const limaCornerBadge = promo.customBadgeClass === 'lima-only' ? '<div class="corner-badge-lima"></div>' : '';
+                const limaCornerBadge = (promo.customBadgeClass === 'lima-only' && state !== 'proximamente') ? '<div class="corner-badge-lima"></div>' : '';
 
                 card.innerHTML = `
                     ${badgeHtml}
