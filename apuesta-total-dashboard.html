@@ -234,32 +234,6 @@
             margin-right: 4px;
         }
 
-        /* ==================== ANIMACIÓN SEÑALÉTICA (FIXTURE MUNDIAL) ==================== */
-        @keyframes parpadeoSenaleticaMundial {
-            0%, 100% {
-                background: transparent;
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-                color: #ffd700;
-                border-color: #ffd700;
-            }
-            50% {
-                background: rgba(255, 215, 0, 0.3);
-                box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 215, 0, 0.5);
-                color: #ffffff;
-                border-color: #ffffff;
-            }
-        }
-
-        #btn-fixture-mundial {
-            animation: parpadeoSenaleticaMundial 1.5s infinite;
-            border-width: 2px;
-        }
-
-        #btn-fixture-mundial i.fa-arrow-right {
-            font-size: 18px; /* Flecha grande y visible */
-            margin-left: 6px;
-        }
-
         /* ==================== CONTAINER ==================== */
         .container {
             max-width: 1400px;
@@ -309,25 +283,6 @@
         }
 
         /* ==================== ANIMACIÓN COPA DEL MUNDO ==================== */
-        .world-cup-logo {
-            height: 100px;
-            width: auto;
-            object-fit: contain;
-            animation: rotateTrophy3D 4s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        @keyframes rotateTrophy3D {
-            0%, 100% {
-                transform: perspective(500px) rotateY(-20deg);
-                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-            }
-            50% {
-                transform: perspective(500px) rotateY(20deg);
-                filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.8));
-            }
-        }
-
         /* ==================== PROMOCIONES ==================== */
         .promotions-section {
             margin-bottom: 50px;
@@ -1294,9 +1249,6 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="header-btn yellow" id="btn-fixture-mundial" onclick="window.open('mundial-2026.html', '_blank')">
-                🏆 FIXTURE MUNDIAL <i class="fa-solid fa-arrow-right"></i>
-            </button>
             <button class="header-btn green" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
                 ⚡ DATO AT - GRILLA <i class="fa-solid fa-arrow-right"></i>
             </button>
@@ -1314,7 +1266,6 @@
                     <span class="month-name" id="monthName">JUNIO</span>
                     <span class="month-year" id="yearName">2026</span>
                 </div>
-                <img src="img/Logo2.png" alt="Logo Copa del Mundo" class="world-cup-logo">
             </div>
             <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
         </div>
@@ -3272,26 +3223,28 @@
             // Crear array de promociones con sus estados
             const promoList = [];
             Object.entries(promotions).forEach(([dateStr, promo]) => {
-                let state = 'activo';
-                if (promo.canjeDate && systemDate > promo.canjeDate) {
-                    state = 'expirado';
-                } else if (promo.endDate && systemDate > promo.endDate) {
-                    state = 'canje';
-                } else if (promo.startDate && systemDate < promo.startDate) {
-                    state = 'proximamente';
-                }
-
                 // Fallback si "available" es false
                 if (promo.available === false) {
+                    promoList.push({ dateStr, promo, state: 'expirado' });
+                    return;
+                }
+
+                // Usar la fecha de canje si existe, si no usar la fecha de fin
+                const effectiveEndDate = promo.canjeDate || promo.endDate;
+                
+                let state = 'activo';
+                if (systemDate > effectiveEndDate) {
                     state = 'expirado';
+                } else if (systemDate < promo.startDate) {
+                    state = 'proximamente';
                 }
 
                 promoList.push({ dateStr, promo, state });
             });
 
-            // Ordenar promociones: activas/canje primero, luego próximas, finalmente expiradas
+            // Ordenar promociones: activas primero, luego próximas
             promoList.sort((a, b) => {
-                const stateOrder = { 'activo': 0, 'canje': 0, 'proximamente': 1, 'expirado': 2 };
+                const stateOrder = { 'activo': 0, 'proximamente': 1, 'expirado': 2 };
                 return stateOrder[a.state] - stateOrder[b.state];
             });
 
@@ -3327,15 +3280,6 @@
                     } else {
                         badgeHtml = '<div class="promo-badge activo">ACTIVA</div>';
                     }
-                } else if (state === 'canje') {
-                    card.classList.add('canje-disponible');
-                    badgeHtml = '<div class="promo-badge canje">CANJE DISPONIBLE</div>';
-                    if (isLastCanjeDay) {
-                        badgeHtml = '<div class="promo-badge ultimo-dia">🔥 ¡ÚLTIMO DÍA DE CANJE!</div>';
-                    } else {
-                        badgeHtml = '<div class="promo-badge canje">CANJE DISPONIBLE</div>';
-                    }
-                    card.onclick = () => showModal(promo);
                 }
 
                 // Prioridad al badge de "Último Día" si la promo está activa
