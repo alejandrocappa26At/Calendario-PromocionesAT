@@ -23,28 +23,32 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #0b0b0b;
+            background-color: #0a0a0a;
+            background-image: linear-gradient(135deg, rgba(29,185,84,0.02) 0%, transparent 100%);
+            background-attachment: fixed;
+            background-position: center, center;
+            background-repeat: repeat, no-repeat;
             color: #ffffff;
             line-height: 1.6;
         }
 
-        /* Scrollbar personalizado */
+        /* Scrollbar minimalista Spotify */
         ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #121212;
+            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #5a5a5a;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #b3b3b3;
+            background: rgba(255, 255, 255, 0.4);
         }
 
         /* ==================== HEADER ==================== */
@@ -283,7 +287,7 @@
         }
 
         /* ==================== ANIMACIÓN COPA DEL MUNDO ==================== */
-        /* ==================== PROMOCIONES ==================== */
+        /* ==================== PROMOCIONES - SPORTSBOOK PREMIUM ==================== */
         .promotions-section {
             margin-bottom: 50px;
         }
@@ -291,129 +295,133 @@
         .section-title {
             font-size: 24px;
             font-weight: 700;
-            font-style: italic;
+            font-style: normal;
             margin-bottom: 24px;
             color: #ffffff;
             letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4), 0 0 24px rgba(255, 255, 255, 0.2);
         }
 
         .promotions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 16px;
             margin-bottom: 40px;
         }
 
         .promotion-card {
-            background: #111111;
-            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(30,30,30,0.5), rgba(40,40,40,0.3));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 20px;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             align-items: center;
             gap: 16px;
-            border: 1px solid #222222;
+            border: 1px solid rgba(100, 100, 100, 0.2);
             position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .promotion-card:hover:not(.unavailable) {
-            transform: translateY(-5px);
-            filter: brightness(1.1);
+        .promotion-card:hover:not(.unavailable):not(.proximamente) {
+            transform: translateY(-4px);
+            background: linear-gradient(135deg, rgba(40,40,40,0.6), rgba(50,50,50,0.4));
+            border: 1px solid rgba(100, 100, 100, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
 
         .promotion-card.green {
-            border-color: rgba(0, 255, 102, 0.3);
+            border: 1px solid rgba(29, 185, 84, 0.2);
         }
         .promotion-card.green:hover:not(.unavailable) { 
-            border-color: #00ff66;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6), 0 0 40px rgba(0, 255, 102, 0.4); 
+            border-color: rgba(29, 185, 84, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(29, 185, 84, 0.2); 
         }
         .promotion-card.green .outline-icon {
-            -webkit-text-stroke-color: #00ff66;
+            -webkit-text-stroke-color: #1DB954;
         }
 
         .promotion-card.yellow {
-            border-color: rgba(255, 153, 0, 0.3); /* Naranja neón */
+            border: 1px solid rgba(255, 153, 0, 0.2);
         }
         .promotion-card.yellow:hover:not(.unavailable) { 
-            border-color: #ff9900;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 0 40px rgba(255, 153, 0, 0.4); 
+            border-color: rgba(255, 153, 0, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 153, 0, 0.2); 
         }
         .promotion-card.yellow .outline-icon {
-            -webkit-text-stroke-color: #ff9900;
+            -webkit-text-stroke-color: #ffd700;
         }
 
         .promotion-card.purple {
-            border-color: rgba(157, 78, 221, 0.3);
+            border: 1px solid rgba(180, 142, 239, 0.2);
         }
         .promotion-card.purple:hover:not(.unavailable) { 
-            border-color: #9d4edd;
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.6), 0 0 40px rgba(157, 78, 221, 0.4); 
+            border-color: rgba(180, 142, 239, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(180, 142, 239, 0.2); 
         }
         .promotion-card.purple .outline-icon {
-            -webkit-text-stroke-color: #9d4edd;
+            -webkit-text-stroke-color: #b48eef;
         }
 
         .promotion-card.blue {
-            border-color: rgba(0, 217, 255, 0.3);
+            border: 1px solid rgba(0, 217, 255, 0.2);
         }
         .promotion-card.blue:hover:not(.unavailable) { 
-            border-color: #00d9ff;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.4); 
+            border-color: rgba(0, 217, 255, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 217, 255, 0.2); 
         }
         .promotion-card.blue .outline-icon {
             -webkit-text-stroke-color: #00d9ff;
         }
 
         .promotion-card.red {
-            border-color: rgba(255, 0, 102, 0.3);
+            border: 1px solid rgba(255, 0, 102, 0.2);
         }
         .promotion-card.red:hover:not(.unavailable) { 
-            border-color: #ff0066;
-            box-shadow: 0 0 20px rgba(255, 0, 102, 0.6), 0 0 40px rgba(255, 0, 102, 0.4); 
+            border-color: rgba(255, 0, 102, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 0, 102, 0.2); 
         }
         .promotion-card.red .outline-icon {
             -webkit-text-stroke-color: #ff0066;
         }
 
         .promotion-card.orange {
-            border-color: rgba(255, 153, 0, 0.3);
+            border: 1px solid rgba(255, 149, 0, 0.2);
         }
         .promotion-card.orange:hover:not(.unavailable) { 
-            border-color: #ff9900;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 0 40px rgba(255, 153, 0, 0.4); 
+            border-color: rgba(255, 149, 0, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 149, 0, 0.2); 
         }
         .promotion-card.orange .outline-icon {
-            -webkit-text-stroke-color: #ff9900;
+            -webkit-text-stroke-color: #ff9500;
         }
 
         .promotion-card.magenta {
-            border-color: rgba(255, 20, 147, 0.3);
+            border: 1px solid rgba(255, 20, 147, 0.2);
         }
         .promotion-card.magenta:hover:not(.unavailable) { 
-            border-color: #ff1493;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6), 0 0 40px rgba(255, 20, 147, 0.4); 
+            border-color: rgba(255, 20, 147, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 20, 147, 0.2); 
         }
         .promotion-card.magenta .outline-icon {
             -webkit-text-stroke-color: #ff1493;
         }
 
         .promotion-card.unavailable {
-            border-color: #333333;
+            border-color: rgba(100, 100, 100, 0.1);
             box-shadow: none;
-            opacity: 0.5;
-            cursor: pointer;
+            opacity: 0.4;
+            cursor: default;
             filter: grayscale(100%);
         }
 
         .promotion-card.unavailable .promotion-name {
-            color: #888888;
+            color: #666666;
         }
 
         .promotion-card.proximamente {
-            border-color: #444444;
+            border-color: rgba(100, 100, 100, 0.15);
             opacity: 0.5;
             filter: grayscale(80%);
             cursor: default;
@@ -422,75 +430,65 @@
         .promotion-card.proximamente:hover:not(.unavailable) {
             transform: none;
             filter: grayscale(80%);
-            box-shadow: none;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(30,30,30,0.5), rgba(40,40,40,0.3));
         }
 
         .promotion-card.proximamente .promotion-name {
-            color: #aaaaaa;
+            color: #888888;
         }
 
-        /* ==================== BADGES PROMOCIONES ==================== */
+        /* ==================== BADGES PROMOCIONES PREMIUM ==================== */
         .promo-badge {
             position: absolute;
             top: -10px;
             right: 15px;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 50px;
             font-size: 10px;
-            font-weight: 900;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             z-index: 10;
         }
         .promo-badge.expirado {
-            background: #222;
-            color: #888;
-            border: 1px solid #444;
+            background: rgba(50, 50, 50, 0.8);
+            color: #888888;
+            border: 1px solid rgba(100, 100, 100, 0.3);
         }
         .promo-badge.canje {
-            background: #ff9900;
-            color: #000;
-            box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+            background: linear-gradient(135deg, #ff9900, #ff7700);
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(255, 153, 0, 0.5);
         }
         .promo-badge.lima-only {
-            background: #ff0066;
+            background: linear-gradient(135deg, #ff0066, #ff3366);
             color: #ffffff;
-            box-shadow: 0 0 12px rgba(255, 0, 102, 0.6);
-            border: 1px solid #ff4d94;
+            box-shadow: 0 0 16px rgba(255, 0, 102, 0.5);
+            border: none;
         }
         .promo-badge.activo {
-            background: #00ff9d;
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.6), 0 0 25px rgba(0, 255, 157, 0.4);
-            border: 1px solid #fff;
-            animation: pulse-green 1.5s infinite ease-in-out;
+            background: linear-gradient(135deg, #1DB954, #1ed760);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.6);
+            border: none;
         }
 
-        @keyframes pulse-green {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 15px rgba(0, 255, 157, 0.6);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 25px rgba(0, 255, 157, 1);
-            }
-        }
         .promo-badge.ultimo-dia {
             background: linear-gradient(45deg, #ff3b30, #ff9500);
             color: #fff;
-            box-shadow: 0 0 15px rgba(255, 59, 48, 0.7), 0 0 25px rgba(255, 149, 0, 0.5);
-            border: 1px solid #fff;
-            animation: pulse-hot 1.2s infinite ease-in-out;
-        }
-        .promo-badge.proximamente {
-            background: #666666;
-            color: #cccccc;
-            box-shadow: 0 0 8px rgba(102, 102, 102, 0.4);
-            border: 1px solid #888888;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.7);
+            border: none;
         }
 
-        /* ==================== BADGE DE ESQUINA LIMA-ONLY ==================== */
+        .promo-badge.proximamente {
+            background: rgba(100, 100, 100, 0.7);
+            color: #d0d0d0;
+            box-shadow: none;
+            border: none;
+        }
+
+        /* ==================== BADGES ESPECIALES ==================== */
         .corner-badge-lima {
             position: absolute;
             top: -8px;
@@ -590,125 +588,225 @@
         .promotion-name {
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
-            font-weight: 700;
-            font-weight: 500;
-            font-style: italic;
+            font-weight: 600;
+            font-style: normal;
             color: #ffffff;
             line-height: 1.3;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .promotion-explore {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
-            font-weight: 700;
             font-weight: 500;
-            font-style: italic;
-            color: #888888;
-            letter-spacing: 3px;
+            font-style: normal;
+            color: #b3b3b3;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
             transition: color 0.3s ease;
             margin-top: 4px;
         }
 
-        .promotion-card:hover:not(.unavailable) .promotion-explore {
+        .promotion-card:hover:not(.unavailable):not(.proximamente) .promotion-explore {
             color: #ffffff;
         }
 
         /* ==================== CALENDARIO ==================== */
+        /* ==================== CALENDARIO SPOTIFY PREMIUM + SPORTSBOOK ==================== */
         .calendar-wrapper {
-            background: #181818;
-            border-radius: 8px;
-            padding: 32px;
+            background: linear-gradient(135deg, rgba(15,15,15,0.8) 0%, rgba(18,18,18,0.8) 50%, rgba(10,10,10,0.9) 100%);
+            border-radius: 12px;
+            padding: 40px 32px;
+            position: relative;
+            border: 1px solid rgba(29, 185, 84, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        .calendar-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(90deg, rgba(100,100,100,0.08) 1px, transparent 1px) 0 0 / 100% 100%,
+                linear-gradient(rgba(100,100,100,0.08) 1px, transparent 1px) 0 0 / 100% 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            background-size: 14.28% 100%, 100% 14.28%;
+            z-index: 0;
         }
 
         .calendar-header {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 0;
+            margin-bottom: 24px;
+            padding: 0;
+            border-bottom: 2px solid rgba(29, 185, 84, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .calendar-header::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100,100,100,0.3), transparent);
         }
 
         .calendar-day-name {
             text-align: center;
-            font-weight: 500;
-            font-size: 14px;
-            color: #b3b3b3;
-            padding: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            font-size: 13px;
+            color: #ffffff;
+            padding: 16px 8px;
+            border-bottom: 1px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(100, 100, 100, 0.1);
+        }
+
+        .calendar-day-name:nth-child(7n) {
+            border-right: none;
+        }
+
+        .calendar-day-name:hover {
+            color: #1DB954;
+            text-shadow: 0 0 12px rgba(29, 185, 84, 0.3);
         }
 
         .calendar-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
+            gap: 0;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Línea de celda del calendario */
         .calendar-cell {
             aspect-ratio: 1;
-            background: transparent;
-            border-radius: 4px;
+            background: rgba(30, 30, 30, 0.4);
+            border-radius: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            min-height: 80px;
-            padding-top: 8px;
+            min-height: 100px;
+            padding-top: 12px;
+            border: 1px solid rgba(100, 100, 100, 0.15);
+            border-right: 1px solid rgba(100, 100, 100, 0.1);
+            border-bottom: 1px solid rgba(100, 100, 100, 0.1);
         }
 
-        .calendar-cell:hover {
-            background: #2a2a2a;
+        .calendar-cell:nth-child(7n) {
+            border-right: none;
+        }
+
+        .calendar-cell:hover:not(.empty) {
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.15), rgba(29, 185, 84, 0.08));
+            border: 1px solid #1DB954;
+            box-shadow: 0 0 28px rgba(29, 185, 84, 0.2), inset 0 0 16px rgba(29, 185, 84, 0.08);
+            transform: translateY(-2px);
         }
 
         .calendar-cell.today {
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.2), rgba(29, 185, 84, 0.1));
+            border: 2px solid #1DB954;
+            box-shadow: 0 0 40px rgba(29, 185, 84, 0.3), inset 0 0 24px rgba(29, 185, 84, 0.1);
+        }
+
+        .calendar-cell.today:hover {
+            box-shadow: 0 0 48px rgba(29, 185, 84, 0.4), inset 0 0 28px rgba(29, 185, 84, 0.15);
         }
 
         .calendar-cell.empty {
             cursor: default;
             background: transparent;
+            border: 1px solid transparent;
+            border-right: 1px solid rgba(100, 100, 100, 0.1);
+            border-bottom: 1px solid rgba(100, 100, 100, 0.1);
         }
 
         .calendar-cell.empty:hover {
             background: transparent;
+            border: 1px solid transparent;
+            border-right: 1px solid rgba(100, 100, 100, 0.1);
+            border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-cell.empty:nth-child(7n) {
+            border-right: none;
         }
 
         .cell-number {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
             color: #b3b3b3;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .calendar-cell:hover:not(.empty) .cell-number {
+            color: #1DB954;
+            font-size: 18px;
+            text-shadow: 0 0 12px rgba(29, 185, 84, 0.5);
         }
 
         .calendar-cell.today .cell-number {
-            color: #000000;
-            background: #1ED760;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1DB954, #1ed760);
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
         }
 
         .cell-icons {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
             padding: 8px;
-            font-size: 20px;
-            margin-top: 4px;
+            font-size: 18px;
+            margin-top: 6px;
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
         }
         
-        .cell-icons .green .outline-icon { -webkit-text-stroke-color: #00ff66; }
-        .cell-icons .yellow .outline-icon { -webkit-text-stroke-color: #ff9900; }
-        .cell-icons .purple .outline-icon { -webkit-text-stroke-color: #9d4edd; }
-        .cell-icons .blue .outline-icon { -webkit-text-stroke-color: #00d9ff; }
-        .cell-icons .red .outline-icon { -webkit-text-stroke-color: #ff0066; }
+        .cell-icons .green .outline-icon { 
+            -webkit-text-stroke-color: #1DB954;
+            filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.5));
+        }
+        .cell-icons .yellow .outline-icon { 
+            -webkit-text-stroke-color: #ffd700;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
+        }
+        .cell-icons .purple .outline-icon { 
+            -webkit-text-stroke-color: #b48eef;
+            filter: drop-shadow(0 0 6px rgba(180, 142, 239, 0.5));
+        }
+        .cell-icons .blue .outline-icon { 
+            -webkit-text-stroke-color: #00d9ff;
+            filter: drop-shadow(0 0 6px rgba(0, 217, 255, 0.5));
+        }
+        .cell-icons .red .outline-icon { 
+            -webkit-text-stroke-color: #ff0066;
+            filter: drop-shadow(0 0 6px rgba(255, 0, 102, 0.5));
+        }
 
         /* ==================== DATO AT - GRILLA PREMIUM ==================== */
         .grilla-view {
@@ -1174,7 +1272,7 @@
             }
 
             .container {
-                padding: 24px 20px;
+                padding: 24px 16px;
             }
 
             .month-display {
@@ -1182,11 +1280,27 @@
             }
 
             .calendar-wrapper {
-                padding: 20px;
+                padding: 32px 16px;
+            }
+
+            .calendar-header,
+            .calendar-days {
+                padding: 0 8px;
             }
 
             .calendar-cell {
-                min-height: 60px;
+                min-height: 80px;
+                font-size: 14px;
+            }
+
+            .cell-number {
+                font-size: 14px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .cell-icons {
+                font-size: 16px;
             }
 
             .header-btn {
@@ -1202,11 +1316,11 @@
                 text-align: center;
             }
 
-        .titulo {
+            .titulo {
                 font-size: 20px;
             }
 
-        .subtitulo {
+            .subtitulo {
                 font-size: 12px;
             }
 
@@ -1218,8 +1332,23 @@
                 grid-template-columns: 1fr;
             }
 
+            .calendar-wrapper {
+                padding: 24px 8px;
+            }
+
+            .calendar-header,
+            .calendar-days {
+                padding: 0 4px;
+            }
+
+            .calendar-day-name {
+                font-size: 11px;
+                padding: 12px 4px;
+            }
+
             .calendar-cell {
-                min-height: 50px;
+                min-height: 70px;
+                padding-top: 8px;
             }
 
             .cell-icons {
