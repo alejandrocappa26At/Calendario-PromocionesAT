@@ -1411,6 +1411,203 @@
                 font-size: 20px;
             }
         }
+
+        /* ==================== APUESTA TOTAL 2026 - VISUAL SYSTEM ==================== */
+        :root {
+            --at-red: #FF2D2D;
+            --at-red-glow: #FF4D4D;
+            --at-black: #050505;
+            --at-card: #111111;
+            --at-border: rgba(255, 255, 255, 0.1);
+            --at-muted: #8f9299;
+            --at-green: #00E676;
+            --at-radius: 18px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--at-black);
+            background-image:
+                radial-gradient(circle at top center, rgba(255, 45, 45, 0.15), transparent 35%),
+                radial-gradient(circle at right center, rgba(255, 45, 45, 0.08), transparent 40%),
+                radial-gradient(circle at left bottom, rgba(255, 255, 255, 0.03), transparent 30%),
+                repeating-linear-gradient(117deg, rgba(255, 255, 255, 0.008) 0 1px, transparent 1px 5px),
+                linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+            background-attachment: fixed;
+            background-size: 100% 100%, 120% 120%, 100% 100%, auto, 100% 100%;
+            animation: ambientBackground 18s ease-in-out infinite alternate;
+            color: #f7f7f8;
+        }
+
+        @keyframes ambientBackground {
+            from {
+                background-position: 50% 0%, 100% 50%, 0% 100%, 0 0, 0 0;
+            }
+            to {
+                background-position: 50% 4%, 92% 46%, 4% 94%, 8px 0, 0 0;
+            }
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.45);
+            box-shadow: 14vw 18vh rgba(255, 255, 255, 0.16), 82vw 12vh rgba(255, 45, 45, 0.28), 68vw 74vh rgba(255, 255, 255, 0.12), 24vw 86vh rgba(255, 45, 45, 0.16), 92vw 54vh rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            z-index: -1;
+            animation: ambientDrift 14s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            width: 1px;
+            height: 1px;
+            opacity: 0.55;
+            transform: translate(9vw, 6vh);
+            animation-delay: -6s;
+        }
+
+        @keyframes ambientDrift {
+            from { transform: translate3d(0, 0, 0); opacity: 0.65; }
+            to { transform: translate3d(1vw, -1.5vh, 0); opacity: 1; }
+        }
+
+        .header {
+            width: min(1400px, calc(100% - 48px));
+            margin: 16px auto 0;
+            padding: 14px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: rgba(13, 13, 14, 0.78);
+            backdrop-filter: blur(24px) saturate(140%);
+            -webkit-backdrop-filter: blur(24px) saturate(140%);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .header-left { gap: 18px; }
+        .logo-box { width: 112px; }
+        .logo-box img { filter: drop-shadow(0 0 14px rgba(255, 45, 45, 0.22)); }
+        .titulo { font-size: clamp(28px, 3vw, 42px); letter-spacing: 0; line-height: 1; }
+        .total { color: var(--at-red); text-shadow: 0 0 18px rgba(255, 45, 45, 0.42); }
+        .subtitulo { margin-top: 9px; color: #a7a9ae; font-size: 11px; font-style: normal; letter-spacing: 1.8px; }
+        .emojis-neon { color: var(--at-red-glow); }
+
+        .header-right { gap: 10px; }
+        .header-btn {
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 11px;
+            letter-spacing: 1.4px;
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-btn:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 45, 45, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+
+        .header-btn.green {
+            border-color: rgba(0, 230, 118, 0.72);
+            color: var(--at-green);
+            box-shadow: 0 0 18px rgba(0, 230, 118, 0.12), inset 0 0 10px rgba(0, 230, 118, 0.06);
+        }
+
+        .container { max-width: 1400px; padding: 56px 32px 72px; }
+        .month-navigation {
+            margin-bottom: 32px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .month-nav-btn { width: 38px; height: 38px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #a8abb2; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+        .month-nav-btn:hover { color: #fff; background: rgba(255, 45, 45, 0.14); text-shadow: 0 0 14px rgba(255, 45, 45, 0.65); }
+        .month-display { font-size: clamp(24px, 3vw, 32px); letter-spacing: 2px; }
+        .month-display .month-year { color: var(--at-red); }
+        .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #d7d8dc; margin-bottom: 18px; }
+        .promotions-section { margin-bottom: 44px; }
+        .promotions-grid { gap: 14px; }
+        .promotion-card {
+            min-height: 86px;
+            border-radius: 20px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .promotion-card.green, .promotion-card.yellow, .promotion-card.purple, .promotion-card.blue, .promotion-card.red, .promotion-card.orange, .promotion-card.magenta { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .promotion-card:hover:not(.unavailable):not(.proximamente) { transform: scale(1.02) translateY(-4px); border-color: rgba(255, 45, 45, 0.2); box-shadow: 0 20px 50px rgba(255, 45, 45, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        .promotion-card.green { --promo-rgb: 0, 230, 118; }
+        .promotion-card.yellow { --promo-rgb: 255, 196, 0; }
+        .promotion-card.purple { --promo-rgb: 180, 142, 239; }
+        .promotion-card.blue { --promo-rgb: 0, 217, 255; }
+        .promotion-card.red { --promo-rgb: 255, 45, 45; }
+        .promotion-card.orange { --promo-rgb: 255, 149, 0; }
+        .promotion-card.magenta { --promo-rgb: 255, 20, 147; }
+        .promotion-card.green, .promotion-card.yellow, .promotion-card.purple, .promotion-card.blue, .promotion-card.red, .promotion-card.orange, .promotion-card.magenta {
+            background: radial-gradient(circle at 12% 50%, rgba(var(--promo-rgb), 0.16), transparent 34%), rgba(255, 255, 255, 0.03);
+            border-color: rgba(var(--promo-rgb), 0.38);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), 0 0 22px rgba(var(--promo-rgb), 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .promotion-card.green .promotion-icon, .promotion-card.yellow .promotion-icon, .promotion-card.purple .promotion-icon, .promotion-card.blue .promotion-icon, .promotion-card.red .promotion-icon, .promotion-card.orange .promotion-icon, .promotion-card.magenta .promotion-icon {
+            border-radius: 12px;
+            background: rgba(var(--promo-rgb), 0.1);
+            box-shadow: 0 0 20px rgba(var(--promo-rgb), 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .promotion-card.green:hover:not(.unavailable):not(.proximamente), .promotion-card.yellow:hover:not(.unavailable):not(.proximamente), .promotion-card.purple:hover:not(.unavailable):not(.proximamente), .promotion-card.blue:hover:not(.unavailable):not(.proximamente), .promotion-card.red:hover:not(.unavailable):not(.proximamente), .promotion-card.orange:hover:not(.unavailable):not(.proximamente), .promotion-card.magenta:hover:not(.unavailable):not(.proximamente) {
+            border-color: rgba(var(--promo-rgb), 0.8);
+            background: radial-gradient(circle at 12% 50%, rgba(var(--promo-rgb), 0.24), transparent 42%), rgba(255, 255, 255, 0.045);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32), 0 0 30px rgba(var(--promo-rgb), 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+        .promotion-info { gap: 5px; }
+        .promotion-name { font-size: 13px; letter-spacing: 0.8px; }
+        .promotion-explore { color: var(--at-muted); font-size: 9px; letter-spacing: 1px; }
+
+        .calendar-wrapper {
+            padding: 32px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.025);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        .calendar-wrapper::before { opacity: 0.35; }
+        .calendar-header { gap: 8px; margin-bottom: 12px; border-bottom-color: rgba(255, 255, 255, 0.08); }
+        .calendar-day-name { padding: 12px 8px; color: #979aa2; font-size: 10px; letter-spacing: 1.8px; border-right-color: rgba(255, 255, 255, 0.06); }
+        .calendar-day-name:hover { color: var(--at-red-glow); text-shadow: 0 0 12px rgba(255, 45, 45, 0.4); }
+        .calendar-days { gap: 8px; }
+        .calendar-cell { min-height: 104px; border-radius: 14px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+        .calendar-cell:hover:not(.empty) { transform: translateY(-3px); background: linear-gradient(135deg, rgba(255, 45, 45, 0.1), rgba(255, 255, 255, 0.035)); border-color: rgba(255, 45, 45, 0.15); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+        .calendar-cell.today { background: linear-gradient(135deg, rgba(255, 45, 45, 0.2), rgba(255, 45, 45, 0.055)); border-color: var(--at-red); box-shadow: 0 0 30px rgba(255, 45, 45, 0.24), inset 0 0 20px rgba(255, 45, 45, 0.08); }
+        .calendar-cell.today .cell-number { background: linear-gradient(135deg, var(--at-red), var(--at-red-glow)); box-shadow: 0 0 18px rgba(255, 45, 45, 0.58); }
+        .cell-number { color: #aeb1b8; }
+        .calendar-cell:hover:not(.empty) .cell-number { color: var(--at-red-glow); text-shadow: 0 0 12px rgba(255, 45, 45, 0.5); }
+
+        .grilla-header-section { padding-bottom: 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.09); }
+        .grilla-search, .grilla-date { border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 11px 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+        .grilla-card { border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+        .grilla-card:hover { border-color: var(--at-green); box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 24px rgba(0, 230, 118, 0.12); }
+
+        .modal { background: rgba(0, 0, 0, 0.78); }
+        .modal-content { border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.035); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 38px rgba(255, 45, 45, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+        .modal-header::after { background: linear-gradient(90deg, transparent, var(--at-red), transparent); box-shadow: 0 0 8px var(--at-red); }
+        .modal-close:hover { color: var(--at-red-glow); background: rgba(255, 45, 45, 0.12); box-shadow: 0 0 15px rgba(255, 45, 45, 0.3); }
+
+        @media (max-width: 768px) {
+            .header { width: calc(100% - 24px); margin-top: 12px; padding: 14px; }
+            .container { padding: 34px 16px 52px; }
+            .calendar-wrapper { padding: 18px 10px; }
+            .calendar-cell { min-height: 78px; }
+        }
     </style>
 </head>
 <body>
