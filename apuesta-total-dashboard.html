@@ -1099,8 +1099,10 @@
             border: 1px solid rgba(0, 255, 136, 0.3);
             border-radius: 24px;
             padding: 0;
-            max-width: 550px;
-            width: 90%;
+            max-width: 1500px;
+            width: 90vw;
+            height: 85vh;
+            max-height: 900px;
             animation: slideUp 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             box-shadow: 0 0 40px rgba(0, 255, 136, 0.15), inset 0 0 20px rgba(0, 255, 136, 0.05);
             position: relative;
@@ -1145,7 +1147,8 @@
         }
 
         .modal-header {
-            padding: 32px 32px 24px;
+            min-height: 112px;
+            padding: 26px 40px 24px;
             display: flex;
             align-items: center;
             gap: 16px;
@@ -1177,7 +1180,7 @@
 
         .modal-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
+            font-size: clamp(20px, 2vw, 30px);
             font-weight: 800;
             color: #ffffff;
             margin: 0;
@@ -1189,10 +1192,11 @@
 
         .modal-info {
             padding: 24px 32px 32px 32px;
-            max-height: 50vh;
+            max-height: calc(85vh - 128px);
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            align-content: start;
             gap: 16px;
         }
 
@@ -1212,6 +1216,185 @@
             padding: 20px;
             transition: all 0.3s ease;
             position: relative;
+        }
+
+        .modal-kpis {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 2px;
+            animation: dashboardReveal 0.45s both;
+        }
+
+        .modal-kpi {
+            min-height: 72px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.035);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(0, 0, 0, 0.16);
+        }
+
+        .modal-kpi-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #858993;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .modal-kpi-value {
+            display: block;
+            overflow: hidden;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.25;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .modal-info > .promo-section {
+            grid-column: span 6;
+            min-height: 132px;
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: dashboardReveal 0.45s both;
+        }
+
+        .modal-info > .promo-section:nth-child(2) { animation-delay: 0.06s; }
+        .modal-info > .promo-section:nth-child(3) { animation-delay: 0.12s; }
+        .modal-info > .promo-section:nth-child(4) { animation-delay: 0.18s; }
+        .modal-info > .promo-section:nth-child(5) { animation-delay: 0.24s; }
+
+        .modal-info > .promo-section.highlight {
+            grid-column: 1 / -1;
+            min-height: auto;
+        }
+
+        @keyframes dashboardReveal {
+            from { opacity: 0; transform: translateY(14px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .master-detail {
+            grid-column: 1 / -1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(260px, 0.32fr) minmax(0, 1fr);
+            gap: 18px;
+            animation: dashboardReveal 0.45s both;
+        }
+
+        .master-list-panel,
+        .master-detail-panel {
+            min-width: 0;
+            min-height: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.025);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 12px 36px rgba(0, 0, 0, 0.2);
+        }
+
+        .master-list-panel {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .master-list-heading {
+            padding: 18px 18px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: #8f9299;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .master-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .master-list::-webkit-scrollbar,
+        .master-detail-panel::-webkit-scrollbar { width: 5px; }
+        .master-list::-webkit-scrollbar-thumb,
+        .master-detail-panel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 99px; }
+
+        .master-promo-option {
+            position: relative;
+            width: 100%;
+            padding: 14px 14px 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.025);
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .master-promo-option::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 7px;
+            width: 3px;
+            border-radius: 99px;
+            background: var(--master-color, #ff2d2d);
+            box-shadow: 0 0 12px var(--master-color, #ff2d2d);
+        }
+
+        .master-promo-option:hover,
+        .master-promo-option.active {
+            transform: translateX(3px);
+            border-color: color-mix(in srgb, var(--master-color, #ff2d2d) 55%, transparent);
+            background: color-mix(in srgb, var(--master-color, #ff2d2d) 12%, rgba(255, 255, 255, 0.035));
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), 0 0 20px color-mix(in srgb, var(--master-color, #ff2d2d) 14%, transparent);
+        }
+
+        .master-promo-status { display: block; margin-bottom: 7px; color: var(--master-color, #00e676); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+        .master-promo-name { display: block; color: #f5f5f6; font-size: 12px; font-weight: 700; line-height: 1.35; }
+        .master-promo-index { display: block; margin-top: 7px; color: #777b84; font-size: 10px; }
+
+        .master-detail-panel {
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .master-detail-panel .modal-kpis { margin-bottom: 16px; }
+        .master-detail-panel .promo-section { min-height: 0; }
+        .master-detail-panel .promo-section.highlight { grid-column: 1 / -1; }
+
+        .master-detail-heading { margin-bottom: 2px; }
+        .master-detail-sections {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .master-detail-sections .promo-section {
+            min-width: 0;
+            min-height: 132px;
+        }
+
+        .master-detail-sections .promo-section.highlight { grid-column: 1 / -1; }
+
+        @media (max-width: 768px) {
+            .master-detail { grid-template-columns: 1fr; }
+            .master-list { max-height: 190px; }
+            .master-detail-panel { max-height: none; }
+            .master-detail-sections { grid-template-columns: 1fr; }
+            .master-detail-sections .promo-section.highlight { grid-column: 1; }
         }
 
         .promo-section:hover {
@@ -1607,6 +1790,13 @@
             .container { padding: 34px 16px 52px; }
             .calendar-wrapper { padding: 18px 10px; }
             .calendar-cell { min-height: 78px; }
+            .modal-content { width: 94vw; height: 90vh; border-radius: 20px; }
+            .modal-header { min-height: 92px; padding: 22px 24px 20px; }
+            .modal-title { font-size: 18px; padding-right: 24px; }
+            .modal-info { max-height: calc(90vh - 104px); padding: 18px; grid-template-columns: 1fr; }
+            .modal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .modal-info > .promo-section,
+            .modal-info > .promo-section.highlight { grid-column: 1; }
         }
     </style>
 </head>
@@ -4738,6 +4928,22 @@
             });
         }
 
+        function buildPromoKpis(promo) {
+            const categoryLabel = promo.category ? promo.category.toUpperCase() : 'PREMIUM';
+            const statusLabel = promo.available === false ? 'No disponible' : 'Activa';
+            const startLabel = promo.startDate ? formatDate(promo.startDate) : 'Ver condiciones';
+            const endLabel = promo.endDate ? formatDate(promo.endDate) : 'Sin fecha límite';
+
+            return `
+                <div class="modal-kpis" aria-label="Resumen de promoción">
+                    <div class="modal-kpi"><span class="modal-kpi-label">Estado</span><strong class="modal-kpi-value">${statusLabel}</strong></div>
+                    <div class="modal-kpi"><span class="modal-kpi-label">Categoría</span><strong class="modal-kpi-value">${categoryLabel}</strong></div>
+                    <div class="modal-kpi"><span class="modal-kpi-label">Inicio</span><strong class="modal-kpi-value">${startLabel}</strong></div>
+                    <div class="modal-kpi"><span class="modal-kpi-label">Fin / canje</span><strong class="modal-kpi-value">${promo.canjeDate ? formatDate(promo.canjeDate) : endLabel}</strong></div>
+                </div>
+            `;
+        }
+
         function showModal(data, dateStr = null) {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
@@ -4751,46 +4957,40 @@
             modalInfo.innerHTML = '';
 
             if (Array.isArray(data)) {
-                // Mostrar múltiples promociones (click en un día del calendario)
+                // Mostrar múltiples promociones con navegación master-detail
                 modalTitle.textContent = `Promociones del ${formatDate(dateStr)}`;
                 if (iconWrapper) iconWrapper.innerHTML = '<i class="fa-solid fa-layer-group" style="font-size: 24px; color: #fff;"></i>';
-                
-                // Color neón base cuando se muestran múltiples promociones
                 modalContent.classList.add('multi');
-                
+
                 const categoryColors = {
                     green: '#00ff66',
                     yellow: '#ff9900',
                     purple: '#9d4edd',
                     blue: '#00d9ff',
-                    red: '#ff0066'
+                    red: '#ff0066',
+                    orange: '#ff9900',
+                    magenta: '#ff1493'
                 };
 
-                const multiHeader = document.createElement('div');
-                multiHeader.style.marginBottom = '20px';
-                multiHeader.style.color = '#ddd';
-                multiHeader.style.fontSize = '14px';
-                multiHeader.style.textAlign = 'center';
-                multiHeader.style.background = 'rgba(255,255,255,0.05)';
-                multiHeader.style.padding = '12px';
-                multiHeader.style.borderRadius = '12px';
-                multiHeader.style.border = '1px solid rgba(255,255,255,0.1)';
-                multiHeader.innerHTML = `🌟 Hay <strong>${data.length} promociones</strong> vigentes en esta fecha.`;
-                modalInfo.appendChild(multiHeader);
+                modalInfo.innerHTML = `
+                    <div class="master-detail">
+                        <aside class="master-list-panel">
+                            <div class="master-list-heading">${data.length} promociones del día</div>
+                            <div class="master-list" id="masterPromoList"></div>
+                        </aside>
+                        <section class="master-detail-panel" id="masterPromoDetail" aria-live="polite"></section>
+                    </div>
+                `;
 
-                data.forEach((promo, index) => {
+                const promoList = document.getElementById('masterPromoList');
+                const promoDetail = document.getElementById('masterPromoDetail');
+
+                const renderSelectedPromo = (promo, index) => {
                     const promoColor = categoryColors[promo.category] || '#00ff88';
-                    const promoBlock = document.createElement('div');
-                    promoBlock.className = `multi-block ${promo.category}`;
-                    promoBlock.style.marginBottom = index < data.length - 1 ? '24px' : '0';
-                    promoBlock.style.padding = '24px 20px 20px 20px';
-                    promoBlock.style.borderRadius = '16px';
-                    promoBlock.style.border = `1px solid ${promoColor}60`;
-                    promoBlock.style.background = `rgba(11, 11, 15, 0.6)`;
-                    promoBlock.style.position = 'relative';
-                    promoBlock.style.boxShadow = `0 4px 20px ${promoColor}15`;
+                    modalContent.classList.remove('green', 'yellow', 'purple', 'blue', 'red', 'orange', 'magenta');
+                    modalContent.classList.add(promo.category || 'green');
 
-                    let details = promo.htmlDetails ? promo.htmlDetails : `
+                    const details = promo.htmlDetails ? promo.htmlDetails : `
                         <div class="promo-section">
                             <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
                             <div class="promo-section-content">${promo.description}</div>
@@ -4803,19 +5003,42 @@
                             <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Fin</div>
                             <div class="promo-section-content">${formatDate(promo.endDate)}</div>
                         </div>
-                    `;
-
-                    promoBlock.innerHTML = `
-                        <div style="position: absolute; top: -12px; left: 20px; background: #0b0b0b; padding: 2px 12px; color: ${promoColor}; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border: 1px solid ${promoColor}80; border-radius: 50px;">Promoción ${index + 1}</div>
-                        <h3 style="color: ${promoColor}; font-family: 'Montserrat', sans-serif; font-size: 16px; margin-bottom: 16px; margin-top: 4px; display: flex; align-items: center; gap: 10px; text-shadow: 0 0 10px ${promoColor}40;">
-                            <span style="font-size: 20px;">${promo.icon}</span> ${promo.name}
-                        </h3>
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            ${details}
+                        <div class="promo-section highlight">
+                            <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Condiciones</div>
+                            <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
                         </div>
                     `;
-                    modalInfo.appendChild(promoBlock);
+
+                    promoDetail.innerHTML = `
+                        <div class="master-detail-heading" style="--master-color: ${promoColor};">
+                            <span class="master-promo-status">Promoción ${index + 1} de ${data.length}</span>
+                            <h3 style="color: ${promoColor}; font-family: 'Montserrat', sans-serif; font-size: clamp(18px, 2vw, 25px); line-height: 1.2; margin: 0 0 18px; text-shadow: 0 0 14px ${promoColor}40;">${promo.name}</h3>
+                        </div>
+                        ${buildPromoKpis(promo)}
+                        <div class="master-detail-sections">${details}</div>
+                    `;
+
+                    promoList.querySelectorAll('.master-promo-option').forEach((option, optionIndex) => {
+                        option.classList.toggle('active', optionIndex === index);
+                    });
+                };
+
+                data.forEach((promo, index) => {
+                    const promoColor = categoryColors[promo.category] || '#00ff88';
+                    const option = document.createElement('button');
+                    option.type = 'button';
+                    option.className = 'master-promo-option';
+                    option.style.setProperty('--master-color', promoColor);
+                    option.innerHTML = `
+                        <span class="master-promo-status">Activa</span>
+                        <span class="master-promo-name">${promo.name}</span>
+                        <span class="master-promo-index">Ver detalle completo</span>
+                    `;
+                    option.addEventListener('click', () => renderSelectedPromo(promo, index));
+                    promoList.appendChild(option);
                 });
+
+                renderSelectedPromo(data[0], 0);
             } else {
                 // Mostrar una sola promoción (click directo en la tarjeta o en el ícono)
                 const promo = data;
@@ -4826,9 +5049,9 @@
                 modalContent.classList.add(promo.category);
 
                 if (promo.htmlDetails) {
-                    modalInfo.innerHTML = promo.htmlDetails;
+                    modalInfo.innerHTML = buildPromoKpis(promo) + promo.htmlDetails;
                 } else {
-                    modalInfo.innerHTML = `
+                    modalInfo.innerHTML = buildPromoKpis(promo) + `
                         <div class="promo-section">
                             <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
                             <div class="promo-section-content">${promo.description}</div>
