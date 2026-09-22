@@ -2237,8 +2237,8 @@
             {
                 date: '2026-09-22',
                 time: '20:00',
-                t1: 'IND. SANTA FE', f1: 'co',
-                t2: 'DEP. CALI', f2: 'co',
+                t1: 'IND. SANTA FE', f1: null,
+                t2: 'DEP. CALI', f2: null,
                 tv: ['RCN Nuestra Tele'],
                 datos: [
                     '🏆 Competencia: Primera A Colombia – Clausura, Fecha 11',
@@ -2256,8 +2256,8 @@
             {
                 date: '2026-09-23',
                 time: '15:00',
-                t1: 'ADT', f1: 'pe',
-                t2: 'CIENCIANO', f2: 'pe',
+                t1: 'ADT', f1: null,
+                t2: 'CIENCIANO', f2: null,
                 tv: ['L1 Max', 'Movistar Play'],
                 datos: [
                     '🏆 Competencia: Liga 1 – Clausura, Fecha 09',
@@ -5352,9 +5352,9 @@
                         </div>
 
                         <div class="grilla-teams">
-                            <div class="grilla-team"><img src="https://flagcdn.com/w80/${ev.f1}.png" class="grilla-flag"><span class="grilla-team-name">${ev.t1}</span></div>
+                            <div class="grilla-team">${ev.f1 ? `<img src="https://flagcdn.com/w80/${ev.f1}.png" class="grilla-flag" alt="">` : ''}<span class="grilla-team-name">${ev.t1}</span></div>
                             <div class="grilla-vs">VS</div>
-                            <div class="grilla-team"><img src="https://flagcdn.com/w80/${ev.f2}.png" class="grilla-flag"><span class="grilla-team-name">${ev.t2}</span></div>
+                            <div class="grilla-team">${ev.f2 ? `<img src="https://flagcdn.com/w80/${ev.f2}.png" class="grilla-flag" alt="">` : ''}<span class="grilla-team-name">${ev.t2}</span></div>
                         </div>
 
                         <div>
