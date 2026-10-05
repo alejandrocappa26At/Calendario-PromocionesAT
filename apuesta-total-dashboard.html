@@ -176,64 +176,41 @@
             letter-spacing: 1px;
         }
 
-        .header-btn.yellow {
-            border: 1px solid #ffd700;
-            color: #ffd700;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2), inset 0 0 5px rgba(255, 215, 0, 0.1);
+        .header-btn.lilac {
+            border: 1px solid rgba(167, 139, 250, 0.55);
+            color: #A78BFA;
+            box-shadow: 0 0 8px rgba(167, 139, 250, 0.12), inset 0 0 5px rgba(167, 139, 250, 0.06);
+            transition: all 0.28s ease;
         }
 
-        .header-btn.yellow:hover {
+        .header-btn.lilac:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 215, 0, 0.3);
-            background: #1a1a1a;
+            color: #C4B5FD;
+            border-color: rgba(196, 181, 253, 0.75);
+            box-shadow: 0 0 14px rgba(196, 181, 253, 0.22), inset 0 0 8px rgba(196, 181, 253, 0.1);
+            background: rgba(167, 139, 250, 0.08);
         }
 
         .header-btn.green {
-            border: 1px solid #00FF9D;
-            color: #00FF9D;
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2), inset 0 0 5px rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.42);
+            color: rgba(0, 255, 157, 0.82);
+            box-shadow: 0 0 8px rgba(0, 255, 157, 0.08), inset 0 0 5px rgba(0, 255, 157, 0.04);
+            transition: all 0.28s ease;
         }
 
         .header-btn.green:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.6), inset 0 0 10px rgba(0, 255, 157, 0.3);
-            background: #1a1a1a;
+            color: #00FF9D;
+            border-color: rgba(0, 255, 157, 0.6);
+            box-shadow: 0 0 14px rgba(0, 255, 157, 0.22), inset 0 0 8px rgba(0, 255, 157, 0.1);
+            background: rgba(0, 255, 157, 0.06);
         }
 
-        /* ==================== ANIMACIÓN SEÑALÉTICA (DATO AT - GRILLA) ==================== */
-        @keyframes parpadeoSenaleticaGrilla {
-            0%, 100% {
-                background: transparent;
-                box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
-                color: #00FF9D;
-                border-color: #00FF9D;
-            }
-            50% {
-                background: rgba(0, 255, 157, 0.3);
-                box-shadow: 0 0 25px rgba(0, 255, 157, 0.9), inset 0 0 15px rgba(0, 255, 157, 0.5);
-                color: #ffffff;
-                border-color: #ffffff;
-            }
-        }
+        /* ==================== BOTONES SEÑALÉTICOS (DATO AT - GRILLA / VOLVER) ====================
+           Sin parpadeo ni animaciones pulsantes: glow corto, sutil y elegante. */
 
         #btn-dato-grilla {
-            animation: parpadeoSenaleticaGrillaDorado 1.5s infinite;
             border-width: 2px;
-        }
-
-        @keyframes parpadeoSenaleticaGrillaDorado {
-            0%, 100% {
-                background: transparent;
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-                color: #ffd700;
-                border-color: #ffd700;
-            }
-            50% {
-                background: rgba(255, 215, 0, 0.95);
-                box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.35);
-                color: #1a1200;
-                border-color: #ffe44d;
-            }
         }
 
         #btn-dato-grilla i.fa-arrow-right {
@@ -241,9 +218,7 @@
             margin-left: 6px;
         }
 
-        /* ==================== ANIMACIÓN SEÑALÉTICA (VOLVER AL CALENDARIO) ==================== */
         #btn-volver-grilla {
-            animation: parpadeoSenaleticaGrilla 1.5s infinite;
             border-width: 2px;
             font-weight: 900;
         }
@@ -1291,6 +1266,11 @@
             min-height: auto;
         }
 
+        .modal-info > .promo-section.full-width {
+            grid-column: 1 / -1;
+            min-height: 0;
+        }
+
         @keyframes dashboardReveal {
             from { opacity: 0; transform: translateY(14px) scale(0.985); }
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -1404,12 +1384,18 @@
 
         .master-detail-sections .promo-section.highlight { grid-column: 1 / -1; }
 
+        .master-detail-sections .promo-section.full-width {
+            grid-column: 1 / -1;
+            min-height: 0;
+        }
+
         @media (max-width: 768px) {
             .master-detail { grid-template-columns: 1fr; }
             .master-list { max-height: 190px; }
             .master-detail-panel { max-height: none; }
             .master-detail-sections { grid-template-columns: 1fr; }
-            .master-detail-sections .promo-section.highlight { grid-column: 1; }
+            .master-detail-sections .promo-section.highlight,
+            .master-detail-sections .promo-section.full-width { grid-column: 1; }
         }
 
         .promo-section:hover {
@@ -1705,12 +1691,23 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        .header-btn:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 45, 45, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        .header-btn { transition: all 0.28s ease; }
+
+        .header-btn:hover {
+            transform: scale(1.02);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 14px rgba(255, 45, 45, 0.08);
+        }
 
         .header-btn.green {
-            border-color: rgba(0, 230, 118, 0.72);
+            border-color: rgba(0, 230, 118, 0.32);
+            color: rgba(0, 230, 118, 0.85);
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.05), inset 0 0 8px rgba(0, 230, 118, 0.03);
+        }
+
+        .header-btn.green:hover {
+            border-color: rgba(0, 230, 118, 0.5);
             color: var(--at-green);
-            box-shadow: 0 0 18px rgba(0, 230, 118, 0.12), inset 0 0 10px rgba(0, 230, 118, 0.06);
+            box-shadow: 0 0 14px rgba(0, 230, 118, 0.16), inset 0 0 8px rgba(0, 230, 118, 0.06);
         }
 
         .container { max-width: 1400px; padding: 56px 32px 72px; }
@@ -1811,7 +1808,8 @@
             .modal-info { max-height: calc(90vh - 104px); padding: 18px; grid-template-columns: 1fr; }
             .modal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .modal-info > .promo-section,
-            .modal-info > .promo-section.highlight { grid-column: 1; }
+            .modal-info > .promo-section.highlight,
+            .modal-info > .promo-section.full-width { grid-column: 1; }
         }
     </style>
 </head>
@@ -1828,7 +1826,7 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="header-btn yellow" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
+            <button class="header-btn lilac" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
                 ⚡ DATO AT - GRILLA <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -1881,7 +1879,7 @@
                 <div class="grilla-filters">
                     <input type="date" id="grillaDate" class="grilla-date" onchange="renderGrilla()">
                     <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..." oninput="renderGrilla()">
-                    <button class="header-btn" id="btn-volver-grilla" onclick="toggleGrillaView(false)">
+                    <button class="header-btn green" id="btn-volver-grilla" onclick="toggleGrillaView(false)">
                         <i class="fa-solid fa-arrow-left"></i> VOLVER AL CALENDARIO
                     </button>
                 </div>
@@ -5395,6 +5393,16 @@
             `;
         }
 
+        function markFullWidthSections(root) {
+            if (!root) return;
+            root.querySelectorAll('.promo-section').forEach((section) => {
+                const title = section.querySelector('.promo-section-title');
+                if (!title) return;
+                const text = title.textContent.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+                section.classList.toggle('full-width', text.includes('MECANICA'));
+            });
+        }
+
         function showModal(data, dateStr = null) {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
@@ -5469,6 +5477,8 @@
                         <div class="master-detail-sections">${details}</div>
                     `;
 
+                    markFullWidthSections(promoDetail);
+
                     promoList.querySelectorAll('.master-promo-option').forEach((option, optionIndex) => {
                         option.classList.toggle('active', optionIndex === index);
                     });
@@ -5521,6 +5531,8 @@
                         </div>
                     `;
                 }
+
+                markFullWidthSections(modalInfo);
             }
 
             modal.classList.add('active');
