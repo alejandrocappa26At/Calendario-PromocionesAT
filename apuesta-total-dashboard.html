@@ -217,8 +217,23 @@
         }
 
         #btn-dato-grilla {
-            animation: parpadeoSenaleticaGrilla 1.5s infinite;
+            animation: parpadeoSenaleticaGrillaDorado 1.5s infinite;
             border-width: 2px;
+        }
+
+        @keyframes parpadeoSenaleticaGrillaDorado {
+            0%, 100% {
+                background: transparent;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+                color: #ffd700;
+                border-color: #ffd700;
+            }
+            50% {
+                background: rgba(255, 215, 0, 0.95);
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.35);
+                color: #1a1200;
+                border-color: #ffe44d;
+            }
         }
 
         #btn-dato-grilla i.fa-arrow-right {
@@ -1813,7 +1828,7 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="header-btn green" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
+            <button class="header-btn yellow" id="btn-dato-grilla" onclick="toggleGrillaView(true)">
                 ⚡ DATO AT - GRILLA <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -2529,6 +2544,38 @@
                 startDate: '2026-10-02',
                 endDate: '2026-10-02',
                 canjeDate: '2026-10-02',
+                available: true
+            },
+            '2026-10-04-omnicanal-tarjetas': {
+                name: 'PROMO OMNICANAL – TARJETAS',
+                category: 'yellow',
+                icon: '<i class="fa-solid fa-clone outline-icon"></i>',
+                description: 'Free Bet de S/30 para ser canjeada en cualquier apuesta deportiva.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-gift outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>Free Bet de S/30</strong> para ser canjeada en cualquier apuesta deportiva.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">🗓 Participan todos los tickets realizados y calculados desde el <strong>04/10 hasta el 06/10</strong>.<br><br>📅 El cliente podrá cobrar su <strong>Free Bet el 07/10/2026</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo (Condiciones)</div>
+                        <div class="promo-section-content">✅ El cliente debe ganar al menos <strong>un ticket de apuesta múltiple</strong>.<br><br>✅ Cada apuesta debe tener un monto mínimo de <strong>S/10</strong>.<br><br>✅ Cada selección debe contar con una <strong>cuota mínima superior a 1.70</strong>.<br><br>✅ La apuesta múltiple debe estar compuesta exclusivamente por los siguientes mercados de tarjetas:<br><br>• Total de tarjetas.<br>• Total de tarjetas por equipo.<br>• Total de tarjetas 1X2.<br>• Habrá tarjeta roja.<br>• Jugador será amonestado.<br>• Ambos equipos reciben una tarjeta.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-star outline-icon"></i> Condiciones de la Free Bet</div>
+                        <div class="promo-section-content">🎟️ Se emitirá una Free Bet por el valor exacto de <strong>S/30</strong> en un solo ticket.<br><br>💸 El monto máximo de conversión es de <strong>S/30</strong>.<br><br>✅ Se entregará <strong>máximo una Free Bet por cliente</strong> durante toda la vigencia de la promoción.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">📍 Solo son válidas las apuestas múltiples que incluyan <strong>exclusivamente mercados de tarjetas</strong>, cumpliendo con el monto mínimo y la cuota mínima requerida por selección.</div>
+                    </div>
+                `,
+                startDate: '2026-10-04',
+                endDate: '2026-10-06',
+                canjeDate: '2026-10-07',
                 available: true
             },
             '2026-09-24-cross-virtuales-deportivas-freebet-s5': {
