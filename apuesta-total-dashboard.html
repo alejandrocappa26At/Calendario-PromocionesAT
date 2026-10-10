@@ -15,6 +15,10 @@
             box-sizing: border-box;
         }
 
+        img {
+            max-width: 100%;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
@@ -293,7 +297,7 @@
 
         .promotions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
             gap: 16px;
             margin-bottom: 40px;
         }
@@ -874,7 +878,7 @@
 
         .grilla-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
             gap: 24px;
         }
 
@@ -1811,6 +1815,211 @@
             .modal-info > .promo-section.highlight,
             .modal-info > .promo-section.full-width { grid-column: 1; }
         }
+
+        .calendar-wrapper {
+            --cal-frame: 3px;
+            border: var(--cal-frame) solid var(--at-red);
+            border-radius: 28px;
+            margin-top: 72px;
+            padding-top: 44px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 45, 45, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .calendar-wrapper::before {
+            border-radius: 24px;
+        }
+
+        .calendar-logo-box {
+            position: absolute;
+            top: calc(var(--cal-frame) * -1);
+            right: calc(var(--cal-frame) * -1);
+            transform: translateY(calc(-100% + 30px));
+            width: clamp(66px, 5vw, 84px);
+            height: clamp(66px, 5vw, 84px);
+            padding: 0;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.25);
+            z-index: 4;
+        }
+
+        .calendar-logo-box img {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-logo-box {
+                width: 64px;
+                height: 64px;
+                border-radius: 10px;
+            }
+        }
+
+        /* ==================== RESPONSIVE 2026 ==================== */
+        @media (max-width: 1024px) {
+            .container { padding: 40px 24px; }
+            .header { padding: 14px 24px; }
+            .logo-box { width: 112px; }
+            .titulo { font-size: clamp(24px, 3vw, 34px); }
+            .subtitulo { font-size: 11px; letter-spacing: 1.4px; }
+            .month-navigation { gap: 12px; margin-bottom: 26px; padding: 16px 18px; }
+            .month-display { font-size: clamp(20px, 3vw, 28px); }
+            .section-title { font-size: clamp(16px, 2vw, 22px); }
+            .calendar-cell { min-height: 96px; }
+            .master-detail { grid-template-columns: minmax(0, 1fr); }
+            .master-list { max-height: 220px; }
+        }
+
+        @media (max-width: 900px) {
+            .calendar-cell { aspect-ratio: auto; min-height: 88px; }
+            .calendar-header,
+            .calendar-days { gap: 6px; }
+            .calendar-day-name { font-size: 11px; padding: 14px 6px; letter-spacing: 1.2px; }
+            .grilla-grid { gap: 18px; }
+        }
+
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 14px; padding: 14px 18px; }
+            .header-left { flex-wrap: wrap; justify-content: center; gap: 14px; }
+            .header-text { text-align: center; }
+            .header-right { width: 100%; justify-content: center; }
+            .logo-box { width: 104px; }
+            .header-btn { padding: 11px 20px; font-size: 12px; }
+
+            .container { padding: 34px 16px 52px; }
+            .month-navigation { gap: 10px; padding: 16px; margin-bottom: 24px; }
+            .month-nav-btn { font-size: 24px; }
+            .month-display { font-size: clamp(18px, 4.5vw, 26px); }
+            .section-title { font-size: clamp(14px, 3.5vw, 18px); letter-spacing: 1.4px; margin-bottom: 14px; }
+            .promotions-section { margin-bottom: 36px; }
+            .promotions-grid { gap: 14px; margin-bottom: 28px; }
+            .promotion-card { padding: 16px; gap: 12px; }
+
+            .calendar-wrapper { padding: 44px 12px 16px; margin-top: 60px; }
+            .calendar-cell { min-height: 78px; padding-top: 8px; font-size: 13px; }
+            .calendar-header,
+            .calendar-days { gap: 6px; }
+            .calendar-day-name { font-size: 10px; padding: 11px 4px; letter-spacing: 1px; }
+            .cell-number { width: 26px; height: 26px; font-size: 14px; }
+            .cell-icons { font-size: 14px; gap: 5px; padding: 4px; margin-top: 4px; }
+
+            .grilla-header-section { gap: 14px; margin-bottom: 22px; }
+            .grilla-filters { width: 100%; gap: 10px; }
+            .grilla-search,
+            .grilla-date { flex: 1 1 100%; width: 100%; padding: 11px 16px; }
+            #btn-volver-grilla { width: 100%; justify-content: center; }
+            .grilla-grid { gap: 16px; }
+            .grilla-card { padding: 18px; border-radius: 18px; gap: 12px; }
+            .grilla-badge-container { top: 14px; right: 14px; }
+            .grilla-teams { padding: 12px; gap: 10px; }
+            .grilla-flag { width: 38px; height: 38px; }
+            .grilla-team-name { font-size: 12.5px; }
+            .grilla-datetime { flex-wrap: wrap; gap: 10px; font-size: 13px; }
+
+            .modal-header { min-height: 92px; padding: 20px 22px 18px; gap: 12px; }
+            .modal-title { font-size: clamp(15px, 3.2vw, 20px); padding-right: 34px; }
+            .modal-info { padding: 16px; gap: 14px; }
+            .modal-kpis { gap: 10px; }
+            .modal-kpi { min-height: 66px; padding: 12px 14px; }
+            .promo-section { padding: 16px; }
+            .promo-section-content { font-size: 12.5px; }
+        }
+
+        @media (max-width: 560px) {
+            .header { gap: 10px; padding: 12px 14px; }
+            .logo-box { width: 84px; }
+            .titulo { font-size: clamp(18px, 6vw, 24px); letter-spacing: 0.5px; }
+            .subtitulo { font-size: 10px; letter-spacing: 1.2px; margin-top: 6px; }
+            .header-btn { padding: 10px 16px; font-size: 11px; letter-spacing: 0.8px; gap: 6px; }
+
+            .container { padding: 30px 12px 48px; }
+            .month-navigation { gap: 8px; padding: 14px; margin-bottom: 20px; }
+            .month-nav-btn { font-size: 22px; }
+            .month-display { font-size: clamp(17px, 5vw, 22px); letter-spacing: 1px; }
+            .section-title { font-size: 13px; letter-spacing: 1.2px; margin-bottom: 12px; }
+            .promotions-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+            .promotion-card { padding: 15px; gap: 10px; min-height: 0; }
+            .promotion-icon { width: 34px; height: 34px; font-size: 18px; }
+            .promo-badge { font-size: 9px; padding: 5px 10px; right: 10px; letter-spacing: 0.3px; }
+            .corner-badge-lima { right: 0; top: 0; width: 96px; height: 96px; }
+
+            .calendar-wrapper { padding: 44px 8px 12px; margin-top: 56px; }
+            .calendar-cell { min-height: 64px; padding-top: 6px; }
+            .calendar-day-name { font-size: 9px; padding: 8px 2px; letter-spacing: 0.5px; }
+            .cell-number { width: 22px; height: 22px; font-size: 13px; }
+            .cell-icons { font-size: 12px; gap: 4px; padding: 3px; margin-top: 3px; }
+            .calendar-logo-box { width: 56px; height: 56px; border-radius: 10px; }
+
+            .grilla-card { padding: 16px; border-radius: 16px; }
+            .grilla-teams { padding: 10px; gap: 8px; }
+            .grilla-flag { width: 34px; height: 34px; }
+            .grilla-team-name { font-size: 12px; letter-spacing: 0.3px; }
+            .grilla-vs { font-size: 12px; }
+            .grilla-list li { font-size: 12.5px; }
+            .grilla-datetime { gap: 8px; font-size: 12.5px; }
+
+            .modal-content { width: 96vw; height: 92vh; max-height: none; border-radius: 18px; }
+            .modal-header { min-height: auto; padding: 16px 16px 14px; gap: 10px; }
+            .modal-icon-wrapper { width: 32px; height: 32px; }
+            .modal-title { font-size: 15px; padding-right: 34px; line-height: 1.25; }
+            .modal-close { top: 10px; right: 10px; width: 34px; height: 34px; }
+            .modal-info { padding: 14px; gap: 12px; max-height: calc(92vh - 84px); }
+            .modal-kpis { gap: 8px; }
+            .modal-kpi { min-height: 58px; padding: 10px 12px; border-radius: 12px; }
+            .modal-kpi-label { font-size: 8.5px; letter-spacing: 1px; margin-bottom: 5px; }
+            .modal-kpi-value { font-size: 12.5px; }
+            .promo-section { padding: 14px; border-radius: 14px; }
+            .promo-section-title { font-size: 12.5px; gap: 8px; margin-bottom: 6px; }
+            .promo-section-content { font-size: 12px; line-height: 1.55; }
+            .master-list { max-height: 150px; }
+            .master-detail-panel { padding: 14px; }
+            .master-promo-option { padding: 12px 12px 12px 16px; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 28px 10px 44px; }
+            .titulo { font-size: 18px; }
+            .subtitulo { font-size: 9px; letter-spacing: 1px; }
+            .logo-box { width: 74px; }
+            .header-btn { padding: 10px 14px; font-size: 10.5px; }
+            .month-navigation { padding: 12px; gap: 6px; }
+            .month-display { font-size: 16px; }
+            .section-title { font-size: 12px; letter-spacing: 1px; }
+
+            .calendar-wrapper { padding: 44px 6px 10px; margin-top: 54px; }
+            .calendar-cell { min-height: 56px; padding-top: 5px; }
+            .calendar-day-name { font-size: 8.5px; padding: 7px 1px; }
+            .cell-number { width: 20px; height: 20px; font-size: 12px; }
+            .cell-icons { font-size: 11px; gap: 3px; padding: 2px; margin-top: 2px; }
+            .calendar-logo-box { width: 52px; height: 52px; }
+
+            .promotion-icon { width: 30px; height: 30px; font-size: 16px; }
+            .grilla-flag { width: 30px; height: 30px; }
+            .grilla-card { padding: 14px; gap: 10px; }
+            .grilla-teams { padding: 8px; gap: 6px; }
+            .modal-content { width: 98vw; height: 94vh; }
+            .modal-info { padding: 12px; }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .header { flex-direction: row; gap: 12px; padding: 10px 16px; }
+            .header-left { flex-direction: row; gap: 10px; text-align: left; }
+            .header-right { width: auto; }
+            .logo-box { width: 64px; }
+            .titulo { font-size: 20px; }
+            .subtitulo { display: none; }
+            .container { padding-top: 20px; }
+            .calendar-wrapper { margin-top: 56px; padding-top: 40px; }
+            .modal-content { height: 94vh; }
+        }
     </style>
 </head>
 <body>
@@ -1857,6 +2066,9 @@
 
         <!-- ==================== CALENDAR ==================== -->
         <div class="calendar-wrapper">
+            <div class="calendar-logo-box">
+                <img src="img/logo4.jpg" alt="Logo AT">
+            </div>
             <div class="calendar-header">
                 <div class="calendar-day-name">Lun</div>
                 <div class="calendar-day-name">Mar</div>
