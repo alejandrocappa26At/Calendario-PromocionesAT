@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APUESTA TOTAL - Dashboard Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -19,7 +22,8 @@
             max-width: 100%;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             overflow-x: hidden;
@@ -28,7 +32,7 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background-color: #0a0a0a;
-            background-image: linear-gradient(135deg, rgba(29,185,84,0.02) 0%, transparent 100%);
+            background-image: linear-gradient(135deg, rgba(29, 185, 84, 0.02) 0%, transparent 100%);
             background-attachment: fixed;
             background-position: center, center;
             background-repeat: repeat, no-repeat;
@@ -115,10 +119,13 @@
         }
 
         @keyframes pulseTextGlow {
-            0%, 100% {
+
+            0%,
+            100% {
                 text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
                 color: #9e9e9e;
             }
+
             50% {
                 text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.5);
                 color: #ffffff;
@@ -135,10 +142,13 @@
         }
 
         @keyframes pulseNeonPurple {
-            0%, 100% {
+
+            0%,
+            100% {
                 text-shadow: 0 0 5px #e0aaff, 0 0 10px #c77dff;
                 opacity: 0.8;
             }
+
             50% {
                 text-shadow: 0 0 10px #e0aaff, 0 0 20px #c77dff, 0 0 30px #9d4edd, 0 0 40px #7b2cbf;
                 opacity: 1;
@@ -156,8 +166,15 @@
         }
 
         @keyframes floatUpHeart {
-            0% { transform: translateY(0) scale(0.5) rotate(-10deg); opacity: 1; }
-            100% { transform: translateY(-80px) scale(1.5) rotate(20deg); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(0.5) rotate(-10deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-80px) scale(1.5) rotate(20deg);
+                opacity: 0;
+            }
         }
 
         .header-right {
@@ -218,7 +235,8 @@
         }
 
         #btn-dato-grilla i.fa-arrow-right {
-            font-size: 18px; /* Flecha grande y visible */
+            font-size: 18px;
+            /* Flecha grande y visible */
             margin-left: 6px;
         }
 
@@ -228,7 +246,8 @@
         }
 
         #btn-volver-grilla i.fa-arrow-left {
-            font-size: 18px; /* Flecha grande y visible */
+            font-size: 18px;
+            /* Flecha grande y visible */
             margin-right: 4px;
         }
 
@@ -325,98 +344,112 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 35%, transparent 70%, rgba(255,255,255,0.04));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 35%, transparent 70%, rgba(255, 255, 255, 0.04));
             pointer-events: none;
             z-index: 0;
         }
 
         .promotion-card:hover:not(.unavailable):not(.proximamente) {
             transform: translateY(-4px);
-            background: linear-gradient(135deg, rgba(35,35,40,0.96), rgba(45,45,52,0.88));
+            background: linear-gradient(135deg, rgba(35, 35, 40, 0.96), rgba(45, 45, 52, 0.88));
             border-color: rgba(255, 255, 255, 0.22);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 18px 38px rgba(0, 0, 0, 0.54);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 18px 38px rgba(0, 0, 0, 0.54);
         }
 
         .promotion-card.green {
             border: 1.5px solid rgba(29, 185, 84, 0.7);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(29, 185, 84, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(29, 185, 84, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(29, 185, 84, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(29, 185, 84, 0.16);
         }
-        .promotion-card.green:hover:not(.unavailable) { 
+
+        .promotion-card.green:hover:not(.unavailable) {
             border-color: rgba(29, 185, 84, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(29, 185, 84, 0.3), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(29, 185, 84, 0.26); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(29, 185, 84, 0.3), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(29, 185, 84, 0.26);
         }
+
         .promotion-card.green .outline-icon {
             -webkit-text-stroke-color: #1DB954;
         }
 
         .promotion-card.yellow {
             border: 1.5px solid rgba(255, 196, 0, 0.75);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255, 196, 0, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 196, 0, 0.15);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 196, 0, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 196, 0, 0.15);
         }
-        .promotion-card.yellow:hover:not(.unavailable) { 
+
+        .promotion-card.yellow:hover:not(.unavailable) {
             border-color: rgba(255, 196, 0, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(255, 196, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 196, 0, 0.22); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 196, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 196, 0, 0.22);
         }
+
         .promotion-card.yellow .outline-icon {
             -webkit-text-stroke-color: #ffd700;
         }
 
         .promotion-card.purple {
             border: 1.5px solid rgba(180, 142, 239, 0.75);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(180, 142, 239, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(180, 142, 239, 0.18);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(180, 142, 239, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(180, 142, 239, 0.18);
         }
-        .promotion-card.purple:hover:not(.unavailable) { 
+
+        .promotion-card.purple:hover:not(.unavailable) {
             border-color: rgba(180, 142, 239, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(180, 142, 239, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(180, 142, 239, 0.26); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(180, 142, 239, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(180, 142, 239, 0.26);
         }
+
         .promotion-card.purple .outline-icon {
             -webkit-text-stroke-color: #b48eef;
         }
 
         .promotion-card.blue {
             border: 1.5px solid rgba(0, 217, 255, 0.7);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(0, 217, 255, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(0, 217, 255, 0.14);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(0, 217, 255, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(0, 217, 255, 0.14);
         }
-        .promotion-card.blue:hover:not(.unavailable) { 
+
+        .promotion-card.blue:hover:not(.unavailable) {
             border-color: rgba(0, 217, 255, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(0, 217, 255, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(0, 217, 255, 0.22); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(0, 217, 255, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(0, 217, 255, 0.22);
         }
+
         .promotion-card.blue .outline-icon {
             -webkit-text-stroke-color: #00d9ff;
         }
 
         .promotion-card.red {
             border: 1.5px solid rgba(255, 61, 92, 0.75);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255, 61, 92, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 61, 92, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 61, 92, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 61, 92, 0.16);
         }
-        .promotion-card.red:hover:not(.unavailable) { 
+
+        .promotion-card.red:hover:not(.unavailable) {
             border-color: rgba(255, 61, 92, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(255, 61, 92, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 61, 92, 0.24); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 61, 92, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 61, 92, 0.24);
         }
+
         .promotion-card.red .outline-icon {
             -webkit-text-stroke-color: #ff0066;
         }
 
         .promotion-card.orange {
             border: 1.5px solid rgba(255, 149, 0, 0.78);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255, 149, 0, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 149, 0, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 149, 0, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 149, 0, 0.16);
         }
-        .promotion-card.orange:hover:not(.unavailable) { 
+
+        .promotion-card.orange:hover:not(.unavailable) {
             border-color: rgba(255, 149, 0, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(255, 149, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 149, 0, 0.22); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 149, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 149, 0, 0.22);
         }
+
         .promotion-card.orange .outline-icon {
             -webkit-text-stroke-color: #ff9500;
         }
 
         .promotion-card.magenta {
             border: 1.5px solid rgba(255, 20, 147, 0.72);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255, 20, 147, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 20, 147, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 20, 147, 0.18), 0 12px 30px rgba(0, 0, 0, 0.38), 0 0 18px rgba(255, 20, 147, 0.16);
         }
-        .promotion-card.magenta:hover:not(.unavailable) { 
+
+        .promotion-card.magenta:hover:not(.unavailable) {
             border-color: rgba(255, 20, 147, 1);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(255, 20, 147, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 20, 147, 0.24); 
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 20, 147, 0.28), 0 18px 42px rgba(0, 0, 0, 0.52), 0 0 24px rgba(255, 20, 147, 0.24);
         }
+
         .promotion-card.magenta .outline-icon {
             -webkit-text-stroke-color: #ff1493;
         }
@@ -444,7 +477,7 @@
             transform: none;
             filter: grayscale(80%);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, rgba(30,30,30,0.5), rgba(40,40,40,0.3));
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.5), rgba(40, 40, 40, 0.3));
         }
 
         .promotion-card.proximamente .promotion-name {
@@ -453,15 +486,18 @@
 
         /* ==================== BADGES PROMOCIONES PREMIUM ==================== */
         @keyframes badgePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) scale(1);
                 opacity: 1;
-                box-shadow: 0 0 0 rgba(255,255,255,0), 0 0 10px rgba(255,255,255,0.12);
+                box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 0 10px rgba(255, 255, 255, 0.12);
             }
+
             50% {
                 transform: translateY(-1px) scale(1.02);
                 opacity: 0.96;
-                box-shadow: 0 0 18px rgba(255,255,255,0.22), 0 0 28px currentColor;
+                box-shadow: 0 0 18px rgba(255, 255, 255, 0.22), 0 0 28px currentColor;
             }
         }
 
@@ -476,38 +512,42 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             z-index: 10;
-            border: 1px solid rgba(255,255,255,0.22);
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             animation: badgePulse 1.8s ease-in-out infinite;
         }
+
         .promo-badge.expirado {
             background: rgba(50, 50, 50, 0.8);
             color: #888888;
             border: 1px solid rgba(100, 100, 100, 0.3);
         }
+
         .promo-badge.canje {
             background: linear-gradient(135deg, #ff9900, #ff7700);
             color: #ffffff;
             box-shadow: 0 0 16px rgba(255, 153, 0, 0.68);
         }
+
         .promo-badge.lima-only {
             background: linear-gradient(135deg, #ff0066, #ff3366);
             color: #ffffff;
             box-shadow: 0 0 18px rgba(255, 0, 102, 0.72);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
         .promo-badge.activo {
             background: linear-gradient(135deg, #1DB954, #1ed760);
             color: #000000;
             box-shadow: 0 0 22px rgba(29, 185, 84, 0.78);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .promo-badge.ultimo-dia {
             background: linear-gradient(45deg, #ff3b30, #ff9500);
             color: #fff;
             box-shadow: 0 0 24px rgba(255, 59, 48, 0.82), 0 0 30px rgba(255, 149, 0, 0.6);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .promo-badge.proximamente {
@@ -550,10 +590,13 @@
         }
 
         @keyframes pulse-hot {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 box-shadow: 0 0 15px rgba(255, 59, 48, 0.7), 0 0 25px rgba(255, 149, 0, 0.5);
             }
+
             50% {
                 transform: scale(1.05);
                 box-shadow: 0 0 25px rgba(255, 59, 48, 1), 0 0 40px rgba(255, 149, 0, 0.8);
@@ -570,10 +613,13 @@
         }
 
         @keyframes pulse-proximo {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 30px rgba(118, 75, 162, 0.6);
             }
+
             50% {
                 transform: scale(1.08);
                 box-shadow: 0 0 30px rgba(102, 126, 234, 1), 0 0 50px rgba(118, 75, 162, 0.9);
@@ -645,7 +691,7 @@
         /* ==================== CALENDARIO ==================== */
         /* ==================== CALENDARIO SPOTIFY PREMIUM + SPORTSBOOK ==================== */
         .calendar-wrapper {
-            background: linear-gradient(135deg, rgba(15,15,15,0.8) 0%, rgba(18,18,18,0.8) 50%, rgba(10,10,10,0.9) 100%);
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.8) 0%, rgba(18, 18, 18, 0.8) 50%, rgba(10, 10, 10, 0.9) 100%);
             border-radius: 12px;
             padding: 40px 32px;
             position: relative;
@@ -657,9 +703,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(90deg, rgba(100,100,100,0.08) 1px, transparent 1px) 0 0 / 100% 100%,
-                linear-gradient(rgba(100,100,100,0.08) 1px, transparent 1px) 0 0 / 100% 100%;
+            background:
+                linear-gradient(90deg, rgba(100, 100, 100, 0.08) 1px, transparent 1px) 0 0 / 100% 100%,
+                linear-gradient(rgba(100, 100, 100, 0.08) 1px, transparent 1px) 0 0 / 100% 100%;
             pointer-events: none;
             border-radius: 12px;
             background-size: 14.28% 100%, 100% 14.28%;
@@ -684,7 +730,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(100,100,100,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(100, 100, 100, 0.3), transparent);
         }
 
         .calendar-day-name {
@@ -816,24 +862,28 @@
             margin-top: 6px;
             filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
         }
-        
-        .cell-icons .green .outline-icon { 
+
+        .cell-icons .green .outline-icon {
             -webkit-text-stroke-color: #1DB954;
             filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.5));
         }
-        .cell-icons .yellow .outline-icon { 
+
+        .cell-icons .yellow .outline-icon {
             -webkit-text-stroke-color: #ffd700;
             filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
         }
-        .cell-icons .purple .outline-icon { 
+
+        .cell-icons .purple .outline-icon {
             -webkit-text-stroke-color: #b48eef;
             filter: drop-shadow(0 0 6px rgba(180, 142, 239, 0.5));
         }
-        .cell-icons .blue .outline-icon { 
+
+        .cell-icons .blue .outline-icon {
             -webkit-text-stroke-color: #00d9ff;
             filter: drop-shadow(0 0 6px rgba(0, 217, 255, 0.5));
         }
-        .cell-icons .red .outline-icon { 
+
+        .cell-icons .red .outline-icon {
             -webkit-text-stroke-color: #ff0066;
             filter: drop-shadow(0 0 6px rgba(255, 0, 102, 0.5));
         }
@@ -859,7 +909,8 @@
             flex-wrap: wrap;
         }
 
-        .grilla-search, .grilla-date {
+        .grilla-search,
+        .grilla-date {
             background: rgba(11, 11, 15, 0.8);
             border: 1px solid #333;
             color: #fff;
@@ -871,7 +922,8 @@
             font-size: 13px;
         }
 
-        .grilla-search:focus, .grilla-date:focus {
+        .grilla-search:focus,
+        .grilla-date:focus {
             border-color: #00D9FF;
             box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
         }
@@ -905,10 +957,21 @@
             box-shadow: 0 10px 30px rgba(0, 255, 157, 0.15), inset 0 0 20px rgba(0, 255, 157, 0.05);
             background: rgba(11, 11, 15, 0.8);
         }
-        
-        .grilla-card.glow-red:hover { border-color: #FF0066; box-shadow: 0 10px 30px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05); }
-        .grilla-card.glow-yellow:hover { border-color: #FFD700; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05); }
-        .grilla-card.glow-blue:hover { border-color: #00D9FF; box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05); }
+
+        .grilla-card.glow-red:hover {
+            border-color: #FF0066;
+            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05);
+        }
+
+        .grilla-card.glow-yellow:hover {
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+
+        .grilla-card.glow-blue:hover {
+            border-color: #00D9FF;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05);
+        }
 
         .grilla-badge-container {
             position: absolute;
@@ -927,9 +990,25 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .badge-hoy { background: #00FF9D; color: #000; box-shadow: 0 0 10px rgba(0, 255, 157, 0.4); animation: pulse-neon 2s infinite; }
-        .badge-manana { background: #FFD700; color: #000; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
-        .badge-proximo { background: #222; color: #fff; border: 1px solid #444; }
+
+        .badge-hoy {
+            background: #00FF9D;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+            animation: pulse-neon 2s infinite;
+        }
+
+        .badge-manana {
+            background: #FFD700;
+            color: #000;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .badge-proximo {
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
+        }
 
         .grilla-header-title {
             font-size: 12px;
@@ -949,7 +1028,10 @@
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
         }
-        .grilla-datetime i { color: #A855F7; }
+
+        .grilla-datetime i {
+            color: #A855F7;
+        }
 
         .grilla-teams {
             display: flex;
@@ -957,10 +1039,10 @@
             align-items: center;
             gap: 16px;
             margin: 4px 0;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             padding: 16px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .grilla-team {
@@ -976,8 +1058,8 @@
             height: 44px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .grilla-team-name {
@@ -1023,7 +1105,7 @@
             gap: 8px;
             line-height: 1.5;
         }
-        
+
         .grilla-list li i {
             color: #00FF9D;
             font-size: 12px;
@@ -1037,8 +1119,8 @@
         }
 
         .grilla-tv span {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 11px;
@@ -1082,8 +1164,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -1108,6 +1195,7 @@
                 opacity: 0;
                 transform: translateY(40px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -1194,11 +1282,15 @@
             gap: 16px;
         }
 
-        .modal-info::-webkit-scrollbar { width: 6px; }
+        .modal-info::-webkit-scrollbar {
+            width: 6px;
+        }
+
         .modal-info::-webkit-scrollbar-thumb {
             background: rgba(0, 255, 136, 0.3);
             border-radius: 4px;
         }
+
         .modal-info::-webkit-scrollbar-thumb:hover {
             background: rgba(0, 255, 136, 0.6);
         }
@@ -1251,7 +1343,7 @@
             white-space: nowrap;
         }
 
-        .modal-info > .promo-section {
+        .modal-info>.promo-section {
             grid-column: span 6;
             min-height: 132px;
             background: rgba(255, 255, 255, 0.035);
@@ -1260,24 +1352,42 @@
             animation: dashboardReveal 0.45s both;
         }
 
-        .modal-info > .promo-section:nth-child(2) { animation-delay: 0.06s; }
-        .modal-info > .promo-section:nth-child(3) { animation-delay: 0.12s; }
-        .modal-info > .promo-section:nth-child(4) { animation-delay: 0.18s; }
-        .modal-info > .promo-section:nth-child(5) { animation-delay: 0.24s; }
+        .modal-info>.promo-section:nth-child(2) {
+            animation-delay: 0.06s;
+        }
 
-        .modal-info > .promo-section.highlight {
+        .modal-info>.promo-section:nth-child(3) {
+            animation-delay: 0.12s;
+        }
+
+        .modal-info>.promo-section:nth-child(4) {
+            animation-delay: 0.18s;
+        }
+
+        .modal-info>.promo-section:nth-child(5) {
+            animation-delay: 0.24s;
+        }
+
+        .modal-info>.promo-section.highlight {
             grid-column: 1 / -1;
             min-height: auto;
         }
 
-        .modal-info > .promo-section.full-width {
+        .modal-info>.promo-section.full-width {
             grid-column: 1 / -1;
             min-height: 0;
         }
 
         @keyframes dashboardReveal {
-            from { opacity: 0; transform: translateY(14px) scale(0.985); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.985);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .master-detail {
@@ -1324,9 +1434,15 @@
         }
 
         .master-list::-webkit-scrollbar,
-        .master-detail-panel::-webkit-scrollbar { width: 5px; }
+        .master-detail-panel::-webkit-scrollbar {
+            width: 5px;
+        }
+
         .master-list::-webkit-scrollbar-thumb,
-        .master-detail-panel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 99px; }
+        .master-detail-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 99px;
+        }
 
         .master-promo-option {
             position: relative;
@@ -1361,20 +1477,52 @@
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), 0 0 20px color-mix(in srgb, var(--master-color, #ff2d2d) 14%, transparent);
         }
 
-        .master-promo-status { display: block; margin-bottom: 7px; color: var(--master-color, #00e676); font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
-        .master-promo-name { display: block; color: #f5f5f6; font-size: 12px; font-weight: 700; line-height: 1.35; }
-        .master-promo-index { display: block; margin-top: 7px; color: #777b84; font-size: 10px; }
+        .master-promo-status {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--master-color, #00e676);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .master-promo-name {
+            display: block;
+            color: #f5f5f6;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .master-promo-index {
+            display: block;
+            margin-top: 7px;
+            color: #777b84;
+            font-size: 10px;
+        }
 
         .master-detail-panel {
             overflow-y: auto;
             padding: 20px;
         }
 
-        .master-detail-panel .modal-kpis { margin-bottom: 16px; }
-        .master-detail-panel .promo-section { min-height: 0; }
-        .master-detail-panel .promo-section.highlight { grid-column: 1 / -1; }
+        .master-detail-panel .modal-kpis {
+            margin-bottom: 16px;
+        }
 
-        .master-detail-heading { margin-bottom: 2px; }
+        .master-detail-panel .promo-section {
+            min-height: 0;
+        }
+
+        .master-detail-panel .promo-section.highlight {
+            grid-column: 1 / -1;
+        }
+
+        .master-detail-heading {
+            margin-bottom: 2px;
+        }
+
         .master-detail-sections {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1386,7 +1534,9 @@
             min-height: 132px;
         }
 
-        .master-detail-sections .promo-section.highlight { grid-column: 1 / -1; }
+        .master-detail-sections .promo-section.highlight {
+            grid-column: 1 / -1;
+        }
 
         .master-detail-sections .promo-section.full-width {
             grid-column: 1 / -1;
@@ -1394,12 +1544,26 @@
         }
 
         @media (max-width: 768px) {
-            .master-detail { grid-template-columns: 1fr; }
-            .master-list { max-height: 190px; }
-            .master-detail-panel { max-height: none; }
-            .master-detail-sections { grid-template-columns: 1fr; }
+            .master-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .master-list {
+                max-height: 190px;
+            }
+
+            .master-detail-panel {
+                max-height: none;
+            }
+
+            .master-detail-sections {
+                grid-template-columns: 1fr;
+            }
+
             .master-detail-sections .promo-section.highlight,
-            .master-detail-sections .promo-section.full-width { grid-column: 1; }
+            .master-detail-sections .promo-section.full-width {
+                grid-column: 1;
+            }
         }
 
         .promo-section:hover {
@@ -1440,56 +1604,185 @@
         }
 
         /* ==================== COLORES DINÁMICOS DEL MODAL ==================== */
-        .modal-content.green { border-color: rgba(0, 255, 102, 0.4); box-shadow: 0 0 40px rgba(0, 255, 102, 0.15), inset 0 0 20px rgba(0, 255, 102, 0.05); }
-        .modal-content.green .promo-section.highlight { border-color: rgba(0, 255, 102, 0.4); background: rgba(0, 255, 102, 0.05); }
-        .modal-content.green .promo-section.highlight .promo-section-content, .modal-content.green .promo-section.highlight .promo-section-title { color: #00ff66; }
-        .modal-content.green .modal-header::after { background: linear-gradient(90deg, transparent, #00ff66, transparent); box-shadow: 0 0 8px #00ff66; }
-        .modal-content.green .outline-icon { -webkit-text-stroke-color: #00ff66; }
+        .modal-content.green {
+            border-color: rgba(0, 255, 102, 0.4);
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.15), inset 0 0 20px rgba(0, 255, 102, 0.05);
+        }
 
-        .modal-content.yellow { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05); }
-        .modal-content.yellow .promo-section.highlight { border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.05); }
-        .modal-content.yellow .promo-section.highlight .promo-section-content, .modal-content.yellow .promo-section.highlight .promo-section-title { color: #ff9900; }
-        .modal-content.yellow .modal-header::after { background: linear-gradient(90deg, transparent, #ff9900, transparent); box-shadow: 0 0 8px #ff9900; }
-        .modal-content.yellow .outline-icon { -webkit-text-stroke-color: #ff9900; }
+        .modal-content.green .promo-section.highlight {
+            border-color: rgba(0, 255, 102, 0.4);
+            background: rgba(0, 255, 102, 0.05);
+        }
 
-        .modal-content.purple { border-color: rgba(157, 78, 221, 0.4); box-shadow: 0 0 40px rgba(157, 78, 221, 0.15), inset 0 0 20px rgba(157, 78, 221, 0.05); }
-        .modal-content.purple .promo-section.highlight { border-color: rgba(157, 78, 221, 0.4); background: rgba(157, 78, 221, 0.05); }
-        .modal-content.purple .promo-section.highlight .promo-section-content, .modal-content.purple .promo-section.highlight .promo-section-title { color: #9d4edd; }
-        .modal-content.purple .modal-header::after { background: linear-gradient(90deg, transparent, #9d4edd, transparent); box-shadow: 0 0 8px #9d4edd; }
-        .modal-content.purple .outline-icon { -webkit-text-stroke-color: #9d4edd; }
+        .modal-content.green .promo-section.highlight .promo-section-content,
+        .modal-content.green .promo-section.highlight .promo-section-title {
+            color: #00ff66;
+        }
 
-        .modal-content.blue { border-color: rgba(0, 217, 255, 0.4); box-shadow: 0 0 40px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05); }
-        .modal-content.blue .promo-section.highlight { border-color: rgba(0, 217, 255, 0.4); background: rgba(0, 217, 255, 0.05); }
-        .modal-content.blue .promo-section.highlight .promo-section-content, .modal-content.blue .promo-section.highlight .promo-section-title { color: #00d9ff; }
-        .modal-content.blue .modal-header::after { background: linear-gradient(90deg, transparent, #00d9ff, transparent); box-shadow: 0 0 8px #00d9ff; }
-        .modal-content.blue .outline-icon { -webkit-text-stroke-color: #00d9ff; }
+        .modal-content.green .modal-header::after {
+            background: linear-gradient(90deg, transparent, #00ff66, transparent);
+            box-shadow: 0 0 8px #00ff66;
+        }
 
-        .modal-content.red { border-color: rgba(255, 0, 102, 0.4); box-shadow: 0 0 40px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05); }
-        .modal-content.red .promo-section.highlight { border-color: rgba(255, 0, 102, 0.4); background: rgba(255, 0, 102, 0.05); }
-        .modal-content.red .promo-section.highlight .promo-section-content, .modal-content.red .promo-section.highlight .promo-section-title { color: #ff0066; }
-        .modal-content.red .modal-header::after { background: linear-gradient(90deg, transparent, #ff0066, transparent); box-shadow: 0 0 8px #ff0066; }
-        .modal-content.red .outline-icon { -webkit-text-stroke-color: #ff0066; }
+        .modal-content.green .outline-icon {
+            -webkit-text-stroke-color: #00ff66;
+        }
 
-        .modal-content.orange { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05); }
-        .modal-content.orange .promo-section.highlight { border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.05); }
-        .modal-content.orange .promo-section.highlight .promo-section-content, .modal-content.orange .promo-section.highlight .promo-section-title { color: #ff9900; }
-        .modal-content.orange .modal-header::after { background: linear-gradient(90deg, transparent, #ff9900, transparent); box-shadow: 0 0 8px #ff9900; }
-        .modal-content.orange .outline-icon { -webkit-text-stroke-color: #ff9900; }
+        .modal-content.yellow {
+            border-color: rgba(255, 153, 0, 0.4);
+            box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05);
+        }
 
-        .modal-content.magenta { border-color: rgba(255, 20, 147, 0.4); box-shadow: 0 0 40px rgba(255, 20, 147, 0.15), inset 0 0 20px rgba(255, 20, 147, 0.05); }
-        .modal-content.magenta .promo-section.highlight { border-color: rgba(255, 20, 147, 0.4); background: rgba(255, 20, 147, 0.05); }
-        .modal-content.magenta .promo-section.highlight .promo-section-content, .modal-content.magenta .promo-section.highlight .promo-section-title { color: #ff1493; }
-        .modal-content.magenta .modal-header::after { background: linear-gradient(90deg, transparent, #ff1493, transparent); box-shadow: 0 0 8px #ff1493; }
-        .modal-content.magenta .outline-icon { -webkit-text-stroke-color: #ff1493; }
+        .modal-content.yellow .promo-section.highlight {
+            border-color: rgba(255, 153, 0, 0.4);
+            background: rgba(255, 153, 0, 0.05);
+        }
+
+        .modal-content.yellow .promo-section.highlight .promo-section-content,
+        .modal-content.yellow .promo-section.highlight .promo-section-title {
+            color: #ff9900;
+        }
+
+        .modal-content.yellow .modal-header::after {
+            background: linear-gradient(90deg, transparent, #ff9900, transparent);
+            box-shadow: 0 0 8px #ff9900;
+        }
+
+        .modal-content.yellow .outline-icon {
+            -webkit-text-stroke-color: #ff9900;
+        }
+
+        .modal-content.purple {
+            border-color: rgba(157, 78, 221, 0.4);
+            box-shadow: 0 0 40px rgba(157, 78, 221, 0.15), inset 0 0 20px rgba(157, 78, 221, 0.05);
+        }
+
+        .modal-content.purple .promo-section.highlight {
+            border-color: rgba(157, 78, 221, 0.4);
+            background: rgba(157, 78, 221, 0.05);
+        }
+
+        .modal-content.purple .promo-section.highlight .promo-section-content,
+        .modal-content.purple .promo-section.highlight .promo-section-title {
+            color: #9d4edd;
+        }
+
+        .modal-content.purple .modal-header::after {
+            background: linear-gradient(90deg, transparent, #9d4edd, transparent);
+            box-shadow: 0 0 8px #9d4edd;
+        }
+
+        .modal-content.purple .outline-icon {
+            -webkit-text-stroke-color: #9d4edd;
+        }
+
+        .modal-content.blue {
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05);
+        }
+
+        .modal-content.blue .promo-section.highlight {
+            border-color: rgba(0, 217, 255, 0.4);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .modal-content.blue .promo-section.highlight .promo-section-content,
+        .modal-content.blue .promo-section.highlight .promo-section-title {
+            color: #00d9ff;
+        }
+
+        .modal-content.blue .modal-header::after {
+            background: linear-gradient(90deg, transparent, #00d9ff, transparent);
+            box-shadow: 0 0 8px #00d9ff;
+        }
+
+        .modal-content.blue .outline-icon {
+            -webkit-text-stroke-color: #00d9ff;
+        }
+
+        .modal-content.red {
+            border-color: rgba(255, 0, 102, 0.4);
+            box-shadow: 0 0 40px rgba(255, 0, 102, 0.15), inset 0 0 20px rgba(255, 0, 102, 0.05);
+        }
+
+        .modal-content.red .promo-section.highlight {
+            border-color: rgba(255, 0, 102, 0.4);
+            background: rgba(255, 0, 102, 0.05);
+        }
+
+        .modal-content.red .promo-section.highlight .promo-section-content,
+        .modal-content.red .promo-section.highlight .promo-section-title {
+            color: #ff0066;
+        }
+
+        .modal-content.red .modal-header::after {
+            background: linear-gradient(90deg, transparent, #ff0066, transparent);
+            box-shadow: 0 0 8px #ff0066;
+        }
+
+        .modal-content.red .outline-icon {
+            -webkit-text-stroke-color: #ff0066;
+        }
+
+        .modal-content.orange {
+            border-color: rgba(255, 153, 0, 0.4);
+            box-shadow: 0 0 40px rgba(255, 153, 0, 0.15), inset 0 0 20px rgba(255, 153, 0, 0.05);
+        }
+
+        .modal-content.orange .promo-section.highlight {
+            border-color: rgba(255, 153, 0, 0.4);
+            background: rgba(255, 153, 0, 0.05);
+        }
+
+        .modal-content.orange .promo-section.highlight .promo-section-content,
+        .modal-content.orange .promo-section.highlight .promo-section-title {
+            color: #ff9900;
+        }
+
+        .modal-content.orange .modal-header::after {
+            background: linear-gradient(90deg, transparent, #ff9900, transparent);
+            box-shadow: 0 0 8px #ff9900;
+        }
+
+        .modal-content.orange .outline-icon {
+            -webkit-text-stroke-color: #ff9900;
+        }
+
+        .modal-content.magenta {
+            border-color: rgba(255, 20, 147, 0.4);
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.15), inset 0 0 20px rgba(255, 20, 147, 0.05);
+        }
+
+        .modal-content.magenta .promo-section.highlight {
+            border-color: rgba(255, 20, 147, 0.4);
+            background: rgba(255, 20, 147, 0.05);
+        }
+
+        .modal-content.magenta .promo-section.highlight .promo-section-content,
+        .modal-content.magenta .promo-section.highlight .promo-section-title {
+            color: #ff1493;
+        }
+
+        .modal-content.magenta .modal-header::after {
+            background: linear-gradient(90deg, transparent, #ff1493, transparent);
+            box-shadow: 0 0 8px #ff1493;
+        }
+
+        .modal-content.magenta .outline-icon {
+            -webkit-text-stroke-color: #ff1493;
+        }
 
         /* ==================== TABLAS Y ENLACES ==================== */
         a {
             text-decoration: none;
             color: #464feb;
         }
-        tr th, tr td {
+
+        tr th,
+        tr td {
             border: 1px solid #e6e6e6;
         }
+
         tr th {
             background-color: #f5f5f5;
         }
@@ -1631,6 +1924,7 @@
             from {
                 background-position: 50% 0%, 100% 50%, 0% 100%, 0 0, 0 0;
             }
+
             to {
                 background-position: 50% 4%, 92% 46%, 4% 94%, 8px 0, 0 0;
             }
@@ -1659,8 +1953,15 @@
         }
 
         @keyframes ambientDrift {
-            from { transform: translate3d(0, 0, 0); opacity: 0.65; }
-            to { transform: translate3d(1vw, -1.5vh, 0); opacity: 1; }
+            from {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.65;
+            }
+
+            to {
+                transform: translate3d(1vw, -1.5vh, 0);
+                opacity: 1;
+            }
         }
 
         .header {
@@ -1675,15 +1976,45 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
-        .header-left { gap: 18px; }
-        .logo-box { width: 112px; }
-        .logo-box img { filter: drop-shadow(0 0 14px rgba(255, 45, 45, 0.22)); }
-        .titulo { font-size: clamp(28px, 3vw, 42px); letter-spacing: 0; line-height: 1; }
-        .total { color: var(--at-red); text-shadow: 0 0 18px rgba(255, 45, 45, 0.42); }
-        .subtitulo { margin-top: 9px; color: #a7a9ae; font-size: 11px; font-style: normal; letter-spacing: 1.8px; }
-        .emojis-neon { color: var(--at-red-glow); }
+        .header-left {
+            gap: 18px;
+        }
 
-        .header-right { gap: 10px; }
+        .logo-box {
+            width: 112px;
+        }
+
+        .logo-box img {
+            filter: drop-shadow(0 0 14px rgba(255, 45, 45, 0.22));
+        }
+
+        .titulo {
+            font-size: clamp(28px, 3vw, 42px);
+            letter-spacing: 0;
+            line-height: 1;
+        }
+
+        .total {
+            color: var(--at-red);
+            text-shadow: 0 0 18px rgba(255, 45, 45, 0.42);
+        }
+
+        .subtitulo {
+            margin-top: 9px;
+            color: #a7a9ae;
+            font-size: 11px;
+            font-style: normal;
+            letter-spacing: 1.8px;
+        }
+
+        .emojis-neon {
+            color: var(--at-red-glow);
+        }
+
+        .header-right {
+            gap: 10px;
+        }
+
         .header-btn {
             border-radius: 12px;
             padding: 12px 16px;
@@ -1695,7 +2026,9 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        .header-btn { transition: all 0.28s ease; }
+        .header-btn {
+            transition: all 0.28s ease;
+        }
 
         .header-btn:hover {
             transform: scale(1.02);
@@ -1714,7 +2047,11 @@
             box-shadow: 0 0 14px rgba(0, 230, 118, 0.16), inset 0 0 8px rgba(0, 230, 118, 0.06);
         }
 
-        .container { max-width: 1400px; padding: 56px 32px 72px; }
+        .container {
+            max-width: 1400px;
+            padding: 56px 32px 72px;
+        }
+
         .month-navigation {
             margin-bottom: 32px;
             padding: 18px 20px;
@@ -1725,13 +2062,48 @@
             -webkit-backdrop-filter: blur(24px);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
-        .month-nav-btn { width: 38px; height: 38px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #a8abb2; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-        .month-nav-btn:hover { color: #fff; background: rgba(255, 45, 45, 0.14); text-shadow: 0 0 14px rgba(255, 45, 45, 0.65); }
-        .month-display { font-size: clamp(24px, 3vw, 32px); letter-spacing: 2px; }
-        .month-display .month-year { color: var(--at-red); }
-        .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #d7d8dc; margin-bottom: 18px; }
-        .promotions-section { margin-bottom: 44px; }
-        .promotions-grid { gap: 14px; }
+
+        .month-nav-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #a8abb2;
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .month-nav-btn:hover {
+            color: #fff;
+            background: rgba(255, 45, 45, 0.14);
+            text-shadow: 0 0 14px rgba(255, 45, 45, 0.65);
+        }
+
+        .month-display {
+            font-size: clamp(24px, 3vw, 32px);
+            letter-spacing: 2px;
+        }
+
+        .month-display .month-year {
+            color: var(--at-red);
+        }
+
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #d7d8dc;
+            margin-bottom: 18px;
+        }
+
+        .promotions-section {
+            margin-bottom: 44px;
+        }
+
+        .promotions-grid {
+            gap: 14px;
+        }
+
         .promotion-card {
             min-height: 86px;
             border-radius: 20px;
@@ -1742,33 +2114,101 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
-        .promotion-card.green, .promotion-card.yellow, .promotion-card.purple, .promotion-card.blue, .promotion-card.red, .promotion-card.orange, .promotion-card.magenta { border: 1px solid rgba(255, 255, 255, 0.08); }
-        .promotion-card:hover:not(.unavailable):not(.proximamente) { transform: scale(1.02) translateY(-4px); border-color: rgba(255, 45, 45, 0.2); box-shadow: 0 20px 50px rgba(255, 45, 45, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
-        .promotion-card.green { --promo-rgb: 0, 230, 118; }
-        .promotion-card.yellow { --promo-rgb: 255, 196, 0; }
-        .promotion-card.purple { --promo-rgb: 180, 142, 239; }
-        .promotion-card.blue { --promo-rgb: 0, 217, 255; }
-        .promotion-card.red { --promo-rgb: 255, 45, 45; }
-        .promotion-card.orange { --promo-rgb: 255, 149, 0; }
-        .promotion-card.magenta { --promo-rgb: 255, 20, 147; }
-        .promotion-card.green, .promotion-card.yellow, .promotion-card.purple, .promotion-card.blue, .promotion-card.red, .promotion-card.orange, .promotion-card.magenta {
+
+        .promotion-card.green,
+        .promotion-card.yellow,
+        .promotion-card.purple,
+        .promotion-card.blue,
+        .promotion-card.red,
+        .promotion-card.orange,
+        .promotion-card.magenta {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .promotion-card:hover:not(.unavailable):not(.proximamente) {
+            transform: scale(1.02) translateY(-4px);
+            border-color: rgba(255, 45, 45, 0.2);
+            box-shadow: 0 20px 50px rgba(255, 45, 45, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .promotion-card.green {
+            --promo-rgb: 0, 230, 118;
+        }
+
+        .promotion-card.yellow {
+            --promo-rgb: 255, 196, 0;
+        }
+
+        .promotion-card.purple {
+            --promo-rgb: 180, 142, 239;
+        }
+
+        .promotion-card.blue {
+            --promo-rgb: 0, 217, 255;
+        }
+
+        .promotion-card.red {
+            --promo-rgb: 255, 45, 45;
+        }
+
+        .promotion-card.orange {
+            --promo-rgb: 255, 149, 0;
+        }
+
+        .promotion-card.magenta {
+            --promo-rgb: 255, 20, 147;
+        }
+
+        .promotion-card.green,
+        .promotion-card.yellow,
+        .promotion-card.purple,
+        .promotion-card.blue,
+        .promotion-card.red,
+        .promotion-card.orange,
+        .promotion-card.magenta {
             background: radial-gradient(circle at 12% 50%, rgba(var(--promo-rgb), 0.16), transparent 34%), rgba(255, 255, 255, 0.03);
             border-color: rgba(var(--promo-rgb), 0.38);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), 0 0 22px rgba(var(--promo-rgb), 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
-        .promotion-card.green .promotion-icon, .promotion-card.yellow .promotion-icon, .promotion-card.purple .promotion-icon, .promotion-card.blue .promotion-icon, .promotion-card.red .promotion-icon, .promotion-card.orange .promotion-icon, .promotion-card.magenta .promotion-icon {
+
+        .promotion-card.green .promotion-icon,
+        .promotion-card.yellow .promotion-icon,
+        .promotion-card.purple .promotion-icon,
+        .promotion-card.blue .promotion-icon,
+        .promotion-card.red .promotion-icon,
+        .promotion-card.orange .promotion-icon,
+        .promotion-card.magenta .promotion-icon {
             border-radius: 12px;
             background: rgba(var(--promo-rgb), 0.1);
             box-shadow: 0 0 20px rgba(var(--promo-rgb), 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
-        .promotion-card.green:hover:not(.unavailable):not(.proximamente), .promotion-card.yellow:hover:not(.unavailable):not(.proximamente), .promotion-card.purple:hover:not(.unavailable):not(.proximamente), .promotion-card.blue:hover:not(.unavailable):not(.proximamente), .promotion-card.red:hover:not(.unavailable):not(.proximamente), .promotion-card.orange:hover:not(.unavailable):not(.proximamente), .promotion-card.magenta:hover:not(.unavailable):not(.proximamente) {
+
+        .promotion-card.green:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.yellow:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.purple:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.blue:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.red:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.orange:hover:not(.unavailable):not(.proximamente),
+        .promotion-card.magenta:hover:not(.unavailable):not(.proximamente) {
             border-color: rgba(var(--promo-rgb), 0.8);
             background: radial-gradient(circle at 12% 50%, rgba(var(--promo-rgb), 0.24), transparent 42%), rgba(255, 255, 255, 0.045);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32), 0 0 30px rgba(var(--promo-rgb), 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
-        .promotion-info { gap: 5px; }
-        .promotion-name { font-size: 13px; letter-spacing: 0.8px; }
-        .promotion-explore { color: var(--at-muted); font-size: 9px; letter-spacing: 1px; }
+
+        .promotion-info {
+            gap: 5px;
+        }
+
+        .promotion-name {
+            font-size: 13px;
+            letter-spacing: 0.8px;
+        }
+
+        .promotion-explore {
+            color: var(--at-muted);
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
 
         .calendar-wrapper {
             padding: 32px;
@@ -1779,41 +2219,173 @@
             -webkit-backdrop-filter: blur(30px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
-        .calendar-wrapper::before { opacity: 0.35; }
-        .calendar-header { gap: 8px; margin-bottom: 12px; border-bottom-color: rgba(255, 255, 255, 0.08); }
-        .calendar-day-name { padding: 12px 8px; color: #979aa2; font-size: 10px; letter-spacing: 1.8px; border-right-color: rgba(255, 255, 255, 0.06); }
-        .calendar-day-name:hover { color: var(--at-red-glow); text-shadow: 0 0 12px rgba(255, 45, 45, 0.4); }
-        .calendar-days { gap: 8px; }
-        .calendar-cell { min-height: 104px; border-radius: 14px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); }
-        .calendar-cell:hover:not(.empty) { transform: translateY(-3px); background: linear-gradient(135deg, rgba(255, 45, 45, 0.1), rgba(255, 255, 255, 0.035)); border-color: rgba(255, 45, 45, 0.15); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-        .calendar-cell.today { background: linear-gradient(135deg, rgba(255, 45, 45, 0.2), rgba(255, 45, 45, 0.055)); border-color: var(--at-red); box-shadow: 0 0 30px rgba(255, 45, 45, 0.24), inset 0 0 20px rgba(255, 45, 45, 0.08); }
-        .calendar-cell.today .cell-number { background: linear-gradient(135deg, var(--at-red), var(--at-red-glow)); box-shadow: 0 0 18px rgba(255, 45, 45, 0.58); }
-        .cell-number { color: #aeb1b8; }
-        .calendar-cell:hover:not(.empty) .cell-number { color: var(--at-red-glow); text-shadow: 0 0 12px rgba(255, 45, 45, 0.5); }
 
-        .grilla-header-section { padding-bottom: 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.09); }
-        .grilla-search, .grilla-date { border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 11px 14px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-        .grilla-card { border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-        .grilla-card:hover { border-color: var(--at-green); box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 24px rgba(0, 230, 118, 0.12); }
+        .calendar-wrapper::before {
+            opacity: 0.35;
+        }
 
-        .modal { background: rgba(0, 0, 0, 0.78); }
-        .modal-content { border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.035); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 38px rgba(255, 45, 45, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-        .modal-header::after { background: linear-gradient(90deg, transparent, var(--at-red), transparent); box-shadow: 0 0 8px var(--at-red); }
-        .modal-close:hover { color: var(--at-red-glow); background: rgba(255, 45, 45, 0.12); box-shadow: 0 0 15px rgba(255, 45, 45, 0.3); }
+        .calendar-header {
+            gap: 8px;
+            margin-bottom: 12px;
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .calendar-day-name {
+            padding: 12px 8px;
+            color: #979aa2;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            border-right-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .calendar-day-name:hover {
+            color: var(--at-red-glow);
+            text-shadow: 0 0 12px rgba(255, 45, 45, 0.4);
+        }
+
+        .calendar-days {
+            gap: 8px;
+        }
+
+        .calendar-cell {
+            min-height: 104px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .calendar-cell:hover:not(.empty) {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(255, 45, 45, 0.1), rgba(255, 255, 255, 0.035));
+            border-color: rgba(255, 45, 45, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .calendar-cell.today {
+            background: linear-gradient(135deg, rgba(255, 45, 45, 0.2), rgba(255, 45, 45, 0.055));
+            border-color: var(--at-red);
+            box-shadow: 0 0 30px rgba(255, 45, 45, 0.24), inset 0 0 20px rgba(255, 45, 45, 0.08);
+        }
+
+        .calendar-cell.today .cell-number {
+            background: linear-gradient(135deg, var(--at-red), var(--at-red-glow));
+            box-shadow: 0 0 18px rgba(255, 45, 45, 0.58);
+        }
+
+        .cell-number {
+            color: #aeb1b8;
+        }
+
+        .calendar-cell:hover:not(.empty) .cell-number {
+            color: var(--at-red-glow);
+            text-shadow: 0 0 12px rgba(255, 45, 45, 0.5);
+        }
+
+        .grilla-header-section {
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .grilla-search,
+        .grilla-date {
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 11px 14px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .grilla-card {
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .grilla-card:hover {
+            border-color: var(--at-green);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 24px rgba(0, 230, 118, 0.12);
+        }
+
+        .modal {
+            background: rgba(0, 0, 0, 0.78);
+        }
+
+        .modal-content {
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.035);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 38px rgba(255, 45, 45, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-header::after {
+            background: linear-gradient(90deg, transparent, var(--at-red), transparent);
+            box-shadow: 0 0 8px var(--at-red);
+        }
+
+        .modal-close:hover {
+            color: var(--at-red-glow);
+            background: rgba(255, 45, 45, 0.12);
+            box-shadow: 0 0 15px rgba(255, 45, 45, 0.3);
+        }
 
         @media (max-width: 768px) {
-            .header { width: calc(100% - 24px); margin-top: 12px; padding: 14px; }
-            .container { padding: 34px 16px 52px; }
-            .calendar-wrapper { padding: 18px 10px; }
-            .calendar-cell { min-height: 78px; }
-            .modal-content { width: 94vw; height: 90vh; border-radius: 20px; }
-            .modal-header { min-height: 92px; padding: 22px 24px 20px; }
-            .modal-title { font-size: 18px; padding-right: 24px; }
-            .modal-info { max-height: calc(90vh - 104px); padding: 18px; grid-template-columns: 1fr; }
-            .modal-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .modal-info > .promo-section,
-            .modal-info > .promo-section.highlight,
-            .modal-info > .promo-section.full-width { grid-column: 1; }
+            .header {
+                width: calc(100% - 24px);
+                margin-top: 12px;
+                padding: 14px;
+            }
+
+            .container {
+                padding: 34px 16px 52px;
+            }
+
+            .calendar-wrapper {
+                padding: 18px 10px;
+            }
+
+            .calendar-cell {
+                min-height: 78px;
+            }
+
+            .modal-content {
+                width: 94vw;
+                height: 90vh;
+                border-radius: 20px;
+            }
+
+            .modal-header {
+                min-height: 92px;
+                padding: 22px 24px 20px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+                padding-right: 24px;
+            }
+
+            .modal-info {
+                max-height: calc(90vh - 104px);
+                padding: 18px;
+                grid-template-columns: 1fr;
+            }
+
+            .modal-kpis {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .modal-info>.promo-section,
+            .modal-info>.promo-section.highlight,
+            .modal-info>.promo-section.full-width {
+                grid-column: 1;
+            }
         }
 
         .calendar-wrapper {
@@ -1865,163 +2437,655 @@
 
         /* ==================== RESPONSIVE 2026 ==================== */
         @media (max-width: 1024px) {
-            .container { padding: 40px 24px; }
-            .header { padding: 14px 24px; }
-            .logo-box { width: 112px; }
-            .titulo { font-size: clamp(24px, 3vw, 34px); }
-            .subtitulo { font-size: 11px; letter-spacing: 1.4px; }
-            .month-navigation { gap: 12px; margin-bottom: 26px; padding: 16px 18px; }
-            .month-display { font-size: clamp(20px, 3vw, 28px); }
-            .section-title { font-size: clamp(16px, 2vw, 22px); }
-            .calendar-cell { min-height: 96px; }
-            .master-detail { grid-template-columns: minmax(0, 1fr); }
-            .master-list { max-height: 220px; }
+            .container {
+                padding: 40px 24px;
+            }
+
+            .header {
+                padding: 14px 24px;
+            }
+
+            .logo-box {
+                width: 112px;
+            }
+
+            .titulo {
+                font-size: clamp(24px, 3vw, 34px);
+            }
+
+            .subtitulo {
+                font-size: 11px;
+                letter-spacing: 1.4px;
+            }
+
+            .month-navigation {
+                gap: 12px;
+                margin-bottom: 26px;
+                padding: 16px 18px;
+            }
+
+            .month-display {
+                font-size: clamp(20px, 3vw, 28px);
+            }
+
+            .section-title {
+                font-size: clamp(16px, 2vw, 22px);
+            }
+
+            .calendar-cell {
+                min-height: 96px;
+            }
+
+            .master-detail {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .master-list {
+                max-height: 220px;
+            }
         }
 
         @media (max-width: 900px) {
-            .calendar-cell { aspect-ratio: auto; min-height: 88px; }
+            .calendar-cell {
+                aspect-ratio: auto;
+                min-height: 88px;
+            }
+
             .calendar-header,
-            .calendar-days { gap: 6px; }
-            .calendar-day-name { font-size: 11px; padding: 14px 6px; letter-spacing: 1.2px; }
-            .grilla-grid { gap: 18px; }
+            .calendar-days {
+                gap: 6px;
+            }
+
+            .calendar-day-name {
+                font-size: 11px;
+                padding: 14px 6px;
+                letter-spacing: 1.2px;
+            }
+
+            .grilla-grid {
+                gap: 18px;
+            }
         }
 
         @media (max-width: 768px) {
-            .header { flex-direction: column; gap: 14px; padding: 14px 18px; }
-            .header-left { flex-wrap: wrap; justify-content: center; gap: 14px; }
-            .header-text { text-align: center; }
-            .header-right { width: 100%; justify-content: center; }
-            .logo-box { width: 104px; }
-            .header-btn { padding: 11px 20px; font-size: 12px; }
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 14px 18px;
+            }
 
-            .container { padding: 34px 16px 52px; }
-            .month-navigation { gap: 10px; padding: 16px; margin-bottom: 24px; }
-            .month-nav-btn { font-size: 24px; }
-            .month-display { font-size: clamp(18px, 4.5vw, 26px); }
-            .section-title { font-size: clamp(14px, 3.5vw, 18px); letter-spacing: 1.4px; margin-bottom: 14px; }
-            .promotions-section { margin-bottom: 36px; }
-            .promotions-grid { gap: 14px; margin-bottom: 28px; }
-            .promotion-card { padding: 16px; gap: 12px; }
+            .header-left {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
 
-            .calendar-wrapper { padding: 44px 12px 16px; margin-top: 60px; }
-            .calendar-cell { min-height: 78px; padding-top: 8px; font-size: 13px; }
+            .header-text {
+                text-align: center;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .logo-box {
+                width: 104px;
+            }
+
+            .header-btn {
+                padding: 11px 20px;
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 34px 16px 52px;
+            }
+
+            .month-navigation {
+                gap: 10px;
+                padding: 16px;
+                margin-bottom: 24px;
+            }
+
+            .month-nav-btn {
+                font-size: 24px;
+            }
+
+            .month-display {
+                font-size: clamp(18px, 4.5vw, 26px);
+            }
+
+            .section-title {
+                font-size: clamp(14px, 3.5vw, 18px);
+                letter-spacing: 1.4px;
+                margin-bottom: 14px;
+            }
+
+            .promotions-section {
+                margin-bottom: 36px;
+            }
+
+            .promotions-grid {
+                gap: 14px;
+                margin-bottom: 28px;
+            }
+
+            .promotion-card {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .calendar-wrapper {
+                padding: 44px 12px 16px;
+                margin-top: 60px;
+            }
+
+            .calendar-cell {
+                min-height: 78px;
+                padding-top: 8px;
+                font-size: 13px;
+            }
+
             .calendar-header,
-            .calendar-days { gap: 6px; }
-            .calendar-day-name { font-size: 10px; padding: 11px 4px; letter-spacing: 1px; }
-            .cell-number { width: 26px; height: 26px; font-size: 14px; }
-            .cell-icons { font-size: 14px; gap: 5px; padding: 4px; margin-top: 4px; }
+            .calendar-days {
+                gap: 6px;
+            }
 
-            .grilla-header-section { gap: 14px; margin-bottom: 22px; }
-            .grilla-filters { width: 100%; gap: 10px; }
+            .calendar-day-name {
+                font-size: 10px;
+                padding: 11px 4px;
+                letter-spacing: 1px;
+            }
+
+            .cell-number {
+                width: 26px;
+                height: 26px;
+                font-size: 14px;
+            }
+
+            .cell-icons {
+                font-size: 14px;
+                gap: 5px;
+                padding: 4px;
+                margin-top: 4px;
+            }
+
+            .grilla-header-section {
+                gap: 14px;
+                margin-bottom: 22px;
+            }
+
+            .grilla-filters {
+                width: 100%;
+                gap: 10px;
+            }
+
             .grilla-search,
-            .grilla-date { flex: 1 1 100%; width: 100%; padding: 11px 16px; }
-            #btn-volver-grilla { width: 100%; justify-content: center; }
-            .grilla-grid { gap: 16px; }
-            .grilla-card { padding: 18px; border-radius: 18px; gap: 12px; }
-            .grilla-badge-container { top: 14px; right: 14px; }
-            .grilla-teams { padding: 12px; gap: 10px; }
-            .grilla-flag { width: 38px; height: 38px; }
-            .grilla-team-name { font-size: 12.5px; }
-            .grilla-datetime { flex-wrap: wrap; gap: 10px; font-size: 13px; }
+            .grilla-date {
+                flex: 1 1 100%;
+                width: 100%;
+                padding: 11px 16px;
+            }
 
-            .modal-header { min-height: 92px; padding: 20px 22px 18px; gap: 12px; }
-            .modal-title { font-size: clamp(15px, 3.2vw, 20px); padding-right: 34px; }
-            .modal-info { padding: 16px; gap: 14px; }
-            .modal-kpis { gap: 10px; }
-            .modal-kpi { min-height: 66px; padding: 12px 14px; }
-            .promo-section { padding: 16px; }
-            .promo-section-content { font-size: 12.5px; }
+            #btn-volver-grilla {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .grilla-grid {
+                gap: 16px;
+            }
+
+            .grilla-card {
+                padding: 18px;
+                border-radius: 18px;
+                gap: 12px;
+            }
+
+            .grilla-badge-container {
+                top: 14px;
+                right: 14px;
+            }
+
+            .grilla-teams {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .grilla-flag {
+                width: 38px;
+                height: 38px;
+            }
+
+            .grilla-team-name {
+                font-size: 12.5px;
+            }
+
+            .grilla-datetime {
+                flex-wrap: wrap;
+                gap: 10px;
+                font-size: 13px;
+            }
+
+            .modal-header {
+                min-height: 92px;
+                padding: 20px 22px 18px;
+                gap: 12px;
+            }
+
+            .modal-title {
+                font-size: clamp(15px, 3.2vw, 20px);
+                padding-right: 34px;
+            }
+
+            .modal-info {
+                padding: 16px;
+                gap: 14px;
+            }
+
+            .modal-kpis {
+                gap: 10px;
+            }
+
+            .modal-kpi {
+                min-height: 66px;
+                padding: 12px 14px;
+            }
+
+            .promo-section {
+                padding: 16px;
+            }
+
+            .promo-section-content {
+                font-size: 12.5px;
+            }
         }
 
         @media (max-width: 560px) {
-            .header { gap: 10px; padding: 12px 14px; }
-            .logo-box { width: 84px; }
-            .titulo { font-size: clamp(18px, 6vw, 24px); letter-spacing: 0.5px; }
-            .subtitulo { font-size: 10px; letter-spacing: 1.2px; margin-top: 6px; }
-            .header-btn { padding: 10px 16px; font-size: 11px; letter-spacing: 0.8px; gap: 6px; }
+            .header {
+                gap: 10px;
+                padding: 12px 14px;
+            }
 
-            .container { padding: 30px 12px 48px; }
-            .month-navigation { gap: 8px; padding: 14px; margin-bottom: 20px; }
-            .month-nav-btn { font-size: 22px; }
-            .month-display { font-size: clamp(17px, 5vw, 22px); letter-spacing: 1px; }
-            .section-title { font-size: 13px; letter-spacing: 1.2px; margin-bottom: 12px; }
-            .promotions-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-            .promotion-card { padding: 15px; gap: 10px; min-height: 0; }
-            .promotion-icon { width: 34px; height: 34px; font-size: 18px; }
-            .promo-badge { font-size: 9px; padding: 5px 10px; right: 10px; letter-spacing: 0.3px; }
-            .corner-badge-lima { right: 0; top: 0; width: 96px; height: 96px; }
+            .logo-box {
+                width: 84px;
+            }
 
-            .calendar-wrapper { padding: 44px 8px 12px; margin-top: 56px; }
-            .calendar-cell { min-height: 64px; padding-top: 6px; }
-            .calendar-day-name { font-size: 9px; padding: 8px 2px; letter-spacing: 0.5px; }
-            .cell-number { width: 22px; height: 22px; font-size: 13px; }
-            .cell-icons { font-size: 12px; gap: 4px; padding: 3px; margin-top: 3px; }
-            .calendar-logo-box { width: 56px; height: 56px; border-radius: 10px; }
+            .titulo {
+                font-size: clamp(18px, 6vw, 24px);
+                letter-spacing: 0.5px;
+            }
 
-            .grilla-card { padding: 16px; border-radius: 16px; }
-            .grilla-teams { padding: 10px; gap: 8px; }
-            .grilla-flag { width: 34px; height: 34px; }
-            .grilla-team-name { font-size: 12px; letter-spacing: 0.3px; }
-            .grilla-vs { font-size: 12px; }
-            .grilla-list li { font-size: 12.5px; }
-            .grilla-datetime { gap: 8px; font-size: 12.5px; }
+            .subtitulo {
+                font-size: 10px;
+                letter-spacing: 1.2px;
+                margin-top: 6px;
+            }
 
-            .modal-content { width: 96vw; height: 92vh; max-height: none; border-radius: 18px; }
-            .modal-header { min-height: auto; padding: 16px 16px 14px; gap: 10px; }
-            .modal-icon-wrapper { width: 32px; height: 32px; }
-            .modal-title { font-size: 15px; padding-right: 34px; line-height: 1.25; }
-            .modal-close { top: 10px; right: 10px; width: 34px; height: 34px; }
-            .modal-info { padding: 14px; gap: 12px; max-height: calc(92vh - 84px); }
-            .modal-kpis { gap: 8px; }
-            .modal-kpi { min-height: 58px; padding: 10px 12px; border-radius: 12px; }
-            .modal-kpi-label { font-size: 8.5px; letter-spacing: 1px; margin-bottom: 5px; }
-            .modal-kpi-value { font-size: 12.5px; }
-            .promo-section { padding: 14px; border-radius: 14px; }
-            .promo-section-title { font-size: 12.5px; gap: 8px; margin-bottom: 6px; }
-            .promo-section-content { font-size: 12px; line-height: 1.55; }
-            .master-list { max-height: 150px; }
-            .master-detail-panel { padding: 14px; }
-            .master-promo-option { padding: 12px 12px 12px 16px; }
+            .header-btn {
+                padding: 10px 16px;
+                font-size: 11px;
+                letter-spacing: 0.8px;
+                gap: 6px;
+            }
+
+            .container {
+                padding: 30px 12px 48px;
+            }
+
+            .month-navigation {
+                gap: 8px;
+                padding: 14px;
+                margin-bottom: 20px;
+            }
+
+            .month-nav-btn {
+                font-size: 22px;
+            }
+
+            .month-display {
+                font-size: clamp(17px, 5vw, 22px);
+                letter-spacing: 1px;
+            }
+
+            .section-title {
+                font-size: 13px;
+                letter-spacing: 1.2px;
+                margin-bottom: 12px;
+            }
+
+            .promotions-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 14px;
+            }
+
+            .promotion-card {
+                padding: 15px;
+                gap: 10px;
+                min-height: 0;
+            }
+
+            .promotion-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 18px;
+            }
+
+            .promo-badge {
+                font-size: 9px;
+                padding: 5px 10px;
+                right: 10px;
+                letter-spacing: 0.3px;
+            }
+
+            .corner-badge-lima {
+                right: 0;
+                top: 0;
+                width: 96px;
+                height: 96px;
+            }
+
+            .calendar-wrapper {
+                padding: 44px 8px 12px;
+                margin-top: 56px;
+            }
+
+            .calendar-cell {
+                min-height: 64px;
+                padding-top: 6px;
+            }
+
+            .calendar-day-name {
+                font-size: 9px;
+                padding: 8px 2px;
+                letter-spacing: 0.5px;
+            }
+
+            .cell-number {
+                width: 22px;
+                height: 22px;
+                font-size: 13px;
+            }
+
+            .cell-icons {
+                font-size: 12px;
+                gap: 4px;
+                padding: 3px;
+                margin-top: 3px;
+            }
+
+            .calendar-logo-box {
+                width: 56px;
+                height: 56px;
+                border-radius: 10px;
+            }
+
+            .grilla-card {
+                padding: 16px;
+                border-radius: 16px;
+            }
+
+            .grilla-teams {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .grilla-flag {
+                width: 34px;
+                height: 34px;
+            }
+
+            .grilla-team-name {
+                font-size: 12px;
+                letter-spacing: 0.3px;
+            }
+
+            .grilla-vs {
+                font-size: 12px;
+            }
+
+            .grilla-list li {
+                font-size: 12.5px;
+            }
+
+            .grilla-datetime {
+                gap: 8px;
+                font-size: 12.5px;
+            }
+
+            .modal-content {
+                width: 96vw;
+                height: 92vh;
+                max-height: none;
+                border-radius: 18px;
+            }
+
+            .modal-header {
+                min-height: auto;
+                padding: 16px 16px 14px;
+                gap: 10px;
+            }
+
+            .modal-icon-wrapper {
+                width: 32px;
+                height: 32px;
+            }
+
+            .modal-title {
+                font-size: 15px;
+                padding-right: 34px;
+                line-height: 1.25;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 34px;
+                height: 34px;
+            }
+
+            .modal-info {
+                padding: 14px;
+                gap: 12px;
+                max-height: calc(92vh - 84px);
+            }
+
+            .modal-kpis {
+                gap: 8px;
+            }
+
+            .modal-kpi {
+                min-height: 58px;
+                padding: 10px 12px;
+                border-radius: 12px;
+            }
+
+            .modal-kpi-label {
+                font-size: 8.5px;
+                letter-spacing: 1px;
+                margin-bottom: 5px;
+            }
+
+            .modal-kpi-value {
+                font-size: 12.5px;
+            }
+
+            .promo-section {
+                padding: 14px;
+                border-radius: 14px;
+            }
+
+            .promo-section-title {
+                font-size: 12.5px;
+                gap: 8px;
+                margin-bottom: 6px;
+            }
+
+            .promo-section-content {
+                font-size: 12px;
+                line-height: 1.55;
+            }
+
+            .master-list {
+                max-height: 150px;
+            }
+
+            .master-detail-panel {
+                padding: 14px;
+            }
+
+            .master-promo-option {
+                padding: 12px 12px 12px 16px;
+            }
         }
 
         @media (max-width: 400px) {
-            .container { padding: 28px 10px 44px; }
-            .titulo { font-size: 18px; }
-            .subtitulo { font-size: 9px; letter-spacing: 1px; }
-            .logo-box { width: 74px; }
-            .header-btn { padding: 10px 14px; font-size: 10.5px; }
-            .month-navigation { padding: 12px; gap: 6px; }
-            .month-display { font-size: 16px; }
-            .section-title { font-size: 12px; letter-spacing: 1px; }
+            .container {
+                padding: 28px 10px 44px;
+            }
 
-            .calendar-wrapper { padding: 44px 6px 10px; margin-top: 54px; }
-            .calendar-cell { min-height: 56px; padding-top: 5px; }
-            .calendar-day-name { font-size: 8.5px; padding: 7px 1px; }
-            .cell-number { width: 20px; height: 20px; font-size: 12px; }
-            .cell-icons { font-size: 11px; gap: 3px; padding: 2px; margin-top: 2px; }
-            .calendar-logo-box { width: 52px; height: 52px; }
+            .titulo {
+                font-size: 18px;
+            }
 
-            .promotion-icon { width: 30px; height: 30px; font-size: 16px; }
-            .grilla-flag { width: 30px; height: 30px; }
-            .grilla-card { padding: 14px; gap: 10px; }
-            .grilla-teams { padding: 8px; gap: 6px; }
-            .modal-content { width: 98vw; height: 94vh; }
-            .modal-info { padding: 12px; }
+            .subtitulo {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .logo-box {
+                width: 74px;
+            }
+
+            .header-btn {
+                padding: 10px 14px;
+                font-size: 10.5px;
+            }
+
+            .month-navigation {
+                padding: 12px;
+                gap: 6px;
+            }
+
+            .month-display {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .calendar-wrapper {
+                padding: 44px 6px 10px;
+                margin-top: 54px;
+            }
+
+            .calendar-cell {
+                min-height: 56px;
+                padding-top: 5px;
+            }
+
+            .calendar-day-name {
+                font-size: 8.5px;
+                padding: 7px 1px;
+            }
+
+            .cell-number {
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+            }
+
+            .cell-icons {
+                font-size: 11px;
+                gap: 3px;
+                padding: 2px;
+                margin-top: 2px;
+            }
+
+            .calendar-logo-box {
+                width: 52px;
+                height: 52px;
+            }
+
+            .promotion-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .grilla-flag {
+                width: 30px;
+                height: 30px;
+            }
+
+            .grilla-card {
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .grilla-teams {
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .modal-content {
+                width: 98vw;
+                height: 94vh;
+            }
+
+            .modal-info {
+                padding: 12px;
+            }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
-            .header { flex-direction: row; gap: 12px; padding: 10px 16px; }
-            .header-left { flex-direction: row; gap: 10px; text-align: left; }
-            .header-right { width: auto; }
-            .logo-box { width: 64px; }
-            .titulo { font-size: 20px; }
-            .subtitulo { display: none; }
-            .container { padding-top: 20px; }
-            .calendar-wrapper { margin-top: 56px; padding-top: 40px; }
-            .modal-content { height: 94vh; }
+            .header {
+                flex-direction: row;
+                gap: 12px;
+                padding: 10px 16px;
+            }
+
+            .header-left {
+                flex-direction: row;
+                gap: 10px;
+                text-align: left;
+            }
+
+            .header-right {
+                width: auto;
+            }
+
+            .logo-box {
+                width: 64px;
+            }
+
+            .titulo {
+                font-size: 20px;
+            }
+
+            .subtitulo {
+                display: none;
+            }
+
+            .container {
+                padding-top: 20px;
+            }
+
+            .calendar-wrapper {
+                margin-top: 56px;
+                padding-top: 40px;
+            }
+
+            .modal-content {
+                height: 94vh;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- ==================== HEADER ==================== -->
     <header class="header">
@@ -2044,53 +3108,55 @@
     <!-- ==================== MAIN CONTENT ==================== -->
     <div class="container">
         <div id="homeView">
-        <!-- ==================== MONTH NAVIGATION ==================== -->
-        <div class="month-navigation">
-            <button class="month-nav-btn" onclick="previousMonth()">&lt;</button>
-            <div class="month-display" style="display: flex; align-items: center; gap: 20px;">
-                <div>
-                    <span class="month-name" id="monthName">JUNIO</span>
-                    <span class="month-year" id="yearName">2026</span>
+            <!-- ==================== MONTH NAVIGATION ==================== -->
+            <div class="month-navigation">
+                <button class="month-nav-btn" onclick="previousMonth()">&lt;</button>
+                <div class="month-display" style="display: flex; align-items: center; gap: 20px;">
+                    <div>
+                        <span class="month-name" id="monthName">JUNIO</span>
+                        <span class="month-year" id="yearName">2026</span>
+                    </div>
+                </div>
+                <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
+            </div>
+
+            <!-- ==================== PROMOTIONS ==================== -->
+            <div class="promotions-section">
+                <h2 class="section-title">Promociones Destacadas</h2>
+                <div class="promotions-grid" id="promotionsGrid">
+                    <!-- Se genera dinámicamente -->
                 </div>
             </div>
-            <button class="month-nav-btn" onclick="nextMonth()">&gt;</button>
-        </div>
 
-        <!-- ==================== PROMOTIONS ==================== -->
-        <div class="promotions-section">
-            <h2 class="section-title">Promociones Destacadas</h2>
-            <div class="promotions-grid" id="promotionsGrid">
-                <!-- Se genera dinámicamente -->
+            <!-- ==================== CALENDAR ==================== -->
+            <div class="calendar-wrapper">
+                <div class="calendar-logo-box">
+                    <img src="img/logo4.jpg" alt="Logo AT">
+                </div>
+                <div class="calendar-header">
+                    <div class="calendar-day-name">Lun</div>
+                    <div class="calendar-day-name">Mar</div>
+                    <div class="calendar-day-name">Mié</div>
+                    <div class="calendar-day-name">Jue</div>
+                    <div class="calendar-day-name">Vie</div>
+                    <div class="calendar-day-name">Sab</div>
+                    <div class="calendar-day-name">Dom</div>
+                </div>
+                <div class="calendar-days" id="calendarDays">
+                    <!-- Se genera dinámicamente -->
+                </div>
             </div>
-        </div>
-
-        <!-- ==================== CALENDAR ==================== -->
-        <div class="calendar-wrapper">
-            <div class="calendar-logo-box">
-                <img src="img/logo4.jpg" alt="Logo AT">
-            </div>
-            <div class="calendar-header">
-                <div class="calendar-day-name">Lun</div>
-                <div class="calendar-day-name">Mar</div>
-                <div class="calendar-day-name">Mié</div>
-                <div class="calendar-day-name">Jue</div>
-                <div class="calendar-day-name">Vie</div>
-                <div class="calendar-day-name">Sab</div>
-                <div class="calendar-day-name">Dom</div>
-            </div>
-            <div class="calendar-days" id="calendarDays">
-                <!-- Se genera dinámicamente -->
-            </div>
-        </div>
         </div>
 
         <!-- ==================== GRILLA DATO AT (NUEVA SECCIÓN) ==================== -->
         <div id="grillaView" class="grilla-view" style="display: none;">
             <div class="grilla-header-section">
-                <h2 class="section-title" style="margin: 0;"><i class="fa-solid fa-bolt" style="color: #00FF9D;"></i> Grilla Deportiva Premium</h2>
+                <h2 class="section-title" style="margin: 0;"><i class="fa-solid fa-bolt" style="color: #00FF9D;"></i>
+                    Grilla Deportiva Premium</h2>
                 <div class="grilla-filters">
                     <input type="date" id="grillaDate" class="grilla-date" onchange="renderGrilla()">
-                    <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..." oninput="renderGrilla()">
+                    <input type="text" id="grillaSearch" class="grilla-search" placeholder="Buscar equipo o país..."
+                        oninput="renderGrilla()">
                     <button class="header-btn green" id="btn-volver-grilla" onclick="toggleGrillaView(false)">
                         <i class="fa-solid fa-arrow-left"></i> VOLVER AL CALENDARIO
                     </button>
@@ -2904,7 +3970,7 @@
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
-                        <div class="promo-section-content">🗓 Participan los tickets <strong>ganados</strong> y calculados del <strong>09/10 al 11/10</strong>.<br><br>📅 El cliente podrá reclamar una <strong>Free Bet de S/30</strong> al cumplir las condiciones de la promoción.</div>
+                        <div class="promo-section-content">🗓 Participan los tickets <strong>ganados</strong> y calculados del <strong>09/10 al 11/10</strong>.<br><br>📅 El cliente podrá reclamar una <strong>Free Bet de S/30 el día 12 de Octubre 2026</strong> al cumplir las condiciones de la promoción.</div>
                     </div>
                     <div class="promo-section">
                         <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo (Condiciones)</div>
@@ -2920,7 +3986,7 @@
                     </div>
                 `,
                 startDate: '2026-10-09',
-                endDate: '2026-10-11',
+                endDate: '2026-10-12',
                 available: true
             },
             '2026-10-09-7x10-virtuales': {
@@ -5600,7 +6666,7 @@
                 const promo = promotions[key];
                 // Consideramos la promoción vigente hasta su fecha de canje (si existe) o su fecha de fin
                 const effectiveEndDate = promo.canjeDate && promo.canjeDate > promo.endDate ? promo.canjeDate : promo.endDate;
-                
+
                 if (dateStr >= promo.startDate && dateStr <= effectiveEndDate && promo.available !== false) {
                     activePromos.push(promo);
                 }
@@ -5670,7 +6736,7 @@
             grid.innerHTML = '';
 
             const now = new Date(); // Usando hora real del sistema
-            const systemDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+            const systemDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
             // Crear array de promociones con sus estados
             const promoList = [];
@@ -5683,7 +6749,7 @@
 
                 // Usar la fecha de canje si existe, si no usar la fecha de fin
                 const effectiveEndDate = promo.canjeDate || promo.endDate;
-                
+
                 let state = 'activo';
                 if (systemDate > effectiveEndDate) {
                     state = 'expirado';
@@ -5708,12 +6774,12 @@
                 }
 
                 const card = document.createElement('div');
-                
+
                 card.className = `promotion-card ${promo.category}`;
                 if (state === 'proximamente') {
                     card.classList.add('proximamente');
                 }
-                
+
                 let badgeHtml = '';
                 let exploreText = '• EXPLORAR';
 
@@ -5788,7 +6854,7 @@
             const iconWrapper = document.getElementById('modalIcon');
             const modalTitle = document.getElementById('modalTitle');
             const modalInfo = document.getElementById('modalInfo');
-            
+
             // Limpiar colores anteriores del modal
             modalContent.classList.remove('green', 'yellow', 'purple', 'blue', 'red', 'multi');
 
@@ -5960,11 +7026,11 @@
         function toggleGrillaView(show) {
             const homeView = document.getElementById('homeView');
             const grillaView = document.getElementById('grillaView');
-            
+
             if (show) {
                 homeView.style.display = 'none';
                 grillaView.style.display = 'block';
-                
+
                 renderGrilla();
                 startCountdown();
             } else {
@@ -5978,24 +7044,24 @@
             const grid = document.getElementById('grillaGrid');
             const searchTerm = document.getElementById('grillaSearch').value.toLowerCase();
             const filterDate = document.getElementById('grillaDate').value;
-            
+
             grid.innerHTML = '';
             const now = new Date(); // Usando hora real del sistema
-            const todayStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-            
+            const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
             const tomorrow = new Date(now);
             tomorrow.setDate(tomorrow.getDate() + 1);
-            const tomorrowStr = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth()+1).padStart(2,'0')}-${String(tomorrow.getDate()).padStart(2,'0')}`;
+            const tomorrowStr = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`;
 
             let filtered = grillaEvents.filter(ev => {
                 const [year, month, day] = ev.date.split('-');
                 const [hours, mins] = ev.time.split(':');
                 const eventDate = new Date(year, month - 1, day, hours, mins);
-                
+
                 // Oculta eventos que finalizaron hace más de 4 horas
                 const eventEnd = new Date(eventDate.getTime() + (4 * 60 * 60 * 1000));
                 if (eventEnd < now) return false;
-                
+
                 if (searchTerm && !ev.t1.toLowerCase().includes(searchTerm) && !ev.t2.toLowerCase().includes(searchTerm)) return false;
                 if (filterDate && ev.date !== filterDate) return false;
                 return true;
@@ -6009,10 +7075,10 @@
             }
 
             filtered.forEach((ev, index) => {
-                let badgeHtml = ev.date === todayStr ? '<span class="grilla-badge badge-hoy">HOY</span>' : 
-                                (ev.date === tomorrowStr ? '<span class="grilla-badge badge-manana">MAÑANA</span>' : 
-                                '<span class="grilla-badge badge-proximo">PRÓXIMO</span>');
-                
+                let badgeHtml = ev.date === todayStr ? '<span class="grilla-badge badge-hoy">HOY</span>' :
+                    (ev.date === tomorrowStr ? '<span class="grilla-badge badge-manana">MAÑANA</span>' :
+                        '<span class="grilla-badge badge-proximo">PRÓXIMO</span>');
+
                 let glowClass = ev.importance === 'high' ? 'glow-red' : (ev.importance === 'medium' ? 'glow-yellow' : 'glow-blue');
                 let iconLabel = ev.importance === 'high' ? '<i class="fa-solid fa-bolt outline-icon"></i> EVENTO DESTACADO' : (ev.importance === 'medium' ? '<i class="fa-solid fa-bullseye outline-icon"></i> EVENTO CLAVE' : '<i class="fa-solid fa-star outline-icon"></i> PARTIDO OFICIAL');
                 let iconColor = ev.importance === 'high' ? '#FF0066' : (ev.importance === 'medium' ? '#FFD700' : '#00D9FF');
@@ -6061,7 +7127,7 @@
 
         function startCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
-            
+
             countdownInterval = setInterval(() => {
                 const now = new Date().getTime();
                 document.querySelectorAll('.grilla-countdown').forEach(el => {
@@ -6109,16 +7175,16 @@
                 const heart = document.createElement('div');
                 heart.innerHTML = '❤️';
                 heart.className = 'heart-particle';
-                
+
                 // Posición aleatoria alrededor de la zona del click
                 const offsetX = (Math.random() - 0.5) * 60;
                 const offsetY = (Math.random() - 0.5) * 60;
-                
+
                 heart.style.left = (e.clientX + offsetX - 10) + 'px';
                 heart.style.top = (e.clientY + offsetY - 10) + 'px';
-                
+
                 document.body.appendChild(heart);
-                
+
                 setTimeout(() => {
                     heart.remove();
                 }, 1200); // Se elimina del DOM al terminar la animación
@@ -6126,4 +7192,5 @@
         }
     </script>
 </body>
+
 </html>
