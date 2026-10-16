@@ -3083,10 +3083,781 @@
                 height: 94vh;
             }
         }
+
+        /* =====================================================================
+           HALLOWEEN CINEMATOGRÁFICO — AMBIENTACIÓN PREMIUM
+           Capa decorativa fija (z-index:-1, pointer-events:none). No bloquea
+           clics ni lectura. Solo anima transform/opacity. Respeta
+           prefers-reduced-motion y reduce efectos en móviles.
+           ===================================================================== */
+        .halloween-scene {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            animation: hwSceneIn 1.6s ease 0.15s forwards;
+            --hw-orange: #ff7a18;
+            --hw-amber: #ffb703;
+            --hw-red: #ff2d2d;
+            --hw-purple: #7b2ff7;
+            --hw-cyan: #00d9ff;
+        }
+
+        @keyframes hwSceneIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ---------- Niebla / humo en capas (parallax de profundidad) ---------- */
+        .hw-fog {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hw-fog--1 {
+            width: 74vw;
+            height: 62vh;
+            left: -22vw;
+            top: 18vh;
+            background: radial-gradient(circle, rgba(124, 58, 190, 0.26), transparent 70%);
+            animation: hwFog1 52s ease-in-out infinite alternate;
+        }
+
+        .hw-fog--2 {
+            width: 84vw;
+            height: 56vh;
+            right: -26vw;
+            top: 2vh;
+            background: radial-gradient(circle, rgba(255, 122, 24, 0.16), transparent 70%);
+            animation: hwFog2 64s ease-in-out infinite alternate;
+        }
+
+        .hw-fog--3 {
+            width: 92vw;
+            height: 52vh;
+            left: -12vw;
+            bottom: -18vh;
+            background: radial-gradient(circle, rgba(70, 74, 120, 0.20), transparent 72%);
+            animation: hwFog3 74s ease-in-out infinite alternate;
+        }
+
+        @keyframes hwFog1 {
+            from { transform: translate3d(0, 0, 0) scale(1); }
+            to { transform: translate3d(15vw, -5vh, 0) scale(1.14); }
+        }
+
+        @keyframes hwFog2 {
+            from { transform: translate3d(0, 4vh, 0) scale(1.08); }
+            to { transform: translate3d(-13vw, -4vh, 0) scale(1); }
+        }
+
+        @keyframes hwFog3 {
+            from { transform: translate3d(-6vw, 0, 0) scale(1); }
+            to { transform: translate3d(11vw, -7vh, 0) scale(1.12); }
+        }
+
+        /* ---------- Resplandores ambientales ---------- */
+        .hw-glow {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            will-change: opacity;
+        }
+
+        .hw-glow--orange {
+            width: 62vmax;
+            height: 62vmax;
+            left: -18vmax;
+            bottom: -24vmax;
+            background: radial-gradient(circle, rgba(255, 110, 20, 0.22), transparent 62%);
+            animation: hwGlowA 11s ease-in-out infinite alternate;
+        }
+
+        .hw-glow--purple {
+            width: 58vmax;
+            height: 58vmax;
+            right: -20vmax;
+            top: -22vmax;
+            background: radial-gradient(circle, rgba(123, 47, 247, 0.20), transparent 64%);
+            animation: hwGlowB 14s ease-in-out infinite alternate;
+        }
+
+        .hw-glow--red {
+            width: 46vmax;
+            height: 46vmax;
+            right: 6vw;
+            bottom: -16vmax;
+            background: radial-gradient(circle, rgba(255, 45, 45, 0.16), transparent 66%);
+            animation: hwGlowA 9.5s ease-in-out infinite alternate;
+            animation-delay: -3s;
+        }
+
+        @keyframes hwGlowA {
+            0%, 100% { opacity: 0.34; }
+            50% { opacity: 0.66; }
+        }
+
+        @keyframes hwGlowB {
+            0%, 100% { opacity: 0.28; }
+            50% { opacity: 0.58; }
+        }
+
+        /* ---------- Canvas de partículas (fuego / chispas) ---------- */
+        .hw-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* ---------- Murciélagos ---------- */
+        .hw-bat-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .hw-bat {
+            position: absolute;
+            left: 0;
+            will-change: transform;
+            animation: hwBatTraverse var(--dur, 38s) linear infinite;
+        }
+
+        .hw-bat--rev { animation-name: hwBatTraverseRev; }
+
+        @keyframes hwBatTraverse {
+            from { transform: translateX(-18vw); }
+            to { transform: translateX(118vw); }
+        }
+
+        @keyframes hwBatTraverseRev {
+            from { transform: translateX(118vw); }
+            to { transform: translateX(-18vw); }
+        }
+
+        .hw-bat-fly {
+            animation: hwBatBob 4.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes hwBatBob {
+            from { transform: translateY(-2.4vh) rotate(-5deg); }
+            to { transform: translateY(2.8vh) rotate(6deg); }
+        }
+
+        .hw-bat-svg {
+            display: block;
+            width: var(--size, 40px);
+            height: auto;
+            transform: scale(var(--scale, 1));
+            transform-origin: center;
+            filter: drop-shadow(0 0 8px rgba(255, 110, 40, 0.55)) drop-shadow(0 0 18px rgba(123, 47, 247, 0.42));
+        }
+
+        .hw-bat--rev .hw-bat-svg {
+            transform: scaleX(-1) scale(var(--scale, 1));
+        }
+
+        .hw-bat-wing {
+            transform-box: fill-box;
+        }
+
+        .hw-bat-wing--l {
+            transform-origin: 100% 42%;
+            animation: hwFlap .3s ease-in-out infinite alternate;
+        }
+
+        .hw-bat-wing--r {
+            transform-origin: 0% 42%;
+            animation: hwFlapR .3s ease-in-out infinite alternate;
+        }
+
+        @keyframes hwFlap {
+            from { transform: scaleY(1); }
+            to { transform: scaleY(0.42); }
+        }
+
+        @keyframes hwFlapR {
+            from { transform: scaleY(1); }
+            to { transform: scaleY(0.42); }
+        }
+
+        /* ---------- Telarañas ---------- */
+        .hw-web {
+            position: absolute;
+            pointer-events: none;
+            color: #cfd6e4;
+            opacity: 0.4;
+            width: clamp(120px, 16vw, 260px);
+            height: clamp(120px, 16vw, 260px);
+            animation: hwWebIn 2.2s ease 0.6s backwards;
+        }
+
+        .hw-web-svg { width: 100%; height: 100%; display: block; }
+
+        .hw-web--tl { top: -2px; left: -2px; }
+        .hw-web--tr { top: -2px; right: -2px; transform: scaleX(-1); }
+
+        .hw-web--inline-tl {
+            top: 0;
+            left: 0;
+            width: clamp(64px, 7vw, 120px);
+            height: clamp(64px, 7vw, 120px);
+            opacity: 0.22;
+            border-top-left-radius: inherit;
+        }
+
+        .hw-web--inline-tr {
+            top: 0;
+            right: 0;
+            width: clamp(64px, 7vw, 120px);
+            height: clamp(64px, 7vw, 120px);
+            opacity: 0.2;
+            transform: scaleX(-1);
+            border-top-right-radius: inherit;
+        }
+
+        @keyframes hwWebIn {
+            from { opacity: 0; transform: scale(0.6); }
+        }
+
+        /* ---------- Arañas descendiendo ---------- */
+        .hw-spider {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hw-spider--1 {
+            left: 17%;
+            animation: hwSpiderDrop 15s ease-in-out infinite;
+        }
+
+        .hw-spider--2 {
+            left: 76%;
+            animation: hwSpiderDrop 19s ease-in-out infinite;
+            animation-delay: -7s;
+        }
+
+        .hw-spider-thread {
+            width: 1px;
+            height: 24vh;
+            background: linear-gradient(rgba(226, 232, 240, 0), rgba(226, 232, 240, 0.34));
+        }
+
+        .hw-spider-body {
+            width: 26px;
+            height: 26px;
+            color: #0e0b16;
+            transform-origin: 50% 0%;
+            animation: hwSpiderSwing 5.5s ease-in-out infinite alternate;
+        }
+
+        .hw-spider-body svg { width: 100%; height: 100%; display: block; }
+
+        @keyframes hwSpiderDrop {
+            0% { transform: translateY(-34px); }
+            45% { transform: translateY(30vh); }
+            55% { transform: translateY(30vh); }
+            100% { transform: translateY(-34px); }
+        }
+
+        @keyframes hwSpiderSwing {
+            from { transform: rotate(-7deg); }
+            to { transform: rotate(7deg); }
+        }
+
+        /* ---------- Calabazas iluminadas ---------- */
+        .hw-pumpkin {
+            position: absolute;
+            bottom: -6px;
+            width: clamp(96px, 11vw, 176px);
+            pointer-events: none;
+        }
+
+        .hw-pumpkin--left { left: 2vw; }
+        .hw-pumpkin--right { right: 2vw; }
+
+        .hw-pumpkin-svg {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: block;
+            z-index: 1;
+            filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.55));
+        }
+
+        .hw-pumpkin-glow {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            width: 160%;
+            height: 130%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 140, 30, 0.5), transparent 65%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: hwPumpkinBreath 5.6s ease-in-out infinite;
+        }
+
+        .hw-pumpkin-face {
+            animation: hwFaceFlicker 3.8s ease-in-out infinite;
+        }
+
+        @keyframes hwPumpkinBreath {
+            0%, 100% { opacity: 0.48; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.09); }
+        }
+
+        @keyframes hwFaceFlicker {
+            0%, 100% { opacity: 0.82; }
+            38% { opacity: 1; }
+            58% { opacity: 0.68; }
+            76% { opacity: 0.95; }
+        }
+
+        /* ---------- Velas y fuego ---------- */
+        .hw-candle {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .hw-candle--left { left: 15vw; }
+        .hw-candle--right { right: 15vw; }
+
+        .hw-candle-body {
+            width: clamp(16px, 1.6vw, 22px);
+            height: clamp(58px, 7vw, 92px);
+            margin-top: -4px;
+            border-radius: 5px 5px 3px 3px;
+            background: linear-gradient(90deg, #33271f, #6b5544 42%, #cbb18b 52%, #6b5544 62%, #33271f);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.45), 0 12px 26px rgba(0, 0, 0, 0.5);
+        }
+
+        .hw-flame {
+            position: relative;
+            width: 15px;
+            height: 32px;
+            border-radius: 50% 50% 46% 46%;
+            background: radial-gradient(circle at 50% 72%, #fff7cc, #ffb703 44%, #ff6a00 70%, rgba(255, 106, 0, 0) 80%);
+            filter: drop-shadow(0 0 14px rgba(255, 150, 40, 0.75));
+            transform-origin: 50% 100%;
+            animation: hwFlame 1.7s ease-in-out infinite;
+        }
+
+        .hw-flame::after {
+            content: '';
+            position: absolute;
+            inset: 34% 28% 12%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff, #ffd166 60%, rgba(255, 209, 102, 0) 100%);
+        }
+
+        .hw-candle-halo {
+            position: absolute;
+            bottom: 40px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 150, 40, 0.34), transparent 65%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: hwHalo 4.2s ease-in-out infinite;
+        }
+
+        @keyframes hwFlame {
+            0%, 100% { transform: scale(1) translateY(0) rotate(-1deg); }
+            25% { transform: scale(1.06, 1.12) translateY(-1px) rotate(2deg); }
+            50% { transform: scale(0.96, 1.05) translateY(1px) rotate(-2deg); }
+            75% { transform: scale(1.04, 1.1) translateY(-1px) rotate(1deg); }
+        }
+
+        @keyframes hwHalo {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.76; }
+        }
+
+        /* ---------- Encabezado: resplandor y reflejo ---------- */
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 18% 130%, rgba(255, 90, 20, 0.18), transparent 55%),
+                radial-gradient(circle at 88% -30%, rgba(255, 45, 45, 0.16), transparent 55%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .header .titulo {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header .titulo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255, 195, 130, 0.5), transparent);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: hwTitleShine 7.5s ease-in-out infinite;
+        }
+
+        @keyframes hwTitleShine {
+            0%, 60% { transform: translateX(-70%) skewX(-18deg); opacity: 0; }
+            68% { opacity: 1; }
+            84%, 100% { transform: translateX(340%) skewX(-18deg); opacity: 0; }
+        }
+
+        .header-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+            transform: skewX(-18deg);
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .header-btn:hover::after {
+            transform: translateX(320%) skewX(-18deg);
+            opacity: 1;
+        }
+
+        .header-btn:active {
+            transform: scale(0.97);
+        }
+
+        .month-nav-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* ---------- Tarjetas de promociones destacadas ---------- */
+        .promotion-card {
+            animation: hwCardIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+        }
+
+        @keyframes hwCardIn {
+            from { opacity: 0; transform: translateY(16px) scale(0.97); }
+        }
+
+        .promotion-card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(115deg, transparent 22%, rgba(var(--promo-rgb, 255, 255, 255), 0.85) 50%, transparent 78%);
+            background-size: 220% 100%;
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+            opacity: 0.55;
+            animation: hwRingFlow 5s linear infinite;
+        }
+
+        @keyframes hwRingFlow {
+            from { background-position: 220% 0; }
+            to { background-position: -220% 0; }
+        }
+
+        .promotion-card.proximamente::after,
+        .promotion-card.unavailable::after {
+            display: none;
+        }
+
+        .promotion-card.ultimo-dia-promo::after {
+            background: linear-gradient(115deg, transparent 18%, rgba(255, 59, 48, 0.95) 42%, rgba(255, 149, 0, 0.95) 58%, transparent 82%);
+            background-size: 220% 100%;
+            opacity: 0.9;
+            animation: hwRingFlow 3.2s linear infinite;
+        }
+
+        .promotion-card.ultimo-dia-promo {
+            animation: hwCardIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) backwards, hwLastGlow 2.8s ease-in-out infinite;
+        }
+
+        @keyframes hwLastGlow {
+            0%, 100% { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 59, 48, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+            50% { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 34px rgba(255, 149, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        }
+
+        .promo-shine {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .promo-shine::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: 0;
+            width: 32%;
+            height: 220%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+            transform: translateX(-180%) rotate(18deg);
+            transition: transform 0.8s ease;
+        }
+
+        .promotion-card:hover:not(.unavailable):not(.proximamente) .promo-shine::before {
+            transform: translateX(380%) rotate(18deg);
+        }
+
+        .promotion-icon i {
+            animation: hwIconFloat 4.2s ease-in-out infinite;
+        }
+
+        @keyframes hwIconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        /* ---------- Calendario interactivo ---------- */
+        .calendar-wrapper {
+            animation: hwCalGlow 7.5s ease-in-out infinite;
+        }
+
+        @keyframes hwCalGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 45, 45, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            }
+            50% {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 36px rgba(255, 45, 45, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .calendar-cell {
+            animation: hwCellIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+        }
+
+        .calendar-cell.empty {
+            animation: none;
+        }
+
+        @keyframes hwCellIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.96); }
+        }
+
+        .cell-icons span {
+            animation: hwIconIn 0.55s ease backwards;
+        }
+
+        @keyframes hwIconIn {
+            from { opacity: 0; transform: scale(0.6) translateY(4px); }
+        }
+
+        .calendar-cell.today .cell-number {
+            animation: hwTodayPulse 3.8s ease-in-out infinite;
+        }
+
+        @keyframes hwTodayPulse {
+            0%, 100% { box-shadow: 0 0 16px rgba(255, 45, 45, 0.5); }
+            50% { box-shadow: 0 0 28px rgba(255, 45, 45, 0.9); }
+        }
+
+        /* ---------- Ajustes responsive de la ambientación ---------- */
+        @media (max-width: 768px) {
+            .hw-fog--3 { display: none; }
+            .hw-pumpkin--right { display: none; }
+            .hw-candle--right { display: none; }
+            .hw-spider--2 { display: none; }
+            .hw-web--tr { opacity: 0.28; }
+            .hw-pumpkin { width: clamp(76px, 20vw, 120px); }
+        }
+
+        @media (max-width: 480px) {
+            .hw-candle--left { left: 8vw; }
+            .hw-glow--red { display: none; }
+        }
+
+        /* ---------- Movimiento reducido ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .halloween-scene {
+                animation: none !important;
+                opacity: 1;
+            }
+
+            .halloween-scene * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .hw-canvas,
+            .promo-shine {
+                display: none !important;
+            }
+
+            .calendar-wrapper,
+            .calendar-cell,
+            .calendar-cell.today .cell-number,
+            .cell-icons span,
+            .promotion-card,
+            .promotion-card::after,
+            .promotion-card.ultimo-dia-promo,
+            .promotion-icon i,
+            .header .titulo::after,
+            .header-btn::after,
+            .hw-web {
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- ==================== AMBIENTACIÓN HALLOWEEN (DECORATIVA) ==================== -->
+    <div class="halloween-scene" id="halloweenScene" aria-hidden="true">
+        <div class="hw-fog hw-fog--1"></div>
+        <div class="hw-fog hw-fog--2"></div>
+        <div class="hw-fog hw-fog--3"></div>
+        <div class="hw-glow hw-glow--orange"></div>
+        <div class="hw-glow hw-glow--purple"></div>
+        <div class="hw-glow hw-glow--red"></div>
+
+        <canvas class="hw-canvas" id="hwCanvas"></canvas>
+        <div class="hw-bat-layer" id="hwBats"></div>
+
+        <!-- Telarañas en las esquinas -->
+        <div class="hw-web hw-web--tl">
+            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round" preserveAspectRatio="xMinYMin meet">
+                <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118" />
+                <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94" />
+            </svg>
+        </div>
+        <div class="hw-web hw-web--tr">
+            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round" preserveAspectRatio="xMinYMin meet">
+                <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118" />
+                <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94" />
+            </svg>
+        </div>
+
+        <!-- Arañas descendiendo -->
+        <div class="hw-spider hw-spider--1">
+            <span class="hw-spider-thread"></span>
+            <span class="hw-spider-body">
+                <svg viewBox="0 0 44 44" fill="none">
+                    <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                        <path d="M22 22 L8 12 M22 22 L5 20 M22 22 L8 32 M22 22 L14 39" />
+                        <path d="M22 22 L36 12 M22 22 L39 20 M22 22 L36 32 M22 22 L30 39" />
+                    </g>
+                    <ellipse cx="22" cy="27" rx="6.5" ry="7.6" fill="#15101f" stroke="rgba(210,190,255,0.5)"
+                        stroke-width="1" />
+                    <circle cx="22" cy="17" r="4.6" fill="#1e1730" stroke="rgba(210,190,255,0.5)" stroke-width="1" />
+                </svg>
+            </span>
+        </div>
+        <div class="hw-spider hw-spider--2">
+            <span class="hw-spider-thread"></span>
+            <span class="hw-spider-body">
+                <svg viewBox="0 0 44 44" fill="none">
+                    <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                        <path d="M22 22 L8 12 M22 22 L5 20 M22 22 L8 32 M22 22 L14 39" />
+                        <path d="M22 22 L36 12 M22 22 L39 20 M22 22 L36 32 M22 22 L30 39" />
+                    </g>
+                    <ellipse cx="22" cy="27" rx="6.5" ry="7.6" fill="#15101f" stroke="rgba(210,190,255,0.5)"
+                        stroke-width="1" />
+                    <circle cx="22" cy="17" r="4.6" fill="#1e1730" stroke="rgba(210,190,255,0.5)" stroke-width="1" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Calabazas iluminadas -->
+        <div class="hw-pumpkin hw-pumpkin--left">
+            <span class="hw-pumpkin-glow"></span>
+            <svg class="hw-pumpkin-svg" viewBox="0 0 140 130" fill="none">
+                <defs>
+                    <radialGradient id="hwPgLeft" cx="46%" cy="40%" r="66%">
+                        <stop offset="0%" stop-color="#ffb347" />
+                        <stop offset="55%" stop-color="#f2760b" />
+                        <stop offset="100%" stop-color="#8a2f04" />
+                    </radialGradient>
+                </defs>
+                <path d="M70 20 C70 12 66 8 60 9" stroke="#5c8a33" stroke-width="6" stroke-linecap="round" />
+                <ellipse cx="70" cy="72" rx="52" ry="46" fill="url(#hwPgLeft)" />
+                <path
+                    d="M70 26 C56 46 56 100 70 118 M70 26 C84 46 84 100 70 118 M70 26 C40 50 40 96 70 118 M70 26 C100 50 100 96 70 118"
+                    stroke="rgba(60,15,0,0.22)" stroke-width="3" />
+                <g class="hw-pumpkin-face" fill="#ffd27a">
+                    <path d="M44 62 L58 76 L30 76 Z" />
+                    <path d="M96 62 L82 76 L110 76 Z" />
+                    <path d="M36 90 Q70 116 104 90 Q86 100 70 96 Q54 100 36 90 Z" />
+                </g>
+            </svg>
+        </div>
+        <div class="hw-pumpkin hw-pumpkin--right">
+            <span class="hw-pumpkin-glow"></span>
+            <svg class="hw-pumpkin-svg" viewBox="0 0 140 130" fill="none">
+                <defs>
+                    <radialGradient id="hwPgRight" cx="46%" cy="40%" r="66%">
+                        <stop offset="0%" stop-color="#ffb347" />
+                        <stop offset="55%" stop-color="#f2760b" />
+                        <stop offset="100%" stop-color="#8a2f04" />
+                    </radialGradient>
+                </defs>
+                <path d="M70 20 C70 12 66 8 60 9" stroke="#5c8a33" stroke-width="6" stroke-linecap="round" />
+                <ellipse cx="70" cy="72" rx="52" ry="46" fill="url(#hwPgRight)" />
+                <path
+                    d="M70 26 C56 46 56 100 70 118 M70 26 C84 46 84 100 70 118 M70 26 C40 50 40 96 70 118 M70 26 C100 50 100 96 70 118"
+                    stroke="rgba(60,15,0,0.22)" stroke-width="3" />
+                <g class="hw-pumpkin-face" fill="#ffd27a">
+                    <path d="M44 62 L58 76 L30 76 Z" />
+                    <path d="M96 62 L82 76 L110 76 Z" />
+                    <path d="M36 90 Q70 116 104 90 Q86 100 70 96 Q54 100 36 90 Z" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Velas con fuego -->
+        <div class="hw-candle hw-candle--left">
+            <span class="hw-candle-halo"></span>
+            <span class="hw-flame"></span>
+            <span class="hw-candle-body"></span>
+        </div>
+        <div class="hw-candle hw-candle--right">
+            <span class="hw-candle-halo"></span>
+            <span class="hw-flame"></span>
+            <span class="hw-candle-body"></span>
+        </div>
+    </div>
+
     <!-- ==================== HEADER ==================== -->
     <header class="header">
         <div class="header-left">
@@ -6898,6 +7669,8 @@
 
                 const cell = document.createElement('div');
                 cell.className = 'calendar-cell';
+                // Entrada progresiva de las celdas (decorativo, no altera tamaño)
+                cell.style.animationDelay = `${Math.min(day, 31) * 0.018}s`;
 
                 if (cellDate.getTime() === today.getTime()) {
                     cell.classList.add('today');
@@ -6967,7 +7740,7 @@
             });
 
             // Renderizar promociones ordenadas - VIGENTES Y PRÓXIMAS
-            promoList.forEach(({ dateStr, promo, state }) => {
+            promoList.forEach(({ dateStr, promo, state }, cardIndex) => {
                 // Saltar solo las promociones expiradas
                 if (state === 'expirado') {
                     return;
@@ -6979,6 +7752,8 @@
                 if (state === 'proximamente') {
                     card.classList.add('proximamente');
                 }
+                // Entrada escalonada de las tarjetas
+                card.style.animationDelay = `${cardIndex * 0.07}s`;
 
                 let badgeHtml = '';
                 let exploreText = '• EXPLORAR';
@@ -7003,6 +7778,7 @@
                 // Prioridad al badge de "Último Día" si la promo está activa
                 if (state === 'activo' && isLastDay) {
                     badgeHtml = '<div class="promo-badge ultimo-dia">🔥 ¡ÚLTIMO DÍA!</div>';
+                    card.classList.add('ultimo-dia-promo');
                 }
 
                 // Badge de esquina para Lima-only
@@ -7011,6 +7787,7 @@
                 card.innerHTML = `
                     ${badgeHtml}
                     ${limaCornerBadge}
+                    <span class="promo-shine" aria-hidden="true"></span>
                     <div class="promotion-icon">${promo.icon}</div>
                     <div class="promotion-info">
                         <div class="promotion-name">${promo.name}</div>
@@ -7390,7 +8167,201 @@
                 }, 1200); // Se elimina del DOM al terminar la animación
             }
         }
+
+        // ==================== AMBIENTACIÓN HALLOWEEN (MOTOR) ====================
+        // Genera murciélagos, partículas de fuego (canvas) y telarañas en las
+        // esquinas. Todo decorativo: respeta prefers-reduced-motion, pausa el
+        // canvas al ocultar la pestaña y limita la cantidad de elementos.
+        (function halloweenAmbience() {
+            const scene = document.getElementById('halloweenScene');
+            if (!scene) return;
+
+            const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const mqSmall = window.matchMedia('(max-width: 768px)');
+            const rnd = (min, max) => min + Math.random() * (max - min);
+
+            /* ---------- Telarañas en esquinas del header y del calendario ---------- */
+            const WEB_SVG = '<svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" ' +
+                'stroke-width="1" stroke-linecap="round" preserveAspectRatio="xMinYMin meet">' +
+                '<path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118"/>' +
+                '<path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94"/></svg>';
+
+            function addCornerWeb(host, className) {
+                if (!host) return;
+                const web = document.createElement('div');
+                web.className = 'hw-web ' + className;
+                web.setAttribute('aria-hidden', 'true');
+                web.innerHTML = WEB_SVG;
+                host.appendChild(web);
+            }
+            addCornerWeb(document.querySelector('.header'), 'hw-web--inline-tr');
+            addCornerWeb(document.querySelector('.calendar-wrapper'), 'hw-web--inline-tl');
+
+            /* ---------- Murciélagos voladores ---------- */
+            const batsLayer = document.getElementById('hwBats');
+            const BAT_SVG = '<svg class="hw-bat-svg" viewBox="0 0 120 46" fill="none" aria-hidden="true">' +
+                '<g class="hw-bat-wing hw-bat-wing--l"><path d="M58 20 C44 4 22 5 4 14 C22 15 34 20 39 27 C46 22 52 21 58 20 Z" fill="#3a2d5c"/></g>' +
+                '<g class="hw-bat-wing hw-bat-wing--r"><path d="M62 20 C76 4 98 5 116 14 C98 15 86 20 81 27 C74 22 68 21 62 20 Z" fill="#3a2d5c"/></g>' +
+                '<ellipse cx="60" cy="22" rx="7" ry="9" fill="#4a3a70"/>' +
+                '<path d="M53 15 L56 7 L60 14 Z" fill="#4a3a70"/><path d="M60 14 L64 7 L67 15 Z" fill="#4a3a70"/></svg>';
+
+            function buildBats() {
+                if (!batsLayer) return;
+                batsLayer.innerHTML = '';
+                if (mqReduce.matches) return;
+                const total = mqSmall.matches ? 3 : 6;
+                for (let i = 0; i < total; i++) {
+                    const reverse = Math.random() < 0.5;
+                    const bat = document.createElement('div');
+                    bat.className = 'hw-bat' + (reverse ? ' hw-bat--rev' : '');
+                    bat.style.top = rnd(5, 72).toFixed(1) + 'vh';
+                    bat.style.setProperty('--dur', rnd(28, 52).toFixed(1) + 's');
+                    bat.style.setProperty('--size', rnd(34, 66).toFixed(0) + 'px');
+                    bat.style.setProperty('--scale', rnd(0.8, 1.15).toFixed(2));
+                    bat.style.animationDelay = (-rnd(0, 40)).toFixed(1) + 's';
+                    bat.innerHTML = '<div class="hw-bat-fly">' + BAT_SVG + '</div>';
+                    batsLayer.appendChild(bat);
+                }
+            }
+            buildBats();
+
+            /* ---------- Partículas de fuego y chispas (Canvas) ---------- */
+            const canvas = document.getElementById('hwCanvas');
+            const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+            const PALETTE = [
+                [255, 150, 40],  // fuego naranja
+                [255, 200, 80],  // ámbar
+                [255, 90, 30],   // rojo fuego
+                [180, 80, 255]   // violeta
+            ];
+            const CYAN = [0, 217, 255];
+            const TAU = Math.PI * 2;
+
+            let particles = [];
+            let rafId = null;
+            let running = false;
+            let W = 0, H = 0;
+
+            function targetCount() {
+                if (mqReduce.matches) return 0;
+                const base = mqSmall.matches ? 34 : 76;
+                const factor = Math.min(1, (W * H) / (1280 * 720));
+                return Math.max(14, Math.round(base * factor));
+            }
+
+            function makeParticle(fromBottom) {
+                const isCyan = Math.random() < 0.07;
+                const col = isCyan ? CYAN : PALETTE[(Math.random() * PALETTE.length) | 0];
+                const big = Math.random() < 0.16;
+                return {
+                    x: Math.random() * W,
+                    y: fromBottom ? H + Math.random() * 40 : Math.random() * H,
+                    r: big ? rnd(2.1, 4.4) : rnd(0.7, 2.1),
+                    vx: rnd(-0.12, 0.12),
+                    vy: -(0.16 + Math.random() * 0.55),
+                    sway: Math.random() * TAU,
+                    swaySpeed: rnd(0.006, 0.022),
+                    swayAmp: rnd(0.15, 0.9),
+                    life: 0,
+                    maxLife: rnd(200, 620),
+                    col: col
+                };
+            }
+
+            function seed() {
+                particles = [];
+                const n = targetCount();
+                for (let i = 0; i < n; i++) particles.push(makeParticle(false));
+            }
+
+            function resize() {
+                if (!ctx) return;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                W = scene.clientWidth || window.innerWidth;
+                H = scene.clientHeight || window.innerHeight;
+                canvas.width = Math.max(1, Math.floor(W * dpr));
+                canvas.height = Math.max(1, Math.floor(H * dpr));
+                canvas.style.width = W + 'px';
+                canvas.style.height = H + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function step() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, W, H);
+                ctx.globalCompositeOperation = 'lighter';
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.life++;
+                    p.sway += p.swaySpeed;
+                    p.x += p.vx + Math.cos(p.sway) * p.swayAmp * 0.22;
+                    p.y += p.vy;
+
+                    if (p.y < -20 || p.life > p.maxLife) {
+                        particles[i] = makeParticle(true);
+                        continue;
+                    }
+
+                    const t = p.life / p.maxLife;
+                    const a = Math.sin(Math.min(1, t) * Math.PI) * 0.9; // aparece y desaparece
+                    const c = p.col;
+
+                    ctx.beginPath();
+                    ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (a * 0.85).toFixed(3) + ')';
+                    ctx.arc(p.x, p.y, p.r, 0, TAU);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.fillStyle = 'rgba(' + c[0] + ',' + Math.round(c[1] * 0.55) + ',' + Math.round(c[2] * 0.3) + ',' + (a * 0.1).toFixed(3) + ')';
+                    ctx.arc(p.x, p.y, p.r * 3.4, 0, TAU);
+                    ctx.fill();
+                }
+                rafId = requestAnimationFrame(step);
+            }
+
+            function start() {
+                if (!ctx || running || mqReduce.matches) return;
+                running = true;
+                resize();
+                seed();
+                rafId = requestAnimationFrame(step);
+            }
+
+            function stop() {
+                running = false;
+                if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+                if (ctx && W && H) ctx.clearRect(0, 0, W, H);
+            }
+
+            /* Resize con debounce */
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (!running) return;
+                    resize();
+                    seed();
+                }, 220);
+            });
+
+            /* Pausa al ocultar la pestaña (ahorro de recursos) */
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) stop();
+                else start();
+            });
+
+            /* Reacción a cambios en prefers-reduced-motion */
+            function onReduceChange() {
+                buildBats();
+                if (mqReduce.matches) stop();
+                else start();
+            }
+            if (mqReduce.addEventListener) mqReduce.addEventListener('change', onReduceChange);
+            else if (mqReduce.addListener) mqReduce.addListener(onReduceChange);
+
+            if (document.readyState === 'complete') start();
+            else window.addEventListener('load', start);
+        })();
     </script>
-</body>
 
 </html>
