@@ -4051,6 +4051,440 @@
             }
         }
 
+        /* =====================================================================
+           CALABAZA HALLOWEEN — ELEMENTO DE MARCA EN EL HEADER
+           Calabaza tallada hiperrealista (SVG + CSS puro, sin imágenes
+           externas): cuerpo lobulado con relieve 3D, rostro tallado
+           incandescente, resplandor volumétrico, chispas y humo.
+           ===================================================================== */
+        .at-pumpkin {
+            position: relative;
+            flex: 0 0 auto;
+            width: clamp(84px, 7.6vw, 120px);
+            margin: 0 2px;
+            pointer-events: none;
+        }
+
+        .at-pumpkin__svg {
+            position: relative;
+            z-index: 2;
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        /* ---------- Volumen y resplandor del entorno ---------- */
+        .at-pumpkin__aura {
+            position: absolute;
+            left: 50%;
+            top: 48%;
+            z-index: 0;
+            width: 250%;
+            height: 240%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.32) 0%, rgba(255, 106, 0, 0.15) 34%, rgba(193, 18, 31, 0.07) 58%, transparent 76%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: atAuraPulse 4.4s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        /* ---------- Luz proyectada sobre logo y título ---------- */
+        .at-pumpkin__cast {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: clamp(240px, 26vw, 380px);
+            height: clamp(130px, 14vw, 210px);
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at center, rgba(255, 138, 0, 0.26) 0%, rgba(255, 106, 0, 0.13) 36%, rgba(193, 18, 31, 0.05) 62%, transparent 78%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: atCastPulse 4.4s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        /* ---------- Bloom de ojos y boca ---------- */
+        .at-pumpkin__bloom {
+            position: absolute;
+            left: 50%;
+            top: 52%;
+            z-index: 3;
+            width: 195%;
+            height: 170%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at center, rgba(255, 160, 30, 0.5) 0%, rgba(255, 106, 0, 0.24) 40%, rgba(193, 18, 31, 0.09) 66%, transparent 80%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: atBloomFlicker 4.4s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        /* ---------- Llamas en ojos y boca ---------- */
+        .at-pumpkin__flame {
+            position: absolute;
+            z-index: 4;
+            width: 26%;
+            height: 30%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 62%, rgba(255, 240, 205, 0.9) 0%, rgba(255, 140, 0, 0.55) 38%, rgba(255, 106, 0, 0.18) 66%, transparent 78%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: atFlameSway 1.9s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        .at-pumpkin__flame--eye-l {
+            left: 33%;
+            top: 47%;
+        }
+
+        .at-pumpkin__flame--eye-r {
+            left: 67%;
+            top: 47%;
+            animation-delay: -0.4s;
+        }
+
+        .at-pumpkin__flame--mouth {
+            left: 50%;
+            top: 66%;
+            width: 44%;
+            height: 30%;
+            animation-delay: -0.9s;
+        }
+
+        /* ---------- Humo tenue ---------- */
+        .at-pumpkin__smoke {
+            position: absolute;
+            z-index: 0;
+            bottom: 52%;
+            width: 42%;
+            height: 48%;
+            transform: translate(-50%, 0);
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(214, 176, 138, 0.16) 0%, rgba(120, 100, 80, 0.08) 46%, transparent 74%);
+            pointer-events: none;
+            opacity: 0;
+            animation: atSmokeRise 7.4s ease-out infinite;
+            will-change: transform, opacity;
+        }
+
+        .at-pumpkin__smoke--1 {
+            left: 28%;
+            --sdx: 12px;
+        }
+
+        .at-pumpkin__smoke--2 {
+            left: 74%;
+            --sdx: -14px;
+            animation-delay: -3.4s;
+        }
+
+        .at-pumpkin__smoke--3 {
+            left: 52%;
+            --sdx: 6px;
+            animation-delay: -5.7s;
+        }
+
+        /* ---------- Chispas naranjas ---------- */
+        .at-ember {
+            position: absolute;
+            z-index: 5;
+            bottom: var(--b, 50%);
+            left: var(--x, 50%);
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff3c4 0%, #ff8c00 45%, rgba(255, 106, 0, 0) 72%);
+            box-shadow: 0 0 6px rgba(255, 140, 0, 0.9);
+            pointer-events: none;
+            opacity: 0;
+            animation: atEmberRise var(--dur, 4.8s) linear infinite;
+            animation-delay: var(--delay, 0s);
+            will-change: transform, opacity;
+        }
+
+        .at-ember--1 {
+            --x: 31%;
+            --b: 52%;
+            --dx: -8px;
+            --dur: 4.4s;
+            --delay: 0s;
+        }
+
+        .at-ember--2 {
+            --x: 36%;
+            --b: 50%;
+            --dx: 6px;
+            --dur: 5.2s;
+            --delay: -1.1s;
+        }
+
+        .at-ember--3 {
+            --x: 64%;
+            --b: 52%;
+            --dx: 8px;
+            --dur: 4.8s;
+            --delay: -2.3s;
+        }
+
+        .at-ember--4 {
+            --x: 69%;
+            --b: 50%;
+            --dx: -6px;
+            --dur: 5.6s;
+            --delay: -0.6s;
+        }
+
+        .at-ember--5 {
+            --x: 44%;
+            --b: 33%;
+            --dx: 10px;
+            --dur: 4.2s;
+            --delay: -3.1s;
+        }
+
+        .at-ember--6 {
+            --x: 58%;
+            --b: 31%;
+            --dx: -10px;
+            --dur: 5s;
+            --delay: -1.8s;
+        }
+
+        /* ---------- Volumen y profundidad del SVG ---------- */
+        .at-pumpkin__body {
+            filter: drop-shadow(0 0 8px rgba(255, 106, 0, 0.5)) drop-shadow(0 10px 14px rgba(0, 0, 0, 0.62));
+        }
+
+        .at-pumpkin__fire {
+            animation: atFireFlicker 4.4s ease-in-out infinite;
+        }
+
+        .at-pumpkin__core {
+            mix-blend-mode: screen;
+        }
+
+        /* ---------- Reflejo cálido sobre logo y título ---------- */
+        .header-left--lit .logo-box img {
+            filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.34)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.28));
+            animation: atLogoBreathe 4.4s ease-in-out infinite;
+        }
+
+        .header-left--lit .titulo {
+            text-shadow: 0 0 14px rgba(255, 140, 0, 0.3), 0 0 36px rgba(255, 106, 0, 0.18);
+        }
+
+        .header-left--lit .total {
+            text-shadow: 0 0 18px rgba(255, 45, 45, 0.42), 0 0 32px rgba(255, 140, 0, 0.3);
+        }
+
+        /* ---------- Keyframes ---------- */
+        @keyframes atAuraPulse {
+
+            0%,
+            100% {
+                opacity: 0.55;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.95;
+                transform: translate(-50%, -50%) scale(1.08);
+            }
+        }
+
+        @keyframes atCastPulse {
+
+            0%,
+            100% {
+                opacity: 0.62;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.06);
+            }
+        }
+
+        @keyframes atBloomFlicker {
+
+            0%,
+            100% {
+                opacity: 0.72;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            20% {
+                opacity: 0.95;
+            }
+
+            32% {
+                opacity: 0.6;
+            }
+
+            44% {
+                opacity: 0.9;
+            }
+
+            66% {
+                opacity: 0.5;
+            }
+
+            80% {
+                opacity: 0.88;
+            }
+        }
+
+        @keyframes atFireFlicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            18% {
+                opacity: 0.88;
+            }
+
+            26% {
+                opacity: 1;
+            }
+
+            44% {
+                opacity: 0.74;
+            }
+
+            52% {
+                opacity: 0.98;
+            }
+
+            74% {
+                opacity: 0.82;
+            }
+
+            86% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes atFlameSway {
+
+            0%,
+            100% {
+                opacity: 0.75;
+                transform: translate(-50%, -50%) scale(1, 1);
+            }
+
+            35% {
+                opacity: 1;
+                transform: translate(-50%, -52%) scale(1.1, 1.16);
+            }
+
+            70% {
+                opacity: 0.68;
+                transform: translate(-50%, -48%) scale(0.94, 0.9);
+            }
+        }
+
+        @keyframes atEmberRise {
+
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 0, 0) scale(0.6);
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 0.9;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(var(--dx, 0), -44px, 0) scale(0.2);
+            }
+        }
+
+        @keyframes atSmokeRise {
+
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 0, 0) scale(0.5);
+            }
+
+            25% {
+                opacity: 0.85;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(var(--sdx, 10px), -42px, 0) scale(1.6);
+            }
+        }
+
+        @keyframes atLogoBreathe {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.34)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.26));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.5)) drop-shadow(0 0 34px rgba(255, 106, 0, 0.38));
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .at-pumpkin {
+                width: clamp(76px, 8.6vw, 104px);
+            }
+
+            .at-pumpkin__cast {
+                width: clamp(220px, 30vw, 320px);
+                height: clamp(120px, 17vw, 180px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .at-pumpkin {
+                width: clamp(62px, 11vw, 86px);
+            }
+
+            .at-pumpkin__cast {
+                width: clamp(190px, 34vw, 280px);
+                height: clamp(110px, 20vw, 160px);
+            }
+
+            .header-left--lit {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .at-pumpkin {
+                width: clamp(52px, 13vw, 70px);
+            }
+
+            .at-pumpkin__cast {
+                width: clamp(160px, 38vw, 240px);
+                height: clamp(96px, 22vw, 140px);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .at-pumpkin {
+                width: 48px;
+            }
+        }
+
         /* ---------- Movimiento reducido ---------- */
         @media (prefers-reduced-motion: reduce) {
             .halloween-scene {
@@ -4080,7 +4514,15 @@
             .header-btn::after,
             .hw-web,
             .hw-dew,
-            .hw-dew-sparkle {
+            .hw-dew-sparkle,
+            .at-pumpkin__aura,
+            .at-pumpkin__cast,
+            .at-pumpkin__bloom,
+            .at-pumpkin__flame,
+            .at-pumpkin__smoke,
+            .at-pumpkin__fire,
+            .at-ember,
+            .header-left--lit .logo-box img {
                 animation: none !important;
             }
         }
@@ -4535,9 +4977,132 @@
 
     <!-- ==================== HEADER ==================== -->
     <header class="header">
-        <div class="header-left">
+        <div class="header-left header-left--lit">
             <div class="logo-box">
                 <img src="img/Logo1.jpg" alt="Logo Oficial Apuesta Total">
+            </div>
+            <!-- Calabaza de Halloween (elemento de marca, decorativo) -->
+            <div class="at-pumpkin" aria-hidden="true">
+                <span class="at-pumpkin__aura"></span>
+                <span class="at-pumpkin__smoke at-pumpkin__smoke--1"></span>
+                <span class="at-pumpkin__smoke at-pumpkin__smoke--2"></span>
+                <span class="at-pumpkin__smoke at-pumpkin__smoke--3"></span>
+                <span class="at-pumpkin__cast"></span>
+                <svg class="at-pumpkin__svg" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    role="presentation">
+                    <defs>
+                        <radialGradient id="atPgBody" gradientUnits="userSpaceOnUse" cx="54" cy="42" r="106">
+                            <stop offset="0%" stop-color="#ffc077" />
+                            <stop offset="16%" stop-color="#ff8c2a" />
+                            <stop offset="40%" stop-color="#e2620a" />
+                            <stop offset="64%" stop-color="#a63b05" />
+                            <stop offset="85%" stop-color="#5a1a02" />
+                            <stop offset="100%" stop-color="#260a01" />
+                        </radialGradient>
+                        <radialGradient id="atPgFire" gradientUnits="userSpaceOnUse" cx="80" cy="84" r="56">
+                            <stop offset="0%" stop-color="#fff8dc" />
+                            <stop offset="18%" stop-color="#ffd166" />
+                            <stop offset="46%" stop-color="#ff8c00" />
+                            <stop offset="76%" stop-color="#ff6a00" />
+                            <stop offset="100%" stop-color="#c1121f" />
+                        </radialGradient>
+                        <radialGradient id="atPgCore" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fffef2" stop-opacity="0.95" />
+                            <stop offset="42%" stop-color="#ffdd8a" stop-opacity="0.5" />
+                            <stop offset="100%" stop-color="#ff8c00" stop-opacity="0" />
+                        </radialGradient>
+                        <radialGradient id="atPgStem" gradientUnits="userSpaceOnUse" cx="70" cy="12" r="36">
+                            <stop offset="0%" stop-color="#8d6c31" />
+                            <stop offset="45%" stop-color="#4c3815" />
+                            <stop offset="100%" stop-color="#180f04" />
+                        </radialGradient>
+                        <radialGradient id="atPgSheen" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fff4e0" stop-opacity="0.45" />
+                            <stop offset="55%" stop-color="#ffd3a0" stop-opacity="0.14" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                        </radialGradient>
+                        <radialGradient id="atPgShade" gradientUnits="userSpaceOnUse" cx="42" cy="36" r="114">
+                            <stop offset="0%" stop-color="#000000" stop-opacity="0" />
+                            <stop offset="52%" stop-color="#000000" stop-opacity="0.06" />
+                            <stop offset="80%" stop-color="#120400" stop-opacity="0.3" />
+                            <stop offset="100%" stop-color="#070100" stop-opacity="0.55" />
+                        </radialGradient>
+                        <g id="atRibs">
+                            <path d="M80 28 C 66 56 66 102 80 126" />
+                            <path d="M80 28 C 94 56 94 102 80 126" />
+                            <path d="M54 38 C 41 60 41 100 54 122" />
+                            <path d="M106 38 C 119 60 119 100 106 122" />
+                            <path d="M32 56 C 23 72 23 98 32 114" />
+                            <path d="M128 56 C 137 72 137 98 128 114" />
+                        </g>
+                    </defs>
+
+                    <!-- Tallo -->
+                    <path d="M70 42 C 70 30 68 21 62 12 C 69 9 78 9 85 12 C 80 20 82 30 84 42 Z"
+                        fill="url(#atPgStem)" />
+                    <path d="M72 38 C 72 28 71 21 67 14" stroke="#ffdca8" stroke-opacity="0.22" stroke-width="2"
+                        stroke-linecap="round" fill="none" />
+
+                    <!-- Cuerpo lobulado con relieve 3D -->
+                    <g class="at-pumpkin__body">
+                        <ellipse cx="34" cy="84" rx="22" ry="31" fill="url(#atPgBody)" />
+                        <ellipse cx="54" cy="80" rx="30" ry="40" fill="url(#atPgBody)" />
+                        <ellipse cx="80" cy="76" rx="38" ry="46" fill="url(#atPgBody)" />
+                        <ellipse cx="106" cy="80" rx="30" ry="40" fill="url(#atPgBody)" />
+                        <ellipse cx="126" cy="84" rx="22" ry="31" fill="url(#atPgBody)" />
+                    </g>
+
+                    <!-- Oclusión lateral: profundiza el volumen -->
+                    <g fill="url(#atPgShade)">
+                        <ellipse cx="34" cy="84" rx="22" ry="31" />
+                        <ellipse cx="54" cy="80" rx="30" ry="40" />
+                        <ellipse cx="80" cy="76" rx="38" ry="46" />
+                        <ellipse cx="106" cy="80" rx="30" ry="40" />
+                        <ellipse cx="126" cy="84" rx="22" ry="31" />
+                    </g>
+
+                    <!-- Nervaduras: surco oscuro + labio iluminado -->
+                    <use href="#atRibs" fill="none" stroke="#3d0f00" stroke-opacity="0.28" stroke-width="3.2"
+                        stroke-linecap="round" />
+                    <use href="#atRibs" transform="translate(-1.6,-1.1)" fill="none" stroke="#ffc27a"
+                        stroke-opacity="0.16" stroke-width="1.8" stroke-linecap="round" />
+
+                    <!-- Brillo especular -->
+                    <ellipse cx="52" cy="46" rx="30" ry="17" transform="rotate(-24 52 46)"
+                        fill="url(#atPgSheen)" />
+
+                    <!-- Sombra del tallado (pared del corte) -->
+                    <g transform="translate(80 88) scale(1.05) translate(-80 -88)" fill="#3a0b00" fill-opacity="0.55">
+                        <path d="M38 60 L69 71 L43 85 Z" />
+                        <path d="M122 60 L91 71 L117 85 Z" />
+                        <path d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
+                    </g>
+
+                    <!-- Rostro tallado incandescente -->
+                    <g class="at-pumpkin__fire" fill="url(#atPgFire)" stroke="#2f0a00" stroke-opacity="0.42"
+                        stroke-width="1.2" stroke-linejoin="round">
+                        <path d="M38 60 L69 71 L43 85 Z" />
+                        <path d="M122 60 L91 71 L117 85 Z" />
+                        <path d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
+                    </g>
+
+                    <!-- Núcleos incandescentes de ojos y boca -->
+                    <g class="at-pumpkin__core" fill="url(#atPgCore)">
+                        <ellipse cx="54" cy="73" rx="17" ry="9" />
+                        <ellipse cx="106" cy="73" rx="17" ry="9" />
+                        <ellipse cx="80" cy="104" rx="40" ry="14" />
+                    </g>
+                </svg>
+                <span class="at-pumpkin__bloom"></span>
+                <span class="at-pumpkin__flame at-pumpkin__flame--eye-l"></span>
+                <span class="at-pumpkin__flame at-pumpkin__flame--eye-r"></span>
+                <span class="at-pumpkin__flame at-pumpkin__flame--mouth"></span>
+                <span class="at-ember at-ember--1"></span>
+                <span class="at-ember at-ember--2"></span>
+                <span class="at-ember at-ember--3"></span>
+                <span class="at-ember at-ember--4"></span>
+                <span class="at-ember at-ember--5"></span>
+                <span class="at-ember at-ember--6"></span>
             </div>
             <div class="header-text">
                 <h1 class="titulo"><span class="apuesta">APUESTA</span> <span class="total">TOTAL</span></h1>
@@ -5665,6 +6230,38 @@
                 startDate: '2026-10-22',
                 endDate: '2026-10-30',
                 canjeDate: '2026-10-31',
+                available: true
+            },
+            '2026-10-20-freebet-goleadora': {
+                name: 'FREEBET GOLEADORA – APUESTAS DEPORTIVAS',
+                category: 'blue',
+                icon: '<i class="fa-solid fa-futbol outline-icon"></i>',
+                description: 'Free Bet de S/30 para ser canjeada en cualquier apuesta deportiva.',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-gift outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>Free Bet de S/30</strong> para ser canjeada en cualquier apuesta deportiva.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">🗓 Participan todos los tickets realizados y calculados desde el <strong>20/10 hasta el 22/10</strong>.<br><br>📅 El cliente podrá cobrar su Free Bet desde el <strong>23/10/2026</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo (Condiciones)</div>
+                        <div class="promo-section-content">✅ El cliente debe ganar al menos <strong>un ticket de apuesta múltiple</strong>.<br><br>✅ Cada apuesta debe tener un monto mínimo de <strong>S/5</strong>.<br><br>✅ La apuesta debe contar con una <strong>cuota total superior a 3.00</strong>.<br><br>✅ Todas las selecciones del ticket deben pertenecer exclusivamente a los siguientes mercados:<br><br>• Total de Goles.<br>• Total de Goles Asiáticos.<br>• Equipo 1 Total de Goles.<br>• Equipo 2 Total de Goles.<br>• Ambos Equipos Anotan.<br>• Primer Equipo en Anotar.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-star outline-icon"></i> Condiciones de la Free Bet</div>
+                        <div class="promo-section-content">🎟️ Se emitirá una Free Bet por el valor exacto de <strong>S/30</strong> en un solo ticket.<br><br>💸 El monto máximo de conversión es de <strong>S/30</strong>.<br><br>✅ Se entregará <strong>máximo una Free Bet por cliente</strong> durante toda la vigencia de la promoción.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">📍 Solo serán válidas las <strong>apuestas múltiples</strong> que contengan <strong>exclusivamente los mercados de goles</strong> indicados en la promoción y que cumplan con el monto mínimo de <strong>S/5</strong> y la cuota total mínima de <strong>3.00</strong>.</div>
+                    </div>
+                `,
+                startDate: '2026-10-20',
+                endDate: '2026-10-22',
+                canjeDate: '2026-10-23',
                 available: true
             },
             '2026-09-24-cross-virtuales-deportivas-freebet-s5': {
