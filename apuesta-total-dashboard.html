@@ -4441,6 +4441,231 @@
             }
         }
 
+        /* =====================================================================
+           CALABAZA — INTERACCIÓN: OJOS QUE SIGUEN AL CURSOR + DESTELLO
+           Las "pupilas" son el núcleo incandescente dentro del tallado: se
+           desplazan hacia el puntero dentro de un rango limitado para que el
+           gesto se lea natural y no como un ojo de caricatura.
+           ===================================================================== */
+        .at-pumpkin {
+            --eye-x: 0px;
+            --eye-y: 0px;
+            pointer-events: auto;
+        }
+
+        /* ---------- Seguimiento del cursor ---------- */
+        .at-pumpkin__iris {
+            transform: translate(calc(var(--eye-x) * 0.45), calc(var(--eye-y) * 0.45));
+        }
+
+        .at-pumpkin__pupil {
+            transform: translate(var(--eye-x), var(--eye-y));
+        }
+
+        .at-pumpkin__fire {
+            transform: translate(calc(var(--eye-x) * 0.2), calc(var(--eye-y) * 0.2));
+        }
+
+        /* ---------- Destello de fuego al pasar el mouse ---------- */
+        .at-pumpkin__flare {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 3;
+            width: 215%;
+            height: 195%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse at center, rgba(255, 238, 190, 0.72) 0%, rgba(255, 150, 20, 0.42) 30%, rgba(255, 106, 0, 0.2) 56%, rgba(193, 18, 31, 0.08) 72%, transparent 84%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            will-change: opacity;
+        }
+
+        .at-pumpkin__burst {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 3;
+            width: 152%;
+            height: 152%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 244, 214, 0.85) 0%, rgba(255, 160, 30, 0.48) 22%, rgba(255, 106, 0, 0.16) 48%, transparent 68%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .at-pumpkin__spark {
+            position: absolute;
+            z-index: 6;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff6d0 0%, #ff8c00 48%, rgba(255, 106, 0, 0) 76%);
+            box-shadow: 0 0 9px rgba(255, 150, 30, 0.95);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .at-pumpkin__spark--1 {
+            left: 30%;
+            top: 46%;
+            --sx: -16px;
+            --sy: -28px;
+            --sd: 0s;
+        }
+
+        .at-pumpkin__spark--2 {
+            left: 35%;
+            top: 44%;
+            --sx: -10px;
+            --sy: -34px;
+            --sd: 0.05s;
+        }
+
+        .at-pumpkin__spark--3 {
+            left: 66%;
+            top: 46%;
+            --sx: 16px;
+            --sy: -30px;
+            --sd: 0.1s;
+        }
+
+        .at-pumpkin__spark--4 {
+            left: 71%;
+            top: 45%;
+            --sx: 12px;
+            --sy: -26px;
+            --sd: 0.15s;
+        }
+
+        .at-pumpkin__spark--5 {
+            left: 47%;
+            top: 64%;
+            --sx: -6px;
+            --sy: -30px;
+            --sd: 0.2s;
+        }
+
+        .at-pumpkin__spark--6 {
+            left: 55%;
+            top: 63%;
+            --sx: 8px;
+            --sy: -32px;
+            --sd: 0.25s;
+        }
+
+        /* Estado hover: el fuego interior se aviva */
+        .at-pumpkin.is-flare .at-pumpkin__flare {
+            opacity: 0.72;
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__burst {
+            animation: atFlareBurst 0.85s cubic-bezier(0.16, 0.8, 0.3, 1);
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__spark {
+            animation: atSparkFly 0.9s ease-out var(--sd, 0s) both;
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__fire {
+            filter: brightness(1.28) saturate(1.1);
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__core {
+            opacity: 1;
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__flame {
+            filter: brightness(1.4) saturate(1.15);
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__bloom {
+            filter: brightness(1.18);
+        }
+
+        .at-pumpkin.is-flare .at-ember {
+            filter: brightness(1.9);
+        }
+
+        .at-pumpkin.is-flare .at-pumpkin__svg {
+            transform: scale(1.035);
+        }
+
+        /* Transiciones solo donde no choca con las animaciones */
+        .at-pumpkin__core {
+            opacity: 0.88;
+            transition: opacity 0.4s ease;
+        }
+
+        .at-pumpkin__fire {
+            transition: filter 0.4s ease;
+        }
+
+        .at-pumpkin__svg {
+            transition: transform 0.4s ease;
+        }
+
+        .at-pumpkin__flame {
+            transition: filter 0.4s ease;
+        }
+
+        .at-pumpkin__bloom {
+            transition: filter 0.4s ease;
+        }
+
+        .at-ember {
+            transition: filter 0.4s ease;
+        }
+
+        @keyframes atFlareBurst {
+
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.78);
+            }
+
+            14% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.16);
+            }
+
+            38% {
+                opacity: 0.62;
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+
+            70% {
+                opacity: 0.32;
+                transform: translate(-50%, -50%) scale(0.97);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.94);
+            }
+        }
+
+        @keyframes atSparkFly {
+
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 0, 0) scale(0.4);
+            }
+
+            14% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(var(--sx, 0px), var(--sy, -24px), 0) scale(0.1);
+            }
+        }
+
         /* ---------- Responsive ---------- */
         @media (max-width: 1024px) {
             .at-pumpkin {
@@ -4521,6 +4746,8 @@
             .at-pumpkin__flame,
             .at-pumpkin__smoke,
             .at-pumpkin__fire,
+            .at-pumpkin__burst,
+            .at-pumpkin__spark,
             .at-ember,
             .header-left--lit .logo-box img {
                 animation: none !important;
@@ -5011,6 +5238,11 @@
                             <stop offset="42%" stop-color="#ffdd8a" stop-opacity="0.5" />
                             <stop offset="100%" stop-color="#ff8c00" stop-opacity="0" />
                         </radialGradient>
+                        <radialGradient id="atPgPupil" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+                            <stop offset="34%" stop-color="#fff0b8" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#ff8c00" stop-opacity="0" />
+                        </radialGradient>
                         <radialGradient id="atPgStem" gradientUnits="userSpaceOnUse" cx="70" cy="12" r="36">
                             <stop offset="0%" stop-color="#8d6c31" />
                             <stop offset="45%" stop-color="#4c3815" />
@@ -5088,12 +5320,20 @@
 
                     <!-- Núcleos incandescentes de ojos y boca -->
                     <g class="at-pumpkin__core" fill="url(#atPgCore)">
-                        <ellipse cx="54" cy="73" rx="17" ry="9" />
-                        <ellipse cx="106" cy="73" rx="17" ry="9" />
+                        <ellipse class="at-pumpkin__iris" cx="51" cy="72" rx="13" ry="7.5" />
+                        <ellipse class="at-pumpkin__iris" cx="109" cy="72" rx="13" ry="7.5" />
                         <ellipse cx="80" cy="104" rx="40" ry="14" />
+                    </g>
+
+                    <!-- Pupilas de fuego: siguen al cursor -->
+                    <g class="at-pumpkin__pupils" fill="url(#atPgPupil)" style="mix-blend-mode: screen">
+                        <ellipse class="at-pumpkin__pupil" cx="51" cy="72" rx="5" ry="3" />
+                        <ellipse class="at-pumpkin__pupil" cx="109" cy="72" rx="5" ry="3" />
                     </g>
                 </svg>
                 <span class="at-pumpkin__bloom"></span>
+                <span class="at-pumpkin__flare"></span>
+                <span class="at-pumpkin__burst"></span>
                 <span class="at-pumpkin__flame at-pumpkin__flame--eye-l"></span>
                 <span class="at-pumpkin__flame at-pumpkin__flame--eye-r"></span>
                 <span class="at-pumpkin__flame at-pumpkin__flame--mouth"></span>
@@ -5103,6 +5343,12 @@
                 <span class="at-ember at-ember--4"></span>
                 <span class="at-ember at-ember--5"></span>
                 <span class="at-ember at-ember--6"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--1"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--2"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--3"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--4"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--5"></span>
+                <span class="at-pumpkin__spark at-pumpkin__spark--6"></span>
             </div>
             <div class="header-text">
                 <h1 class="titulo"><span class="apuesta">APUESTA</span> <span class="total">TOTAL</span></h1>
@@ -9407,6 +9653,98 @@
         window.addEventListener('load', () => {
             updateDisplay();
         });
+
+        // ==================== CALABAZA: OJOS + DESTELLO ====================
+        // El tallado no tiene párpados: lo que "mira" es el núcleo incandescente
+        // dentro de cada ojo. Se desplaza hacia el puntero con un rango muy
+        // corto para que se lea como una llama que se inclina, no como un ojo
+        // de caricatura. Al posar el mouse sobre la calabaza, el fuego interno
+        // se aviva y escupe chispas.
+        (function pumpkinInteraction() {
+            const root = document.querySelector('.at-pumpkin');
+            if (!root) return;
+
+            const VIEW_W = 160;                  // ancho del viewBox del SVG
+            const FACE_X = 80;                   // centro de los ojos (unidades SVG)
+            const FACE_Y = 72;
+            const REACH = 30;                    // radio máximo de "mirada"
+            const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const PUPIL_MAX = calm.matches ? 0.9 : 2.6;   // recorrido del núcleo
+            const EASE = 0.12;                   // suavizado por fotograma
+
+            let pointerX = 0;
+            let pointerY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let raf = null;
+
+            const write = () => {
+                root.style.setProperty('--eye-x', (currentX * PUPIL_MAX).toFixed(3) + 'px');
+                root.style.setProperty('--eye-y', (currentY * PUPIL_MAX).toFixed(3) + 'px');
+            };
+
+            const frame = () => {
+                const rect = root.getBoundingClientRect();
+                if (rect.width) {
+                    const scale = rect.width / VIEW_W;
+                    const px = (pointerX - rect.left) / scale;
+                    const py = (pointerY - rect.top) / scale;
+                    const dx = px - FACE_X;
+                    const dy = py - FACE_Y;
+                    const dist = Math.hypot(dx, dy) || 1;
+                    const reach = Math.min(dist, REACH) / REACH;
+                    targetX = (dx / dist) * reach;
+                    targetY = (dy / dist) * reach;
+                }
+
+                currentX += (targetX - currentX) * EASE;
+                currentY += (targetY - currentY) * EASE;
+                write();
+
+                const settled = Math.abs(targetX - currentX) < 0.002 && Math.abs(targetY - currentY) < 0.002;
+                if (settled) {
+                    currentX = targetX;
+                    currentY = targetY;
+                    write();
+                    raf = null;
+                } else {
+                    raf = requestAnimationFrame(frame);
+                }
+            };
+
+            const schedule = () => {
+                if (raf === null) raf = requestAnimationFrame(frame);
+            };
+
+            const onPointerMove = (e) => {
+                pointerX = e.clientX;
+                pointerY = e.clientY;
+                schedule();
+            };
+
+            const onEnter = () => root.classList.add('is-flare');
+            const onLeave = () => {
+                root.classList.remove('is-flare');
+                targetX = 0;
+                targetY = 0;
+                schedule();
+            };
+            const onWindowLeave = () => {
+                targetX = 0;
+                targetY = 0;
+                schedule();
+            };
+
+            root.addEventListener('pointerenter', onEnter);
+            root.addEventListener('pointerleave', onLeave);
+            window.addEventListener('pointermove', onPointerMove, { passive: true });
+            document.addEventListener('pointerleave', onWindowLeave);
+            window.addEventListener('blur', onWindowLeave);
+
+            write();
+        })();
 
         // Cerrar modal al hacer clic fuera
         document.getElementById('modal').addEventListener('click', (e) => {
