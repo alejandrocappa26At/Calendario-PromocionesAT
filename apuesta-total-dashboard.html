@@ -3288,29 +3288,49 @@
             to { transform: scaleY(0.42); }
         }
 
-        /* ---------- Telarañas ---------- */
+        /* ---------- Telarañas con gotas de agua y brillo ---------- */
         .hw-web {
             position: absolute;
             pointer-events: none;
             color: #cfd6e4;
-            opacity: 0.4;
             width: clamp(120px, 16vw, 260px);
             height: clamp(120px, 16vw, 260px);
             animation: hwWebIn 2.2s ease 0.6s backwards;
         }
 
-        .hw-web-svg { width: 100%; height: 100%; display: block; }
+        .hw-web-svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
         .hw-web--tl { top: -2px; left: -2px; }
         .hw-web--tr { top: -2px; right: -2px; transform: scaleX(-1); }
+
+        .hw-web-strands {
+            opacity: 0.42;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Gotas de agua: volumen, halo cristalino y refracción */
+        .hw-web-dewdrops {
+            opacity: 0.96;
+            pointer-events: none;
+            filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.9))
+                    drop-shadow(0 0 3.5px rgba(135, 215, 255, 0.75))
+                    drop-shadow(0 0 7px rgba(70, 180, 255, 0.4));
+        }
 
         .hw-web--inline-tl {
             top: 0;
             left: 0;
             width: clamp(64px, 7vw, 120px);
             height: clamp(64px, 7vw, 120px);
-            opacity: 0.22;
             border-top-left-radius: inherit;
+        }
+        .hw-web--inline-tl .hw-web-strands,
+        .hw-web--inline-tr .hw-web-strands {
+            opacity: 0.26;
+        }
+        .hw-web--inline-tl .hw-web-dewdrops,
+        .hw-web--inline-tr .hw-web-dewdrops {
+            opacity: 0.85;
         }
 
         .hw-web--inline-tr {
@@ -3318,13 +3338,70 @@
             right: 0;
             width: clamp(64px, 7vw, 120px);
             height: clamp(64px, 7vw, 120px);
-            opacity: 0.2;
             transform: scaleX(-1);
             border-top-right-radius: inherit;
         }
 
         @keyframes hwWebIn {
             from { opacity: 0; transform: scale(0.6); }
+        }
+
+        /* Animación de titileo / brillo orgánico de las gotas de agua */
+        .hw-dew {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: hwDewGlisten 3.5s ease-in-out infinite alternate;
+        }
+
+        .hw-dew--g1 { animation-delay: 0s; animation-duration: 3.2s; }
+        .hw-dew--g2 { animation-delay: 0.8s; animation-duration: 2.7s; }
+        .hw-dew--g3 { animation-delay: 1.6s; animation-duration: 3.8s; }
+        .hw-dew--g4 { animation-delay: 2.3s; animation-duration: 3.1s; }
+        .hw-dew--g5 { animation-delay: 1.2s; animation-duration: 4.2s; }
+
+        /* Destellos vivos tipo diamante en gotas de agua principales */
+        .hw-dew-sparkle {
+            transform-box: fill-box;
+            transform-origin: center;
+            opacity: 0;
+            filter: drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 5px rgba(180, 240, 255, 0.95));
+            animation: hwDewSparkle 5s ease-in-out infinite;
+        }
+
+        .hw-dew-sparkle--1 { animation-delay: 0.3s; }
+        .hw-dew-sparkle--2 { animation-delay: 1.8s; }
+        .hw-dew-sparkle--3 { animation-delay: 3.1s; }
+        .hw-dew-sparkle--4 { animation-delay: 4.2s; }
+        .hw-dew-sparkle--5 { animation-delay: 2.5s; }
+
+        @keyframes hwDewGlisten {
+            0%, 100% {
+                opacity: 0.65;
+                transform: scale(0.94);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.18);
+            }
+        }
+
+        @keyframes hwDewSparkle {
+            0%, 24%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1.3) rotate(45deg);
+            }
+            15% {
+                opacity: 0.85;
+                transform: scale(0.95) rotate(75deg);
+            }
+            20% {
+                opacity: 0;
+                transform: scale(0.1) rotate(110deg);
+            }
         }
 
         /* ---------- Arañas descendiendo ---------- */
@@ -3697,7 +3774,8 @@
             .hw-pumpkin--right { display: none; }
             .hw-candle--right { display: none; }
             .hw-spider--2 { display: none; }
-            .hw-web--tr { opacity: 0.28; }
+            .hw-web--tr .hw-web-strands { opacity: 0.28; }
+            .hw-web--tr .hw-web-dewdrops { opacity: 0.75; }
             .hw-pumpkin { width: clamp(76px, 20vw, 120px); }
         }
 
@@ -3733,7 +3811,9 @@
             .promotion-icon i,
             .header .titulo::after,
             .header-btn::after,
-            .hw-web {
+            .hw-web,
+            .hw-dew,
+            .hw-dew-sparkle {
                 animation: none !important;
             }
         }
@@ -3753,19 +3833,337 @@
         <canvas class="hw-canvas" id="hwCanvas"></canvas>
         <div class="hw-bat-layer" id="hwBats"></div>
 
-        <!-- Telarañas en las esquinas -->
+        <!-- Telarañas en las esquinas con gotas de agua brillantes -->
         <div class="hw-web hw-web--tl">
-            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1"
-                stroke-linecap="round" preserveAspectRatio="xMinYMin meet">
-                <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118" />
-                <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94" />
+            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" preserveAspectRatio="xMinYMin meet">
+                <defs>
+                    <radialGradient id="hwDewGrad" cx="35%" cy="32%" r="65%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                        <stop offset="30%" stop-color="#e0f4ff" stop-opacity="0.95"/>
+                        <stop offset="70%" stop-color="#7ec8f8" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#3b96d8" stop-opacity="0.5"/>
+                    </radialGradient>
+                    <radialGradient id="hwDewHalo" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                        <stop offset="35%" stop-color="#b6e9ff" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#a8e3ff" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <g class="hw-web-strands" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+                    <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118"/>
+                    <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94"/>
+                </g>
+                <g class="hw-web-dewdrops">
+                    <g class="hw-dew hw-dew--g1">
+                        <circle cx="22" cy="22" r="3.4" fill="url(#hwDewHalo)"/>
+                        <circle cx="22" cy="22" r="2.2" fill="url(#hwDewGrad)"/>
+                        <circle cx="21.3" cy="21.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="61" cy="27" r="3.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="61" cy="27" r="2.6" fill="url(#hwDewGrad)"/>
+                        <circle cx="60.2" cy="26.2" r="0.9" fill="#ffffff"/>
+
+                        <circle cx="13" cy="29" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="13" cy="29" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="12.4" cy="28.4" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="72" cy="2" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="72" cy="2" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="71.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="54" cy="36" r="2.6" fill="url(#hwDewHalo)"/>
+                        <circle cx="54" cy="36" r="1.6" fill="url(#hwDewGrad)"/>
+                        <circle cx="53.4" cy="35.4" r="0.55" fill="#ffffff"/>
+
+                        <circle cx="104" cy="44" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="104" cy="44" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="103.3" cy="43.3" r="0.7" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g2">
+                        <circle cx="34" cy="34" r="4.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="34" cy="34" r="2.7" fill="url(#hwDewGrad)"/>
+                        <circle cx="33.1" cy="33.1" r="0.95" fill="#ffffff"/>
+
+                        <circle cx="27" cy="61" r="3.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="27" cy="61" r="2.6" fill="url(#hwDewGrad)"/>
+                        <circle cx="26.2" cy="60.2" r="0.9" fill="#ffffff"/>
+
+                        <circle cx="29" cy="13" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="29" cy="13" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="28.4" cy="12.4" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="2" cy="72" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="2" cy="72" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="1.3" cy="71.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="36" cy="54" r="2.6" fill="url(#hwDewHalo)"/>
+                        <circle cx="36" cy="54" r="1.6" fill="url(#hwDewGrad)"/>
+                        <circle cx="35.4" cy="53.4" r="0.55" fill="#ffffff"/>
+
+                        <circle cx="44" cy="104" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="44" cy="104" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="43.3" cy="103.3" r="0.7" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g3">
+                        <circle cx="47" cy="47" r="4.2" fill="url(#hwDewHalo)"/>
+                        <circle cx="47" cy="47" r="2.9" fill="url(#hwDewGrad)"/>
+                        <circle cx="46.1" cy="46.1" r="1.0" fill="#ffffff"/>
+
+                        <circle cx="44" cy="19" r="3.6" fill="url(#hwDewHalo)"/>
+                        <circle cx="44" cy="19" r="2.4" fill="url(#hwDewGrad)"/>
+                        <circle cx="43.2" cy="18.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="34" cy="80" r="3.4" fill="url(#hwDewHalo)"/>
+                        <circle cx="34" cy="80" r="2.3" fill="url(#hwDewGrad)"/>
+                        <circle cx="33.3" cy="79.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="34" cy="2" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="34" cy="2" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="33.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="73" cy="44" r="3.2" fill="url(#hwDewHalo)"/>
+                        <circle cx="73" cy="44" r="2.1" fill="url(#hwDewGrad)"/>
+                        <circle cx="72.3" cy="43.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="70" cy="48" r="2.5" fill="url(#hwDewHalo)"/>
+                        <circle cx="70" cy="48" r="1.5" fill="url(#hwDewGrad)"/>
+                        <circle cx="69.4" cy="47.4" r="0.5" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g4">
+                        <circle cx="60" cy="60" r="3.6" fill="url(#hwDewHalo)"/>
+                        <circle cx="60" cy="60" r="2.4" fill="url(#hwDewGrad)"/>
+                        <circle cx="59.2" cy="59.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="19" cy="44" r="3.6" fill="url(#hwDewHalo)"/>
+                        <circle cx="19" cy="44" r="2.4" fill="url(#hwDewGrad)"/>
+                        <circle cx="18.2" cy="43.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="80" cy="34" r="3.5" fill="url(#hwDewHalo)"/>
+                        <circle cx="80" cy="34" r="2.3" fill="url(#hwDewGrad)"/>
+                        <circle cx="79.3" cy="33.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="2" cy="34" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="2" cy="34" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="1.3" cy="33.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="44" cy="73" r="3.2" fill="url(#hwDewHalo)"/>
+                        <circle cx="44" cy="73" r="2.1" fill="url(#hwDewGrad)"/>
+                        <circle cx="43.3" cy="72.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="48" cy="70" r="2.5" fill="url(#hwDewHalo)"/>
+                        <circle cx="48" cy="70" r="1.5" fill="url(#hwDewGrad)"/>
+                        <circle cx="47.4" cy="69.4" r="0.5" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g5">
+                        <circle cx="82" cy="82" r="3.2" fill="url(#hwDewHalo)"/>
+                        <circle cx="82" cy="82" r="2.1" fill="url(#hwDewGrad)"/>
+                        <circle cx="81.3" cy="81.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="52" cy="2" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="52" cy="2" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="51.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="2" cy="52" r="3.0" fill="url(#hwDewHalo)"/>
+                        <circle cx="2" cy="52" r="2.0" fill="url(#hwDewGrad)"/>
+                        <circle cx="1.3" cy="51.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="94" cy="2" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="94" cy="2" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="93.3" cy="1.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="2" cy="94" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="2" cy="94" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="1.3" cy="93.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="39" cy="26" r="2.4" fill="url(#hwDewHalo)"/>
+                        <circle cx="39" cy="26" r="1.5" fill="url(#hwDewGrad)"/>
+                        <circle cx="38.5" cy="25.5" r="0.5" fill="#ffffff"/>
+
+                        <circle cx="26" cy="39" r="2.4" fill="url(#hwDewHalo)"/>
+                        <circle cx="26" cy="39" r="1.5" fill="url(#hwDewGrad)"/>
+                        <circle cx="25.5" cy="38.5" r="0.5" fill="#ffffff"/>
+
+                        <circle cx="96" cy="57" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="96" cy="57" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="95.3" cy="56.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="57" cy="96" r="2.8" fill="url(#hwDewHalo)"/>
+                        <circle cx="57" cy="96" r="1.8" fill="url(#hwDewGrad)"/>
+                        <circle cx="56.3" cy="95.3" r="0.6" fill="#ffffff"/>
+                    </g>
+                    <!-- Destellos tipo estrella en gotas clave -->
+                    <path class="hw-dew-sparkle hw-dew-sparkle--1" d="M34 29 Q34 34 39 34 Q34 34 34 39 Q34 34 29 34 Q34 34 34 29 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--2" d="M61 22 Q61 27 66 27 Q61 27 61 32 Q61 27 56 27 Q61 27 61 22 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--3" d="M27 56 Q27 61 32 61 Q27 61 27 66 Q27 61 22 61 Q27 61 27 56 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--4" d="M47 42 Q47 47 52 47 Q47 47 47 52 Q47 47 42 47 Q47 47 47 42 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--5" d="M80 30 Q80 34 84 34 Q80 34 80 38 Q80 34 76 34 Q80 34 80 30 Z" fill="#ffffff"/>
+                </g>
             </svg>
         </div>
         <div class="hw-web hw-web--tr">
-            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1"
-                stroke-linecap="round" preserveAspectRatio="xMinYMin meet">
-                <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118" />
-                <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94" />
+            <svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" preserveAspectRatio="xMinYMin meet">
+                <defs>
+                    <radialGradient id="hwDewGradTR" cx="35%" cy="32%" r="65%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                        <stop offset="30%" stop-color="#e0f4ff" stop-opacity="0.95"/>
+                        <stop offset="70%" stop-color="#7ec8f8" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#3b96d8" stop-opacity="0.5"/>
+                    </radialGradient>
+                    <radialGradient id="hwDewHaloTR" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                        <stop offset="35%" stop-color="#b6e9ff" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#a8e3ff" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <g class="hw-web-strands" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+                    <path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118"/>
+                    <path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94"/>
+                </g>
+                <g class="hw-web-dewdrops">
+                    <g class="hw-dew hw-dew--g1">
+                        <circle cx="22" cy="22" r="3.4" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="22" cy="22" r="2.2" fill="url(#hwDewGradTR)"/>
+                        <circle cx="21.3" cy="21.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="61" cy="27" r="3.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="61" cy="27" r="2.6" fill="url(#hwDewGradTR)"/>
+                        <circle cx="60.2" cy="26.2" r="0.9" fill="#ffffff"/>
+
+                        <circle cx="13" cy="29" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="13" cy="29" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="12.4" cy="28.4" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="72" cy="2" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="72" cy="2" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="71.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="54" cy="36" r="2.6" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="54" cy="36" r="1.6" fill="url(#hwDewGradTR)"/>
+                        <circle cx="53.4" cy="35.4" r="0.55" fill="#ffffff"/>
+
+                        <circle cx="104" cy="44" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="104" cy="44" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="103.3" cy="43.3" r="0.7" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g2">
+                        <circle cx="34" cy="34" r="4.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="34" cy="34" r="2.7" fill="url(#hwDewGradTR)"/>
+                        <circle cx="33.1" cy="33.1" r="0.95" fill="#ffffff"/>
+
+                        <circle cx="27" cy="61" r="3.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="27" cy="61" r="2.6" fill="url(#hwDewGradTR)"/>
+                        <circle cx="26.2" cy="60.2" r="0.9" fill="#ffffff"/>
+
+                        <circle cx="29" cy="13" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="29" cy="13" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="28.4" cy="12.4" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="2" cy="72" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="2" cy="72" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="1.3" cy="71.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="36" cy="54" r="2.6" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="36" cy="54" r="1.6" fill="url(#hwDewGradTR)"/>
+                        <circle cx="35.4" cy="53.4" r="0.55" fill="#ffffff"/>
+
+                        <circle cx="44" cy="104" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="44" cy="104" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="43.3" cy="103.3" r="0.7" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g3">
+                        <circle cx="47" cy="47" r="4.2" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="47" cy="47" r="2.9" fill="url(#hwDewGradTR)"/>
+                        <circle cx="46.1" cy="46.1" r="1.0" fill="#ffffff"/>
+
+                        <circle cx="44" cy="19" r="3.6" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="44" cy="19" r="2.4" fill="url(#hwDewGradTR)"/>
+                        <circle cx="43.2" cy="18.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="34" cy="80" r="3.4" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="34" cy="80" r="2.3" fill="url(#hwDewGradTR)"/>
+                        <circle cx="33.3" cy="79.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="34" cy="2" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="34" cy="2" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="33.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="73" cy="44" r="3.2" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="73" cy="44" r="2.1" fill="url(#hwDewGradTR)"/>
+                        <circle cx="72.3" cy="43.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="70" cy="48" r="2.5" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="70" cy="48" r="1.5" fill="url(#hwDewGradTR)"/>
+                        <circle cx="69.4" cy="47.4" r="0.5" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g4">
+                        <circle cx="60" cy="60" r="3.6" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="60" cy="60" r="2.4" fill="url(#hwDewGradTR)"/>
+                        <circle cx="59.2" cy="59.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="19" cy="44" r="3.6" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="19" cy="44" r="2.4" fill="url(#hwDewGradTR)"/>
+                        <circle cx="18.2" cy="43.2" r="0.8" fill="#ffffff"/>
+
+                        <circle cx="80" cy="34" r="3.5" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="80" cy="34" r="2.3" fill="url(#hwDewGradTR)"/>
+                        <circle cx="79.3" cy="33.3" r="0.75" fill="#ffffff"/>
+
+                        <circle cx="2" cy="34" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="2" cy="34" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="1.3" cy="33.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="44" cy="73" r="3.2" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="44" cy="73" r="2.1" fill="url(#hwDewGradTR)"/>
+                        <circle cx="43.3" cy="72.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="48" cy="70" r="2.5" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="48" cy="70" r="1.5" fill="url(#hwDewGradTR)"/>
+                        <circle cx="47.4" cy="69.4" r="0.5" fill="#ffffff"/>
+                    </g>
+                    <g class="hw-dew hw-dew--g5">
+                        <circle cx="82" cy="82" r="3.2" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="82" cy="82" r="2.1" fill="url(#hwDewGradTR)"/>
+                        <circle cx="81.3" cy="81.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="52" cy="2" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="52" cy="2" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="51.3" cy="1.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="2" cy="52" r="3.0" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="2" cy="52" r="2.0" fill="url(#hwDewGradTR)"/>
+                        <circle cx="1.3" cy="51.3" r="0.7" fill="#ffffff"/>
+
+                        <circle cx="94" cy="2" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="94" cy="2" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="93.3" cy="1.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="2" cy="94" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="2" cy="94" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="1.3" cy="93.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="39" cy="26" r="2.4" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="39" cy="26" r="1.5" fill="url(#hwDewGradTR)"/>
+                        <circle cx="38.5" cy="25.5" r="0.5" fill="#ffffff"/>
+
+                        <circle cx="26" cy="39" r="2.4" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="26" cy="39" r="1.5" fill="url(#hwDewGradTR)"/>
+                        <circle cx="25.5" cy="38.5" r="0.5" fill="#ffffff"/>
+
+                        <circle cx="96" cy="57" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="96" cy="57" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="95.3" cy="56.3" r="0.6" fill="#ffffff"/>
+
+                        <circle cx="57" cy="96" r="2.8" fill="url(#hwDewHaloTR)"/>
+                        <circle cx="57" cy="96" r="1.8" fill="url(#hwDewGradTR)"/>
+                        <circle cx="56.3" cy="95.3" r="0.6" fill="#ffffff"/>
+                    </g>
+                    <!-- Destellos tipo estrella en gotas clave -->
+                    <path class="hw-dew-sparkle hw-dew-sparkle--1" d="M34 29 Q34 34 39 34 Q34 34 34 39 Q34 34 29 34 Q34 34 34 29 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--2" d="M61 22 Q61 27 66 27 Q61 27 61 32 Q61 27 56 27 Q61 27 61 22 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--3" d="M27 56 Q27 61 32 61 Q27 61 27 66 Q27 61 22 61 Q27 61 27 56 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--4" d="M47 42 Q47 47 52 47 Q47 47 47 52 Q47 47 42 47 Q47 47 47 42 Z" fill="#ffffff"/>
+                    <path class="hw-dew-sparkle hw-dew-sparkle--5" d="M80 30 Q80 34 84 34 Q80 34 80 38 Q80 34 76 34 Q80 34 80 30 Z" fill="#ffffff"/>
+                </g>
             </svg>
         </div>
 
@@ -8181,10 +8579,75 @@
             const rnd = (min, max) => min + Math.random() * (max - min);
 
             /* ---------- Telarañas en esquinas del header y del calendario ---------- */
-            const WEB_SVG = '<svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" ' +
-                'stroke-width="1" stroke-linecap="round" preserveAspectRatio="xMinYMin meet">' +
+            const WEB_SVG = '<svg class="hw-web-svg" viewBox="0 0 120 120" fill="none" preserveAspectRatio="xMinYMin meet">' +
+                '<defs>' +
+                '<radialGradient id="hwDewGradInline" cx="35%" cy="32%" r="65%">' +
+                '<stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>' +
+                '<stop offset="30%" stop-color="#e0f4ff" stop-opacity="0.95"/>' +
+                '<stop offset="70%" stop-color="#7ec8f8" stop-opacity="0.8"/>' +
+                '<stop offset="100%" stop-color="#3b96d8" stop-opacity="0.5"/>' +
+                '</radialGradient>' +
+                '<radialGradient id="hwDewHaloInline" cx="50%" cy="50%" r="50%">' +
+                '<stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>' +
+                '<stop offset="35%" stop-color="#b6e9ff" stop-opacity="0.6"/>' +
+                '<stop offset="100%" stop-color="#a8e3ff" stop-opacity="0"/>' +
+                '</radialGradient>' +
+                '</defs>' +
+                '<g class="hw-web-strands" stroke="currentColor" stroke-width="1" stroke-linecap="round">' +
                 '<path d="M2 2 L118 2 M2 2 L2 118 M2 2 L104 44 M2 2 L82 82 M2 2 L44 104 M2 2 L118 70 M2 2 L70 118"/>' +
-                '<path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94"/></svg>';
+                '<path d="M34 2 Q26 26 2 34 M52 2 Q40 40 2 52 M72 2 Q56 56 2 72 M94 2 Q72 72 2 94"/>' +
+                '</g>' +
+                '<g class="hw-web-dewdrops">' +
+                '<g class="hw-dew hw-dew--g1">' +
+                '<circle cx="22" cy="22" r="3.4" fill="url(#hwDewHaloInline)"/><circle cx="22" cy="22" r="2.2" fill="url(#hwDewGradInline)"/><circle cx="21.3" cy="21.3" r="0.75" fill="#fff"/>' +
+                '<circle cx="61" cy="27" r="3.8" fill="url(#hwDewHaloInline)"/><circle cx="61" cy="27" r="2.6" fill="url(#hwDewGradInline)"/><circle cx="60.2" cy="26.2" r="0.9" fill="#fff"/>' +
+                '<circle cx="13" cy="29" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="13" cy="29" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="12.4" cy="28.4" r="0.6" fill="#fff"/>' +
+                '<circle cx="72" cy="2" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="72" cy="2" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="71.3" cy="1.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="54" cy="36" r="2.6" fill="url(#hwDewHaloInline)"/><circle cx="54" cy="36" r="1.6" fill="url(#hwDewGradInline)"/><circle cx="53.4" cy="35.4" r="0.55" fill="#fff"/>' +
+                '<circle cx="104" cy="44" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="104" cy="44" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="103.3" cy="43.3" r="0.7" fill="#fff"/>' +
+                '</g>' +
+                '<g class="hw-dew hw-dew--g2">' +
+                '<circle cx="34" cy="34" r="4.0" fill="url(#hwDewHaloInline)"/><circle cx="34" cy="34" r="2.7" fill="url(#hwDewGradInline)"/><circle cx="33.1" cy="33.1" r="0.95" fill="#fff"/>' +
+                '<circle cx="27" cy="61" r="3.8" fill="url(#hwDewHaloInline)"/><circle cx="27" cy="61" r="2.6" fill="url(#hwDewGradInline)"/><circle cx="26.2" cy="60.2" r="0.9" fill="#fff"/>' +
+                '<circle cx="29" cy="13" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="29" cy="13" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="28.4" cy="12.4" r="0.6" fill="#fff"/>' +
+                '<circle cx="2" cy="72" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="2" cy="72" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="1.3" cy="71.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="36" cy="54" r="2.6" fill="url(#hwDewHaloInline)"/><circle cx="36" cy="54" r="1.6" fill="url(#hwDewGradInline)"/><circle cx="35.4" cy="53.4" r="0.55" fill="#fff"/>' +
+                '<circle cx="44" cy="104" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="44" cy="104" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="43.3" cy="103.3" r="0.7" fill="#fff"/>' +
+                '</g>' +
+                '<g class="hw-dew hw-dew--g3">' +
+                '<circle cx="47" cy="47" r="4.2" fill="url(#hwDewHaloInline)"/><circle cx="47" cy="47" r="2.9" fill="url(#hwDewGradInline)"/><circle cx="46.1" cy="46.1" r="1.0" fill="#fff"/>' +
+                '<circle cx="44" cy="19" r="3.6" fill="url(#hwDewHaloInline)"/><circle cx="44" cy="19" r="2.4" fill="url(#hwDewGradInline)"/><circle cx="43.2" cy="18.2" r="0.8" fill="#fff"/>' +
+                '<circle cx="34" cy="80" r="3.4" fill="url(#hwDewHaloInline)"/><circle cx="34" cy="80" r="2.3" fill="url(#hwDewGradInline)"/><circle cx="33.3" cy="79.3" r="0.75" fill="#fff"/>' +
+                '<circle cx="34" cy="2" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="34" cy="2" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="33.3" cy="1.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="73" cy="44" r="3.2" fill="url(#hwDewHaloInline)"/><circle cx="73" cy="44" r="2.1" fill="url(#hwDewGradInline)"/><circle cx="72.3" cy="43.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="70" cy="48" r="2.5" fill="url(#hwDewHaloInline)"/><circle cx="70" cy="48" r="1.5" fill="url(#hwDewGradInline)"/><circle cx="69.4" cy="47.4" r="0.5" fill="#fff"/>' +
+                '</g>' +
+                '<g class="hw-dew hw-dew--g4">' +
+                '<circle cx="60" cy="60" r="3.6" fill="url(#hwDewHaloInline)"/><circle cx="60" cy="60" r="2.4" fill="url(#hwDewGradInline)"/><circle cx="59.2" cy="59.2" r="0.8" fill="#fff"/>' +
+                '<circle cx="19" cy="44" r="3.6" fill="url(#hwDewHaloInline)"/><circle cx="19" cy="44" r="2.4" fill="url(#hwDewGradInline)"/><circle cx="18.2" cy="43.2" r="0.8" fill="#fff"/>' +
+                '<circle cx="80" cy="34" r="3.5" fill="url(#hwDewHaloInline)"/><circle cx="80" cy="34" r="2.3" fill="url(#hwDewGradInline)"/><circle cx="79.3" cy="33.3" r="0.75" fill="#fff"/>' +
+                '<circle cx="2" cy="34" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="2" cy="34" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="1.3" cy="33.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="44" cy="73" r="3.2" fill="url(#hwDewHaloInline)"/><circle cx="44" cy="73" r="2.1" fill="url(#hwDewGradInline)"/><circle cx="43.3" cy="72.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="48" cy="70" r="2.5" fill="url(#hwDewHaloInline)"/><circle cx="48" cy="70" r="1.5" fill="url(#hwDewGradInline)"/><circle cx="47.4" cy="69.4" r="0.5" fill="#fff"/>' +
+                '</g>' +
+                '<g class="hw-dew hw-dew--g5">' +
+                '<circle cx="82" cy="82" r="3.2" fill="url(#hwDewHaloInline)"/><circle cx="82" cy="82" r="2.1" fill="url(#hwDewGradInline)"/><circle cx="81.3" cy="81.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="52" cy="2" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="52" cy="2" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="51.3" cy="1.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="2" cy="52" r="3.0" fill="url(#hwDewHaloInline)"/><circle cx="2" cy="52" r="2.0" fill="url(#hwDewGradInline)"/><circle cx="1.3" cy="51.3" r="0.7" fill="#fff"/>' +
+                '<circle cx="94" cy="2" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="94" cy="2" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="93.3" cy="1.3" r="0.6" fill="#fff"/>' +
+                '<circle cx="2" cy="94" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="2" cy="94" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="1.3" cy="93.3" r="0.6" fill="#fff"/>' +
+                '<circle cx="39" cy="26" r="2.4" fill="url(#hwDewHaloInline)"/><circle cx="39" cy="26" r="1.5" fill="url(#hwDewGradInline)"/><circle cx="38.5" cy="25.5" r="0.5" fill="#fff"/>' +
+                '<circle cx="26" cy="39" r="2.4" fill="url(#hwDewHaloInline)"/><circle cx="26" cy="39" r="1.5" fill="url(#hwDewGradInline)"/><circle cx="25.5" cy="38.5" r="0.5" fill="#fff"/>' +
+                '<circle cx="96" cy="57" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="96" cy="57" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="95.3" cy="56.3" r="0.6" fill="#fff"/>' +
+                '<circle cx="57" cy="96" r="2.8" fill="url(#hwDewHaloInline)"/><circle cx="57" cy="96" r="1.8" fill="url(#hwDewGradInline)"/><circle cx="56.3" cy="95.3" r="0.6" fill="#fff"/>' +
+                '</g>' +
+                '<path class="hw-dew-sparkle hw-dew-sparkle--1" d="M34 29 Q34 34 39 34 Q34 34 34 39 Q34 34 29 34 Q34 34 34 29 Z" fill="#ffffff"/>' +
+                '<path class="hw-dew-sparkle hw-dew-sparkle--2" d="M61 22 Q61 27 66 27 Q61 27 61 32 Q61 27 56 27 Q61 27 61 22 Z" fill="#ffffff"/>' +
+                '<path class="hw-dew-sparkle hw-dew-sparkle--3" d="M27 56 Q27 61 32 61 Q27 61 27 66 Q27 61 22 61 Q27 61 27 56 Z" fill="#ffffff"/>' +
+                '<path class="hw-dew-sparkle hw-dew-sparkle--4" d="M47 42 Q47 47 52 47 Q47 47 47 52 Q47 47 42 47 Q47 47 47 42 Z" fill="#ffffff"/>' +
+                '<path class="hw-dew-sparkle hw-dew-sparkle--5" d="M80 30 Q80 34 84 34 Q80 34 80 38 Q80 34 76 34 Q80 34 80 30 Z" fill="#ffffff"/>' +
+                '</g>' +
+                '</svg>';
 
             function addCornerWeb(host, className) {
                 if (!host) return;
