@@ -559,35 +559,8 @@
         }
 
         /* ==================== BADGES ESPECIALES ==================== */
-        .corner-badge-lima {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 120px;
-            height: 120px;
-            overflow: hidden;
-            border-radius: 0;
-        }
-
-        .corner-badge-lima::before {
-            content: '📍 SOLO\ALIMA';
-            position: absolute;
-            top: 8px;
-            right: -35px;
-            width: 150px;
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #ff0066, #ff4d94);
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 900;
-            text-align: center;
-            transform: rotate(45deg);
-            box-shadow: 0 0 12px rgba(255, 0, 102, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.2);
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-            white-space: pre-line;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+        /* Las promociones exclusivas de Lima se identifican con la píldora "SOLO LIMA"
+           en la esquina superior derecha de la tarjeta (badgePulse) */
 
         @keyframes pulse-hot {
 
@@ -1313,6 +1286,11 @@
             animation: dashboardReveal 0.45s both;
         }
 
+        /* Variante para promociones sin fecha de canje (solo Estado, Inicio y Fin Promoción) */
+        .modal-kpis.modal-kpis--compact {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
         .modal-kpi {
             min-height: 72px;
             padding: 14px 16px;
@@ -1502,6 +1480,21 @@
             font-size: 10px;
         }
 
+        /* Distintivo de promociones exclusivas de Lima */
+        .lima-tag {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff0066, #ff4d94);
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(255, 0, 102, 0.55);
+        }
+
         .master-detail-panel {
             overflow-y: auto;
             padding: 20px;
@@ -1601,6 +1594,27 @@
         .promo-section.highlight .promo-section-content,
         .promo-section.highlight .promo-section-title {
             color: #00ff88;
+        }
+
+        /* ==================== BLOQUES AUTOMÁTICOS DE VIGENCIA Y CANJE ==================== */
+        .promo-section[data-generated="vigencia"] {
+            border-color: rgba(0, 217, 255, 0.28);
+        }
+
+        .promo-section[data-generated="vigencia"] .promo-section-title {
+            color: #00d9ff;
+        }
+
+        .promo-section[data-generated="canje"] {
+            border-color: rgba(255, 209, 0, 0.3);
+        }
+
+        .promo-section[data-generated="canje"] .promo-section-title {
+            color: #ffd100;
+        }
+
+        .promo-section[data-generated="canje"] .promo-section-content strong {
+            color: #ffd100;
         }
 
         /* ==================== COLORES DINÁMICOS DEL MODAL ==================== */
@@ -2377,7 +2391,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .modal-kpis {
+            .modal-kpis,
+            .modal-kpis.modal-kpis--compact {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
@@ -2777,13 +2792,6 @@
                 padding: 5px 10px;
                 right: 10px;
                 letter-spacing: 0.3px;
-            }
-
-            .corner-badge-lima {
-                right: 0;
-                top: 0;
-                width: 96px;
-                height: 96px;
             }
 
             .calendar-wrapper {
@@ -5300,14 +5308,14 @@
                         stroke-opacity="0.16" stroke-width="1.8" stroke-linecap="round" />
 
                     <!-- Brillo especular -->
-                    <ellipse cx="52" cy="46" rx="30" ry="17" transform="rotate(-24 52 46)"
-                        fill="url(#atPgSheen)" />
+                    <ellipse cx="52" cy="46" rx="30" ry="17" transform="rotate(-24 52 46)" fill="url(#atPgSheen)" />
 
                     <!-- Sombra del tallado (pared del corte) -->
                     <g transform="translate(80 88) scale(1.05) translate(-80 -88)" fill="#3a0b00" fill-opacity="0.55">
                         <path d="M38 60 L69 71 L43 85 Z" />
                         <path d="M122 60 L91 71 L117 85 Z" />
-                        <path d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
+                        <path
+                            d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
                     </g>
 
                     <!-- Rostro tallado incandescente -->
@@ -5315,7 +5323,8 @@
                         stroke-width="1.2" stroke-linejoin="round">
                         <path d="M38 60 L69 71 L43 85 Z" />
                         <path d="M122 60 L91 71 L117 85 Z" />
-                        <path d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
+                        <path
+                            d="M32 92 L44 100 L54 93 L66 101 L80 94 L94 101 L106 93 L116 100 L128 92 Q 80 132 32 92 Z" />
                     </g>
 
                     <!-- Núcleos incandescentes de ojos y boca -->
@@ -6174,6 +6183,7 @@
                 startDate: '2026-09-24',
                 endDate: '2026-09-30',
                 canjeDate: '2026-10-01',
+                hasCanje: true,
                 available: true
             },
             '2026-09-24-omnicanal-apuestas-deportivas': {
@@ -6202,6 +6212,7 @@
                 startDate: '2026-09-24',
                 endDate: '2026-09-27',
                 canjeDate: '2026-09-28',
+                hasCanje: true,
                 available: true
             },
             '2026-09-28-omnicanal-ad2-freebet-corners': {
@@ -6230,6 +6241,7 @@
                 startDate: '2026-09-28',
                 endDate: '2026-09-30',
                 canjeDate: '2026-10-01',
+                hasCanje: true,
                 available: true
             },
             '2026-10-01-freebet-disparos-al-arco': {
@@ -6261,6 +6273,7 @@
                 `,
                 startDate: '2026-10-01',
                 endDate: '2026-10-03',
+                hasCanje: false,
                 available: true
             },
             '2026-10-02-chapa-tu-suerte-jugada-gratis': {
@@ -6293,6 +6306,7 @@
                 startDate: '2026-10-19',
                 endDate: '2026-10-23',
                 canjeDate: '2026-10-23',
+                hasCanje: false,
                 available: true
             },
             '2026-10-04-omnicanal-tarjetas': {
@@ -6325,6 +6339,7 @@
                 startDate: '2026-10-04',
                 endDate: '2026-10-06',
                 canjeDate: '2026-10-07',
+                hasCanje: true,
                 available: true
             },
             '2026-10-08-freebet-s15-betbuilder': {
@@ -6357,6 +6372,7 @@
                 startDate: '2026-10-08',
                 endDate: '2026-10-09',
                 canjeDate: '2026-10-09',
+                hasCanje: true,
                 available: true
             },
             '2026-10-09-freebet-goleadora': {
@@ -6388,6 +6404,8 @@
                 `,
                 startDate: '2026-10-09',
                 endDate: '2026-10-12',
+                canjeDate: '2026-10-12',
+                hasCanje: true,
                 available: true
             },
             '2026-10-09-7x10-virtuales': {
@@ -6420,6 +6438,7 @@
                 startDate: '2026-10-09',
                 endDate: '2026-10-09',
                 canjeDate: '2026-10-09',
+                hasCanje: false,
                 available: true
             },
             '2026-10-13-freebet-goleadora': {
@@ -6452,6 +6471,7 @@
                 startDate: '2026-10-13',
                 endDate: '2026-10-15',
                 canjeDate: '2026-10-16',
+                hasCanje: true,
                 available: true
             },
             '2026-10-16-freebet-s15-betbuilder': {
@@ -6484,6 +6504,7 @@
                 startDate: '2026-10-16',
                 endDate: '2026-10-16',
                 canjeDate: '2026-10-17',
+                hasCanje: true,
                 available: true
             },
             '2026-10-16-7x10-virtuales': {
@@ -6516,6 +6537,7 @@
                 startDate: '2026-10-15',
                 endDate: '2026-10-16',
                 canjeDate: '2026-10-16',
+                hasCanje: false,
                 available: true
             },
             '2026-10-22-revive-tu-suerte-freebet-s50': {
@@ -6548,6 +6570,7 @@
                 startDate: '2026-10-22',
                 endDate: '2026-10-30',
                 canjeDate: '2026-10-31',
+                hasCanje: true,
                 available: true
             },
             '2026-10-20-freebet-goleadora': {
@@ -6580,6 +6603,41 @@
                 startDate: '2026-10-20',
                 endDate: '2026-10-22',
                 canjeDate: '2026-10-23',
+                hasCanje: true,
+                available: true
+            },
+            '2026-10-19-sorteo-camiseta-universitario-juan-pablo-ii': {
+                name: 'SORTEO CAMISETA AUTOGRAFIADA Y ENTRADAS',
+                category: 'red',
+                icon: '<i class="fa-solid fa-shirt outline-icon"></i>',
+                description: '1 camiseta oficial autografiada de Universitario y 2 entradas en Occidente para el próximo partido de local vs Sport Boys.',
+                customBadgeText: 'SOLO LIMA',
+                customBadgeClass: 'lima-only',
+                htmlDetails: `
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Premio</div>
+                        <div class="promo-section-content">🎁 <strong>1 camiseta oficial autografiada de Universitario</strong>.<br><br>🎟️ <strong>2 entradas en Occidente</strong> para el siguiente partido de local de Universitario vs Sport Boys.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Vigencia</div>
+                        <div class="promo-section-content">🗓 Participan todos los tickets realizados y calculados desde el <strong>19/10 hasta el 24/10</strong>.</div>
+                    </div>
+                    <div class="promo-section">
+                        <div class="promo-section-title"><i class="fa-solid fa-book-open outline-icon"></i> Mecánica de la Promo (Condiciones)</div>
+                        <div class="promo-section-content">✅ El cliente debe registrarse previamente en el siguiente enlace:<br><br>🔗 <a href="https://www.apuestatotal.com/sorteos" target="_blank" rel="noopener noreferrer">www.apuestatotal.com/sorteos</a><br><br>⚽ Participan todas las apuestas realizadas al partido <strong>Universitario vs Juan Pablo II</strong>.<br><br>💰 Participan apuestas desde <strong>S/1</strong>.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-star outline-icon"></i> Condiciones del Sorteo</div>
+                        <div class="promo-section-content">✅ Solo participarán los clientes que se hayan registrado correctamente en la página del sorteo.<br><br>🎯 Cada apuesta válida suma opciones para participar en el sorteo.<br><br>📅 Aplica para <strong>tickets emitidos dentro de la vigencia</strong> de la promoción.</div>
+                    </div>
+                    <div class="promo-section highlight">
+                        <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación adicional</div>
+                        <div class="promo-section-content">📍 El premio incluye una <strong>camiseta oficial autografiada</strong> y <strong>dos entradas en Occidente</strong> para el próximo partido de local de Universitario frente a Sport Boys.<br><br>✅ Se recomienda verificar que el registro en la web haya sido completado correctamente para participar en el sorteo.<br><br>🏪 Promoción válida <strong>solo para Lima</strong>.</div>
+                    </div>
+                `,
+                startDate: '2026-10-19',
+                endDate: '2026-10-24',
+                hasCanje: false,
                 available: true
             },
             '2026-09-24-cross-virtuales-deportivas-freebet-s5': {
@@ -6608,6 +6666,7 @@
                 startDate: '2026-09-24',
                 endDate: '2026-09-24',
                 canjeDate: '2026-09-25',
+                hasCanje: true,
                 available: true
             },
             '2026-09-17-7x10-virtuales': {
@@ -6635,6 +6694,7 @@
                 `,
                 startDate: '2026-09-17',
                 endDate: '2026-09-30',
+                hasCanje: false,
                 available: false
             },
             '2026-09-17-freebet-betbuilder-retail': {
@@ -6663,6 +6723,7 @@
                 startDate: '2026-09-17',
                 endDate: '2026-09-17',
                 canjeDate: '2026-09-18',
+                hasCanje: true,
                 available: true
             },
             '2026-09-18-freebet-goleadora': {
@@ -6691,6 +6752,7 @@
                 startDate: '2026-09-18',
                 endDate: '2026-09-20',
                 canjeDate: '2026-09-21',
+                hasCanje: true,
                 available: true
             },
             '2026-09-09-freebet-copa-sudamericana': {
@@ -6718,6 +6780,8 @@
                 `,
                 startDate: '2026-09-09',
                 endDate: '2026-09-10',
+                canjeDate: '2026-09-10',
+                hasCanje: true,
                 available: true
             },
             '2026-09-07-duelo-de-cuotas': {
@@ -6746,6 +6810,7 @@
                 startDate: '2026-09-07',
                 endDate: '2026-09-20',
                 canjeDate: '2026-09-22',
+                hasCanje: true,
                 available: true
             },
             '2026-09-04-freebet-combi': {
@@ -6774,6 +6839,7 @@
                 startDate: '2026-09-04',
                 endDate: '2026-09-06',
                 canjeDate: '2026-09-07',
+                hasCanje: true,
                 available: true
             },
             '2026-09-06-clasico-apuesta-total': {
@@ -6802,6 +6868,7 @@
                 startDate: '2026-09-06',
                 endDate: '2026-09-12',
                 canjeDate: '2026-09-14',
+                hasCanje: true,
                 available: true
             },
             '2026-09-12-freebet-clasico': {
@@ -6830,6 +6897,7 @@
                 startDate: '2026-09-12',
                 endDate: '2026-09-12',
                 canjeDate: '2026-09-12',
+                hasCanje: true,
                 available: true
             },
             '2026-09-04-freebet-goleadora': {
@@ -6858,6 +6926,7 @@
                 startDate: '2026-09-11',
                 endDate: '2026-09-13',
                 canjeDate: '2026-09-14',
+                hasCanje: true,
                 available: true
             },
             '2026-09-04-racha-virtualera': {
@@ -6886,6 +6955,7 @@
                 startDate: '2026-09-11',
                 endDate: '2026-09-13',
                 canjeDate: '2026-09-14',
+                hasCanje: true,
                 available: true
             },
             '2026-09-02-freebet-betbuilder': {
@@ -6914,6 +6984,7 @@
                 startDate: '2026-09-02',
                 endDate: '2026-09-02',
                 canjeDate: '2026-09-03',
+                hasCanje: true,
                 available: true
             },
             '2026-06-19-racha3': {
@@ -6968,6 +7039,7 @@
                 startDate: '2026-07-03',
                 endDate: '2026-07-05',
                 canjeDate: '2026-07-06',
+                hasCanje: true,
                 available: true
             },
             '2026-06-19-mvp-cuota': {
@@ -7020,6 +7092,7 @@
                 `,
                 startDate: '2026-06-19',
                 endDate: '2026-07-09',
+                hasCanje: true,
                 available: true
             },
             '2026-07-02-freebet': {
@@ -7059,6 +7132,7 @@
                 startDate: '2026-07-02',
                 endDate: '2026-07-02',
                 canjeDate: '2026-07-03',
+                hasCanje: true,
                 available: true
             },
             '2026-07-03-fanfest-4tos': {
@@ -7108,6 +7182,7 @@
                 `,
                 startDate: '2026-07-03',
                 endDate: '2026-07-06',
+                hasCanje: true,
                 announcementDate: '2026-07-07',
                 available: true
             },
@@ -7155,6 +7230,7 @@
                 startDate: '2026-07-04',
                 endDate: '2026-07-05',
                 canjeDate: '2026-07-06',
+                hasCanje: true,
                 available: true
             },
             '2026-07-27': {
@@ -7183,6 +7259,7 @@
                 startDate: '2026-09-14',
                 endDate: '2026-09-16',
                 canjeDate: '2026-09-16',
+                hasCanje: false,
                 available: true
             },
             '2026-06-02': {
@@ -7211,6 +7288,7 @@
                 startDate: '2026-06-02',
                 endDate: '2026-06-04',
                 canjeDate: '2026-06-06',
+                hasCanje: true,
                 available: true
             },
             '2026-06-08-messi': {
@@ -7239,6 +7317,7 @@
                 startDate: '2026-06-08',
                 endDate: '2026-06-28',
                 canjeDate: '2026-06-29',
+                hasCanje: true,
                 available: true
             },
             '2026-06-08-escalera': {
@@ -7267,6 +7346,7 @@
                 startDate: '2026-06-08',
                 endDate: '2026-06-10',
                 canjeDate: '2026-06-11',
+                hasCanje: true,
                 available: true
             },
             '2026-06-12-vale': {
@@ -7295,6 +7375,7 @@
                 startDate: '2026-06-12',
                 endDate: '2026-06-14',
                 canjeDate: '2026-06-15',
+                hasCanje: true,
                 available: true
             },
             '2026-06-15-3x3': {
@@ -7327,6 +7408,7 @@
                 startDate: '2026-06-20',
                 endDate: '2026-06-25',
                 canjeDate: '2026-06-25',
+                hasCanje: false,
                 available: true
             },
             '2026-06-30-donatelo': {
@@ -7355,6 +7437,7 @@
                 startDate: '2026-06-27',
                 endDate: '2026-06-29',
                 canjeDate: '2026-06-30',
+                hasCanje: true,
                 available: true
             },
 
@@ -7411,6 +7494,7 @@
                 startDate: '2026-07-03',
                 endDate: '2026-07-05',
                 canjeDate: '2026-07-06',
+                hasCanje: true,
                 available: true
             },
             '2026-06-19-vale-papa': {
@@ -7449,6 +7533,7 @@
                 startDate: '2026-06-19',
                 endDate: '2026-06-21',
                 canjeDate: '2026-06-22',
+                hasCanje: true,
                 available: true
             },
             '2026-06-24-Free Bet S/15': {
@@ -7487,6 +7572,7 @@
                 startDate: '2026-06-24',
                 endDate: '2026-06-25',
                 canjeDate: '2026-06-26',
+                hasCanje: false,
                 available: true
             },
             '2026-06-19-arranque': {
@@ -7515,6 +7601,7 @@
                 startDate: '2026-06-19',
                 endDate: '2026-06-22',
                 canjeDate: '2026-06-22',
+                hasCanje: false,
                 available: true
             },
             '2026-06-19-mvp-cuota': {
@@ -7567,6 +7654,8 @@
                 `,
                 startDate: '2026-06-19',
                 endDate: '2026-07-09',
+                canjeDate: '2026-07-10',
+                hasCanje: true,
                 available: true
             },
             '2026-06-19-juega': {
@@ -7595,6 +7684,7 @@
                 startDate: '2026-06-19',
                 endDate: '2026-06-21',
                 canjeDate: '2026-06-21',
+                hasCanje: false,
                 available: true
             },
             '2026-07-02-freebet': {
@@ -7634,6 +7724,7 @@
                 startDate: '2026-07-02',
                 endDate: '2026-07-02',
                 canjeDate: '2026-07-03',
+                hasCanje: true,
                 available: true
             },
             '2026-07-03-fanfest-4tos': {
@@ -7683,6 +7774,8 @@
                 `,
                 startDate: '2026-07-03',
                 endDate: '2026-07-06',
+                canjeDate: '2026-07-07',
+                hasCanje: true,
                 announcementDate: '2026-07-07',
                 available: true
             },
@@ -7730,6 +7823,7 @@
                 startDate: '2026-07-04',
                 endDate: '2026-07-05',
                 canjeDate: '2026-07-06',
+                hasCanje: true,
                 available: true
             },
             '2026-07-07-filo-criollo': {
@@ -7777,6 +7871,8 @@
                 `,
                 startDate: '2026-07-07',
                 endDate: '2026-07-19',
+                canjeDate: '2026-07-20',
+                hasCanje: true,
                 announcementDate: '2026-07-20',
                 available: true
             },
@@ -7825,6 +7921,8 @@
                 `,
                 startDate: '2026-07-03',
                 endDate: '2026-07-06',
+                canjeDate: '2026-07-07',
+                hasCanje: true,
                 announcementDate: '2026-07-07',
                 available: true
             },
@@ -7873,6 +7971,8 @@
                 `,
                 startDate: '2026-07-07',
                 endDate: '2026-07-09',
+                canjeDate: '2026-07-10',
+                hasCanje: true,
                 announcementDate: '2026-07-10',
                 available: true
             },
@@ -7918,6 +8018,7 @@
                 startDate: '2026-07-08',
                 endDate: '2026-07-08',
                 canjeDate: '2026-07-09',
+                hasCanje: true,
                 available: true
             },
             '2026-07-09-betbuilder-freebet': {
@@ -7961,6 +8062,7 @@
                 startDate: '2026-07-09',
                 endDate: '2026-07-09',
                 canjeDate: '2026-07-10',
+                hasCanje: true,
                 available: true
             },
             '2026-07-10-chapa-freebet': {
@@ -8012,6 +8114,7 @@
                 startDate: '2026-07-10',
                 endDate: '2026-07-11',
                 canjeDate: '2026-07-12',
+                hasCanje: true,
                 available: true
             },
             '2026-07-10-racha-virtualera': {
@@ -8065,6 +8168,7 @@
                 startDate: '2026-07-10',
                 endDate: '2026-07-12',
                 canjeDate: '2026-07-13',
+                hasCanje: true,
                 available: true
             },
             '2026-07-15-cumpleañeros': {
@@ -8115,6 +8219,7 @@
                 startDate: '2026-07-15',
                 endDate: '2026-07-22',
                 canjeDate: '2026-07-22',
+                hasCanje: true,
                 available: true
             },
             '2026-07-14-betbuilder': {
@@ -8160,6 +8265,7 @@
                 startDate: '2026-07-14',
                 endDate: '2026-07-14',
                 canjeDate: '2026-07-15',
+                hasCanje: true,
                 available: true
             },
             '2026-07-16-freebet-40': {
@@ -8213,6 +8319,7 @@
                 startDate: '2026-07-16',
                 endDate: '2026-07-18',
                 canjeDate: '2026-07-19',
+                hasCanje: true,
                 available: true
             },
             '2026-07-20-duelo-cuotas': {
@@ -8268,6 +8375,8 @@
                 `,
                 startDate: '2026-07-20',
                 endDate: '2026-08-02',
+                canjeDate: '2026-08-03',
+                hasCanje: true,
                 announcementDate: '2026-08-03',
                 available: true
             },
@@ -8322,6 +8431,7 @@
                 startDate: '2026-07-21',
                 endDate: '2026-07-21',
                 canjeDate: '2026-07-22',
+                hasCanje: true,
                 available: true
             },
             '2026-07-24-freebet-codigo': {
@@ -8372,6 +8482,8 @@
                 `,
                 startDate: '2026-07-24',
                 endDate: '2026-07-24',
+                canjeDate: '2026-07-24',
+                hasCanje: true,
                 available: false
             },
             '2026-07-31-racha-virtualera-julio': {
@@ -8430,6 +8542,7 @@
                 `,
                 startDate: '2026-07-31',
                 endDate: '2026-08-02',
+                hasCanje: false,
                 available: true
             },
             '2026-07-28-freebet-patria': {
@@ -8484,6 +8597,7 @@
                 startDate: '2026-07-28',
                 endDate: '2026-07-30',
                 canjeDate: '2026-07-31',
+                hasCanje: true,
                 available: true
             },
             '2026-08-04-freebet-15-bb': {
@@ -8541,6 +8655,7 @@
                 startDate: '2026-08-04',
                 endDate: '2026-08-05',
                 canjeDate: '2026-08-06',
+                hasCanje: true,
                 available: true
             },
             '2026-08-14-racha-virtualera': {
@@ -8593,6 +8708,7 @@
                 `,
                 startDate: '2026-08-14',
                 endDate: '2026-08-16',
+                hasCanje: false,
                 available: true
             },
             '2026-08-07-freebet-40-combi': {
@@ -8649,6 +8765,7 @@
                 startDate: '2026-08-07',
                 endDate: '2026-08-09',
                 canjeDate: '2026-08-10',
+                hasCanje: true,
                 available: true
             },
             '2026-08-11-freebet-goleadora': {
@@ -8713,6 +8830,7 @@
                 startDate: '2026-08-11',
                 endDate: '2026-08-13',
                 canjeDate: '2026-08-14',
+                hasCanje: true,
                 available: true
             },
             '2026-08-12-freebet-betbuilder': {
@@ -8770,6 +8888,7 @@
                 startDate: '2026-08-12',
                 endDate: '2026-08-12',
                 canjeDate: '2026-08-13',
+                hasCanje: true,
                 available: true
             },
             '2026-08-14-freebet-combi': {
@@ -8825,6 +8944,7 @@
                 startDate: '2026-08-14',
                 endDate: '2026-08-16',
                 canjeDate: '2026-08-17',
+                hasCanje: true,
                 available: true
             },
             '2026-08-24-freebet-combi': {
@@ -8872,6 +8992,7 @@
                 startDate: '2026-08-24',
                 endDate: '2026-08-26',
                 canjeDate: '2026-08-27',
+                hasCanje: true,
                 available: true
             },
             '2026-08-23-juega-otra-vez': {
@@ -8919,6 +9040,7 @@
                 `,
                 startDate: '2026-08-23',
                 endDate: '2026-08-31',
+                hasCanje: false,
                 available: true
             },
             '2026-08-17-mvp-cuota-agosto': {
@@ -8975,6 +9097,8 @@
                 `,
                 startDate: '2026-08-17',
                 endDate: '2026-08-23',
+                canjeDate: '2026-08-24',
+                hasCanje: true,
                 announcementDate: '2026-08-24',
                 available: true
             },
@@ -9028,6 +9152,7 @@
                 `,
                 startDate: '2026-08-14',
                 endDate: '2026-08-31',
+                hasCanje: false,
                 available: true
             },
             '2026-08-28-racha-virtualera-agosto': {
@@ -9077,6 +9202,7 @@
                 startDate: '2026-08-28',
                 endDate: '2026-08-30',
                 canjeDate: '2026-08-31',
+                hasCanje: true,
                 available: true
             },
             '2026-08-28-combi-yapa-liga-espanola': {
@@ -9123,6 +9249,7 @@
                 startDate: '2026-08-28',
                 endDate: '2026-08-31',
                 canjeDate: '2026-09-01',
+                hasCanje: true,
                 available: true
             },
             '2026-08-20-freebet-copa-sudamericana': {
@@ -9157,6 +9284,7 @@
                 startDate: '2026-08-20',
                 endDate: '2026-08-20',
                 canjeDate: '2026-08-21',
+                hasCanje: true,
                 available: true
             },
             '2026-08-15-freebet-s20-sms': {
@@ -9209,6 +9337,7 @@
                 `,
                 startDate: '2026-08-15',
                 endDate: '2026-08-22',
+                hasCanje: false,
                 available: true
             }
         };
@@ -9371,12 +9500,8 @@
                     card.classList.add('ultimo-dia-promo');
                 }
 
-                // Badge de esquina para Lima-only
-                const limaCornerBadge = (promo.customBadgeClass === 'lima-only' && state !== 'proximamente') ? '<div class="corner-badge-lima"></div>' : '';
-
                 card.innerHTML = `
                     ${badgeHtml}
-                    ${limaCornerBadge}
                     <span class="promo-shine" aria-hidden="true"></span>
                     <div class="promotion-icon">${promo.icon}</div>
                     <div class="promotion-info">
@@ -9389,18 +9514,188 @@
             });
         }
 
-        function buildPromoKpis(promo) {
-            const categoryLabel = promo.category ? promo.category.toUpperCase() : 'PREMIUM';
-            const statusLabel = promo.available === false ? 'No disponible' : 'Activa';
-            const startLabel = promo.startDate ? formatDate(promo.startDate) : 'Ver condiciones';
-            const endLabel = promo.endDate ? formatDate(promo.endDate) : 'Sin fecha límite';
+        // Normaliza texto (sin acentos, minúsculas) para comparar contenido de las promos
+        function normalizeText(text) {
+            return (text || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .toLowerCase();
+        }
+
+        // Formato dd/mm/aaaa para las fechas registradas de cada promoción
+        function formatShortDate(dateStr) {
+            if (!dateStr) return null;
+            const [year, month, day] = String(dateStr).split('-');
+            if (!year || !month || !day) return null;
+            return `${day}/${month}/${year}`;
+        }
+
+        // Fecha de canje declarada por la promoción: canjeDate o, en su defecto, announcementDate
+        function getPromoCanjeDate(promo) {
+            if (!promo) return null;
+            return formatShortDate(promo.canjeDate) || formatShortDate(promo.announcementDate);
+        }
+
+        // La fecha de canje solo se muestra cuando la promoción la declara expresamente
+        // (hasCanje) y además tiene una fecha de canje informada.
+        // Nunca se hereda automáticamente del endDate.
+        function promoHasCanje(promo) {
+            if (!promo || promo.hasCanje !== true) return false;
+            return Boolean(getPromoCanjeDate(promo));
+        }
+
+        // Frases que describen el período de participación (se muestran en el bloque VIGENCIA)
+        const VIGENCIA_PARTICIPACION = /(particip|vigencia|cumplimiento de misiones|misiones|realizacion de (apuestas|jugadas)|(apuestas|tickets|jugadas) (realizadas|calculadas|calculados|ganados|ganadas)|del .+ al |desde .+ hasta |mismo dia)/i;
+
+        // Frases que describen el canje o premio (se muestran en el bloque CANJE)
+        const VIGENCIA_CANJE = /(canje|canjear|reclam|cobr|anuncio|activar y usar|ganador)/i;
+
+        // Recupera las condiciones del bloque "Vigencia" original que no se
+        // pueden deducir de las fechas registradas (stock, acceso, canales, etc.)
+        function extractVigenciaExtras(promo) {
+            const extras = { condiciones: [], canje: [] };
+            if (!promo.htmlDetails) return extras;
+
+            const container = document.createElement('div');
+            container.innerHTML = promo.htmlDetails;
+
+            container.querySelectorAll('.promo-section').forEach((section) => {
+                const title = section.querySelector('.promo-section-title');
+                const content = section.querySelector('.promo-section-content');
+                if (!title || !content) return;
+                if (!/vigencia/i.test(normalizeText(title.textContent))) return;
+
+                content.innerHTML.split(/<br\s*\/?>/i).forEach((block) => {
+                    const plain = normalizeText(block.replace(/<[^>]*>/g, ' '));
+                    if (!plain) return;
+                    if (VIGENCIA_PARTICIPACION.test(plain)) return;
+                    if (VIGENCIA_CANJE.test(plain)) {
+                        extras.canje.push(block.trim());
+                        return;
+                    }
+                    extras.condiciones.push(block.trim());
+                });
+            });
+
+            return extras;
+        }
+
+        // Bloque "Vigencia": muestra únicamente el período de participación de la promoción
+        function buildPromoVigenciaSection(promo) {
+            const start = formatShortDate(promo.startDate);
+            const end = formatShortDate(promo.endDate);
+
+            const vigenciaText = (start && end)
+                ? `Promoción válida desde el <strong>${start}</strong> hasta el <strong>${end}</strong>.`
+                : 'Promoción sin fechas de vigencia definidas.';
 
             return `
-                <div class="modal-kpis" aria-label="Resumen de promoción">
-                    <div class="modal-kpi"><span class="modal-kpi-label">Estado</span><strong class="modal-kpi-value">${statusLabel}</strong></div>
-                    <div class="modal-kpi"><span class="modal-kpi-label">Categoría</span><strong class="modal-kpi-value">${categoryLabel}</strong></div>
-                    <div class="modal-kpi"><span class="modal-kpi-label">Inicio</span><strong class="modal-kpi-value">${startLabel}</strong></div>
-                    <div class="modal-kpi"><span class="modal-kpi-label">Fin / canje</span><strong class="modal-kpi-value">${promo.canjeDate ? formatDate(promo.canjeDate) : endLabel}</strong></div>
+                <div class="promo-section" data-generated="vigencia">
+                    <div class="promo-section-title"><i class="fa-solid fa-calendar-check outline-icon"></i> Vigencia</div>
+                    <div class="promo-section-content">
+                        ${vigenciaText}<br><br>
+                        ⏳ <strong>Fin Promoción (${end || '—'})</strong>: último día en que el cliente puede participar en la promoción.
+                    </div>
+                </div>
+            `;
+        }
+
+        // Bloque "Canje": solo se genera si la promoción tiene una fecha de canje
+        // expresamente configurada (independiente de la vigencia)
+        function buildPromoCanjeSection(promo, extras) {
+            if (!promoHasCanje(promo)) return '';
+            const canje = getPromoCanjeDate(promo);
+
+            const extraHtml = (extras && extras.canje.length)
+                ? `<br><br>ℹ️ <strong>Condiciones del canje:</strong><br>${extras.canje.map((extra) => `• ${extra}`).join('<br>')}`
+                : '';
+
+            return `
+                <div class="promo-section" data-generated="canje">
+                    <div class="promo-section-title"><i class="fa-solid fa-ticket outline-icon"></i> Canje</div>
+                    <div class="promo-section-content">
+                        Premio canjeable hasta el <strong>${canje}</strong>.<br><br>
+                        🎁 <strong>Fecha de Canje (${canje})</strong>: último día para reclamar o utilizar el beneficio obtenido.
+                        ${extraHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Bloque "Condiciones": condiciones del beneficio que no se deducen de las fechas
+        function buildPromoConditionsSection(promo, extras) {
+            if (!extras || !extras.condiciones.length) return '';
+
+            return `
+                <div class="promo-section" data-generated="condiciones">
+                    <div class="promo-section-title"><i class="fa-solid fa-circle-info outline-icon"></i> Condiciones</div>
+                    <div class="promo-section-content">
+                        ${extras.condiciones.map((extra) => `• ${extra}`).join('<br>')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Construye el detalle de la promoción: el bloque manual de "Vigencia" se reemplaza
+        // por los bloques automáticos generados desde el registro de la promoción
+        function buildPromoDetails(promo) {
+            const fallback = `
+                <div class="promo-section">
+                    <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
+                    <div class="promo-section-content">${promo.description || ''}</div>
+                </div>
+                <div class="promo-section highlight">
+                    <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Condiciones</div>
+                    <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
+                </div>
+            `;
+
+            const container = document.createElement('div');
+            container.innerHTML = promo.htmlDetails || fallback;
+
+            const manualVigencia = Array.from(container.querySelectorAll('.promo-section')).filter((section) => {
+                const title = section.querySelector('.promo-section-title');
+                return title && /vigencia/i.test(normalizeText(title.textContent));
+            });
+
+            const extras = extractVigenciaExtras(promo);
+
+            const generated = document.createElement('div');
+            generated.innerHTML = buildPromoVigenciaSection(promo)
+                + buildPromoCanjeSection(promo, extras)
+                + buildPromoConditionsSection(promo, extras);
+            const generatedNodes = Array.from(generated.children);
+
+            if (manualVigencia.length) {
+                const anchor = manualVigencia[0];
+                generatedNodes.forEach((node) => anchor.parentNode.insertBefore(node, anchor));
+                manualVigencia.forEach((section) => section.remove());
+            } else {
+                generatedNodes.slice().reverse().forEach((node) => container.insertBefore(node, container.firstChild));
+            }
+
+            return container.innerHTML;
+        }
+
+        function buildPromoKpis(promo) {
+            const statusLabel = promo.available === false ? 'No disponible' : 'Activa';
+            const startLabel = formatShortDate(promo.startDate) || 'Sin fecha';
+            const endLabel = formatShortDate(promo.endDate) || 'Sin fecha límite';
+            const hasCanje = promoHasCanje(promo);
+
+            // La fecha de canje solo se muestra cuando existe en la configuración de la promoción
+            const canjeKpi = hasCanje
+                ? `<div class="modal-kpi" title="Fecha específica hasta la cual el cliente puede reclamar o utilizar el beneficio obtenido"><span class="modal-kpi-label">Fecha de Canje</span><strong class="modal-kpi-value">${getPromoCanjeDate(promo)}</strong></div>`
+                : '';
+
+            return `
+                <div class="modal-kpis${hasCanje ? '' : ' modal-kpis--compact'}" aria-label="Resumen de promoción">
+                    <div class="modal-kpi" title="Estado actual de la promoción"><span class="modal-kpi-label">Estado</span><strong class="modal-kpi-value">${statusLabel}</strong></div>
+                    <div class="modal-kpi" title="Fecha de inicio de la promoción"><span class="modal-kpi-label">Inicio</span><strong class="modal-kpi-value">${startLabel}</strong></div>
+                    <div class="modal-kpi" title="Último día en que el cliente puede participar en la promoción"><span class="modal-kpi-label">Fin Promoción</span><strong class="modal-kpi-value">${endLabel}</strong></div>
+                    ${canjeKpi}
                 </div>
             `;
         }
@@ -9461,28 +9756,15 @@
                     modalContent.classList.remove('green', 'yellow', 'purple', 'blue', 'red', 'orange', 'magenta');
                     modalContent.classList.add(promo.category || 'green');
 
-                    const details = promo.htmlDetails ? promo.htmlDetails : `
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
-                            <div class="promo-section-content">${promo.description}</div>
-                        </div>
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Inicio</div>
-                            <div class="promo-section-content">${formatDate(promo.startDate)}</div>
-                        </div>
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Fin</div>
-                            <div class="promo-section-content">${formatDate(promo.endDate)}</div>
-                        </div>
-                        <div class="promo-section highlight">
-                            <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Condiciones</div>
-                            <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
-                        </div>
-                    `;
+                    const details = buildPromoDetails(promo);
+                    const limaTag = promo.customBadgeClass === 'lima-only'
+                        ? '<span class="lima-tag">📍 Solo Lima</span>'
+                        : '';
 
                     promoDetail.innerHTML = `
                         <div class="master-detail-heading" style="--master-color: ${promoColor};">
                             <span class="master-promo-status">Promoción ${index + 1} de ${data.length}</span>
+                            ${limaTag}
                             <h3 style="color: ${promoColor}; font-family: 'Montserrat', sans-serif; font-size: clamp(18px, 2vw, 25px); line-height: 1.2; margin: 0 0 18px; text-shadow: 0 0 14px ${promoColor}40;">${promo.name}</h3>
                         </div>
                         ${buildPromoKpis(promo)}
@@ -9504,6 +9786,7 @@
                     option.style.setProperty('--master-color', promoColor);
                     option.innerHTML = `
                         <span class="master-promo-status">Activa</span>
+                        ${promo.customBadgeClass === 'lima-only' ? '<span class="lima-tag">📍 Solo Lima</span>' : ''}
                         <span class="master-promo-name">${promo.name}</span>
                         <span class="master-promo-index">Ver detalle completo</span>
                     `;
@@ -9521,28 +9804,12 @@
                 // Asignar dinámicamente el color según la promoción que eligió
                 modalContent.classList.add(promo.category);
 
-                if (promo.htmlDetails) {
-                    modalInfo.innerHTML = buildPromoKpis(promo) + promo.htmlDetails;
-                } else {
-                    modalInfo.innerHTML = buildPromoKpis(promo) + `
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-trophy outline-icon"></i> Descripción</div>
-                            <div class="promo-section-content">${promo.description}</div>
-                        </div>
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Inicio</div>
-                            <div class="promo-section-content">${formatDate(promo.startDate)}</div>
-                        </div>
-                        <div class="promo-section">
-                            <div class="promo-section-title"><i class="fa-solid fa-clock outline-icon"></i> Fin</div>
-                            <div class="promo-section-content">${formatDate(promo.endDate)}</div>
-                        </div>
-                        <div class="promo-section highlight">
-                            <div class="promo-section-title"><i class="fa-solid fa-location-dot outline-icon"></i> Observación</div>
-                            <div class="promo-section-content">Promoción sujeta a términos y condiciones generales de Apuesta Total.</div>
-                        </div>
-                    `;
-                }
+                // Distintivo de promociones exclusivas de Lima
+                const limaTag = promo.customBadgeClass === 'lima-only'
+                    ? '<div style="grid-column: 1 / -1; margin-bottom: 2px;"><span class="lima-tag">📍 Solo Lima</span></div>'
+                    : '';
+
+                modalInfo.innerHTML = buildPromoKpis(promo) + limaTag + buildPromoDetails(promo);
 
                 markFullWidthSections(modalInfo);
             }
@@ -9555,6 +9822,7 @@
         }
 
         function formatDate(dateStr) {
+            if (!dateStr) return '—';
             const [year, month, day] = dateStr.split('-');
             const date = new Date(year, month - 1, day);
             return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
